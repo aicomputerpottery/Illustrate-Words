@@ -1,11 +1,1122 @@
 ---
-import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import {
+  CATEGORIES,
+  PALETTES,
+  CONNECTOR_STYLES,
+  ICON_STYLES,
+  LAYOUT_MOODS,
+} from '../data/visualizations.js';
+
+// Flatten all types with their category metadata for easy rendering
+const allTypes = CATEGORIES.flatMap((cat) =>
+  cat.types.map((type) => ({
+    ...type,
+    categoryId: cat.id,
+    categoryName: cat.name,
+    categoryIcon: cat.icon,
+  }))
+);
+
+const steps = [
+  { n: 1, title: 'Visualization', subtitle: 'Pick your type' },
+  { n: 2, title: 'Palette', subtitle: 'Choose your colors' },
+  { n: 3, title: 'Style', subtitle: 'Set the mood' },
+  { n: 4, title: 'Prompt', subtitle: 'Copy and paste' },
+];
 ---
 
-<Layout title="Generator">
-  <div class="flex min-h-[60vh] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
-    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">VisualCraft — Generator</h1>
-    <p class="mt-4 max-w-2xl text-lg text-slate-600">4-step wizard coming in Phase 5.</p>
+<Layout title="Generate — VisualCraft" hideFooter={true}>
+
+  <div class="bg-cream min-h-screen pb-20">
+    <div class="container-page py-6 md:py-10">
+
+      <!-- ============================================== -->
+      <!-- MOBILE PROGRESS BAR                            -->
+      <!-- ============================================== -->
+      <div class="md:hidden mb-6">
+        <div class="flex gap-1.5">
+          {steps.map((step) => (
+            <div
+              data-mobile-step={step.n}
+              class="flex-1 h-2 rounded-full bg-ink-primary/10 transition-colors duration-300"
+            ></div>
+          ))}
+        </div>
+        <p class="mt-3 text-sm text-ink-secondary text-center font-medium">
+          Step <span id="mobile-step-number">1</span> of 4 — <span id="mobile-step-title">Visualization</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+        <!-- ============================================== -->
+        <!-- SIDEBAR (desktop only)                         -->
+        <!-- ============================================== -->
+        <aside class="hidden md:block md:col-span-3">
+          <div class="sticky top-24 space-y-3">
+
+            {steps.map((step) => (
+              <button
+                type="button"
+                data-step-indicator={step.n}
+                class="step-btn w-full flex items-center gap-3 p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all text-left hover:-translate-y-0.5"
+              >
+                <div class="step-circle w-10 h-10 rounded-full border-1.5 border-ink-primary flex items-center justify-center font-serif font-medium text-base flex-shrink-0">
+                  <span class="step-number">{step.n}</span>
+                </div>
+                <div class="min-w-0">
+                  <div class="font-serif font-medium text-base leading-tight">{step.title}</div>
+                  <div class="text-xs text-ink-secondary mt-0.5">{step.subtitle}</div>
+                </div>
+              </button>
+            ))}
+
+            <!-- Selections summary -->
+            <div class="mt-6 p-5 rounded-card border-1.5 border-ink-primary bg-cream-darker">
+              <div class="label mb-3">Your selections</div>
+              <div id="summary-content" class="space-y-2 text-sm">
+                <div class="text-ink-secondary italic">Nothing selected yet</div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- ============================================== -->
+        <!-- MAIN CONTENT                                   -->
+        <!-- ============================================== -->
+        <main class="md:col-span-9 wizard-main">
+
+          <!-- ============================================== -->
+          <!-- STEP 1: TYPE PICKER                           -->
+          <!-- ============================================== -->
+          <section data-step-content="1">
+
+            <!-- Header -->
+            <div class="mb-8">
+              <span class="pill-lavender">Step 1 of 4</span>
+              <h1 class="mt-4 headline-h1">
+                What do you want to <em>visualize</em>?
+              </h1>
+              <p class="mt-3 body-base">
+                Choose from 76 visualization types across 13 categories.
+                Use the search or filter by category.
+              </p>
+            </div>
+
+            <!-- Search bar -->
+            <div class="relative mb-6">
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ink-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                id="search-input"
+                type="text"
+                placeholder="Search visualization types..."
+                class="w-full pl-12 pr-4 py-3.5 rounded-full bg-cream-lighter border-1.5 border-ink-primary text-ink-primary placeholder:text-ink-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-accent-lavender"
+              />
+            </div>
+
+            <!-- Category filter pills (horizontal scroll on mobile) -->
+            <div class="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-8">
+              <button
+                type="button"
+                data-category-filter="all"
+                class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all"
+              >
+                All
+              </button>
+              {CATEGORIES.map((cat) => (
+                <button
+                  type="button"
+                  data-category-filter={cat.id}
+                  class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all whitespace-nowrap"
+                >
+                  <span class="mr-1.5">{cat.icon}</span>{cat.name}
+                </button>
+              ))}
+            </div>
+
+            <!-- Type cards grid -->
+            <div id="type-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {allTypes.map((type) => (
+                <button
+                  type="button"
+                  data-type-card
+                  data-type-id={type.id}
+                  data-category-id={type.categoryId}
+                  data-type-name={type.name.toLowerCase()}
+                  class="type-card text-left p-5 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="text-2xl flex-shrink-0">{type.categoryIcon}</div>
+                    <div class="min-w-0">
+                      <h3 class="font-serif text-lg font-medium leading-tight">{type.name}</h3>
+                      <p class="text-xs text-ink-secondary mt-0.5 uppercase tracking-wide">{type.categoryName}</p>
+                      <p class="text-sm text-ink-secondary mt-2 leading-relaxed">{type.description}</p>
+                    </div>
+                  </div>
+                  <div class="check-icon hidden mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-accent-lavender-dark">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Selected
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <!-- Empty state -->
+            <div id="type-empty-state" class="hidden text-center py-16">
+              <div class="text-5xl mb-4">🔍</div>
+              <p class="font-serif text-xl font-medium">No types match your search</p>
+              <p class="text-ink-secondary mt-2">Try a different keyword or category</p>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="mt-10 flex justify-end">
+              <button
+                type="button"
+                data-go-next
+                disabled
+                class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              >
+                Next: Palette
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+
+          </section>
+
+          <!-- ============================================== -->
+          <!-- STEP 2: PALETTE PICKER                        -->
+          <!-- ============================================== -->
+          <section data-step-content="2" class="hidden">
+
+            <!-- Header -->
+            <div class="mb-8">
+              <span class="pill-lime">Step 2 of 4</span>
+              <h1 class="mt-4 headline-h1">
+                Pick your <em>palette</em>.
+              </h1>
+              <p class="mt-3 body-base">
+                25 curated color combinations. Each one is hand-picked for visual harmony.
+              </p>
+            </div>
+
+            <!-- Live preview -->
+            <div class="mb-8 p-6 rounded-card border-1.5 border-ink-primary bg-cream-lighter">
+              <div class="label mb-3">Preview</div>
+              <div id="palette-preview" class="flex items-end gap-2 h-32">
+                <!-- Empty bars filled in by JS -->
+                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 30%"></div>
+                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 60%"></div>
+                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 45%"></div>
+                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 85%"></div>
+                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 70%"></div>
+              </div>
+              <p id="palette-preview-name" class="mt-4 text-sm text-ink-secondary italic">
+                Pick a palette to see the preview
+              </p>
+            </div>
+
+            <!-- Palette grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {PALETTES.map((palette) => (
+                <button
+                  type="button"
+                  data-palette-card
+                  data-palette-id={palette.id}
+                  class="palette-card text-left p-5 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard"
+                >
+                  <!-- Color swatches -->
+                  <div class="flex gap-1 mb-4">
+                    {palette.colors.map((color) => (
+                      <div
+                        class="flex-1 h-12 rounded-md border-1.5 border-ink-primary"
+                        style={`background-color: ${color}`}
+                      ></div>
+                    ))}
+                  </div>
+                  <h3 class="font-serif text-lg font-medium">{palette.name}</h3>
+                  <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-ink-secondary uppercase tracking-wide">{palette.mood}</span>
+                    <span class="check-icon hidden inline-flex items-center gap-1 text-xs font-medium text-accent-lavender-dark ml-auto">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      Selected
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="mt-10 flex justify-between items-center">
+              <button type="button" data-go-back class="btn-secondary">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                </svg>
+                Back
+              </button>
+              <button
+                type="button"
+                data-go-next
+                disabled
+                class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              >
+                Next: Style
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+
+          </section>
+
+          <!-- ============================================== -->
+          <!-- STEP 3: STYLE PICKER                          -->
+          <!-- ============================================== -->
+          <section data-step-content="3" class="hidden">
+
+            <!-- Header -->
+            <div class="mb-8">
+              <span class="pill-pink">Step 3 of 4</span>
+              <h1 class="mt-4 headline-h1">
+                Set the <em>style</em>.
+              </h1>
+              <p class="mt-3 body-base">
+                Three quick choices to fine-tune the look and feel.
+              </p>
+            </div>
+
+            <!-- Connector style -->
+            <div class="mb-10">
+              <h2 class="font-serif text-xl font-medium mb-2">Connector style</h2>
+              <p class="text-sm text-ink-secondary mb-4">How lines and arrows are drawn between elements.</p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {CONNECTOR_STYLES.map((style) => (
+                  <button
+                    type="button"
+                    data-style-card
+                    data-style-type="connector"
+                    data-style-id={style.id}
+                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                  >
+                    <h3 class="font-serif font-medium">{style.name}</h3>
+                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Icon style -->
+            <div class="mb-10">
+              <h2 class="font-serif text-xl font-medium mb-2">Icon style</h2>
+              <p class="text-sm text-ink-secondary mb-4">How icons are rendered if your visualization includes them.</p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {ICON_STYLES.map((style) => (
+                  <button
+                    type="button"
+                    data-style-card
+                    data-style-type="icon"
+                    data-style-id={style.id}
+                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                  >
+                    <h3 class="font-serif font-medium">{style.name}</h3>
+                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Layout mood -->
+            <div class="mb-10">
+              <h2 class="font-serif text-xl font-medium mb-2">Layout mood</h2>
+              <p class="text-sm text-ink-secondary mb-4">The overall aesthetic direction.</p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {LAYOUT_MOODS.map((style) => (
+                  <button
+                    type="button"
+                    data-style-card
+                    data-style-type="mood"
+                    data-style-id={style.id}
+                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                  >
+                    <h3 class="font-serif font-medium">{style.name}</h3>
+                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="mt-10 flex justify-between items-center">
+              <button type="button" data-go-back class="btn-secondary">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                </svg>
+                Back
+              </button>
+              <button
+                type="button"
+                data-go-next
+                disabled
+                class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              >
+                Generate Prompt
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+
+          </section>
+
+          <!-- ============================================== -->
+          <!-- STEP 4: PROMPT RESULT                         -->
+          <!-- ============================================== -->
+          <section data-step-content="4" class="hidden">
+
+            <!-- Header -->
+            <div class="mb-8">
+              <span class="pill bg-accent-lime text-ink-primary">Step 4 of 4 — Your prompt is ready</span>
+              <h1 class="mt-4 headline-h1">
+                Copy and <em>paste</em>.
+              </h1>
+              <p class="mt-3 body-base">
+                Your AI-ready visualization prompt. Paste it into any AI tool.
+              </p>
+            </div>
+
+            <!-- Selection summary tags -->
+            <div id="summary-tags" class="flex flex-wrap gap-2 mb-8"></div>
+
+            <!-- User content input -->
+            <div class="mb-6">
+              <label for="user-content" class="block font-serif text-lg font-medium mb-2">
+                Your content
+              </label>
+              <p class="text-sm text-ink-secondary mb-3">
+                Paste the text, data, or topic you want visualized. Leave blank to keep the placeholder.
+              </p>
+              <textarea
+                id="user-content"
+                rows="4"
+                placeholder="Example: SWOT analysis of opening a coffee shop in downtown Seattle. Strengths include high foot traffic and premium location. Weaknesses include high rent and saturated market..."
+                class="w-full p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter text-ink-primary placeholder:text-ink-tertiary font-sans text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-lavender resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Generated prompt display -->
+            <div class="mb-6">
+              <div class="flex items-center justify-between mb-2">
+                <label for="generated-prompt" class="font-serif text-lg font-medium">
+                  Your generated prompt
+                </label>
+                <span id="prompt-char-count" class="text-xs text-ink-secondary">0 characters</span>
+              </div>
+              <div class="relative">
+                <textarea
+                  id="generated-prompt"
+                  rows="12"
+                  readonly
+                  class="w-full p-4 rounded-card border-1.5 border-ink-primary bg-ink-primary text-cream font-mono text-sm leading-relaxed resize-none"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-wrap gap-3 mb-10">
+              <button id="copy-btn" type="button" class="btn-accent flex-1 min-w-[200px]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Copy Prompt
+              </button>
+              <button id="download-btn" type="button" class="btn-secondary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download .txt
+              </button>
+              <button id="reset-btn" type="button" class="btn-ghost">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Start Over
+              </button>
+            </div>
+
+            <!-- AI tool launcher cards -->
+            <div class="border-t-1.5 border-ink-primary/20 pt-10">
+              <h2 class="font-serif text-2xl font-medium mb-2">
+                Now paste it into your favorite AI
+              </h2>
+              <p class="text-ink-secondary mb-6">
+                Open one of these tools, paste your prompt, and get your visualization.
+              </p>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
+                  <div class="text-3xl mb-2">✨</div>
+                  <div class="font-serif font-medium">Gemini</div>
+                  <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
+                    Open
+                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
+                  <div class="text-3xl mb-2">💬</div>
+                  <div class="font-serif font-medium">ChatGPT</div>
+                  <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
+                    Open
+                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
+                  <div class="text-3xl mb-2">🧡</div>
+                  <div class="font-serif font-medium">Claude</div>
+                  <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
+                    Open
+                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://midjourney.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
+                  <div class="text-3xl mb-2">🎨</div>
+                  <div class="font-serif font-medium">Midjourney</div>
+                  <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
+                    Open
+                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+        </main>
+
+      </div>
+    </div>
   </div>
+
+  <!-- Toast notification for copy feedback -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-ink-primary text-cream rounded-full font-medium shadow-hard opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+    Copied to clipboard! ✓
+  </div>
+
+  <!-- ============================================== -->
+  <!-- WIZARD STATE LOGIC                            -->
+  <!-- ============================================== -->
+  <script>
+    import {
+      CATEGORIES,
+      PALETTES,
+      CONNECTOR_STYLES,
+      ICON_STYLES,
+      LAYOUT_MOODS,
+    } from '../data/visualizations.js';
+
+    // ---- Data lookups ---------------------------------------------------
+    const allTypes = CATEGORIES.flatMap((cat) =>
+      cat.types.map((t) => ({ ...t, categoryId: cat.id, categoryName: cat.name }))
+    );
+
+    const getTypeById = (id) => allTypes.find((t) => t.id === id);
+    const getPaletteById = (id) => PALETTES.find((p) => p.id === id);
+    const getConnectorById = (id) => CONNECTOR_STYLES.find((s) => s.id === id);
+    const getIconById = (id) => ICON_STYLES.find((s) => s.id === id);
+    const getMoodById = (id) => LAYOUT_MOODS.find((s) => s.id === id);
+
+    const stepTitles = ['', 'Visualization', 'Palette', 'Style', 'Prompt'];
+
+    // ---- State ---------------------------------------------------------
+    const state = {
+      currentStep: 1,
+      selectedTypeId: null,
+      selectedCategoryFilter: 'all',
+      selectedPaletteId: null,
+      selectedConnectorId: null,
+      selectedIconId: null,
+      selectedMoodId: null,
+      userContent: '',
+      searchQuery: '',
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('visualcraft-wizard-v1');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          Object.assign(state, parsed);
+        }
+      } catch (e) {
+        console.warn('Failed to load saved state', e);
+      }
+
+      // Override category filter from URL ?category=xxx
+      const params = new URLSearchParams(window.location.search);
+      const urlCategory = params.get('category');
+      if (urlCategory && (urlCategory === 'all' || CATEGORIES.some((c) => c.id === urlCategory))) {
+        state.selectedCategoryFilter = urlCategory;
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('visualcraft-wizard-v1', JSON.stringify(state));
+      } catch (e) {
+        console.warn('Failed to save state', e);
+      }
+    }
+
+    // ---- Validation -----------------------------------------------------
+    function canGoToStep(n) {
+      if (n <= 1) return true;
+      if (n === 2) return !!state.selectedTypeId;
+      if (n === 3) return !!state.selectedTypeId && !!state.selectedPaletteId;
+      if (n === 4)
+        return (
+          !!state.selectedTypeId &&
+          !!state.selectedPaletteId &&
+          !!state.selectedConnectorId &&
+          !!state.selectedIconId &&
+          !!state.selectedMoodId
+        );
+      return false;
+    }
+
+    function canAdvance() {
+      const n = state.currentStep;
+      if (n === 1) return !!state.selectedTypeId;
+      if (n === 2) return !!state.selectedPaletteId;
+      if (n === 3)
+        return !!state.selectedConnectorId && !!state.selectedIconId && !!state.selectedMoodId;
+      return false;
+    }
+
+    // ---- Navigation -----------------------------------------------------
+    function goToStep(n) {
+      if (n < 1 || n > 4) return;
+      if (!canGoToStep(n)) return;
+      state.currentStep = n;
+      saveState();
+      render();
+      document.querySelector('.wizard-main')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---- Selection handlers --------------------------------------------
+    function selectType(id) {
+      state.selectedTypeId = id;
+      saveState();
+      render();
+    }
+
+    function selectPalette(id) {
+      state.selectedPaletteId = id;
+      saveState();
+      render();
+    }
+
+    function selectStyle(type, id) {
+      if (type === 'connector') state.selectedConnectorId = id;
+      else if (type === 'icon') state.selectedIconId = id;
+      else if (type === 'mood') state.selectedMoodId = id;
+      saveState();
+      render();
+    }
+
+    function setCategoryFilter(catId) {
+      state.selectedCategoryFilter = catId;
+      saveState();
+      renderTypeFilter();
+    }
+
+    function setSearchQuery(q) {
+      state.searchQuery = q.toLowerCase();
+      renderTypeFilter();
+    }
+
+    function setUserContent(text) {
+      state.userContent = text;
+      saveState();
+      renderPrompt();
+    }
+
+    // ---- Prompt generation ---------------------------------------------
+    function generatePrompt() {
+      const type = getTypeById(state.selectedTypeId);
+      const palette = getPaletteById(state.selectedPaletteId);
+      const connector = getConnectorById(state.selectedConnectorId);
+      const icon = getIconById(state.selectedIconId);
+      const mood = getMoodById(state.selectedMoodId);
+
+      if (!type) return '';
+
+      const content = state.userContent.trim() || '[Paste your content here]';
+      let prompt = type.promptTemplate.replace('[USER_CONTENT]', content);
+
+      if (palette) {
+        prompt += `\n\nUSE THIS COLOR PALETTE: ${palette.name} (${palette.mood}). Apply these hex colors throughout the visualization in a balanced, harmonious way: ${palette.colors.join(', ')}. The dominant color should be ${palette.preview}.`;
+      }
+
+      const styleNotes = [];
+      if (connector) styleNotes.push(`Connector style: ${connector.name} — ${connector.description}`);
+      if (icon) styleNotes.push(`Icon style: ${icon.name} — ${icon.description}`);
+      if (mood) styleNotes.push(`Overall layout mood: ${mood.name} — ${mood.description}`);
+
+      if (styleNotes.length) {
+        prompt += `\n\nADDITIONAL STYLE GUIDANCE:\n• ${styleNotes.join('\n• ')}`;
+      }
+
+      return prompt;
+    }
+
+    // ---- Actions: copy, download, reset --------------------------------
+    async function copyPrompt() {
+      const text = generatePrompt();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Copy failed', err);
+        }
+        document.body.removeChild(ta);
+      }
+      showToast('Copied to clipboard! ✓');
+    }
+
+    function downloadPrompt() {
+      const text = generatePrompt();
+      const type = getTypeById(state.selectedTypeId);
+      const filename = `visualcraft-${type?.id || 'prompt'}.txt`;
+
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function resetAll() {
+      if (!confirm('Reset all selections and start over?')) return;
+      state.currentStep = 1;
+      state.selectedTypeId = null;
+      state.selectedCategoryFilter = 'all';
+      state.selectedPaletteId = null;
+      state.selectedConnectorId = null;
+      state.selectedIconId = null;
+      state.selectedMoodId = null;
+      state.userContent = '';
+      state.searchQuery = '';
+      saveState();
+
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) searchInput.value = '';
+      const userContent = document.getElementById('user-content');
+      if (userContent) userContent.value = '';
+
+      render();
+    }
+
+    // ---- Toast ---------------------------------------------------------
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.opacity = '1';
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.style.opacity = '0';
+      }, 2200);
+    }
+
+    // ---- Rendering -----------------------------------------------------
+    function render() {
+      renderStepVisibility();
+      renderSidebar();
+      renderMobileProgress();
+      renderSummary();
+      renderTypeFilter();
+      renderTypeSelections();
+      renderPaletteSelections();
+      renderPalettePreview();
+      renderStyleSelections();
+      renderSummaryTags();
+      renderPrompt();
+      renderNavButtons();
+    }
+
+    function renderStepVisibility() {
+      document.querySelectorAll('[data-step-content]').forEach((el) => {
+        const step = parseInt(el.getAttribute('data-step-content'));
+        if (step === state.currentStep) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+    }
+
+    function renderSidebar() {
+      document.querySelectorAll('[data-step-indicator]').forEach((el) => {
+        const step = parseInt(el.getAttribute('data-step-indicator'));
+        const circle = el.querySelector('.step-circle');
+        const numberEl = el.querySelector('.step-number');
+
+        el.classList.remove('bg-ink-primary', 'text-cream', 'bg-cream-lighter', 'bg-accent-lime');
+        circle?.classList.remove('bg-accent-lavender', 'bg-accent-lime');
+
+        if (step === state.currentStep) {
+          el.classList.add('bg-ink-primary', 'text-cream');
+          circle?.classList.add('bg-accent-lavender');
+        } else if (canGoToStep(step) && step < state.currentStep) {
+          el.classList.add('bg-cream-lighter');
+          circle?.classList.add('bg-accent-lime');
+          if (numberEl) numberEl.innerHTML = '✓';
+        } else {
+          el.classList.add('bg-cream-lighter');
+          if (numberEl) numberEl.textContent = String(step);
+        }
+
+        if (canGoToStep(step)) {
+          el.removeAttribute('disabled');
+          el.style.cursor = 'pointer';
+          el.style.opacity = '1';
+        } else {
+          el.setAttribute('disabled', 'true');
+          el.style.cursor = 'not-allowed';
+          el.style.opacity = '0.5';
+        }
+      });
+    }
+
+    function renderMobileProgress() {
+      document.querySelectorAll('[data-mobile-step]').forEach((el) => {
+        const step = parseInt(el.getAttribute('data-mobile-step'));
+        el.classList.remove('bg-ink-primary', 'bg-accent-lavender', 'bg-accent-lime');
+        if (step < state.currentStep) {
+          el.classList.add('bg-accent-lime');
+        } else if (step === state.currentStep) {
+          el.classList.add('bg-accent-lavender');
+        } else {
+          el.classList.add('bg-ink-primary');
+          el.style.opacity = '0.1';
+        }
+      });
+
+      const num = document.getElementById('mobile-step-number');
+      if (num) num.textContent = String(state.currentStep);
+      const title = document.getElementById('mobile-step-title');
+      if (title) title.textContent = stepTitles[state.currentStep];
+    }
+
+    function renderSummary() {
+      const el = document.getElementById('summary-content');
+      if (!el) return;
+
+      const items = [];
+      if (state.selectedTypeId) {
+        const t = getTypeById(state.selectedTypeId);
+        if (t) items.push({ label: 'Type', value: t.name });
+      }
+      if (state.selectedPaletteId) {
+        const p = getPaletteById(state.selectedPaletteId);
+        if (p) items.push({ label: 'Palette', value: p.name, swatch: p.preview });
+      }
+      if (state.selectedConnectorId) {
+        const s = getConnectorById(state.selectedConnectorId);
+        if (s) items.push({ label: 'Connector', value: s.name });
+      }
+      if (state.selectedIconId) {
+        const s = getIconById(state.selectedIconId);
+        if (s) items.push({ label: 'Icons', value: s.name });
+      }
+      if (state.selectedMoodId) {
+        const s = getMoodById(state.selectedMoodId);
+        if (s) items.push({ label: 'Mood', value: s.name });
+      }
+
+      if (items.length === 0) {
+        el.innerHTML = '<div class="text-ink-secondary italic">Nothing selected yet</div>';
+        return;
+      }
+
+      el.innerHTML = items
+        .map(
+          (item) => `
+        <div class="flex items-start gap-2">
+          ${item.swatch ? `<div class="w-3 h-3 rounded-full border border-ink-primary mt-1 flex-shrink-0" style="background-color: ${item.swatch}"></div>` : ''}
+          <div class="flex-1 min-w-0">
+            <div class="text-xs text-ink-secondary uppercase tracking-wide">${item.label}</div>
+            <div class="font-medium truncate">${item.value}</div>
+          </div>
+        </div>
+      `
+        )
+        .join('');
+    }
+
+    function renderTypeFilter() {
+      document.querySelectorAll('[data-category-filter]').forEach((el) => {
+        const cat = el.getAttribute('data-category-filter');
+        el.classList.remove('bg-ink-primary', 'text-cream', 'bg-cream-lighter');
+        if (cat === state.selectedCategoryFilter) {
+          el.classList.add('bg-ink-primary', 'text-cream');
+        } else {
+          el.classList.add('bg-cream-lighter');
+        }
+      });
+
+      let visibleCount = 0;
+      document.querySelectorAll('[data-type-card]').forEach((el) => {
+        const typeName = el.getAttribute('data-type-name') || '';
+        const catId = el.getAttribute('data-category-id') || '';
+        const matchesCategory =
+          state.selectedCategoryFilter === 'all' || catId === state.selectedCategoryFilter;
+        const matchesSearch = !state.searchQuery || typeName.includes(state.searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          el.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      const emptyState = document.getElementById('type-empty-state');
+      if (emptyState) {
+        if (visibleCount === 0) emptyState.classList.remove('hidden');
+        else emptyState.classList.add('hidden');
+      }
+    }
+
+    function renderTypeSelections() {
+      document.querySelectorAll('[data-type-card]').forEach((el) => {
+        const id = el.getAttribute('data-type-id');
+        const check = el.querySelector('.check-icon');
+        if (id === state.selectedTypeId) {
+          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
+          check?.classList.remove('hidden');
+        } else {
+          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
+          check?.classList.add('hidden');
+        }
+      });
+    }
+
+    function renderPaletteSelections() {
+      document.querySelectorAll('[data-palette-card]').forEach((el) => {
+        const id = el.getAttribute('data-palette-id');
+        const check = el.querySelector('.check-icon');
+        if (id === state.selectedPaletteId) {
+          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
+          check?.classList.remove('hidden');
+        } else {
+          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
+          check?.classList.add('hidden');
+        }
+      });
+    }
+
+    function renderPalettePreview() {
+      const palette = getPaletteById(state.selectedPaletteId);
+      const preview = document.getElementById('palette-preview');
+      const previewName = document.getElementById('palette-preview-name');
+
+      if (!preview) return;
+
+      const bars = preview.children;
+      if (palette) {
+        for (let i = 0; i < bars.length; i++) {
+          const colorIdx = i % palette.colors.length;
+          bars[i].style.backgroundColor = palette.colors[colorIdx];
+          bars[i].style.borderColor = '#0A0A0A';
+        }
+        if (previewName) {
+          previewName.innerHTML = `<strong class="text-ink-primary">${palette.name}</strong> · ${palette.mood}`;
+        }
+      } else {
+        for (let i = 0; i < bars.length; i++) {
+          bars[i].style.backgroundColor = '';
+        }
+        if (previewName) {
+          previewName.textContent = 'Pick a palette to see the preview';
+        }
+      }
+    }
+
+    function renderStyleSelections() {
+      document.querySelectorAll('[data-style-card]').forEach((el) => {
+        const type = el.getAttribute('data-style-type');
+        const id = el.getAttribute('data-style-id');
+        let selectedId = null;
+        if (type === 'connector') selectedId = state.selectedConnectorId;
+        else if (type === 'icon') selectedId = state.selectedIconId;
+        else if (type === 'mood') selectedId = state.selectedMoodId;
+
+        if (id === selectedId) {
+          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
+        } else {
+          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
+        }
+      });
+    }
+
+    function renderSummaryTags() {
+      const el = document.getElementById('summary-tags');
+      if (!el) return;
+
+      const tags = [];
+      const t = getTypeById(state.selectedTypeId);
+      const p = getPaletteById(state.selectedPaletteId);
+      const c = getConnectorById(state.selectedConnectorId);
+      const i = getIconById(state.selectedIconId);
+      const m = getMoodById(state.selectedMoodId);
+
+      if (t) tags.push({ label: t.name, color: 'bg-accent-lavender' });
+      if (p) tags.push({ label: p.name, color: 'bg-accent-pink' });
+      if (c) tags.push({ label: `${c.name} lines`, color: 'bg-accent-lime' });
+      if (i) tags.push({ label: `${i.name} icons`, color: 'bg-accent-sky' });
+      if (m) tags.push({ label: `${m.name} mood`, color: 'bg-accent-orange' });
+
+      el.innerHTML = tags
+        .map(
+          (tag) =>
+            `<span class="pill ${tag.color} text-ink-primary text-xs">${tag.label}</span>`
+        )
+        .join('');
+    }
+
+    function renderPrompt() {
+      const ta = document.getElementById('generated-prompt');
+      const charCount = document.getElementById('prompt-char-count');
+      if (!ta) return;
+
+      const text = generatePrompt();
+      ta.value = text;
+      if (charCount) charCount.textContent = `${text.length} characters`;
+    }
+
+    function renderNavButtons() {
+      document.querySelectorAll('[data-go-next]').forEach((btn) => {
+        if (canAdvance()) {
+          btn.removeAttribute('disabled');
+        } else {
+          btn.setAttribute('disabled', 'true');
+        }
+      });
+    }
+
+    // ---- Event listeners -----------------------------------------------
+    function attachEventListeners() {
+      document.querySelectorAll('[data-step-indicator]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const step = parseInt(el.getAttribute('data-step-indicator'));
+          goToStep(step);
+        });
+      });
+
+      document.querySelectorAll('[data-type-card]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-type-id');
+          if (id) selectType(id);
+        });
+      });
+
+      document.querySelectorAll('[data-palette-card]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-palette-id');
+          if (id) selectPalette(id);
+        });
+      });
+
+      document.querySelectorAll('[data-style-card]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const type = el.getAttribute('data-style-type');
+          const id = el.getAttribute('data-style-id');
+          if (type && id) selectStyle(type, id);
+        });
+      });
+
+      document.querySelectorAll('[data-category-filter]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const cat = el.getAttribute('data-category-filter');
+          if (cat) setCategoryFilter(cat);
+        });
+      });
+
+      const searchInput = document.getElementById('search-input');
+      searchInput?.addEventListener('input', (e) => {
+        setSearchQuery(e.target.value);
+      });
+
+      const userContent = document.getElementById('user-content');
+      userContent?.addEventListener('input', (e) => {
+        setUserContent(e.target.value);
+      });
+
+      document.querySelectorAll('[data-go-next]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          goToStep(state.currentStep + 1);
+        });
+      });
+
+      document.querySelectorAll('[data-go-back]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          goToStep(state.currentStep - 1);
+        });
+      });
+
+      document.getElementById('copy-btn')?.addEventListener('click', copyPrompt);
+      document.getElementById('download-btn')?.addEventListener('click', downloadPrompt);
+      document.getElementById('reset-btn')?.addEventListener('click', resetAll);
+    }
+
+    function init() {
+      loadState();
+      attachEventListeners();
+
+      const searchInput = document.getElementById('search-input');
+      if (searchInput && state.searchQuery) searchInput.value = state.searchQuery;
+
+      const userContent = document.getElementById('user-content');
+      if (userContent) userContent.value = state.userContent;
+
+      render();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+
 </Layout>
+

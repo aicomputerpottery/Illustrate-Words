@@ -1,0 +1,32 @@
+---
+interface Props {
+  color?: string;
+  width?: string;
+  rotate?: string;
+  class?: string;
+}
+
+const {
+  color = '#B5A5F0',
+  width = '120',
+  rotate = '0deg',
+  class: className = '',
+} = Astro.props;
+---
+
+<svg
+  viewBox="0 0 120 20"
+  width={width}
+  height="20"
+  fill="none"
+  class={className}
+  style={`transform: rotate(${rotate});`}
+>
+  <path
+    d="M2,10 Q15,2 30,10 T58,10 T86,10 T114,10 L118,10"
+    stroke={color}
+    stroke-width="2.5"
+    stroke-linecap="round"
+    fill="none"
+  />
+</svg>

@@ -1,13 +1,23 @@
 ---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const { title = 'VisualCraft' } = Astro.props;
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Generator', href: '/generate' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'About', href: '/about' },
-];
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  hideFooter?: boolean;
+}
+
+const {
+  title = 'VisualCraft — Turn any idea into a stunning visualization',
+  description = 'Free Napkin AI alternative. Pick your chart type, choose your colors, and get an AI-ready prompt in seconds. Works with Gemini, ChatGPT, Claude, and Midjourney.',
+  image = '/og-image.png',
+  hideFooter = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://visualcraft.pages.dev');
 ---
 
 <!doctype html>
@@ -15,48 +25,41 @@ const navItems = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="VisualCraft is a creative visual generation starter built with Astro and Tailwind CSS." />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | VisualCraft</title>
-  </head>
-  <body class="min-h-screen bg-white text-slate-900">
-    <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-        <a href="/" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
-          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED] to-[#0D9488] text-sm font-bold text-white">
-            VC
-          </span>
-          <span>VisualCraft</span>
-        </a>
-        <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
-          {navItems.map((item) => (
-            <a href={item.href} class="transition hover:text-[#7C3AED]">{item.label}</a>
-          ))}
-        </nav>
-        <a
-          href="/generate"
-          class="rounded-full bg-gradient-to-r from-[#7C3AED] to-[#0D9488] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
-        >
-          Start Generating
-        </a>
-      </div>
-    </header>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-    <main class="mx-auto flex min-h-[calc(100vh-16rem)] max-w-6xl flex-col px-6 py-16 lg:px-8">
+    <meta name="theme-color" content="#F4EFE2" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-cream">
+    <Navbar />
+    <main class="flex-1">
       <slot />
     </main>
-
-    <footer class="border-t border-slate-200 bg-slate-50/70">
-      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-8 text-sm text-slate-600 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <p>© 2026 VisualCraft. Crafted for your next creative idea.</p>
-        <div class="flex gap-4">
-          <a href="/about" class="transition hover:text-[#0D9488]">About</a>
-          <a href="/gallery" class="transition hover:text-[#7C3AED]">Gallery</a>
-        </div>
-      </div>
-    </footer>
+    {!hideFooter && <Footer />}
   </body>
 </html>
