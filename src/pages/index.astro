@@ -8,6 +8,7 @@ const categoryPreview = CATEGORIES.map((cat) => ({
   id: cat.id,
   name: cat.name,
   icon: cat.icon,
+  iconSvg: cat.iconSvg,
   description: cat.description,
   count: cat.types.length,
 }));
@@ -26,23 +27,23 @@ const comparison = [
 // Use cases
 const useCases = [
   {
-    title: 'Consultants & Analysts',
-    description: 'Generate SWOT analyses, business model canvases, and comparison charts for client decks in seconds.',
-    icon: '📊',
+    title: 'Consultants & Advisory',
+    description: 'Design MECE Issue Trees, Strategy Alignment Frameworks, and BCG Growth Matrices to structure complex client recommendations.',
+    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="3" y="16" width="8" height="8" rx="1.5"/><rect x="20" y="5" width="8" height="8" rx="1.5"/><rect x="20" y="27" width="8" height="8" rx="1.5"/><path d="M11 20 h 5 v -11 h 4 M16 20 v 11 h 4"/></svg>`,
     bg: 'bg-accent-lavender',
     rotate: '-rotate-2',
   },
   {
-    title: 'Students & Educators',
-    description: 'Visualize concepts, timelines, and processes for assignments and presentations.',
-    icon: '🎓',
+    title: 'Analysts & Researchers',
+    description: 'Map Trend Scatterplots, Venn Overlaps, and 2x2 Prioritization Grids to synthesize findings for executive summaries.',
+    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="6" y1="34" x2="34" y2="34"/><line x1="6" y1="6" x2="6" y2="34"/><circle cx="13" cy="27" r="1.5" fill="currentColor"/><circle cx="19" cy="19" r="1.5" fill="currentColor"/><circle cx="25" cy="23" r="1.5" fill="currentColor"/><circle cx="31" cy="11" r="1.5" fill="currentColor"/><line x1="8" y1="29" x2="32" y2="9" stroke-dasharray="3 3"/></svg>`,
     bg: 'bg-accent-lime',
     rotate: 'rotate-1',
   },
   {
-    title: 'Designers & PMs',
-    description: 'Create user journey maps, flowcharts, and product diagrams ready for stakeholder review.',
-    icon: '✨',
+    title: 'Designers & Product Teams',
+    description: 'Layout User Flow Charts, Wireframe Grid Schemas, and Agile Roadmap Timelines to orchestrate feature delivery.',
+    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M6 20 q 7 -10, 14 0 t 14 0" stroke-dasharray="2.5 2.5"/><circle cx="6" cy="20" r="3" fill="currentColor"/><circle cx="20" cy="20" r="3" fill="currentColor"/><circle cx="34" cy="20" r="3" fill="currentColor"/><path d="M6 24 v 4 M20 24 v 4 M34 24 v 4"/></svg>`,
     bg: 'bg-accent-pink',
     rotate: '-rotate-1',
   },
@@ -124,69 +125,191 @@ const steps = [
 
       <!-- Trust microcopy with squiggle -->
       <div class="mt-8 flex flex-col items-center gap-2">
-        <Squiggle color="#B5A5F0" width="100" />
-        <p class="text-sm text-ink-secondary text-center">
-          Built for designers, consultants, students, and product teams
+        <Squiggle color="#5822F4" width="100" />
+        <p class="text-sm text-ink-secondary text-center font-medium">
+          Built for designers, consultants, analysts, and product teams
         </p>
       </div>
 
-      <!-- Hero visual mockup (a stylized preview of the 3-step wizard) -->
+      <!-- Hero visual mockup (Interactive Agent Simulator) -->
       <div class="mt-16 md:mt-20 relative max-w-4xl mx-auto">
 
-        <!-- Mockup card with thick border and shadow -->
-        <div class="bg-cream-lighter rounded-card border-1.5 border-ink-primary shadow-hard p-6 md:p-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+        <!-- Browser Mockup Window -->
+        <div class="bg-cream-lighter rounded-card border-1.5 border-ink-primary shadow-hard overflow-hidden flex flex-col relative transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+          
+          <!-- Window Header (Browser Bar) -->
+          <div class="bg-cream-darker border-b-1.5 border-ink-primary px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-ink-primary/20"></span>
+              <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-ink-primary/20"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-ink-primary/20"></span>
+            </div>
+            <div class="bg-cream-lighter border border-ink-primary/20 rounded px-4 py-0.5 text-xs text-ink-secondary font-mono flex items-center gap-1">
+              <svg class="w-3 h-3 text-ink-tertiary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              illustratewords.com/generate
+            </div>
+            <div class="w-12"></div>
+          </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-            <!-- Step 1 preview -->
-            <div class="bg-cream rounded-card-sm border-1.5 border-ink-primary p-5">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="font-serif text-2xl">01</span>
-                <span class="text-xs uppercase font-medium tracking-wider">Type</span>
+          <!-- Window Content -->
+          <div class="p-6 md:p-10 relative min-h-[380px] bg-cream-lighter flex flex-col justify-between">
+            
+            <!-- Simulated Step Contents -->
+            <div id="sim-step-1" class="sim-view grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
+              <!-- Grid item 1 (Selected) -->
+              <div id="sim-card-mindmap" class="bg-cream rounded-card-sm border-1.5 border-ink-primary p-5 transition-all">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-serif text-2xl">01</span>
+                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
+                </div>
+                <div class="text-ink-primary w-10 h-10 mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M12 15v5M9 12H4M15 12h5"/></svg>
+                </div>
+                <p class="font-medium text-sm">Mindmap</p>
+                <p class="text-[11px] text-ink-secondary mt-1">Radial idea structure</p>
               </div>
-              <div class="text-3xl mb-2">🧠</div>
-              <p class="font-medium">Mindmap</p>
-              <p class="text-xs text-ink-secondary mt-1">Central node map</p>
+
+              <!-- Grid item 2 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-serif text-2xl text-ink-tertiary">02</span>
+                </div>
+                <div class="text-ink-tertiary w-10 h-10 mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="3" y="5" width="6" height="6" rx="1"/><rect x="15" y="5" width="6" height="6" rx="1"/><path d="M9 8h6M12 5l3 3-3 3"/></svg>
+                </div>
+                <p class="font-medium text-sm">Flowchart</p>
+                <p class="text-[11px] text-ink-secondary mt-1">Sequential workflow</p>
+              </div>
+
+              <!-- Grid item 3 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-serif text-2xl text-ink-tertiary">03</span>
+                </div>
+                <div class="text-ink-tertiary w-10 h-10 mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <p class="font-medium text-sm">Scatterplot</p>
+                <p class="text-[11px] text-ink-secondary mt-1">Data correlations</p>
+              </div>
             </div>
 
-            <!-- Step 2 preview -->
-            <div class="bg-cream rounded-card-sm border-1.5 border-ink-primary p-5">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="font-serif text-2xl">02</span>
-                <span class="text-xs uppercase font-medium tracking-wider">Palette</span>
+            <!-- Simulated Step 2 Contents (Hidden initially) -->
+            <div id="sim-step-2" class="sim-view hidden grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
+              <!-- Palette 1 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <p class="font-medium text-sm">Steel Storm</p>
+                <div class="flex gap-1 mt-2">
+                  <div class="w-4 h-4 rounded bg-[#ECEFF1]"></div>
+                  <div class="w-4 h-4 rounded bg-[#CFD8DC]"></div>
+                  <div class="w-4 h-4 rounded bg-[#90A4AE]"></div>
+                </div>
               </div>
-              <div class="flex gap-1 mb-3">
-                <div class="w-7 h-7 rounded-full bg-accent-lavender border-1.5 border-ink-primary"></div>
-                <div class="w-7 h-7 rounded-full bg-accent-pink border-1.5 border-ink-primary"></div>
-                <div class="w-7 h-7 rounded-full bg-accent-lime border-1.5 border-ink-primary"></div>
-                <div class="w-7 h-7 rounded-full bg-accent-orange border-1.5 border-ink-primary"></div>
+
+              <!-- Palette 2 (Selected) -->
+              <div id="sim-card-palette" class="bg-cream rounded-card-sm border-1.5 border-ink-primary p-5 transition-all">
+                <div class="flex justify-between items-center mb-1">
+                  <p class="font-medium text-sm">Midnight Purple</p>
+                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
+                </div>
+                <div class="flex gap-1 mt-2">
+                  <div class="w-4 h-4 rounded bg-[#F3E5F5]"></div>
+                  <div class="w-4 h-4 rounded bg-[#BA68C8]"></div>
+                  <div class="w-4 h-4 rounded bg-[#7B1FA2]"></div>
+                  <div class="w-4 h-4 rounded bg-[#4A148C]"></div>
+                </div>
               </div>
-              <p class="font-medium">Tropical</p>
-              <p class="text-xs text-ink-secondary mt-1">Energetic mood</p>
+
+              <!-- Palette 3 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <p class="font-medium text-sm">Sage Linen</p>
+                <div class="flex gap-1 mt-2">
+                  <div class="w-4 h-4 rounded bg-[#E8F5E9]"></div>
+                  <div class="w-4 h-4 rounded bg-[#81C784]"></div>
+                  <div class="w-4 h-4 rounded bg-[#2E7D32]"></div>
+                </div>
+              </div>
             </div>
 
-            <!-- Step 3 preview -->
-            <div class="bg-ink-primary text-cream rounded-card-sm border-1.5 border-ink-primary p-5">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="font-serif text-2xl">03</span>
-                <span class="text-xs uppercase font-medium tracking-wider opacity-70">Prompt</span>
+            <!-- Simulated Step 3 Contents (Hidden initially) -->
+            <div id="sim-step-3" class="sim-view hidden grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
+              <!-- Style 1 (Selected) -->
+              <div id="sim-card-connector" class="bg-cream rounded-card-sm border-1.5 border-ink-primary p-5 transition-all">
+                <div class="flex justify-between items-center mb-1">
+                  <p class="font-medium text-sm">Curved</p>
+                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
+                </div>
+                <div class="w-12 h-6 mt-2 text-ink-primary">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 30 C 25 30, 35 10, 50 10"/></svg>
+                </div>
               </div>
-              <div class="bg-forest-light rounded-md p-3 text-xs leading-relaxed font-mono">
-                Create a professional central node mindmap...
+
+              <!-- Style 2 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <p class="font-medium text-sm">Straight</p>
+                <div class="w-12 h-6 mt-2 text-ink-tertiary">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="30" x2="50" y2="10"/></svg>
+                </div>
               </div>
-              <button class="mt-3 w-full bg-accent-lavender text-ink-primary border-1.5 border-cream py-2 rounded-full text-sm font-medium">
-                Copy Prompt ✓
-              </button>
+
+              <!-- Style 3 -->
+              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
+                <p class="font-medium text-sm">Rounded</p>
+                <div class="w-12 h-6 mt-2 text-ink-tertiary">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 30 V 10 H 50"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulated Step 4 Contents (Hidden initially) -->
+            <div id="sim-step-4" class="sim-view hidden w-full transition-all duration-300">
+              <div class="bg-ink-primary text-cream rounded-card-sm border-1.5 border-ink-primary p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-xs uppercase font-medium tracking-wider opacity-70">Your AI-Ready Prompt</span>
+                  <span class="text-[10px] bg-accent-lavender text-ink-primary px-2 py-0.5 rounded">Napkin AI Vector style</span>
+                </div>
+                <div class="bg-forest-light text-cream-lighter rounded-md p-4 text-xs leading-relaxed font-mono select-none overflow-hidden h-24 relative">
+                  Create a professional central node mindmap... COLOR PALETTE: Midnight Purple (#F3E5F5, #BA68C8, #7B1FA2, #4A148C). Outline weight: 1.5px. Style: curved lines...
+                  <div class="absolute inset-0 bg-gradient-to-t from-forest-light via-transparent to-transparent"></div>
+                </div>
+                <button id="sim-copy-btn" class="mt-4 w-full bg-accent-lavender text-ink-primary border-1.5 border-cream py-3 rounded-full text-sm font-medium transition-all shadow-btn flex items-center justify-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                  <span>Copy Prompt</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Simulation Footer Status Bar -->
+            <div class="mt-6 pt-4 border-t border-ink-primary/10 flex items-center justify-between text-xs text-ink-secondary">
+              <span id="sim-status-text">Step 1: Pick a visualization</span>
+              <div class="flex gap-1.5">
+                <span id="sim-dot-1" class="w-2.5 h-2.5 rounded-full bg-accent-lavender border border-ink-primary/20"></span>
+                <span id="sim-dot-2" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
+                <span id="sim-dot-3" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
+                <span id="sim-dot-4" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
+              </div>
+            </div>
+
+            <!-- Simulated Mouse Cursor -->
+            <div id="sim-cursor" class="absolute pointer-events-none w-6 h-6 z-50 transition-all duration-700 ease-in-out transform scale-100" style="top: 80%; left: 50%;">
+              <svg viewBox="0 0 24 24" class="w-full h-full text-ink-primary drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" fill="currentColor" stroke="white" stroke-width="1.5">
+                <path d="M3 3l7.07 16.97 2.51-6.9 6.9-2.51L3 3z"/>
+              </svg>
+            </div>
+
+            <!-- Floating Simulated Toast Notification -->
+            <div id="sim-toast" class="absolute left-1/2 -translate-x-1/2 bottom-20 bg-ink-primary text-cream px-4 py-2.5 rounded-full border border-cream/20 text-xs font-medium shadow-hard opacity-0 transform translate-y-4 transition-all duration-300 flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-accent-lime" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Prompt copied to clipboard!
             </div>
 
           </div>
         </div>
 
-        <!-- Decorative arrow squiggle -->
+        <!-- Decorative squiggle -->
         <div class="absolute -top-6 -right-6 hidden md:block transform rotate-12">
           <Squiggle color="#F26835" width="80" rotate="20deg" />
         </div>
-
       </div>
 
     </div>
@@ -201,25 +324,35 @@ const steps = [
         Works with every major AI tool
       </p>
       <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12 lg:gap-16">
-        <div class="flex items-center gap-2.5 text-ink-primary opacity-80 hover:opacity-100 transition-opacity">
-          <span class="text-2xl">✨</span>
-          <span class="font-serif text-xl font-medium">Gemini</span>
+        <div class="flex items-center gap-2 text-ink-primary opacity-80 hover:opacity-100 transition-opacity font-serif text-lg font-medium">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#1A73E8] fill-current" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2c-.1 2.8-2.2 4.9-5 5 2.8.1 4.9 2.2 5 5 .1-2.8 2.2-4.9 5-5-2.8-.1-4.9-2.2-5-5zM6 14c-.1 1.4-1.1 2.5-2.5 2.5 1.4.1 2.5 1.1 2.5 2.5.1-1.4 1.1-2.5 2.5-2.5-1.4-.1-2.5-1.1-2.5-2.5z"/>
+          </svg>
+          Gemini
         </div>
-        <div class="flex items-center gap-2.5 text-ink-primary opacity-80 hover:opacity-100 transition-opacity">
-          <span class="text-2xl">💬</span>
-          <span class="font-serif text-xl font-medium">ChatGPT</span>
+        <div class="flex items-center gap-2 text-ink-primary opacity-80 hover:opacity-100 transition-opacity font-serif text-lg font-medium">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#10a37f] fill-current" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.3,10.6c0.3-0.9,0.2-1.9-0.3-2.7c-0.6-0.8-1.5-1.3-2.5-1.4l-1.9-0.2c0.2-0.5,0.2-1.1,0.2-1.6c-0.1-1-0.6-1.9-1.4-2.5 c-0.8-0.6-1.8-0.8-2.7-0.5l-1.8,0.7c-0.3-0.4-0.8-0.8-1.3-1c-0.9-0.4-1.9-0.4-2.8-0.1C5.8,1.7,5.2,2.5,5,3.4L4.8,5.3 C4.3,5.1,3.7,5.1,3.2,5.2c-1,0.1-1.9,0.7-2.4,1.5C0.3,7.6,0.1,8.6,0.4,9.5L1.1,11.3c-0.3,0.4-0.5,0.9-0.5,1.4c-0.1,1,0.3,1.9,1.1,2.5 c0.7,0.5,1.6,0.7,2.5,0.5l1.9-0.4c-0.1,0.5-0.1,1.1-0.1,1.6c0.1,1,0.6,1.9,1.4,2.5c0.8,0.6,1.8,0.7,2.7,0.5l1.8-0.7 c0.3-0.4,0.8-0.8,1.3-1c0.9-0.4,1.9-0.4,2.8-0.1c0.9,0.3,1.5,1.1,1.7,2l0.2,1.9c0.5-0.2,1.1-0.2,1.6-0.2c1,0.1,1.9,0.7,2.4,1.5 c0.5,0.8,0.6,1.8,0.3,2.7L21.3,10.6z"/>
+          </svg>
+          ChatGPT
         </div>
-        <div class="flex items-center gap-2.5 text-ink-primary opacity-80 hover:opacity-100 transition-opacity">
-          <span class="text-2xl">🧡</span>
-          <span class="font-serif text-xl font-medium">Claude</span>
+        <div class="flex items-center gap-2 text-ink-primary opacity-80 hover:opacity-100 transition-opacity font-serif text-lg font-medium">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#cc6b49] fill-current" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2a1.5 1.5 0 011.5 1.5v3.6l2.5-2.5a1.5 1.5 0 112.1 2.1l-2.5 2.5h3.6a1.5 1.5 0 110 3h-3.6l2.5 2.5a1.5 1.5 0 11-2.1 2.1l-2.5-2.5v3.6a1.5 1.5 0 11-3 0v-3.6l-2.5 2.5a1.5 1.5 0 11-2.1-2.1l2.5-2.5H3.4a1.5 1.5 0 110-3h3.6L4.5 9.2a1.5 1.5 0 112.1-2.1l2.5 2.5V3.5A1.5 1.5 0 0112 2z"/>
+          </svg>
+          Claude
         </div>
-        <div class="flex items-center gap-2.5 text-ink-primary opacity-80 hover:opacity-100 transition-opacity">
-          <span class="text-2xl">🎨</span>
-          <span class="font-serif text-xl font-medium">Midjourney</span>
+        <div class="flex items-center gap-2 text-ink-primary opacity-80 hover:opacity-100 transition-opacity font-serif text-lg font-medium">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#4285F4] fill-none stroke-current" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 19h20M5 19v-4a7 7 0 017-7M19 19v-2a7 7 0 00-7-7M12 8V2L7 6h5"/>
+          </svg>
+          Midjourney
         </div>
-        <div class="flex items-center gap-2.5 text-ink-primary opacity-80 hover:opacity-100 transition-opacity">
-          <span class="text-2xl">🌟</span>
-          <span class="font-serif text-xl font-medium">DALL·E</span>
+        <div class="flex items-center gap-2 text-ink-primary opacity-80 hover:opacity-100 transition-opacity font-serif text-lg font-medium">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#e55350] fill-none stroke-current" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
+          </svg>
+          DALL·E
         </div>
       </div>
     </div>
@@ -326,8 +459,8 @@ const steps = [
               href={`/generate?category=${cat.id}`}
               class="group block card card-hover"
             >
-              <div class={`w-14 h-14 ${colorClass} rounded-full border-1.5 border-ink-primary flex items-center justify-center text-2xl mb-4 transition-transform duration-200 group-hover:rotate-12`}>
-                {cat.icon}
+              <div class={`w-14 h-14 ${colorClass} rounded-full border-1.5 border-ink-primary flex items-center justify-center text-ink-primary mb-4 transition-transform duration-200 group-hover:rotate-12 p-3.5`}>
+                <Fragment set:html={cat.iconSvg} />
               </div>
               <h3 class="font-serif text-lg font-medium">{cat.name}</h3>
               <p class="text-xs text-ink-secondary mt-1">{cat.count} types</p>
@@ -350,7 +483,7 @@ const steps = [
   </section>
 
   <!-- ============================================================ -->
-  <!-- 5. COMPARISON — VisualCraft vs Napkin AI                     -->
+  <!-- 5. COMPARISON — Illustrate Words vs Napkin AI                -->
   <!-- ============================================================ -->
   <section class="section bg-forest text-cream relative overflow-hidden">
 
@@ -362,7 +495,7 @@ const steps = [
           The difference
         </span>
         <h2 class="mt-6 headline-h1">
-          Why <em>VisualCraft</em>?
+          Why <em>Illustrate Words</em>?
         </h2>
         <p class="mt-6 body-lg !text-ink-on-dark-secondary">
           We do one thing — generate AI prompts — and we do it without subscriptions, accounts, or lock-in.
@@ -378,7 +511,7 @@ const steps = [
           <div class="col-span-3 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-lavender text-ink-primary rounded-full border-1.5 border-cream font-serif font-medium">
               <span class="w-2 h-2 rounded-full bg-accent-lime"></span>
-              VisualCraft
+              Illustrate Words
             </div>
           </div>
           <div class="col-span-3 text-center">
@@ -448,7 +581,7 @@ const steps = [
           Built for everyone
         </span>
         <h2 class="mt-6 headline-h1">
-          Who uses <em>VisualCraft</em>?
+          Who uses <em>Illustrate Words</em>?
         </h2>
         <p class="mt-6 body-lg">
           From boardrooms to classrooms, anyone who needs to visualize an idea fast.
@@ -459,8 +592,8 @@ const steps = [
       <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {useCases.map((useCase) => (
           <div class={`card card-hover ${useCase.rotate} hover:rotate-0`}>
-            <div class={`w-16 h-16 ${useCase.bg} rounded-full border-1.5 border-ink-primary flex items-center justify-center text-3xl mb-5`}>
-              {useCase.icon}
+            <div class={`w-16 h-16 ${useCase.bg} rounded-full border-1.5 border-ink-primary flex items-center justify-center text-ink-primary mb-5`}>
+              <Fragment set:html={useCase.iconSvg} />
             </div>
             <h3 class="font-serif text-2xl font-medium">{useCase.title}</h3>
             <p class="mt-3 text-ink-secondary leading-relaxed">{useCase.description}</p>
@@ -515,4 +648,194 @@ const steps = [
   </section>
 
 </Layout>
+
+<style is:global>
+  /* Force injected SVGs in category card rounded wrappers to scale properly */
+  .group .rounded-full svg {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+</style>
+
+<script>
+  function initSimulation() {
+    const cursor = document.getElementById('sim-cursor');
+    const simStep1 = document.getElementById('sim-step-1');
+    const simStep2 = document.getElementById('sim-step-2');
+    const simStep3 = document.getElementById('sim-step-3');
+    const simStep4 = document.getElementById('sim-step-4');
+    const simStatus = document.getElementById('sim-status-text');
+    const simCopyBtn = document.getElementById('sim-copy-btn');
+    const simToast = document.getElementById('sim-toast');
+
+    const dots = [
+      document.getElementById('sim-dot-1'),
+      document.getElementById('sim-dot-2'),
+      document.getElementById('sim-dot-3'),
+      document.getElementById('sim-dot-4')
+    ];
+
+    const views = [simStep1, simStep2, simStep3, simStep4];
+
+    function setStatus(text, activeDotIndex) {
+      if (simStatus) simStatus.innerText = text;
+      dots.forEach((dot, idx) => {
+        if (dot) {
+          if (idx === activeDotIndex) {
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-accent-lavender border border-ink-primary/20';
+          } else {
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20';
+          }
+        }
+      });
+    }
+
+    function showView(activeViewIndex) {
+      views.forEach((view, idx) => {
+        if (view) {
+          if (idx === activeViewIndex) {
+            view.classList.remove('hidden');
+          } else {
+            view.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function runLoop() {
+      while (true) {
+        // RESET STATE
+        showView(0);
+        setStatus("Step 1: Pick a visualization type", 0);
+        if (simToast) {
+          simToast.classList.add('opacity-0', 'translate-y-4');
+          simToast.classList.remove('opacity-100', 'translate-y-0');
+        }
+        
+        const cardMindmap = document.getElementById('sim-card-mindmap');
+        const cardPalette = document.getElementById('sim-card-palette');
+        const cardConnector = document.getElementById('sim-card-connector');
+        
+        if (cardMindmap) {
+          cardMindmap.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
+          cardMindmap.querySelector('.sim-check')?.classList.add('opacity-0');
+          cardMindmap.querySelector('.sim-check')?.classList.remove('opacity-100');
+        }
+        if (cardPalette) {
+          cardPalette.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
+          cardPalette.querySelector('.sim-check')?.classList.add('opacity-0');
+          cardPalette.querySelector('.sim-check')?.classList.remove('opacity-100');
+        }
+        if (cardConnector) {
+          cardConnector.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
+          cardConnector.querySelector('.sim-check')?.classList.add('opacity-0');
+          cardConnector.querySelector('.sim-check')?.classList.remove('opacity-100');
+        }
+        if (simCopyBtn) {
+          simCopyBtn.className = 'mt-4 w-full bg-accent-lavender text-ink-primary border-1.5 border-cream py-3 rounded-full text-sm font-medium transition-all shadow-btn flex items-center justify-center gap-1.5';
+          const btnText = simCopyBtn.querySelector('span');
+          if (btnText) btnText.innerText = 'Copy Prompt';
+        }
+
+        if (cursor) {
+          cursor.style.top = '80%';
+          cursor.style.left = '80%';
+          cursor.style.transform = 'scale(1)';
+        }
+
+        await sleep(1500);
+
+        // STEP 1: Select Mindmap
+        if (cursor) {
+          cursor.style.top = '35%';
+          cursor.style.left = '25%';
+        }
+        await sleep(800);
+        if (cursor) cursor.style.transform = 'scale(0.8)';
+        await sleep(150);
+        if (cursor) cursor.style.transform = 'scale(1)';
+        
+        if (cardMindmap) {
+          cardMindmap.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
+          cardMindmap.querySelector('.sim-check')?.classList.remove('opacity-0');
+          cardMindmap.querySelector('.sim-check')?.classList.add('opacity-100');
+        }
+        await sleep(1500);
+
+        // STEP 2: Transition & Select Palette
+        showView(1);
+        setStatus("Step 2: Choose your color palette", 1);
+        if (cursor) {
+          cursor.style.top = '40%';
+          cursor.style.left = '55%';
+        }
+        await sleep(800);
+        if (cursor) cursor.style.transform = 'scale(0.8)';
+        await sleep(150);
+        if (cursor) cursor.style.transform = 'scale(1)';
+
+        if (cardPalette) {
+          cardPalette.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
+          cardPalette.querySelector('.sim-check')?.classList.remove('opacity-0');
+          cardPalette.querySelector('.sim-check')?.classList.add('opacity-100');
+        }
+        await sleep(1500);
+
+        // STEP 3: Transition & Select Connector Style
+        showView(2);
+        setStatus("Step 3: Fine-tune visual elements", 2);
+        if (cursor) {
+          cursor.style.top = '35%';
+          cursor.style.left = '25%';
+        }
+        await sleep(800);
+        if (cursor) cursor.style.transform = 'scale(0.8)';
+        await sleep(150);
+        if (cursor) cursor.style.transform = 'scale(1)';
+
+        if (cardConnector) {
+          cardConnector.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
+          cardConnector.querySelector('.sim-check')?.classList.remove('opacity-0');
+          cardConnector.querySelector('.sim-check')?.classList.add('opacity-100');
+        }
+        await sleep(1500);
+
+        // STEP 4: Transition & Copy Prompt
+        showView(3);
+        setStatus("Step 4: Copy prompt for any AI", 3);
+        if (cursor) {
+          cursor.style.top = '72%';
+          cursor.style.left = '50%';
+        }
+        await sleep(1000);
+        if (cursor) cursor.style.transform = 'scale(0.8)';
+        await sleep(150);
+        if (cursor) cursor.style.transform = 'scale(1)';
+
+        if (simCopyBtn) {
+          simCopyBtn.className = 'mt-4 w-full bg-accent-lime text-ink-primary border-1.5 border-ink-primary py-3 rounded-full text-sm font-medium transition-all shadow-btn flex items-center justify-center gap-1.5';
+          const btnText = simCopyBtn.querySelector('span');
+          if (btnText) btnText.innerText = 'Copied ✓';
+        }
+        if (simToast) {
+          simToast.classList.remove('opacity-0', 'translate-y-4');
+          simToast.classList.add('opacity-100', 'translate-y-0');
+        }
+
+        await sleep(3500);
+      }
+    }
+
+    runLoop();
+  }
+
+  // Bind simulation lifecycle to browser DOM readiness
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSimulation);
+  } else {
+    initSimulation();
+  }
+</script>
 

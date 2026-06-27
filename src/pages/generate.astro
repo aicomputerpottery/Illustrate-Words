@@ -8,6 +8,109 @@ import {
   LAYOUT_MOODS,
 } from '../data/visualizations.js';
 
+// Procedural vector illustration generator for the 76 visualization types
+function getVisualizationSvg(typeId, categoryId) {
+  if (categoryId === 'mindmap') {
+    if (typeId === 'fishbone-mindmap') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="15" y1="50" x2="80" y2="50" /><polygon points="80,45 88,50 80,55" fill="currentColor" stroke="none"/><line x1="30" y1="50" x2="45" y2="25" /><line x1="50" y1="50" x2="65" y2="25" /><line x1="30" y1="50" x2="45" y2="75" /><line x1="50" y1="50" x2="65" y2="75" /><line x1="38" y1="38" x2="48" y2="38" /><line x1="38" y1="62" x2="48" y2="62" /></svg>`;
+    }
+    if (typeId === 'tree-mindmap') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="42" y="12" width="16" height="8" rx="1.5" fill="currentColor" fill-opacity="0.1"/><rect x="15" y="42" width="16" height="8" rx="1.5"/><rect x="42" y="42" width="16" height="8" rx="1.5"/><rect x="69" y="42" width="16" height="8" rx="1.5"/><path d="M50 20 v 12 M23 32 h 54 M23 32 v 10 M50 32 v 10 M77 32 v 10"/></svg>`;
+    }
+    if (typeId === 'concept-web') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="30" cy="30" r="6" fill="currentColor" fill-opacity="0.1"/><circle cx="70" cy="30" r="6"/><circle cx="50" cy="68" r="6" fill="currentColor" fill-opacity="0.05"/><circle cx="20" cy="70" r="6"/><circle cx="80" cy="70" r="6"/><line x1="35.5" y1="32.5" x2="44.5" y2="62.5"/><line x1="64.5" y1="32.5" x2="55.5" y2="62.5"/><line x1="36" y1="30" x2="64" y2="30"/><line x1="25.5" y1="35.5" x2="20.5" y2="64.5"/><line x1="74.5" y1="35.5" x2="79.5" y2="64.5"/></svg>`;
+    }
+    // Default mindmap (central-node-map)
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="50" cy="50" r="10" fill="currentColor" fill-opacity="0.15"/><path d="M50 40 C 50 25, 25 25, 25 25 M50 60 C 50 75, 25 75, 25 75 M60 50 C 75 50, 75 25, 75 25 M60 50 C 75 50, 75 75, 75 75"/><circle cx="25" cy="25" r="4.5" fill="currentColor"/><circle cx="25" cy="75" r="4.5" fill="currentColor"/><circle cx="75" cy="25" r="4.5" fill="currentColor"/><circle cx="75" cy="75" r="4.5" fill="currentColor"/></svg>`;
+  }
+
+  if (categoryId === 'process') {
+    if (typeId === 'circular-process') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M 50 15 A 35 35 0 0 1 85 50" /><path d="M 85 50 A 35 35 0 0 1 50 85"/><path d="M 50 85 A 35 35 0 0 1 15 50"/><path d="M 15 50 A 35 35 0 0 1 50 15"/><circle cx="50" cy="15" r="3" fill="currentColor"/><circle cx="85" cy="50" r="3" fill="currentColor"/><circle cx="50" cy="85" r="3" fill="currentColor"/><circle cx="15" cy="50" r="3" fill="currentColor"/></svg>`;
+    }
+    if (typeId === 'funnel-chart' || typeId === 'funnel-diagram') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><polygon points="15,20 85,20 65,80 35,80" fill="currentColor" fill-opacity="0.05"/><line x1="20" y1="38" x2="80" y2="38"/><line x1="27" y1="59" x2="73" y2="59"/></svg>`;
+    }
+    if (typeId === 'swimlane-diagram') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="10" y1="20" x2="90" y2="20" /><line x1="10" y1="50" x2="90" y2="50" /><line x1="10" y1="80" x2="90" y2="80" /><line x1="10" y1="20" x2="10" y2="80" /><line x1="90" y1="20" x2="90" y2="80" /><rect x="20" y="30" width="15" height="10" rx="1.5" fill="currentColor" fill-opacity="0.05"/><rect x="45" y="60" width="15" height="10" rx="1.5"/><path d="M35 35 h 10 v 25"/></svg>`;
+    }
+    if (typeId === 'user-journey-map') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M 15 50 Q 30 20, 50 55 T 85 45" /><circle cx="15" cy="50" r="3" fill="currentColor"/><circle cx="50" cy="55" r="3" fill="currentColor"/><circle cx="85" cy="45" r="3" fill="currentColor"/><path d="M15 50 v 25 M50 55 v 20 M85 45 v 30" stroke-dasharray="2 2"/></svg>`;
+    }
+    // Default process
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="10" y="42" width="18" height="16" rx="2" fill="currentColor" fill-opacity="0.05"/><rect x="41" y="42" width="18" height="16" rx="2"/><rect x="72" y="42" width="18" height="16" rx="2"/><line x1="28" y1="50" x2="41" y2="50" /><polygon points="37,47 41,50 37,53" fill="currentColor" stroke="none"/><line x1="59" y1="50" x2="72" y2="50" /><polygon points="68,47 72,50 68,53" fill="currentColor" stroke="none"/></svg>`;
+  }
+
+  if (categoryId === 'data' || categoryId === 'comparison') {
+    if (typeId === 'radar-chart') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><polygon points="50,15 80,35 80,65 50,85 20,65 20,35" fill="currentColor" fill-opacity="0.05"/><polygon points="50,30 70,42 70,58 50,70 30,58 30,42" stroke-dasharray="2 2"/><line x1="50" y1="50" x2="50" y2="15" /><line x1="50" y1="50" x2="80" y2="35" /><line x1="50" y1="50" x2="80" y2="65" /><line x1="50" y1="50" x2="50" y2="85" /><line x1="50" y1="50" x2="20" y2="65" /><line x1="50" y1="50" x2="20" y2="35" /><polygon points="50,22 72,40 68,62 50,75 28,60 38,40" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.1"/></svg>`;
+    }
+    if (typeId === 'pie-chart' || typeId === 'donut-chart') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="50" cy="50" r="35" fill="currentColor" fill-opacity="0.05"/><line x1="50" y1="50" x2="50" y2="15" /><line x1="50" y1="50" x2="80" y2="65" /><line x1="50" y1="50" x2="19" y2="40" /></svg>`;
+    }
+    if (typeId === 'scatter-plot' || typeId === 'bubble-chart') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="15" y1="85" x2="85" y2="85" /><line x1="15" y1="15" x2="15" y2="85" /><circle cx="30" cy="70" r="3" fill="currentColor"/><circle cx="45" cy="55" r="4.5" fill="currentColor"/><circle cx="55" cy="40" r="3"/><circle cx="70" cy="25" r="6" fill="currentColor" fill-opacity="0.2"/><circle cx="35" cy="45" r="3.5"/><circle cx="60" cy="65" r="5" fill="currentColor" fill-opacity="0.1"/></svg>`;
+    }
+    if (typeId === 'line-chart' || typeId === 'area-chart') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="15" y1="85" x2="85" y2="85" /><line x1="15" y1="15" x2="15" y2="85" /><path d="M15 70 L 30 50 L 48 65 L 68 30 L 85 45" stroke-width="2"/><circle cx="30" cy="50" r="2.5" fill="currentColor"/><circle cx="48" cy="65" r="2.5" fill="currentColor"/><circle cx="68" cy="30" r="2.5" fill="currentColor"/></svg>`;
+    }
+    // Default bar chart
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="15" y1="85" x2="85" y2="85" /><line x1="15" y1="15" x2="15" y2="85" /><rect x="25" y="45" width="10" height="40" fill="currentColor" fill-opacity="0.1"/><rect x="45" y="25" width="10" height="60" fill="currentColor" fill-opacity="0.3"/><rect x="65" y="60" width="10" height="25" fill="currentColor" fill-opacity="0.05"/></svg>`;
+  }
+
+  if (categoryId === 'timeline') {
+    if (typeId === 'gantt-chart') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="15" y1="20" x2="15" y2="80"/><line x1="15" y1="80" x2="85" y2="80"/><rect x="25" y="28" width="25" height="8" rx="1.5" fill="currentColor" fill-opacity="0.3"/><rect x="45" y="44" width="30" height="8" rx="1.5" fill="currentColor" fill-opacity="0.1"/><rect x="35" y="60" width="20" height="8" rx="1.5" fill="currentColor" fill-opacity="0.2"/></svg>`;
+    }
+    // Default timeline
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="10" y1="50" x2="90" y2="50" /><circle cx="25" cy="50" r="5" fill="currentColor"/><circle cx="50" cy="50" r="5" fill="currentColor"/><circle cx="75" cy="50" r="5" fill="currentColor"/><line x1="25" y1="50" x2="25" y2="35"/><line x1="50" y1="50" x2="50" y2="65"/><line x1="75" y1="50" x2="75" y2="35"/></svg>`;
+  }
+
+  if (categoryId === 'business') {
+    if (typeId === 'swot-analysis') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="15" y="15" width="35" height="35" fill="currentColor" fill-opacity="0.05"/><rect x="50" y="15" width="35" height="35" /><rect x="15" y="50" width="35" height="35" /><rect x="50" y="50" width="35" height="35" fill="currentColor" fill-opacity="0.05"/><text x="32" y="38" font-size="18" font-family="serif" font-weight="bold" fill="currentColor" text-anchor="middle">S</text><text x="67" y="38" font-size="18" font-family="serif" font-weight="bold" fill="currentColor" text-anchor="middle">W</text><text x="32" y="73" font-size="18" font-family="serif" font-weight="bold" fill="currentColor" text-anchor="middle">O</text><text x="67" y="73" font-size="18" font-family="serif" font-weight="bold" fill="currentColor" text-anchor="middle">T</text></svg>`;
+    }
+    // Default business grid
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="10" y="15" width="80" height="70" rx="2" fill="currentColor" fill-opacity="0.02"/><line x1="26" y1="15" x2="26" y2="85"/><line x1="42" y1="15" x2="42" y2="85"/><line x1="58" y1="15" x2="58" y2="85"/><line x1="74" y1="15" x2="74" y2="85"/><line x1="26" y1="50" x2="74" y2="50"/></svg>`;
+  }
+
+  if (categoryId === 'structures') {
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="42" y="15" width="16" height="12" rx="1.5" fill="currentColor" fill-opacity="0.1"/><rect x="18" y="48" width="16" height="12" rx="1.5"/><rect x="42" y="48" width="16" height="12" rx="1.5"/><rect x="66" y="48" width="16" height="12" rx="1.5"/><path d="M50 27 v 10 M26 37 h 48 M26 37 v 11 M50 37 v 11 M74 37 v 11"/></svg>`;
+  }
+
+  if (categoryId === 'cycles') {
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="50" cy="50" r="32" stroke-dasharray="6 6"/><path d="M 50 18 A 32 32 0 0 1 82 50" stroke-width="2"/><path d="M 82 50 A 32 32 0 0 1 50 82" stroke-width="2"/><path d="M 50 82 A 32 32 0 0 1 18 50" stroke-width="2"/><path d="M 18 50 A 32 32 0 0 1 50 18" stroke-width="2"/><polygon points="50,14 56,18 50,22" fill="currentColor" stroke="none"/><polygon points="86,50 82,56 78,50" fill="currentColor" stroke="none"/></svg>`;
+  }
+
+  if (categoryId === 'parts') {
+    if (typeId === 'venn-diagram') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="40" cy="50" r="22" fill="currentColor" fill-opacity="0.05"/><circle cx="60" cy="50" r="22" fill="currentColor" fill-opacity="0.05"/></svg>`;
+    }
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="50" cy="50" r="30" fill="currentColor" fill-opacity="0.05"/><line x1="50" y1="50" x2="50" y2="20"/><line x1="50" y1="50" x2="76" y2="65"/><line x1="50" y1="50" x2="24" y2="65"/></svg>`;
+  }
+
+  if (categoryId === 'cause') {
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="30" cy="50" r="10" /><circle cx="70" cy="50" r="10" /><path d="M40 45 Q 50 35, 60 45" /><polygon points="58,40 60,45 55,46" fill="currentColor" stroke="none"/><path d="M60 55 Q 50 65, 40 55" /><polygon points="42,60 40,55 45,54" fill="currentColor" stroke="none"/><text x="50" y="32" font-size="8" text-anchor="middle" fill="currentColor">+</text><text x="50" y="74" font-size="8" text-anchor="middle" fill="currentColor">-</text></svg>`;
+  }
+
+  if (categoryId === 'metaphors') {
+    if (typeId === 'bridge-diagram') {
+      return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M 5 60 H 25 V 85 H 5 Z" fill="currentColor" fill-opacity="0.1"/><path d="M 75 60 H 95 V 85 H 75 Z" fill="currentColor" fill-opacity="0.1"/><path d="M 25 60 Q 50 52, 75 60 M 25 64 Q 50 56, 75 64" fill="currentColor" fill-opacity="0.05"/><line x1="38" y1="58" x2="38" y2="85" /><line x1="62" y1="58" x2="62" y2="85" /></svg>`;
+    }
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><polygon points="50,15 85,80 15,80" fill="currentColor" fill-opacity="0.05"/><line x1="33" y1="50" x2="67" y2="50"/><line x1="42" y1="32" x2="58" y2="32"/><line x1="24" y1="65" x2="76" y2="65"/></svg>`;
+  }
+
+  if (categoryId === 'brainstorming') {
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect x="18" y="20" width="20" height="20" rx="1" fill="currentColor" fill-opacity="0.05" transform="rotate(-5 28 30)"/><rect x="52" y="25" width="22" height="18" rx="1" fill="currentColor" fill-opacity="0.1" transform="rotate(3 63 34)"/><rect x="30" y="55" width="20" height="22" rx="1" fill="currentColor" fill-opacity="0.02" transform="rotate(-2 40 66)"/></svg>`;
+  }
+
+  if (categoryId === 'narratives') {
+    return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M15 75 L 30 75 Q 50 75, 55 50 T 70 25 L 85 75" stroke-width="2"/><line x1="10" y1="75" x2="90" y2="75"/><circle cx="55" cy="50" r="3.5" fill="currentColor"/><circle cx="70" cy="25" r="3.5" fill="currentColor"/></svg>`;
+  }
+
+  return `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="50" cy="50" r="30" /><path d="M35 50 h 30 M50 35 v 30" /></svg>`;
+}
+
 // Flatten all types with their category metadata for easy rendering
 const allTypes = CATEGORIES.flatMap((cat) =>
   cat.types.map((type) => ({
@@ -15,6 +118,7 @@ const allTypes = CATEGORIES.flatMap((cat) =>
     categoryId: cat.id,
     categoryName: cat.name,
     categoryIcon: cat.icon,
+    iconSvg: getVisualizationSvg(type.id, cat.id),
   }))
 );
 
@@ -26,7 +130,7 @@ const steps = [
 ];
 ---
 
-<Layout title="Generate — VisualCraft" hideFooter={true}>
+<Layout title="Generate — Illustrate Words" hideFooter={true}>
 
   <div class="bg-cream min-h-screen pb-20">
     <div class="container-page py-6 md:py-10">
@@ -123,23 +227,30 @@ const steps = [
               <button
                 type="button"
                 data-category-filter="all"
-                class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all"
+                class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all flex items-center gap-1.5"
               >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
                 All
               </button>
               {CATEGORIES.map((cat) => (
                 <button
                   type="button"
                   data-category-filter={cat.id}
-                  class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all whitespace-nowrap"
+                  class="cat-pill flex-shrink-0 px-4 py-2 rounded-full border-1.5 border-ink-primary font-medium text-sm transition-all whitespace-nowrap flex items-center gap-1.5 animate-fade-in"
                 >
-                  <span class="mr-1.5">{cat.icon}</span>{cat.name}
+                  <Fragment set:html={cat.iconSvg} />
+                  <span>{cat.name}</span>
                 </button>
               ))}
             </div>
 
             <!-- Type cards grid -->
-            <div id="type-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div id="type-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {allTypes.map((type) => (
                 <button
                   type="button"
@@ -147,21 +258,24 @@ const steps = [
                   data-type-id={type.id}
                   data-category-id={type.categoryId}
                   data-type-name={type.name.toLowerCase()}
-                  class="type-card text-left p-5 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard"
+                  class="type-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard overflow-hidden flex flex-col relative"
                 >
-                  <div class="flex items-start gap-3">
-                    <div class="text-2xl flex-shrink-0">{type.categoryIcon}</div>
-                    <div class="min-w-0">
-                      <h3 class="font-serif text-lg font-medium leading-tight">{type.name}</h3>
-                      <p class="text-xs text-ink-secondary mt-0.5 uppercase tracking-wide">{type.categoryName}</p>
-                      <p class="text-sm text-ink-secondary mt-2 leading-relaxed">{type.description}</p>
-                    </div>
+                  <!-- Icon area -->
+                  <div class="aspect-square bg-cream-lighter flex items-center justify-center text-ink-primary p-8 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary transition-colors">
+                    <div class="w-full h-full" set:html={type.iconSvg}></div>
                   </div>
-                  <div class="check-icon hidden mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-accent-lavender-dark">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+
+                  <!-- Text area -->
+                  <div class="p-4 bg-cream-lighter flex-1">
+                    <h3 class="font-serif text-base font-medium leading-tight">{type.name}</h3>
+                    <p class="text-xs text-ink-secondary mt-1 uppercase tracking-wide">{type.categoryName}</p>
+                  </div>
+
+                  <!-- Selected state checkmark (hidden by default) -->
+                  <div class="check-icon hidden absolute top-3 right-3 w-7 h-7 rounded-full bg-accent-lavender border-1.5 border-ink-primary flex items-center justify-center text-ink-primary">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    Selected
                   </div>
                 </button>
               ))}
@@ -196,67 +310,76 @@ const steps = [
           <!-- ============================================== -->
           <section data-step-content="2" class="hidden">
 
-            <!-- Header -->
-            <div class="mb-8">
-              <span class="pill-lime">Step 2 of 4</span>
-              <h1 class="mt-4 headline-h1">
-                Pick your <em>palette</em>.
-              </h1>
-              <p class="mt-3 body-base">
-                25 curated color combinations. Each one is hand-picked for visual harmony.
-              </p>
-            </div>
-
-            <!-- Live preview -->
-            <div class="mb-8 p-6 rounded-card border-1.5 border-ink-primary bg-cream-lighter">
-              <div class="label mb-3">Preview</div>
-              <div id="palette-preview" class="flex items-end gap-2 h-32">
-                <!-- Empty bars filled in by JS -->
-                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 30%"></div>
-                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 60%"></div>
-                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 45%"></div>
-                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 85%"></div>
-                <div class="flex-1 rounded-t-md bg-ink-primary/20 transition-all" style="height: 70%"></div>
+            <div class="step-header mb-8">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="pill-lime">Step 2 of 4</span>
               </div>
-              <p id="palette-preview-name" class="mt-4 text-sm text-ink-secondary italic">
-                Pick a palette to see the preview
+              <h2 id="step2-heading" class="headline-h1 text-ink-primary mb-2">
+                Choose a color <em>palette</em>
+              </h2>
+              <p class="text-ink-secondary text-base max-w-xl">
+                Your palette shapes the entire mood of the visualization. Pick something that fits the context — professional decks call for different energy than brainstorming sessions.
               </p>
             </div>
 
-            <!-- Palette grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {PALETTES.map((palette) => (
+            <!-- ── FILTER BAR ── -->
+            <div class="filter-section mb-6">
+
+              <!-- Mood filter row -->
+              <div class="filter-row-label mb-1.5">
+                <span class="text-xs font-medium text-ink-tertiary uppercase tracking-wider">Mood</span>
+              </div>
+              <div class="filter-chips-row flex flex-wrap gap-2 mb-4" id="moodFilterChips" role="group" aria-label="Filter by mood">
+                <!-- Generated by JS: renderMoodFilterChips() -->
+              </div>
+
+              <!-- Vibe filter row -->
+              <div class="filter-row-label mb-1.5">
+                <span class="text-xs font-medium text-ink-tertiary uppercase tracking-wider">Vibe</span>
+              </div>
+              <div class="filter-chips-row flex flex-wrap gap-2 mb-3" id="vibeFilterChips" role="group" aria-label="Filter by vibe">
+                <!-- Generated by JS: renderVibeFilterChips() -->
+              </div>
+
+              <!-- Result count -->
+              <p class="text-sm text-ink-tertiary" id="paletteCountLabel" aria-live="polite">
+                Showing 42 palettes
+              </p>
+            </div>
+
+            <!-- ── PALETTE GRID ── -->
+            <div
+              class="palette-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8"
+              id="paletteGrid"
+              role="radiogroup"
+              aria-label="Color palettes"
+            >
+              <!-- Generated by JS: renderPaletteGrid() -->
+            </div>
+
+            <!-- ── SELECTED PALETTE SUMMARY (shown when a palette is chosen) ── -->
+            <div id="selectedPaletteSummary" class="hidden mb-8 p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter">
+              <div class="flex items-center gap-4">
+                <div class="selected-palette-swatches flex rounded-btn overflow-hidden border-1.5 border-ink-primary" style="height:40px;width:160px;">
+                  <!-- populated by JS -->
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="font-serif font-medium text-ink-primary" id="selectedPaletteName">Ocean Blue</p>
+                  <p class="text-sm text-ink-secondary truncate" id="selectedPaletteDesc">Classic ocean depths that convey trust and data precision.</p>
+                </div>
                 <button
                   type="button"
-                  data-palette-card
-                  data-palette-id={palette.id}
-                  class="palette-card text-left p-5 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard"
+                  id="clearPaletteBtn"
+                  class="ml-auto btn-ghost text-sm text-ink-secondary"
+                  aria-label="Clear palette selection"
                 >
-                  <!-- Color swatches -->
-                  <div class="flex gap-1 mb-4">
-                    {palette.colors.map((color) => (
-                      <div
-                        class="flex-1 h-12 rounded-md border-1.5 border-ink-primary"
-                        style={`background-color: ${color}`}
-                      ></div>
-                    ))}
-                  </div>
-                  <h3 class="font-serif text-lg font-medium">{palette.name}</h3>
-                  <div class="flex items-center gap-2 mt-2">
-                    <span class="text-xs text-ink-secondary uppercase tracking-wide">{palette.mood}</span>
-                    <span class="check-icon hidden inline-flex items-center gap-1 text-xs font-medium text-accent-lavender-dark ml-auto">
-                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      Selected
-                    </span>
-                  </div>
+                  Change ✕
                 </button>
-              ))}
+              </div>
             </div>
 
-            <!-- Navigation buttons -->
-            <div class="mt-10 flex justify-between items-center">
+            <!-- ── STEP NAV ── -->
+            <div class="step-nav flex justify-between items-center mt-10">
               <button type="button" data-go-back class="btn-secondary">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
@@ -266,6 +389,7 @@ const steps = [
               <button
                 type="button"
                 data-go-next
+                id="step2NextBtn"
                 disabled
                 class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
@@ -305,10 +429,15 @@ const steps = [
                     data-style-card
                     data-style-type="connector"
                     data-style-id={style.id}
-                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                    class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <h3 class="font-serif font-medium">{style.name}</h3>
-                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    </div>
+                    <div class="p-3.5 bg-transparent flex-1">
+                      <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
+                      <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -325,10 +454,15 @@ const steps = [
                     data-style-card
                     data-style-type="icon"
                     data-style-id={style.id}
-                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                    class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <h3 class="font-serif font-medium">{style.name}</h3>
-                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    </div>
+                    <div class="p-3.5 bg-transparent flex-1">
+                      <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
+                      <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -345,10 +479,15 @@ const steps = [
                     data-style-card
                     data-style-type="mood"
                     data-style-id={style.id}
-                    class="style-card text-left p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard"
+                    class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <h3 class="font-serif font-medium">{style.name}</h3>
-                    <p class="text-xs text-ink-secondary mt-1">{style.description}</p>
+                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    </div>
+                    <div class="p-3.5 bg-transparent flex-1">
+                      <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
+                      <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -462,7 +601,11 @@ const steps = [
               </p>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
-                  <div class="text-3xl mb-2">✨</div>
+                  <div class="w-8 h-8 flex items-center justify-start mb-2">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#1A73E8] fill-current" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2c-.1 2.8-2.2 4.9-5 5 2.8.1 4.9 2.2 5 5 .1-2.8 2.2-4.9 5-5-2.8-.1-4.9-2.2-5-5zM6 14c-.1 1.4-1.1 2.5-2.5 2.5 1.4.1 2.5 1.1 2.5 2.5.1-1.4 1.1-2.5 2.5-2.5-1.4-.1-2.5-1.1-2.5-2.5z"/>
+                    </svg>
+                  </div>
                   <div class="font-serif font-medium">Gemini</div>
                   <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
                     Open
@@ -472,7 +615,11 @@ const steps = [
                   </div>
                 </a>
                 <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
-                  <div class="text-3xl mb-2">💬</div>
+                  <div class="w-8 h-8 flex items-center justify-start mb-2">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#10a37f] fill-current" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.3,10.6c0.3-0.9,0.2-1.9-0.3-2.7c-0.6-0.8-1.5-1.3-2.5-1.4l-1.9-0.2c0.2-0.5,0.2-1.1,0.2-1.6c-0.1-1-0.6-1.9-1.4-2.5 c-0.8-0.6-1.8-0.8-2.7-0.5l-1.8,0.7c-0.3-0.4-0.8-0.8-1.3-1c-0.9-0.4-1.9-0.4-2.8-0.1C5.8,1.7,5.2,2.5,5,3.4L4.8,5.3 C4.3,5.1,3.7,5.1,3.2,5.2c-1,0.1-1.9,0.7-2.4,1.5C0.3,7.6,0.1,8.6,0.4,9.5L1.1,11.3c-0.3,0.4-0.5,0.9-0.5,1.4c-0.1,1,0.3,1.9,1.1,2.5 c0.7,0.5,1.6,0.7,2.5,0.5l1.9-0.4c-0.1,0.5-0.1,1.1-0.1,1.6c0.1,1,0.6,1.9,1.4,2.5c0.8,0.6,1.8,0.7,2.7,0.5l1.8-0.7 c0.3-0.4,0.8-0.8,1.3-1c0.9-0.4,1.9-0.4,2.8-0.1c0.9,0.3,1.5,1.1,1.7,2l0.2,1.9c0.5-0.2,1.1-0.2,1.6-0.2c1,0.1,1.9,0.7,2.4,1.5 c0.5,0.8,0.6,1.8,0.3,2.7L21.3,10.6z"/>
+                    </svg>
+                  </div>
                   <div class="font-serif font-medium">ChatGPT</div>
                   <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
                     Open
@@ -482,7 +629,11 @@ const steps = [
                   </div>
                 </a>
                 <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
-                  <div class="text-3xl mb-2">🧡</div>
+                  <div class="w-8 h-8 flex items-center justify-start mb-2">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#cc6b49] fill-current" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2a1.5 1.5 0 011.5 1.5v3.6l2.5-2.5a1.5 1.5 0 112.1 2.1l-2.5 2.5h3.6a1.5 1.5 0 110 3h-3.6l2.5 2.5a1.5 1.5 0 11-2.1 2.1l-2.5-2.5v3.6a1.5 1.5 0 11-3 0v-3.6l-2.5 2.5a1.5 1.5 0 11-2.1-2.1l2.5-2.5H3.4a1.5 1.5 0 110-3h3.6L4.5 9.2a1.5 1.5 0 112.1-2.1l2.5 2.5V3.5A1.5 1.5 0 0112 2z"/>
+                    </svg>
+                  </div>
                   <div class="font-serif font-medium">Claude</div>
                   <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
                     Open
@@ -492,7 +643,11 @@ const steps = [
                   </div>
                 </a>
                 <a href="https://midjourney.com" target="_blank" rel="noopener noreferrer" class="ai-tool-card group block p-4 rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-1 hover:shadow-hard">
-                  <div class="text-3xl mb-2">🎨</div>
+                  <div class="w-8 h-8 flex items-center justify-start mb-2">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#4285F4] fill-none stroke-current" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 19h20M5 19v-4a7 7 0 017-7M19 19v-2a7 7 0 00-7-7M12 8V2L7 6h5"/>
+                    </svg>
+                  </div>
                   <div class="font-serif font-medium">Midjourney</div>
                   <div class="text-xs text-ink-secondary mt-1 flex items-center gap-1">
                     Open
@@ -515,6 +670,71 @@ const steps = [
   <!-- Toast notification for copy feedback -->
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-ink-primary text-cream rounded-full font-medium shadow-hard opacity-0 pointer-events-none transition-opacity duration-300 z-50">
     Copied to clipboard! ✓
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PALETTE DETAIL POPOVER (shared, injected once)         -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div
+    id="palettePopover"
+    class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 sm:p-6"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="popoverPaletteName"
+  >
+    <!-- Backdrop -->
+    <div
+      id="palettePopoverBackdrop"
+      class="absolute inset-0 bg-ink-primary/40 cursor-pointer"
+    ></div>
+
+    <!-- Panel -->
+    <div
+      class="relative z-10 w-full max-w-sm bg-cream rounded-card border-1.5 border-ink-primary shadow-hard"
+      id="palettePopoverPanel"
+    >
+
+      <!-- Swatch strip (large) -->
+      <div class="flex h-16 rounded-t-[18px] overflow-hidden border-b-1.5 border-ink-primary" id="popoverSwatchStrip">
+        <!-- populated by JS -->
+      </div>
+
+      <!-- Body -->
+      <div class="p-5">
+
+        <!-- Name + badges -->
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 id="popoverPaletteName" class="font-serif text-xl font-medium text-ink-primary leading-tight"></h3>
+          <div class="flex gap-1.5 flex-wrap justify-end" id="popoverBadges"></div>
+        </div>
+
+        <!-- Description -->
+        <p class="text-sm text-ink-secondary mb-4 leading-relaxed" id="popoverDescription"></p>
+
+        <!-- Color labels grid (2 columns, 5 items) -->
+        <div class="grid grid-cols-2 gap-2 mb-5" id="popoverColorLabels">
+          <!-- populated by JS -->
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="btn-secondary flex-1"
+            id="popoverCancelBtn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="btn-primary flex-1"
+            id="popoverConfirmBtn"
+          >
+            Use this palette →
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ============================================== -->
@@ -548,6 +768,8 @@ const steps = [
       selectedTypeId: null,
       selectedCategoryFilter: 'all',
       selectedPaletteId: null,
+      selectedMoodFilter: 'all',
+      selectedVibeFilter: 'all',
       selectedConnectorId: null,
       selectedIconId: null,
       selectedMoodId: null,
@@ -557,7 +779,7 @@ const steps = [
 
     function loadState() {
       try {
-        const saved = localStorage.getItem('visualcraft-wizard-v1');
+        const saved = localStorage.getItem('illustratewords-wizard-v1');
         if (saved) {
           const parsed = JSON.parse(saved);
           Object.assign(state, parsed);
@@ -576,7 +798,7 @@ const steps = [
 
     function saveState() {
       try {
-        localStorage.setItem('visualcraft-wizard-v1', JSON.stringify(state));
+        localStorage.setItem('illustratewords-wizard-v1', JSON.stringify(state));
       } catch (e) {
         console.warn('Failed to save state', e);
       }
@@ -622,12 +844,22 @@ const steps = [
       state.selectedTypeId = id;
       saveState();
       render();
+      setTimeout(() => {
+        if (state.currentStep === 1) {
+          goToStep(2);
+        }
+      }, 300);
     }
 
     function selectPalette(id) {
       state.selectedPaletteId = id;
       saveState();
       render();
+      setTimeout(() => {
+        if (state.currentStep === 2) {
+          goToStep(3);
+        }
+      }, 300);
     }
 
     function selectStyle(type, id) {
@@ -669,17 +901,35 @@ const steps = [
       let prompt = type.promptTemplate.replace('[USER_CONTENT]', content);
 
       if (palette) {
-        prompt += `\n\nUSE THIS COLOR PALETTE: ${palette.name} (${palette.mood}). Apply these hex colors throughout the visualization in a balanced, harmonious way: ${palette.colors.join(', ')}. The dominant color should be ${palette.preview}.`;
+        // Build named color pairs: "Mist: #E3F2FD, Sky: #90CAF9, ..."
+        const namedColors = palette.colors
+          .map((hex, i) => {
+            const label = palette.labels && palette.labels[i] ? palette.labels[i] : `Stop ${i + 1}`;
+            return `${label}: ${hex}`;
+          })
+          .join(', ');
+
+        prompt += `\n\nCOLOR PALETTE — "${palette.name}"`;
+        prompt += `\nMood: ${palette.mood} | Vibe: ${palette.vibe}`;
+        prompt += `\n${palette.description}`;
+        prompt += `\nApply these named colors throughout the visualization:`;
+        prompt += `\n  ${namedColors}`;
+        prompt += `\nDominant accent color: ${palette.preview}`;
+        prompt += `\nUse the lightest stop (${palette.colors[0]}) for backgrounds and large fill areas.`;
+        prompt += `\nUse the darkest stop (${palette.colors[4]}) for text, borders, and strong emphasis.`;
       }
 
-      const styleNotes = [];
-      if (connector) styleNotes.push(`Connector style: ${connector.name} — ${connector.description}`);
-      if (icon) styleNotes.push(`Icon style: ${icon.name} — ${icon.description}`);
-      if (mood) styleNotes.push(`Overall layout mood: ${mood.name} — ${mood.description}`);
-
-      if (styleNotes.length) {
-        prompt += `\n\nADDITIONAL STYLE GUIDANCE:\n• ${styleNotes.join('\n• ')}`;
-      }
+      prompt += `\n\nVISUAL STYLE GUIDANCE (Napkin AI Aesthetic):`;
+      prompt += `\n- Layout Format: Flat 2D vector schematic illustration, clean diagram line art.`;
+      prompt += `\n- Spacing & Composition: Crisp, modern minimalist layout with generous whitespace. Clear alignment and visual breathing room.`;
+      prompt += `\n- Background: Pure white background (#FFFFFF).`;
+      if (connector) prompt += `\n- Connector Lines: ${connector.name} style connectors (${connector.description.toLowerCase()}).`;
+      if (icon) prompt += `\n- Iconography: ${icon.name} icon style (${icon.description.toLowerCase()}).`;
+      if (mood) prompt += `\n- Overall Aesthetic Direction: ${mood.name} style (${mood.description.toLowerCase()}).`;
+      prompt += `\n- Outlines & Borders: Thin, clean, uniform dark borders (${palette ? palette.colors[4] : '#000000'}, 1.5px stroke width) on all nodes, blocks, and shapes.`;
+      prompt += `\n- Fills & Color: Subtle, flat color fills using only the specified color palette stops. No gradients, no bevels, no 3D extrusion, and no drop shadows.`;
+      prompt += `\n- Text & Alignment: Clean typography with text perfectly centered within shape nodes. High text contrast.`;
+      prompt += `\n- Design Quality: Simple, clean vector graphic that looks hand-drawn or precisely created in Figma or Illustrator. Avoid complex illustrations, photo components, or artistic filters.`;
 
       return prompt;
     }
@@ -728,6 +978,8 @@ const steps = [
       state.selectedTypeId = null;
       state.selectedCategoryFilter = 'all';
       state.selectedPaletteId = null;
+      state.selectedMoodFilter = 'all';
+      state.selectedVibeFilter = 'all';
       state.selectedConnectorId = null;
       state.selectedIconId = null;
       state.selectedMoodId = null;
@@ -740,6 +992,7 @@ const steps = [
       const userContent = document.getElementById('user-content');
       if (userContent) userContent.value = '';
 
+      initStep2();
       render();
     }
 
@@ -765,7 +1018,6 @@ const steps = [
       renderTypeFilter();
       renderTypeSelections();
       renderPaletteSelections();
-      renderPalettePreview();
       renderStyleSelections();
       renderSummaryTags();
       renderPrompt();
@@ -920,55 +1172,367 @@ const steps = [
       document.querySelectorAll('[data-type-card]').forEach((el) => {
         const id = el.getAttribute('data-type-id');
         const check = el.querySelector('.check-icon');
+        const iconArea = el.querySelector('.aspect-square');
+
         if (id === state.selectedTypeId) {
-          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
+          el.classList.add('shadow-hard', 'ring-2', 'ring-accent-lavender');
           check?.classList.remove('hidden');
+          iconArea?.classList.add('bg-accent-lavender-light');
         } else {
-          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
+          el.classList.remove('shadow-hard', 'ring-2', 'ring-accent-lavender');
           check?.classList.add('hidden');
+          iconArea?.classList.remove('bg-accent-lavender-light');
         }
       });
+    }
+
+    const MOODS_FILTER = [
+      { value: 'all', label: 'All moods' },
+      { value: 'professional', label: 'Professional' },
+      { value: 'corporate', label: 'Corporate' },
+      { value: 'creative', label: 'Creative' },
+      { value: 'natural', label: 'Natural' },
+      { value: 'energetic', label: 'Energetic' },
+      { value: 'elegant', label: 'Elegant' },
+      { value: 'playful', label: 'Playful' },
+      { value: 'minimal', label: 'Minimal' },
+    ];
+
+    const VIBES_FILTER = [
+      { value: 'all', label: 'All vibes' },
+      { value: 'warm', label: '☀ Warm' },
+      { value: 'cool', label: '❄ Cool' },
+      { value: 'fresh', label: '🌿 Fresh' },
+      { value: 'calm', label: '🌊 Calm' },
+      { value: 'bold', label: '⚡ Bold' },
+      { value: 'grounded', label: '🌱 Grounded' },
+    ];
+
+    function getFilteredPalettes() {
+      return PALETTES.filter(p => {
+        const moodMatch = state.selectedMoodFilter === 'all' || p.mood === state.selectedMoodFilter;
+        const vibeMatch = state.selectedVibeFilter === 'all' || p.vibe === state.selectedVibeFilter;
+        return moodMatch && vibeMatch;
+      });
+    }
+
+    function renderMoodFilterChips() {
+      const container = document.getElementById('moodFilterChips');
+      if (!container) return;
+      container.innerHTML = '';
+      MOODS_FILTER.forEach(({ value, label }) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = [
+          'filter-chip',
+          'px-3 py-1.5 rounded-full border-1.5 text-sm font-medium transition-all duration-150',
+          state.selectedMoodFilter === value
+            ? 'bg-ink-primary text-cream border-ink-primary'
+            : 'bg-cream-lighter text-ink-secondary border-ink-primary/30 hover:border-ink-primary',
+        ].join(' ');
+        btn.textContent = label;
+        btn.setAttribute('aria-pressed', state.selectedMoodFilter === value ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          state.selectedMoodFilter = value;
+          renderMoodFilterChips();
+          renderVibeFilterChips(); // re-render vibes to keep counts accurate
+          renderPaletteGrid();
+          updatePaletteCountLabel();
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function renderVibeFilterChips() {
+      const container = document.getElementById('vibeFilterChips');
+      if (!container) return;
+      container.innerHTML = '';
+      VIBES_FILTER.forEach(({ value, label }) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = [
+          'filter-chip',
+          'px-3 py-1.5 rounded-full border-1.5 text-sm font-medium transition-all duration-150',
+          state.selectedVibeFilter === value
+            ? 'bg-ink-primary text-cream border-ink-primary'
+            : 'bg-cream-lighter text-ink-secondary border-ink-primary/30 hover:border-ink-primary',
+        ].join(' ');
+        btn.textContent = label;
+        btn.setAttribute('aria-pressed', state.selectedVibeFilter === value ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          state.selectedVibeFilter = value;
+          renderVibeFilterChips();
+          renderPaletteGrid();
+          updatePaletteCountLabel();
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function updatePaletteCountLabel() {
+      const label = document.getElementById('paletteCountLabel');
+      if (!label) return;
+      const count = getFilteredPalettes().length;
+      const moodActive = state.selectedMoodFilter !== 'all';
+      const vibeActive = state.selectedVibeFilter !== 'all';
+      if (!moodActive && !vibeActive) {
+        label.textContent = `Showing all ${PALETTES.length} palettes`;
+      } else {
+        label.textContent = `Showing ${count} palette${count !== 1 ? 's' : ''}`;
+      }
+    }
+
+    function renderPaletteGrid() {
+      const grid = document.getElementById('paletteGrid');
+      if (!grid) return;
+
+      const filtered = getFilteredPalettes();
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center">
+            <p class="font-serif text-xl text-ink-secondary mb-2">No palettes match these filters</p>
+            <p class="text-sm text-ink-tertiary mb-4">Try loosening the mood or vibe filter to see more options.</p>
+            <button type="button" id="resetPaletteFiltersBtn" class="btn-secondary text-sm">Reset filters</button>
+          </div>`;
+        
+        // Bind the reset filters button after injection
+        const resetBtn = document.getElementById('resetPaletteFiltersBtn');
+        resetBtn?.addEventListener('click', resetPaletteFilters);
+        return;
+      }
+
+      grid.innerHTML = '';
+
+      filtered.forEach(palette => {
+        const isSelected = state.selectedPaletteId === palette.id;
+
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.role = 'radio';
+        card.setAttribute('data-palette-card', '');
+        card.setAttribute('data-palette-id', palette.id);
+        card.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+        card.setAttribute('aria-label', `${palette.name} — ${palette.mood}, ${palette.vibe}`);
+        card.className = [
+          'palette-card group relative overflow-hidden rounded-card text-left',
+          'border-1.5 border-ink-primary bg-cream-lighter',
+          'transition-all duration-200',
+          'hover:-translate-y-0.5 hover:shadow-hard',
+          'focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-lavender focus-visible:ring-offset-2',
+          isSelected ? 'shadow-hard ring-4 ring-accent-lavender ring-offset-2' : '',
+        ].join(' ');
+
+        // Swatch strip
+        const swatchStrip = document.createElement('div');
+        swatchStrip.className = 'flex h-12 w-full overflow-hidden rounded-t-[18px]';
+        palette.colors.forEach(color => {
+          const swatch = document.createElement('span');
+          swatch.style.cssText = `background:${color};flex:1;display:block;`;
+          swatchStrip.appendChild(swatch);
+        });
+
+        // Card body
+        const body = document.createElement('div');
+        body.className = 'p-3';
+
+        // Name line with optional New badge
+        const nameLine = document.createElement('p');
+        nameLine.className = 'font-serif text-sm font-medium text-ink-primary leading-tight mb-1.5 flex items-center gap-1.5 flex-wrap';
+        nameLine.textContent = palette.name;
+        if (palette.isNew) {
+          const badge = document.createElement('span');
+          badge.className = 'text-[9px] font-sans font-semibold bg-accent-lime text-ink-primary px-1.5 py-0.5 rounded-full uppercase tracking-wide';
+          badge.textContent = 'New';
+          nameLine.appendChild(badge);
+        }
+
+        // Pill chips
+        const chips = document.createElement('div');
+        chips.className = 'flex gap-1.5 mb-2 flex-wrap';
+        chips.innerHTML = `
+          <span class="pill-lavender text-[10px] px-2 py-0.5">${palette.mood}</span>
+          <span class="pill-cream text-[10px] px-2 py-0.5">${palette.vibe}</span>
+        `;
+
+        // Hex values
+        const hexRow = document.createElement('div');
+        hexRow.className = 'flex gap-1 flex-wrap';
+        palette.colors.forEach(color => {
+          const chip = document.createElement('span');
+          chip.className = 'font-mono text-[9px] text-ink-tertiary bg-cream-darker px-1 py-0.5 rounded';
+          chip.textContent = color;
+          hexRow.appendChild(chip);
+        });
+
+        body.appendChild(nameLine);
+        body.appendChild(chips);
+        body.appendChild(hexRow);
+        card.appendChild(swatchStrip);
+        card.appendChild(body);
+
+        // Checkmark badge (visible only when selected)
+        const checkBadge = document.createElement('div');
+        checkBadge.className = [
+          'absolute top-2 right-2 w-6 h-6 rounded-full',
+          'bg-accent-lavender border-1.5 border-ink-primary shadow-hard',
+          'flex items-center justify-center',
+          'transition-opacity duration-150',
+          isSelected ? 'opacity-100' : 'opacity-0',
+        ].join(' ');
+        checkBadge.setAttribute('aria-hidden', 'true');
+        checkBadge.innerHTML = `
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="2,6 5,9 10,3" stroke="#0A0A0A" stroke-width="1.75"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`;
+        card.appendChild(checkBadge);
+
+        // Click handler — open detail popover
+        card.addEventListener('click', () => openPalettePopover(palette, card));
+
+        grid.appendChild(card);
+      });
+    }
+
+    function resetPaletteFilters() {
+      state.selectedMoodFilter = 'all';
+      state.selectedVibeFilter = 'all';
+      saveState();
+      renderMoodFilterChips();
+      renderVibeFilterChips();
+      renderPaletteGrid();
+      updatePaletteCountLabel();
+    }
+
+    function clearPaletteSelection() {
+      state.selectedPaletteId = null;
+      saveState();
+      render();
+    }
+
+    function updateSelectedPaletteSummary() {
+      const summary = document.getElementById('selectedPaletteSummary');
+      const swatchContainer = summary?.querySelector('.selected-palette-swatches');
+      const nameEl = document.getElementById('selectedPaletteName');
+      const descEl = document.getElementById('selectedPaletteDesc');
+      const nextBtn = document.getElementById('step2NextBtn');
+
+      if (!state.selectedPaletteId) {
+        summary?.classList.add('hidden');
+        if (nextBtn) nextBtn.disabled = true;
+        return;
+      }
+
+      const palette = getPaletteById(state.selectedPaletteId);
+      if (!palette) return;
+
+      // Populate swatches
+      if (swatchContainer) {
+        swatchContainer.innerHTML = palette.colors
+          .map(c => `<span style="background:${c};flex:1;display:block;"></span>`)
+          .join('');
+      }
+
+      if (nameEl) nameEl.textContent = palette.name;
+      if (descEl) descEl.textContent = palette.description;
+
+      summary?.classList.remove('hidden');
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    let popoverTargetPaletteId = null;
+    let popoverTriggerCard = null;
+
+    function openPalettePopover(palette, cardElement) {
+      popoverTargetPaletteId = palette.id;
+      popoverTriggerCard = cardElement;
+
+      // Swatches
+      const swatchStrip = document.getElementById('popoverSwatchStrip');
+      if (swatchStrip) {
+        swatchStrip.innerHTML = palette.colors
+          .map(c => `<span style="background:${c};flex:1;display:block;"></span>`)
+          .join('');
+      }
+
+      // Name
+      const nameEl = document.getElementById('popoverPaletteName');
+      if (nameEl) nameEl.textContent = palette.name;
+
+      // Badges
+      const badgesEl = document.getElementById('popoverBadges');
+      if (badgesEl) {
+        badgesEl.innerHTML = `
+          <span class="pill-lavender text-[10px] px-2 py-0.5">${palette.mood}</span>
+          <span class="pill-cream text-[10px] px-2 py-0.5">${palette.vibe}</span>
+          ${palette.isNew ? '<span class="text-[9px] font-sans font-semibold bg-accent-lime text-ink-primary px-1.5 py-0.5 rounded-full uppercase tracking-wide">New</span>' : ''}
+        `;
+      }
+
+      // Description
+      const descEl = document.getElementById('popoverDescription');
+      if (descEl) descEl.textContent = palette.description;
+
+      // Color labels grid
+      const labelsGrid = document.getElementById('popoverColorLabels');
+      if (labelsGrid) {
+        labelsGrid.innerHTML = palette.colors.map((color, i) => `
+          <div class="flex items-center gap-2 p-2 rounded-card-sm bg-cream-lighter border-1.5 border-ink-primary/10">
+            <span
+              class="w-7 h-7 rounded-[6px] border-1.5 border-ink-primary/20 flex-shrink-0"
+              style="background:${color}"
+            ></span>
+            <div class="min-w-0">
+              <p class="text-[11px] font-medium text-ink-primary leading-none mb-0.5">
+                ${palette.labels ? palette.labels[i] : `Stop ${i + 1}`}
+              </p>
+              <p class="font-mono text-[10px] text-ink-tertiary leading-none">${color}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Show popover
+      const popover = document.getElementById('palettePopover');
+      if (popover) {
+        popover.classList.remove('hidden');
+        // Focus the confirm button for keyboard users
+        setTimeout(() => {
+          document.getElementById('popoverConfirmBtn')?.focus();
+        }, 50);
+      }
+
+      // Trap Escape key
+      document.addEventListener('keydown', handlePopoverKeydown);
+    }
+
+    function closePalettePopover() {
+      const popover = document.getElementById('palettePopover');
+      if (popover) popover.classList.add('hidden');
+      popoverTargetPaletteId = null;
+      document.removeEventListener('keydown', handlePopoverKeydown);
+
+      // Restore focus
+      if (popoverTriggerCard) {
+        popoverTriggerCard.focus();
+        popoverTriggerCard = null;
+      }
+    }
+
+    function handlePopoverKeydown(e) {
+      if (e.key === 'Escape') closePalettePopover();
+    }
+
+    function confirmPaletteSelection() {
+      if (!popoverTargetPaletteId) return;
+      selectPalette(popoverTargetPaletteId);
+      closePalettePopover();
     }
 
     function renderPaletteSelections() {
-      document.querySelectorAll('[data-palette-card]').forEach((el) => {
-        const id = el.getAttribute('data-palette-id');
-        const check = el.querySelector('.check-icon');
-        if (id === state.selectedPaletteId) {
-          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
-          check?.classList.remove('hidden');
-        } else {
-          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
-          check?.classList.add('hidden');
-        }
-      });
-    }
-
-    function renderPalettePreview() {
-      const palette = getPaletteById(state.selectedPaletteId);
-      const preview = document.getElementById('palette-preview');
-      const previewName = document.getElementById('palette-preview-name');
-
-      if (!preview) return;
-
-      const bars = preview.children;
-      if (palette) {
-        for (let i = 0; i < bars.length; i++) {
-          const colorIdx = i % palette.colors.length;
-          bars[i].style.backgroundColor = palette.colors[colorIdx];
-          bars[i].style.borderColor = '#0A0A0A';
-        }
-        if (previewName) {
-          previewName.innerHTML = `<strong class="text-ink-primary">${palette.name}</strong> · ${palette.mood}`;
-        }
-      } else {
-        for (let i = 0; i < bars.length; i++) {
-          bars[i].style.backgroundColor = '';
-        }
-        if (previewName) {
-          previewName.textContent = 'Pick a palette to see the preview';
-        }
-      }
+      renderPaletteGrid();
+      updateSelectedPaletteSummary();
     }
 
     function renderStyleSelections() {
@@ -1049,12 +1613,11 @@ const steps = [
         });
       });
 
-      document.querySelectorAll('[data-palette-card]').forEach((el) => {
-        el.addEventListener('click', () => {
-          const id = el.getAttribute('data-palette-id');
-          if (id) selectPalette(id);
-        });
-      });
+      // Palette Popover listeners
+      document.getElementById('palettePopoverBackdrop')?.addEventListener('click', closePalettePopover);
+      document.getElementById('popoverCancelBtn')?.addEventListener('click', closePalettePopover);
+      document.getElementById('popoverConfirmBtn')?.addEventListener('click', confirmPaletteSelection);
+      document.getElementById('clearPaletteBtn')?.addEventListener('click', clearPaletteSelection);
 
       document.querySelectorAll('[data-style-card]').forEach((el) => {
         el.addEventListener('click', () => {
@@ -1098,6 +1661,14 @@ const steps = [
       document.getElementById('reset-btn')?.addEventListener('click', resetAll);
     }
 
+    function initStep2() {
+      renderMoodFilterChips();
+      renderVibeFilterChips();
+      renderPaletteGrid();
+      updatePaletteCountLabel();
+      updateSelectedPaletteSummary();
+    }
+
     function init() {
       loadState();
       attachEventListeners();
@@ -1108,6 +1679,7 @@ const steps = [
       const userContent = document.getElementById('user-content');
       if (userContent) userContent.value = state.userContent;
 
+      initStep2();
       render();
     }
 

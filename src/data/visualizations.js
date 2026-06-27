@@ -1,5 +1,5 @@
 // ============================================================================
-// VisualCraft — Data Layer
+// Illustrate Words — Data Layer
 // Single source of truth for all visualization types, palettes, and styles.
 // ============================================================================
 
@@ -11,6 +11,7 @@ export const CATEGORIES = [
     id: "mindmap",
     name: "Mindmap",
     icon: "🧠",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M12 15v5M9 12H4M15 12h5"/></svg>`,
     description: "Radial and tree-based idea organization",
     types: [
       {
@@ -46,6 +47,7 @@ export const CATEGORIES = [
     id: "process",
     name: "Process",
     icon: "⚙️",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="5" width="6" height="6" rx="1"/><rect x="15" y="5" width="6" height="6" rx="1"/><path d="M9 8h6M12 5l3 3-3 3"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M18 11v4M6 11v4"/></svg>`,
     description: "Sequential workflows and procedures",
     types: [
       {
@@ -85,8 +87,9 @@ export const CATEGORIES = [
   // --------------------------------------------------------------------------
   {
     id: "data",
-    name: "Data",
+    name: "Data Chart",
     icon: "📊",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>`,
     description: "Charts and quantitative visualizations",
     types: [
       {
@@ -179,9 +182,10 @@ export const CATEGORIES = [
   // 4. TIMELINES
   // --------------------------------------------------------------------------
   {
-    id: "timelines",
-    name: "Timelines",
+    id: "timeline",
+    name: "Timeline & Journey",
     icon: "📅",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
     description: "Chronological events and schedules",
     types: [
       {
@@ -223,6 +227,7 @@ export const CATEGORIES = [
     id: "comparison",
     name: "Comparison",
     icon: "⚖️",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>`,
     description: "Side-by-side analysis of options",
     types: [
       {
@@ -280,8 +285,9 @@ export const CATEGORIES = [
   // --------------------------------------------------------------------------
   {
     id: "business",
-    name: "Business Frameworks",
+    name: "Business Framework",
     icon: "💼",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
     description: "Strategic and analytical business models",
     types: [
       {
@@ -341,6 +347,7 @@ export const CATEGORIES = [
     id: "brainstorming",
     name: "Brainstorming",
     icon: "💡",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>`,
     description: "Idea generation and organization formats",
     types: [
       {
@@ -380,8 +387,9 @@ export const CATEGORIES = [
   // --------------------------------------------------------------------------
   {
     id: "parts",
-    name: "Parts of a Whole",
+    name: "Parts & Whole",
     icon: "🧩",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>`,
     description: "How components combine into a complete picture",
     types: [
       {
@@ -415,8 +423,9 @@ export const CATEGORIES = [
   // --------------------------------------------------------------------------
   {
     id: "problems",
-    name: "Problems and Solutions",
-    icon: "🔧",
+    name: "Problem Solving",
+    icon: "⚖️",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="12" y1="5" x2="12" y2="19"/><path d="M5 7h14M5 7l3 6M19 7l-3 6M8 19h8"/></svg>`,
     description: "Diagnosing issues and proposing fixes",
     types: [
       {
@@ -456,8 +465,9 @@ export const CATEGORIES = [
   // --------------------------------------------------------------------------
   {
     id: "metaphors",
-    name: "Visual Metaphors",
+    name: "Metaphors & Visuals",
     icon: "🎭",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 20L10 6L16 15L19 11L22 20H3Z"/></svg>`,
     description: "Concrete imagery to express abstract ideas",
     types: [
       {
@@ -502,9 +512,10 @@ export const CATEGORIES = [
   // 11. NARRATIVE
   // --------------------------------------------------------------------------
   {
-    id: "narrative",
-    name: "Narrative",
+    id: "narratives",
+    name: "Narratives & Story",
     icon: "📖",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15z"/></svg>`,
     description: "Story-driven and dramatic structures",
     types: [
       {
@@ -540,6 +551,7 @@ export const CATEGORIES = [
     id: "cause",
     name: "Cause and Effect",
     icon: "🔗",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>`,
     description: "Showing how actions lead to outcomes",
     types: [
       {
@@ -572,9 +584,10 @@ export const CATEGORIES = [
   // 13. HIERARCHY
   // --------------------------------------------------------------------------
   {
-    id: "hierarchy",
-    name: "Hierarchy",
+    id: "structures",
+    name: "Structures & Hierarchy",
     icon: "🏛️",
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M4 6l8-4 8 4v4H4V6z"/></svg>`,
     description: "Structured levels and classifications",
     types: [
       {
@@ -610,183 +623,465 @@ export const CATEGORIES = [
 // ============================================================================
 
 export const PALETTES = [
+
+  // ─────────────────────────────────────────────
+  // ORIGINAL 25 PALETTES (updated with new fields)
+  // ─────────────────────────────────────────────
+
   {
     id: "ocean-blue",
     name: "Ocean Blue",
     colors: ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0"],
     mood: "professional",
-    preview: "#1E88E5"
+    vibe: "calm",
+    preview: "#1E88E5",
+    description: "Classic ocean depths that convey trust, confidence, and data precision. The go-to palette for analytics dashboards and corporate reports.",
+    labels: ["Mist", "Sky", "Wave", "Sapphire", "Deep navy"],
   },
   {
-    id: "forest-green",
-    name: "Forest Green",
-    colors: ["#E8F5E9", "#A5D6A7", "#66BB6A", "#43A047", "#2E7D32"],
+    id: "forest-sage",
+    name: "Forest Sage",
+    colors: ["#E8F5E9", "#A5D6A7", "#66BB6A", "#388E3C", "#1B5E20"],
     mood: "natural",
-    preview: "#43A047"
+    vibe: "grounded",
+    preview: "#388E3C",
+    description: "Earthy green tones evoking lush forest canopies and sustainable growth. Perfect for environmental, health, and lifecycle diagrams.",
+    labels: ["Dew", "Leaf", "Fern", "Moss", "Pine"],
   },
   {
-    id: "sunset-orange",
-    name: "Sunset Orange",
-    colors: ["#FFF3E0", "#FFCC80", "#FFA726", "#FB8C00", "#E65100"],
+    id: "sunset-coral",
+    name: "Sunset Coral",
+    colors: ["#FFF3E0", "#FFCC80", "#FFA726", "#F57C00", "#E65100"],
     mood: "energetic",
-    preview: "#FB8C00"
+    vibe: "warm",
+    preview: "#F57C00",
+    description: "Amber warmth fading to deep tangerine — energetic and inviting without being aggressive. Great for process flows and user journeys.",
+    labels: ["Cream", "Peach", "Amber", "Ember", "Char"],
   },
   {
-    id: "royal-purple",
-    name: "Royal Purple",
-    colors: ["#F3E5F5", "#CE93D8", "#AB47BC", "#8E24AA", "#6A1B9A"],
-    mood: "luxurious",
-    preview: "#8E24AA"
+    id: "midnight-purple",
+    name: "Midnight Purple",
+    colors: ["#EDE7F6", "#CE93D8", "#AB47BC", "#7B1FA2", "#4A148C"],
+    mood: "creative",
+    vibe: "bold",
+    preview: "#7B1FA2",
+    description: "Rich violet spectrum from soft lavender to deep ink. Signals creativity, wisdom, and premium quality across any visualization type.",
+    labels: ["Bloom", "Lilac", "Orchid", "Plum", "Indigo"],
   },
   {
     id: "rose-gold",
     name: "Rose Gold",
-    colors: ["#FCE4EC", "#F8BBD0", "#F06292", "#E91E63", "#AD1457"],
+    colors: ["#FCE4EC", "#F48FB1", "#EC407A", "#C2185B", "#880E4F"],
     mood: "elegant",
-    preview: "#E91E63"
+    vibe: "warm",
+    preview: "#C2185B",
+    description: "Dusty pinks and warm magentas with feminine elegance. Pairs beautifully with cream backgrounds and Fraunces serif headlines.",
+    labels: ["Blush", "Petal", "Rose", "Carnation", "Berry"],
   },
   {
-    id: "midnight-dark",
-    name: "Midnight Dark",
-    colors: ["#263238", "#37474F", "#455A64", "#546E7A", "#78909C"],
-    mood: "dramatic",
-    preview: "#37474F"
+    id: "slate-gray",
+    name: "Slate Gray",
+    colors: ["#ECEFF1", "#B0BEC5", "#78909C", "#455A64", "#263238"],
+    mood: "corporate",
+    vibe: "cool",
+    preview: "#455A64",
+    description: "Cool blue-grays with strong contrast. The reliable workhorse palette for financial reports, org charts, and technical system diagrams.",
+    labels: ["Cloud", "Ash", "Stone", "Slate", "Onyx"],
+  },
+  {
+    id: "tropical-teal",
+    name: "Tropical Teal",
+    colors: ["#E0F2F1", "#80CBC4", "#26A69A", "#00796B", "#004D40"],
+    mood: "professional",
+    vibe: "fresh",
+    preview: "#00796B",
+    description: "Clear Caribbean waters and tropical foliage. A refreshing balance between cool and warm tones that works in both consumer and B2B contexts.",
+    labels: ["Foam", "Aqua", "Teal", "Jade", "Abyss"],
+  },
+  {
+    id: "golden-harvest",
+    name: "Golden Harvest",
+    colors: ["#FFFDE7", "#FFF176", "#FFEE58", "#F9A825", "#F57F17"],
+    mood: "energetic",
+    vibe: "warm",
+    preview: "#F9A825",
+    description: "Sun-soaked golds from morning light to deep amber. Optimistic and full of forward momentum — excellent for roadmaps and milestone timelines.",
+    labels: ["Cream", "Lemon", "Sun", "Honey", "Saffron"],
+  },
+  {
+    id: "berry-pop",
+    name: "Berry Pop",
+    colors: ["#FCE4EC", "#F06292", "#E91E63", "#AD1457", "#880E4F"],
+    mood: "creative",
+    vibe: "bold",
+    preview: "#E91E63",
+    description: "Vivid pinks and fuchsias that command attention. Great for marketing funnels, consumer-facing journey maps, and brand strategy visuals.",
+    labels: ["Blush", "Flamingo", "Fuchsia", "Magenta", "Berry"],
   },
   {
     id: "arctic-ice",
     name: "Arctic Ice",
-    colors: ["#ECEFF1", "#CFD8DC", "#B0BEC5", "#90A4AE", "#78909C"],
-    mood: "calm",
-    preview: "#90A4AE"
-  },
-  {
-    id: "autumn-warm",
-    name: "Autumn Warm",
-    colors: ["#FFF8E1", "#FFD54F", "#FFA000", "#E64A19", "#BF360C"],
-    mood: "warm",
-    preview: "#E64A19"
-  },
-  {
-    id: "corporate-gray",
-    name: "Corporate Gray",
-    colors: ["#FAFAFA", "#E0E0E0", "#9E9E9E", "#616161", "#212121"],
-    mood: "professional",
-    preview: "#616161"
-  },
-  {
-    id: "neon-pop",
-    name: "Neon Pop",
-    colors: ["#FF1744", "#F50057", "#D500F9", "#651FFF", "#00E5FF"],
-    mood: "energetic",
-    preview: "#D500F9"
-  },
-  {
-    id: "earth-tones",
-    name: "Earth Tones",
-    colors: ["#EFEBE9", "#D7CCC8", "#A1887F", "#795548", "#4E342E"],
-    mood: "grounded",
-    preview: "#795548"
-  },
-  {
-    id: "lavender-dream",
-    name: "Lavender Dream",
-    colors: ["#EDE7F6", "#D1C4E9", "#B39DDB", "#9575CD", "#7E57C2"],
-    mood: "calm",
-    preview: "#9575CD"
-  },
-  {
-    id: "tropical",
-    name: "Tropical",
-    colors: ["#00BCD4", "#FFEB3B", "#FF5722", "#4CAF50", "#E91E63"],
-    mood: "energetic",
-    preview: "#00BCD4"
-  },
-  {
-    id: "monochrome",
-    name: "Monochrome",
-    colors: ["#FFFFFF", "#BDBDBD", "#757575", "#424242", "#000000"],
-    mood: "minimal",
-    preview: "#424242"
-  },
-  {
-    id: "fire-red",
-    name: "Fire Red",
-    colors: ["#FFEBEE", "#EF9A9A", "#EF5350", "#E53935", "#B71C1C"],
-    mood: "bold",
-    preview: "#E53935"
-  },
-  {
-    id: "sky-blue",
-    name: "Sky Blue",
-    colors: ["#E1F5FE", "#81D4FA", "#29B6F6", "#039BE5", "#0277BD"],
-    mood: "fresh",
-    preview: "#29B6F6"
-  },
-  {
-    id: "mint-fresh",
-    name: "Mint Fresh",
-    colors: ["#E0F2F1", "#80CBC4", "#26A69A", "#00897B", "#00695C"],
-    mood: "fresh",
-    preview: "#26A69A"
-  },
-  {
-    id: "golden-hour",
-    name: "Golden Hour",
-    colors: ["#FFFDE7", "#FFF59D", "#FFEE58", "#FDD835", "#F57F17"],
-    mood: "warm",
-    preview: "#FDD835"
-  },
-  {
-    id: "deep-navy",
-    name: "Deep Navy",
     colors: ["#E8EAF6", "#9FA8DA", "#5C6BC0", "#3949AB", "#1A237E"],
-    mood: "professional",
-    preview: "#3949AB"
+    mood: "corporate",
+    vibe: "cool",
+    preview: "#3949AB",
+    description: "Cool indigo and periwinkle — authority and intelligence without the overused cobalt-blue corporate cliché.",
+    labels: ["Frost", "Periwinkle", "Cornflower", "Cobalt", "Abyss"],
   },
   {
-    id: "coral-reef",
-    name: "Coral Reef",
-    colors: ["#FFEBE9", "#FFAB91", "#FF7043", "#F4511E", "#BF360C"],
-    mood: "warm",
-    preview: "#FF7043"
-  },
-  {
-    id: "sage-green",
-    name: "Sage Green",
-    colors: ["#F1F8E9", "#C5E1A5", "#9CCC65", "#7CB342", "#558B2F"],
+    id: "earthy-sienna",
+    name: "Earthy Sienna",
+    colors: ["#EFEBE9", "#BCAAA4", "#8D6E63", "#5D4037", "#3E2723"],
     mood: "natural",
-    preview: "#7CB342"
+    vibe: "warm",
+    preview: "#5D4037",
+    description: "Terracotta and warm browns drawn from pottery and raw earth. Grounded, tactile, and deeply human — works beautifully for brand story diagrams.",
+    labels: ["Sand", "Clay", "Sienna", "Mahogany", "Espresso"],
   },
   {
-    id: "berry-mix",
-    name: "Berry Mix",
-    colors: ["#FCE4EC", "#F8BBD0", "#CE93D8", "#9575CD", "#5E35B1"],
-    mood: "playful",
-    preview: "#9575CD"
-  },
-  {
-    id: "desert-sand",
-    name: "Desert Sand",
-    colors: ["#FFF8E1", "#FFE0B2", "#FFAB91", "#BCAAA4", "#8D6E63"],
-    mood: "warm",
-    preview: "#BCAAA4"
-  },
-  {
-    id: "electric-blue",
-    name: "Electric Blue",
-    colors: ["#E1F5FE", "#4FC3F7", "#00B0FF", "#0091EA", "#01579B"],
+    id: "neon-lime",
+    name: "Neon Lime",
+    colors: ["#F9FBE7", "#E6EE9C", "#DCE775", "#AFB42B", "#827717"],
     mood: "energetic",
-    preview: "#00B0FF"
+    vibe: "fresh",
+    preview: "#AFB42B",
+    description: "Acid lime greens that crackle with energy on any screen. Bold enough to stop the eye in busy data-heavy layouts.",
+    labels: ["Cream", "Chartreuse", "Lime", "Olive", "Swamp"],
   },
   {
-    id: "classic-black",
-    name: "Classic Black",
-    colors: ["#FFFFFF", "#F5F5F5", "#9E9E9E", "#424242", "#000000"],
+    id: "candy-mint",
+    name: "Candy Mint",
+    colors: ["#E0F7FA", "#80DEEA", "#26C6DA", "#00838F", "#006064"],
+    mood: "playful",
+    vibe: "fresh",
+    preview: "#26C6DA",
+    description: "Soft cyan to deep teal via candy mint. Light-hearted and fresh for consumer apps, wellness brands, and idea-cluster visualizations.",
+    labels: ["Mist", "Aquamarine", "Mint", "Lagoon", "Deep"],
+  },
+  {
+    id: "cherry-blossom",
+    name: "Cherry Blossom",
+    colors: ["#FCF1F3", "#F4B8C5", "#E8788E", "#C84B65", "#A31D40"],
+    mood: "elegant",
+    vibe: "warm",
+    preview: "#E8788E",
+    description: "Delicate pinks inspired by Japanese spring blossoms. Refined and fleeting beauty — for presentations that need to feel handcrafted and special.",
+    labels: ["Petal", "Sakura", "Flush", "Crimson", "Ink"],
+  },
+  {
+    id: "copper-rust",
+    name: "Copper Rust",
+    colors: ["#FBE9E7", "#FFAB91", "#FF7043", "#E64A19", "#BF360C"],
+    mood: "energetic",
+    vibe: "warm",
+    preview: "#FF7043",
+    description: "Hot metal and forge-cooled rust. Industrial warmth that brings urgency and dynamism to risk matrices and problem-solving diagrams.",
+    labels: ["Glow", "Peach", "Tangerine", "Rust", "Char"],
+  },
+  {
+    id: "deep-sapphire",
+    name: "Deep Sapphire",
+    colors: ["#E8EAF6", "#7986CB", "#3F51B5", "#283593", "#1A237E"],
+    mood: "corporate",
+    vibe: "bold",
+    preview: "#3F51B5",
+    description: "Pure saturated indigo — the power palette of finance, consulting, and enterprise software. Authoritative without being aggressive.",
+    labels: ["Ghost", "Periwinkle", "Iris", "Navy", "Midnight"],
+  },
+  {
+    id: "spring-meadow",
+    name: "Spring Meadow",
+    colors: ["#F1F8E9", "#DCEDC8", "#AED581", "#689F38", "#33691E"],
+    mood: "natural",
+    vibe: "fresh",
+    preview: "#689F38",
+    description: "Young shoots and sunlit grass. Lighter and more vibrant than Forest Sage — perfect for growth themes, OKRs, and success-state diagrams.",
+    labels: ["Bloom", "Sage", "Grass", "Moss", "Canopy"],
+  },
+  {
+    id: "lavender-dusk",
+    name: "Lavender Dusk",
+    colors: ["#F3E5F5", "#CE93D8", "#BA68C8", "#7B1FA2", "#4A148C"],
+    mood: "creative",
+    vibe: "calm",
+    preview: "#BA68C8",
+    description: "Soft purple twilight that blends creativity with serenity. A lighter, more approachable take on Midnight Purple for brainstorming and idea maps.",
+    labels: ["Mist", "Hyacinth", "Lilac", "Violet", "Dusk"],
+  },
+  {
+    id: "mango-sorbet",
+    name: "Mango Sorbet",
+    colors: ["#FFF8E1", "#FFE082", "#FFCA28", "#FF8F00", "#E65100"],
+    mood: "playful",
+    vibe: "warm",
+    preview: "#FFCA28",
+    description: "Tropical mango to sunset orange. Playful sweetness that evokes summer and celebration — ideal for persona maps and user journey visualizations.",
+    labels: ["Cream", "Banana", "Mango", "Tangerine", "Flame"],
+  },
+  {
+    id: "steel-storm",
+    name: "Steel Storm",
+    colors: ["#FAFAFA", "#EEEEEE", "#9E9E9E", "#424242", "#212121"],
     mood: "minimal",
-    preview: "#000000"
+    vibe: "cool",
+    preview: "#616161",
+    description: "True neutral grayscale with no color cast. The invisible palette that lets data, structure, and hierarchy speak entirely for themselves.",
+    labels: ["White", "Smoke", "Ash", "Charcoal", "Ink"],
+  },
+  {
+    id: "retro-pop",
+    name: "Retro Pop",
+    colors: ["#FFF9C4", "#FFAB40", "#EF5350", "#EC407A", "#7E57C2"],
+    mood: "playful",
+    vibe: "bold",
+    preview: "#EF5350",
+    description: "Candy-store energy with 70s poster warmth. Unashamed fun across the full spectrum — for timelines, hero's journeys, and narrative arc diagrams.",
+    labels: ["Vanilla", "Orange", "Red", "Pink", "Purple"],
+  },
+  {
+    id: "jade-lantern",
+    name: "Jade Lantern",
+    colors: ["#E0F2F1", "#80CBC4", "#009688", "#00695C", "#003D33"],
+    mood: "elegant",
+    vibe: "grounded",
+    preview: "#009688",
+    description: "Deep jade and luminous teal inspired by East Asian aesthetics. Calm luxury with natural roots — for strategy frameworks and theory-of-change diagrams.",
+    labels: ["Foam", "Celadon", "Jade", "Forest", "Abyss"],
+  },
+  {
+    id: "fire-opal",
+    name: "Fire Opal",
+    colors: ["#FFF3E0", "#FFCC80", "#FF7043", "#E53935", "#B71C1C"],
+    mood: "energetic",
+    vibe: "bold",
+    preview: "#FF7043",
+    description: "Orange-red heat from ember to fire. Maximum urgency — reserve this for risk matrices, problem trees, and any visualization where danger must be felt.",
+    labels: ["Glow", "Amber", "Blaze", "Flame", "Blood"],
+  },
+  {
+    id: "moon-dust",
+    name: "Moon Dust",
+    colors: ["#FAFAFA", "#F5F0FF", "#E1D5FA", "#9575CD", "#4527A0"],
+    mood: "elegant",
+    vibe: "cool",
+    preview: "#9575CD",
+    description: "Lunar grays with a gentle violet blush. Otherworldly calm for futurism and tech presentations that need to feel ahead of their time.",
+    labels: ["Chalk", "Mist", "Dusk", "Violet", "Eclipse"],
+  },
+  {
+    id: "vivid-sunrise",
+    name: "Vivid Sunrise",
+    colors: ["#FFF9F0", "#FFD4A8", "#FF9A50", "#D45A00", "#7A2E00"],
+    mood: "energetic",
+    vibe: "warm",
+    preview: "#FF9A50",
+    description: "Horizon-orange energy at peak saturation — vibrant and unstoppable. A more vivid and confident alternative to Sunset Coral.",
+    labels: ["Cream", "Peach", "Sunrise", "Dusk", "Char"],
+  },
+
+  // ─────────────────────────────────────────────
+  // 17 NEW PALETTES
+  // ─────────────────────────────────────────────
+
+  {
+    id: "terracotta-bloom",
+    name: "Terracotta Bloom",
+    colors: ["#FDF0E8", "#EBBFA0", "#D08060", "#A55A35", "#6B3420"],
+    mood: "natural",
+    vibe: "warm",
+    preview: "#D08060",
+    description: "Sun-baked clay and warm terracotta evoking Mediterranean gardens and artisan craft. Earthy and grounded without feeling heavy.",
+    labels: ["Linen", "Sand", "Clay", "Adobe", "Cocoa"],
+    isNew: true,
+  },
+  {
+    id: "electric-violet",
+    name: "Electric Violet",
+    colors: ["#EFF0FF", "#C4C6FF", "#8488FF", "#5457D0", "#2D30A0"],
+    mood: "creative",
+    vibe: "bold",
+    preview: "#8488FF",
+    description: "Hyper-saturated violet for digital-native visuals. High impact for tech startups, gaming brands, and creative agencies who want to own a color.",
+    labels: ["Ice", "Periwinkle", "Electric", "Ultra", "Ink"],
+    isNew: true,
+  },
+  {
+    id: "matcha-zen",
+    name: "Matcha Zen",
+    colors: ["#F4F9EE", "#C8DCA8", "#8DB870", "#5B8A40", "#2D5520"],
+    mood: "natural",
+    vibe: "calm",
+    preview: "#8DB870",
+    description: "Muted tea-green tones from a Japanese tea ceremony — still, composed, and deeply intentional. Perfect for mindfulness and wellness frameworks.",
+    labels: ["Rice", "Froth", "Matcha", "Bamboo", "Moss"],
+    isNew: true,
+  },
+  {
+    id: "cyber-dusk",
+    name: "Cyber Dusk",
+    colors: ["#1A0533", "#3B1460", "#7C3CAE", "#C066E8", "#F0A8FF"],
+    mood: "creative",
+    vibe: "bold",
+    preview: "#7C3CAE",
+    description: "Dark-mode-first palette ascending from near-black to neon orchid. Dramatic and immersive for tech, gaming, and cinematic narrative diagrams.",
+    labels: ["Void", "Dusk", "Grape", "Orchid", "Neon"],
+    isNew: true,
+  },
+  {
+    id: "coastal-fog",
+    name: "Coastal Fog",
+    colors: ["#F5F7F9", "#D4DCE5", "#8FA8BC", "#4D6A80", "#1C3347"],
+    mood: "corporate",
+    vibe: "cool",
+    preview: "#4D6A80",
+    description: "Misty blues and grays of a harbor at dawn. Understated and sophisticated — for long-form reporting, strategy decks, and executive presentations.",
+    labels: ["Fog", "Mist", "Steel", "Denim", "Abyss"],
+    isNew: true,
+  },
+  {
+    id: "papaya-tropics",
+    name: "Papaya Tropics",
+    colors: ["#FFF4E6", "#FFD49A", "#FFAA4A", "#E0701A", "#8A3800"],
+    mood: "playful",
+    vibe: "warm",
+    preview: "#FFAA4A",
+    description: "Ripe tropical fruit tones — papaya, mango, and caramelized sugar. Festive and irresistibly warm for consumer personas and market maps.",
+    labels: ["Cream", "Peach", "Papaya", "Spice", "Bark"],
+    isNew: true,
+  },
+  {
+    id: "aurora-borealis",
+    name: "Aurora Borealis",
+    colors: ["#E0FFF8", "#80FFE8", "#00C9A7", "#007A64", "#003D32"],
+    mood: "elegant",
+    vibe: "fresh",
+    preview: "#00C9A7",
+    description: "Northern lights in teal and turquoise — luminous and rare. For anything that deserves to feel singular and extraordinary.",
+    labels: ["Ice", "Glow", "Aurora", "Deep", "Abyss"],
+    isNew: true,
+  },
+  {
+    id: "dusty-rose",
+    name: "Dusty Rose",
+    colors: ["#FCF4F0", "#E8C4B8", "#CC8877", "#A0544A", "#6B2D2D"],
+    mood: "elegant",
+    vibe: "warm",
+    preview: "#CC8877",
+    description: "Muted pinks with terracotta undertones — vintage warmth and handcrafted elegance. The softer, more refined sibling of Rose Gold.",
+    labels: ["Linen", "Petal", "Rose", "Clay", "Wine"],
+    isNew: true,
+  },
+  {
+    id: "quantum-blue",
+    name: "Quantum Blue",
+    colors: ["#E8F4FF", "#90CAFF", "#3399FF", "#0066CC", "#003D7A"],
+    mood: "professional",
+    vibe: "bold",
+    preview: "#3399FF",
+    description: "Crisp electric blue — hyperlink-blue, alive, and unmistakably digital. For fintech dashboards, SaaS product maps, and tech architecture diagrams.",
+    labels: ["Ice", "Sky", "Cyan", "Cobalt", "Ink"],
+    isNew: true,
+  },
+  {
+    id: "obsidian-ember",
+    name: "Obsidian Ember",
+    colors: ["#1C1A22", "#3A2D4A", "#7A4070", "#C4608A", "#F4A0B0"],
+    mood: "creative",
+    vibe: "bold",
+    preview: "#7A4070",
+    description: "Dark-first palette from near-black to dusty rose. Cinematic drama and emotional depth — for storytelling, narrative arcs, and hero's journey maps.",
+    labels: ["Void", "Shadow", "Plum", "Ember", "Glow"],
+    isNew: true,
+  },
+  {
+    id: "butter-cream",
+    name: "Butter Cream",
+    colors: ["#FFFDF0", "#FFF5CC", "#FFE680", "#D4A800", "#8A6A00"],
+    mood: "playful",
+    vibe: "warm",
+    preview: "#FFE680",
+    description: "Warm yellows that feel like sunshine and fresh baked goods. Gentle, happy, and impossible to dislike — for brainstorming and affinity diagrams.",
+    labels: ["Linen", "Cream", "Butter", "Gold", "Toffee"],
+    isNew: true,
+  },
+  {
+    id: "nordic-pine",
+    name: "Nordic Pine",
+    colors: ["#EEF3F0", "#B8CFC0", "#6E9E82", "#3B6E52", "#1A3D2A"],
+    mood: "natural",
+    vibe: "grounded",
+    preview: "#6E9E82",
+    description: "Scandinavian forests in muted, precise greens. Restrained and considered — the design-conscious choice for sustainability and systems thinking diagrams.",
+    labels: ["Snow", "Sage", "Pine", "Forest", "Night"],
+    isNew: true,
+  },
+  {
+    id: "tangerine-dream",
+    name: "Tangerine Dream",
+    colors: ["#FFF5EE", "#FFD2A8", "#FF9A50", "#E05A00", "#8A3300"],
+    mood: "energetic",
+    vibe: "warm",
+    preview: "#FF9A50",
+    description: "Vivid orange energy without tipping into red. Attention-grabbing and full of momentum — excellent for funnel charts and conversion diagrams.",
+    labels: ["Cream", "Peach", "Tangerine", "Ember", "Char"],
+    isNew: true,
+  },
+  {
+    id: "silver-mercury",
+    name: "Silver Mercury",
+    colors: ["#F8F9FA", "#DEE2E6", "#ADB5BD", "#495057", "#212529"],
+    mood: "minimal",
+    vibe: "cool",
+    preview: "#6C757D",
+    description: "Clean neutral gray with a cool undertone. Reliable, versatile, and endlessly reusable — an honest palette that never gets in the way.",
+    labels: ["White", "Pearl", "Silver", "Graphite", "Ink"],
+    isNew: true,
+  },
+  {
+    id: "cerise-bloom",
+    name: "Cerise Bloom",
+    colors: ["#FFF0F5", "#FFB3D0", "#FF4D90", "#CC0055", "#880035"],
+    mood: "energetic",
+    vibe: "bold",
+    preview: "#FF4D90",
+    description: "Electric hot pink on the edge of red. Commanding, bold, zero subtlety — exactly right when the diagram needs to demand the room.",
+    labels: ["Blush", "Candy", "Hot Pink", "Crimson", "Wine"],
+    isNew: true,
+  },
+  {
+    id: "sage-linen",
+    name: "Sage Linen",
+    colors: ["#F9F8F4", "#E0DAC8", "#B0A88A", "#7A7060", "#3E3630"],
+    mood: "minimal",
+    vibe: "warm",
+    preview: "#B0A88A",
+    description: "Bleached linen and dried sage — neutral warm tones that feel like a boutique hotel lobby. The warm counterpart to Steel Storm.",
+    labels: ["Linen", "Sand", "Taupe", "Stone", "Espresso"],
+    isNew: true,
+  },
+  {
+    id: "vivid-lagoon",
+    name: "Vivid Lagoon",
+    colors: ["#E0FCFF", "#7FE8F7", "#0AC8E8", "#0090A8", "#005468"],
+    mood: "professional",
+    vibe: "fresh",
+    preview: "#0AC8E8",
+    description: "Saturated cyan lagoon waters — crisp, modern, and full of tropical energy. For data-rich visualizations that need both clarity and personality.",
+    labels: ["Foam", "Aqua", "Lagoon", "Depth", "Abyss"],
+    isNew: true,
+  },
+  {
+    id: "mocha-noir",
+    name: "Mocha Noir",
+    colors: ["#F5EFE8", "#C8AA90", "#8C6850", "#5A3E28", "#2D1A0E"],
+    mood: "elegant",
+    vibe: "warm",
+    preview: "#8C6850",
+    description: "Coffee, leather, and dark chocolate — deeply luxurious and refined. The espresso shot of color palettes: rich, deliberate, and never weak.",
+    labels: ["Cream", "Caramel", "Mocha", "Teak", "Noir"],
+    isNew: true,
   }
 ];
-
 // ============================================================================
 // CONNECTOR STYLES - line/connection visual styles
 // ============================================================================
@@ -795,32 +1090,38 @@ export const CONNECTOR_STYLES = [
   {
     id: "curved",
     name: "Curved",
-    description: "Smooth bezier curves for an organic feel"
+    description: "Smooth bezier curves for an organic feel",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><path d="M23 28 C 35 28, 45 12, 57 12"/></svg>`
   },
   {
     id: "straight",
     name: "Straight",
-    description: "Direct lines from point to point for technical clarity"
+    description: "Direct lines from point to point for technical clarity",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><line x1="23" y1="26.5" x2="57" y2="13.5"/></svg>`
   },
   {
     id: "rounded",
     name: "Rounded",
-    description: "Right-angle elbows with softened corners"
+    description: "Right-angle elbows with softened corners",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><path d="M20 25 V 12 H 57"/></svg>`
   },
   {
     id: "dashed",
     name: "Dashed",
-    description: "Dashed or dotted lines for optional or weak connections"
+    description: "Dashed or dotted lines for optional or weak connections",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><line x1="23" y1="26.5" x2="57" y2="13.5" stroke-dasharray="4 4"/></svg>`
   },
   {
     id: "bold",
     name: "Bold",
-    description: "Thick solid lines for high emphasis"
+    description: "Thick solid lines for high emphasis",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3.5" fill="currentColor" stroke-width="0"/><circle cx="60" cy="12" r="3.5" fill="currentColor" stroke-width="0"/><line x1="23.5" y1="26.8" x2="56.5" y2="13.2"/></svg>`
   },
   {
     id: "arrow-only",
     name: "Arrow Only",
-    description: "Minimal arrowheads without long connecting lines"
+    description: "Minimal arrowheads without long connecting lines",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="35,14 45,20 35,26" fill="currentColor"/><line x1="20" y1="20" x2="40" y2="20"/><circle cx="60" cy="20" r="3" fill="currentColor"/></svg>`
   }
 ];
 
@@ -832,27 +1133,32 @@ export const ICON_STYLES = [
   {
     id: "outline",
     name: "Outline",
-    description: "Thin outline icons with no fill, modern and minimal"
+    description: "Thin outline icons with no fill, modern and minimal",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2"/><circle cx="48" cy="20" r="8"/></svg>`
   },
   {
     id: "filled",
     name: "Filled",
-    description: "Solid filled icons for strong visual presence"
+    description: "Solid filled icons for strong visual presence",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2" fill="currentColor"/><circle cx="48" cy="20" r="8" fill="currentColor"/></svg>`
   },
   {
     id: "duotone",
     name: "Duotone",
-    description: "Two-tone icons with primary and accent colors"
+    description: "Two-tone icons with primary and accent colors",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2" fill="currentColor" fill-opacity="0.15"/><circle cx="48" cy="20" r="8" fill="currentColor" fill-opacity="0.15"/></svg>`
   },
   {
     id: "minimal",
     name: "Minimal",
-    description: "Ultra simple geometric shapes only"
+    description: "Ultra simple geometric shapes only",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="20" r="2.5" fill="currentColor"/><circle cx="40" cy="20" r="2.5" fill="currentColor"/><circle cx="56" cy="20" r="2.5" fill="currentColor"/></svg>`
   },
   {
     id: "none",
     name: "None",
-    description: "No icons - pure text and shapes only"
+    description: "No icons - pure text and shapes only",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="60%" font-size="14" font-family="monospace" font-weight="bold" text-anchor="middle" fill="currentColor">TXT</text></svg>`
   }
 ];
 
@@ -864,32 +1170,38 @@ export const LAYOUT_MOODS = [
   {
     id: "corporate",
     name: "Corporate",
-    description: "Formal, structured, conservative - boardroom-ready"
+    description: "Formal, structured, conservative - boardroom-ready",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="14" height="8" rx="1"/><rect x="51" y="10" width="14" height="8" rx="1"/><rect x="33" y="24" width="14" height="8" rx="1"/><path d="M29 14 H 51"/><path d="M40 14 V 24"/></svg>`
   },
   {
     id: "playful",
     name: "Playful",
-    description: "Rounded shapes, colorful, friendly - workshop-ready"
+    description: "Rounded shapes, colorful, friendly - workshop-ready",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="10" width="14" height="10" rx="5" transform="rotate(-5, 23, 15)"/><circle cx="48" cy="16" r="6"/><path d="M24 28 Q 40 34 56 26" stroke-width="2"/></svg>`
   },
   {
     id: "minimal",
     name: "Minimal",
-    description: "Lots of whitespace, simple lines, Apple-clean aesthetic"
+    description: "Lots of whitespace, simple lines, Apple-clean aesthetic",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="12" x2="60" y2="12"/><line x1="20" y1="20" x2="50" y2="20"/><line x1="20" y1="28" x2="40" y2="28"/></svg>`
   },
   {
     id: "bold",
     name: "Bold",
-    description: "High contrast, strong typography, eye-catching"
+    description: "High contrast, strong typography, eye-catching",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="50" height="20" rx="3" stroke-width="3"/><path d="M25 20 H 55" stroke-width="3"/></svg>`
   },
   {
     id: "elegant",
     name: "Elegant",
-    description: "Sophisticated, refined, magazine-like finish"
+    description: "Sophisticated, refined, magazine-like finish",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 12 C 30 12, 35 28, 45 28 C 55 28, 60 12, 65 12" stroke-width="1.25"/><circle cx="20" cy="12" r="1.5" fill="currentColor"/><circle cx="65" cy="12" r="1.5" fill="currentColor"/></svg>`
   },
   {
     id: "technical",
     name: "Technical",
-    description: "Grid-based, precise, data-forward engineering aesthetic"
+    description: "Grid-based, precise, data-forward engineering aesthetic",
+    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="15" y1="30" x2="65" y2="30"/><line x1="15" y1="10" x2="15" y2="30"/><line x1="25" y1="30" x2="25" y2="28"/><line x1="35" y1="30" x2="35" y2="28"/><line x1="45" y1="30" x2="45" y2="28"/><line x1="55" y1="30" x2="55" y2="28"/><path d="M20 18 L 40 12 L 60 22" stroke-width="1.75"/></svg>`
   }
 ];
 
@@ -1075,13 +1387,13 @@ export const GALLERY_EXAMPLES = [
 export const FAQ_ITEMS = [
   {
     id: "faq-free",
-    question: "Is VisualCraft really free?",
-    answer: "Yes, completely. VisualCraft is a static website that runs entirely in your browser - there are no subscriptions, no usage limits, no premium features hidden behind a paywall. The entire tool is free forever. We don't even ask for your email."
+    question: "Is Illustrate Words really free?",
+    answer: "Yes, completely. Illustrate Words is a static website that runs entirely in your browser - there are no subscriptions, no usage limits, no premium features hidden behind a paywall. The entire tool is free forever. We don't even ask for your email."
   },
   {
     id: "faq-account",
     question: "Do I need to create an account?",
-    answer: "No account is required. VisualCraft saves your selections locally in your browser using localStorage. Nothing is stored on a server, no login is needed, and no personal data is collected."
+    answer: "No account is required. Illustrate Words saves your selections locally in your browser using localStorage. Nothing is stored on a server, no login is needed, and no personal data is collected."
   },
   {
     id: "faq-tools",
@@ -1091,12 +1403,12 @@ export const FAQ_ITEMS = [
   {
     id: "faq-vs-napkin",
     question: "How is this different from Napkin AI?",
-    answer: "Napkin AI is a complete generative tool that creates visualizations directly. VisualCraft is a prompt generator - it produces detailed prompts you take to any AI tool of your choice. This means you're never locked into one platform, you can use cutting-edge models as they release, and the tool is free forever. You trade a small extra step (paste the prompt into another AI) for unlimited flexibility."
+    answer: "Napkin AI is a complete generative tool that creates visualizations directly. Illustrate Words is a prompt generator - it produces detailed prompts you take to any AI tool of your choice. This means you're never locked into one platform, you can use cutting-edge models as they release, and the tool is free forever. You trade a small extra step (paste the prompt into another AI) for unlimited flexibility."
   },
   {
     id: "faq-commercial",
     question: "Can I use this for commercial projects?",
-    answer: "Absolutely. Use VisualCraft for client work, business presentations, marketing materials, or anything else. The prompts are yours to use however you like. Note that any output you generate from external AI tools (Gemini, ChatGPT, etc.) is subject to those tools' own terms of service."
+    answer: "Absolutely. Use Illustrate Words for client work, business presentations, marketing materials, or anything else. The prompts are yours to use however you like. Note that any output you generate from external AI tools (Gemini, ChatGPT, etc.) is subject to those tools' own terms of service."
   },
   {
     id: "faq-best-results",
@@ -1105,7 +1417,7 @@ export const FAQ_ITEMS = [
   },
   {
     id: "faq-open-source",
-    question: "Is VisualCraft open source?",
+    question: "Is Illustrate Words open source?",
     answer: "Yes, the source code is freely available on GitHub. You can fork it, modify it, host your own version, or contribute improvements back to the main project."
   },
   {
