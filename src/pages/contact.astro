@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Squiggle from '../components/Squiggle.astro';
+---
+
+<Layout 
+  title="Contact Us — VisualCraft"
+  description="Have feedback, category requests, or bugs to report? Contact the VisualCraft team. We value your input."
+>
+  <!-- Hero banner -->
+  <section class="bg-cream pt-16 pb-12 md:py-20 border-b border-cream-darker/30 relative overflow-hidden">
+    <!-- Floating background sparkles -->
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute top-12 left-10 w-2.5 h-2.5 rounded-full bg-accent-lavender animate-float"></div>
+      <div class="absolute bottom-16 right-12 w-3.5 h-3.5 rounded-full bg-accent-lime animate-float delay-300"></div>
+    </div>
+
+    <div class="container-page relative text-center max-w-3xl">
+      <div class="flex justify-center mb-6">
+        <span class="pill-cream">
+          <span class="w-2 h-2 rounded-full bg-accent-lavender animate-pulse"></span>
+          Get in Touch
+        </span>
+      </div>
+      
+      <h1 class="headline-display">
+        Contact <em>Us</em>
+      </h1>
+      
+      <p class="mt-6 body-lg text-ink-secondary">
+        Have feedback, suggestions, custom visualization requests, or found a bug? We'd love to hear from you.
+      </p>
+
+      <div class="mt-8 flex justify-center">
+        <Squiggle color="#5822F4" width="100" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form & Cards Grid -->
+  <section class="section bg-cream-lighter py-16 md:py-24">
+    <div class="container-page max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- Left: Form Card -->
+        <div class="lg:col-span-7 bg-cream-lighter border-1.5 border-ink-primary rounded-card shadow-card p-6 md:p-10 relative overflow-hidden">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary mb-6">
+            Send us a message
+          </h2>
+
+          <!-- Success Alert State (Hidden by default) -->
+          <div id="success-alert" class="hidden bg-accent-lime/10 border-1.5 border-accent-lime text-ink-primary rounded-card p-6 mb-6 space-y-2 shadow-sm animate-fade-in">
+            <h3 class="font-serif text-xl font-medium text-ink-primary flex items-center gap-2">
+              <span class="text-accent-lime text-lg">✓</span> Message sent!
+            </h3>
+            <p class="text-sm text-ink-secondary">
+              Thank you for reaching out. We have received your query and will get back to you as soon as possible.
+            </p>
+          </div>
+
+          <!-- Form Element -->
+          <form id="contact-form" class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="name" class="block text-sm font-semibold text-ink-primary">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required
+                  placeholder="Your Name"
+                  class="w-full px-4 py-3 bg-cream border border-ink-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-lavender text-ink-primary placeholder-ink-tertiary/75"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="email" class="block text-sm font-semibold text-ink-primary">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  placeholder="you@example.com"
+                  class="w-full px-4 py-3 bg-cream border border-ink-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-lavender text-ink-primary placeholder-ink-tertiary/75"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="subject" class="block text-sm font-semibold text-ink-primary">Subject</label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                required
+                placeholder="How can we help?"
+                class="w-full px-4 py-3 bg-cream border border-ink-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-lavender text-ink-primary placeholder-ink-tertiary/75"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="message" class="block text-sm font-semibold text-ink-primary">Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5"
+                required
+                placeholder="Describe your inquiry in detail..."
+                class="w-full px-4 py-3 bg-cream border border-ink-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-lavender text-ink-primary placeholder-ink-tertiary/75 resize-y"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full btn-primary py-3.5 shadow-card hover:-translate-y-0.5 hover:shadow-card-hover active:translate-y-0 transition-all text-base cursor-pointer"
+            >
+              Send Message
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Detail Cards -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Card 1: Direct Contact -->
+          <div class="bg-cream-lighter border border-cream-darker rounded-card p-6 md:p-8 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-serif text-xl font-medium text-ink-primary flex items-center gap-2">
+              <span class="w-8 h-8 rounded-full bg-accent-lavender/25 flex items-center justify-center text-accent-lavender">✉</span>
+              Direct Support
+            </h3>
+            <p class="text-sm text-ink-secondary leading-relaxed">
+              Prefer writing direct emails? Reach out directly to our mailbox. We check all incoming feedback daily.
+            </p>
+            <p class="font-semibold text-ink-primary">
+              <a href="mailto:hello@visualcraft.pages.dev" class="hover:text-accent-lavender underline">hello@visualcraft.pages.dev</a>
+            </p>
+          </div>
+
+          <!-- Card 2: GitHub Repository -->
+          <div class="bg-cream-lighter border border-cream-darker rounded-card p-6 md:p-8 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-serif text-xl font-medium text-ink-primary flex items-center gap-2">
+              <span class="w-8 h-8 rounded-full bg-accent-lime/25 flex items-center justify-center text-accent-lime">⚙</span>
+              Open Source
+            </h3>
+            <p class="text-sm text-ink-secondary leading-relaxed">
+              Found a bug or want to submit code fixes directly? You can open issues or submit pull requests in our repository.
+            </p>
+            <p class="font-semibold text-ink-primary">
+              <a href="https://github.com/aicomputerpottery/LTI" target="_blank" rel="noopener noreferrer" class="hover:text-accent-lime underline flex items-center gap-1.5 w-fit">
+                GitHub Repository
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </p>
+          </div>
+
+          <!-- Card 3: Philosophy Reminder -->
+          <div class="bg-forest text-cream rounded-card p-6 md:p-8 space-y-3 relative overflow-hidden shadow-card">
+            <div class="absolute inset-0 pointer-events-none opacity-10">
+              <div class="absolute bottom-4 right-4 text-4xl">✦</div>
+            </div>
+            <h3 class="font-serif text-xl font-medium">Why support us?</h3>
+            <p class="text-xs text-ink-on-dark-secondary leading-relaxed">
+              VisualCraft is a community project maintained by volunteers who believe visual communication should be accessible and fully private. If you love the tool, tell your team, share your generated diagrams, or host your own copy.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successAlert = document.getElementById('success-alert');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Collect form data (visual feedback simulation)
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+
+      console.log('Form submission simulation:', { name, email, subject, message });
+
+      // Show success alert and hide the form fields smoothly
+      if (successAlert) {
+        successAlert.classList.remove('hidden');
+        form.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+</style>

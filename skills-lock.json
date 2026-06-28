@@ -1,6 +1,282 @@
 {
   "version": 1,
   "skills": {
+    "autoplan": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "autoplan/SKILL.md",
+      "computedHash": "4e3d670bdbe6ba3da11c8e08301d6d4cbd32edd9b8ca9842ac0d07e822e3f938"
+    },
+    "benchmark": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "benchmark/SKILL.md",
+      "computedHash": "01cdafecd2deae567382c9fe9fee4f39a410b13de2817fd8e61cdea3547688ff"
+    },
+    "benchmark-models": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "benchmark-models/SKILL.md",
+      "computedHash": "66cfbb2d15a6b62ddf6a4ea7387de39833f6310f3315f3937c8c9dd641757575"
+    },
+    "browse": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "browse/SKILL.md",
+      "computedHash": "df31067b9815660dc14dd099857afbe496ce906cd7b6b88e50191407ba37b97f"
+    },
+    "canary": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "canary/SKILL.md",
+      "computedHash": "856cbac24c1f917989c71a825c65b6437e0f86665c5ff6ca679f8ac971f9df1e"
+    },
+    "careful": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "careful/SKILL.md",
+      "computedHash": "5d6fdc303795e9f7a49e34bfac0e9a96c68401ec442125a847b42bfc395714ac"
+    },
+    "codex": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "codex/SKILL.md",
+      "computedHash": "ab67b3b4be0e9be805b5d27d937bc1ad7432836bc8ddd69e429151ce3df595ae"
+    },
+    "context-restore": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "context-restore/SKILL.md",
+      "computedHash": "caddd82f0121e0fb1a225409f8ea4d4c5af3c847be63e8b6a211fa2ab0c5de50"
+    },
+    "context-save": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "context-save/SKILL.md",
+      "computedHash": "cdefc0094dc3dda57ce0884fca4f7a58397536dab83ac733e61a7848b74023d1"
+    },
+    "cso": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "cso/SKILL.md",
+      "computedHash": "0acaa4c4cb9bbefb8843793db935af982bac27b96c8414dbc7ec92bedbd92a65"
+    },
+    "design-consultation": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "design-consultation/SKILL.md",
+      "computedHash": "913a63a2ff6889d3137c85912e8919b325ba955d279703f3b5ecd3efd83430d6"
+    },
+    "design-html": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "design-html/SKILL.md",
+      "computedHash": "96078be0934bdf40c3a71e5e4c79d8998d21f53a5a4f5afd387894a679634930"
+    },
+    "design-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "design-review/SKILL.md",
+      "computedHash": "7cc4b39c8b5f9d66e20509e0aca1c95c9cb009f4e8f2e3479b7e5ea530f53102"
+    },
+    "design-shotgun": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "design-shotgun/SKILL.md",
+      "computedHash": "faefd24a276f63ac1be177b00ff3c231d5a43e1eb7c712eec6bea3cbfeac725f"
+    },
+    "devex-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "devex-review/SKILL.md",
+      "computedHash": "6f1da9c34ca5ac8729e209208d3530982cf3b9827165774997823fb8f3d38bcb"
+    },
+    "diagram": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "diagram/SKILL.md",
+      "computedHash": "23109cfcc5b22f273670bcbce81192bfec4422c60fa6a7b960bf29b5a7b86c49"
+    },
+    "document-generate": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "document-generate/SKILL.md",
+      "computedHash": "2190681d04198c4a34795e9c554c7093071eb42f4ea67706e9dc42e5264e7751"
+    },
+    "document-release": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "document-release/SKILL.md",
+      "computedHash": "6a9d7ac229e077720b859940e01ca0c2f842d0051ccbe2b1485099f7eebb763a"
+    },
+    "freeze": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "freeze/SKILL.md",
+      "computedHash": "e6a55ba5c0106ad10e90d1ca1763b904244a096d9128597529e6f2e80508048c"
+    },
+    "gstack": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "2b96e1db510df169809ba0e7db57ba1d293001b57f7f172f5401e938e85e44fc"
+    },
+    "gstack-openclaw-ceo-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "openclaw/skills/gstack-openclaw-ceo-review/SKILL.md",
+      "computedHash": "9fb931290b6c76e40a9b30f0f4548c4e92c5bb0f0a0f4edf1f457a0ed3020269"
+    },
+    "gstack-openclaw-investigate": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "openclaw/skills/gstack-openclaw-investigate/SKILL.md",
+      "computedHash": "9ecab5e6625a6187b311ee2c4f49a0f8517ea83bd8f4caa71130c563f0b55e2f"
+    },
+    "gstack-openclaw-office-hours": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "openclaw/skills/gstack-openclaw-office-hours/SKILL.md",
+      "computedHash": "e7eb18b513605a763930187a8884dfdb7ff7b0deb5c42207cdcf120c168c151b"
+    },
+    "gstack-openclaw-retro": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "openclaw/skills/gstack-openclaw-retro/SKILL.md",
+      "computedHash": "429cc8442c7123521ef67a924e8df99184ec9ddc14190bfcc594e16458efab3e"
+    },
+    "gstack-upgrade": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "gstack-upgrade/SKILL.md",
+      "computedHash": "78ba3996467d19fa2f2a571660ae53051a56ce653caeaae8151d244882ba6d69"
+    },
+    "guard": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "guard/SKILL.md",
+      "computedHash": "22e6edb01540a676f171eb62b000a8bc1de3d54e15335f82dc15760194cadbb3"
+    },
+    "hackernews-frontpage": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "browser-skills/hackernews-frontpage/SKILL.md",
+      "computedHash": "8abbd2966a625d46e8be75480011fd1e87012f95376b4919ef6134f1c009067c"
+    },
+    "health": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "health/SKILL.md",
+      "computedHash": "85cd4ea12cd4582015588f6fa017722691aab96d440146cc273a6426d9f40a4a"
+    },
+    "investigate": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "investigate/SKILL.md",
+      "computedHash": "948bf15dd5df603f983adb037cf771dee5b36689fbbc4cb24a933608c74e30db"
+    },
+    "ios-clean": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ios-clean/SKILL.md",
+      "computedHash": "f7a72474cd32c43e15fade1215380fa8296ad3275e2830364468e5ba41b93ad2"
+    },
+    "ios-design-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ios-design-review/SKILL.md",
+      "computedHash": "431e7162cbe1335928072c11fdcab924ca47835a99c98e16525e1285cfe3bd77"
+    },
+    "ios-fix": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ios-fix/SKILL.md",
+      "computedHash": "2349f69a42205efabf5eff6adb22848ba13145639fc252f57d20802add2ed96f"
+    },
+    "ios-qa": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ios-qa/SKILL.md",
+      "computedHash": "9bd82bcd908ae07e134e9a358d2825e075c5018d669b902333f5fabd9f299428"
+    },
+    "ios-sync": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ios-sync/SKILL.md",
+      "computedHash": "6343c012ef9a7c329877c49940b697626e794cd6a59229af6ddaea6ff09196e3"
+    },
+    "land-and-deploy": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "land-and-deploy/SKILL.md",
+      "computedHash": "b7a179c1a7e6005d284a895062a81b9c56927c1f8b27df22fb6107142f493473"
+    },
+    "landing-report": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "landing-report/SKILL.md",
+      "computedHash": "f717367a9eaf32b47daeb33f34107f8c51d305eef710881570755566ce1783a3"
+    },
+    "learn": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "learn/SKILL.md",
+      "computedHash": "6db86955b5522d9e9c7364d8936337a92ba70f003ef004ac795987149d76b340"
+    },
+    "make-pdf": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "make-pdf/SKILL.md",
+      "computedHash": "4b80a679ba8aecd72d308c5396d21cbd0322882cb056d0350ac05c0fcf780759"
+    },
+    "office-hours": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "office-hours/SKILL.md",
+      "computedHash": "0b2f5008b27e61ac152becd9027943c8a4c7505c38359dfb5ab3ea186a4b3670"
+    },
+    "open-gstack-browser": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "open-gstack-browser/SKILL.md",
+      "computedHash": "3f489d5f033e6437612b157643d114537b7be533cd495d1f05396a05108353bc"
+    },
+    "pair-agent": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "pair-agent/SKILL.md",
+      "computedHash": "8e3149737bd7d57f181f82b4dedf5d6c38425b65dda53899c61fd5461bf5457c"
+    },
+    "plan-ceo-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-ceo-review/SKILL.md",
+      "computedHash": "2cb16c269e03a3c83cc5b2b1a31e25231560cd78190b6539824f3d9fffcc1f96"
+    },
+    "plan-design-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-design-review/SKILL.md",
+      "computedHash": "31736c9054a7b96baaace41b53ae2368a488c77462eb2a8f6e7f623b0768a42c"
+    },
+    "plan-devex-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-devex-review/SKILL.md",
+      "computedHash": "ac577e446a11a3606eee4bff0bd97979ed7979ebbd8fab7e72561b9f70b3bc6d"
+    },
+    "plan-eng-review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-eng-review/SKILL.md",
+      "computedHash": "ab8d4230d1d28d6d60b793d12cee33a72bad7ed502ab2d4f04575c87233b330e"
+    },
+    "plan-tune": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-tune/SKILL.md",
+      "computedHash": "18bb2c82ad9103b73ba9d3b32b19437da074877088ce0956b459d9009ea21107"
+    },
     "ponytail": {
       "source": "DietrichGebert/ponytail",
       "sourceType": "github",
@@ -37,11 +313,89 @@
       "skillPath": "skills/ponytail-review/SKILL.md",
       "computedHash": "4646594fcd75455533f7ff1425f4f1c5ba0fa65f88241bf262b1c4fc275f049a"
     },
+    "qa": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "qa/SKILL.md",
+      "computedHash": "fc53e8b816b4814f45101d28c16f147d7295170df3bc133475f152a71521bfc3"
+    },
+    "qa-only": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "qa-only/SKILL.md",
+      "computedHash": "131cd6001d2e64301ba78e6a790e9572a77facff1b328e20758444ef7e674057"
+    },
+    "retro": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "retro/SKILL.md",
+      "computedHash": "3b2bb9db63c095320e25b541cb707e3be90d9576884953dd5612f51a7eb6fc77"
+    },
+    "review": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "review/SKILL.md",
+      "computedHash": "79955b225240d366719cf6c517b844509f71586ba729c97756b5c053466aa5a1"
+    },
+    "scrape": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "scrape/SKILL.md",
+      "computedHash": "2ddfb5518e973194acf4fbdb229678d0fbbcc42813cf248dc6945163bab3af0c"
+    },
+    "setup-browser-cookies": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "setup-browser-cookies/SKILL.md",
+      "computedHash": "9e221b49e4e36e5180b2a0067c70c1c9cc40b8ab937e0adae55cbd1842eb6bd9"
+    },
+    "setup-deploy": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "setup-deploy/SKILL.md",
+      "computedHash": "ffb08da4b5db6784dfa4614c32cb5c37bf663443ab9a2c8d3bb9522a19a4d3da"
+    },
+    "setup-gbrain": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "setup-gbrain/SKILL.md",
+      "computedHash": "438d7fba2e77ffac55ce54200a253bdee805f9cda74bac39e9eae77c53bcfdc9"
+    },
+    "ship": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "ship/SKILL.md",
+      "computedHash": "75cc8e5b76fccef656cff9c15c42a376f8d96fad0c5225bbc4032ac963e134a2"
+    },
+    "skillify": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "skillify/SKILL.md",
+      "computedHash": "943de53266b6435a3b4935d6c581a8a0c4e2aa43559dec271f413f2e3067feb1"
+    },
+    "spec": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "spec/SKILL.md",
+      "computedHash": "d39fd05cbb80470559b35c6fd376ceb42cdab9feda1b18c2c5ae6b6960bab573"
+    },
+    "sync-gbrain": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "sync-gbrain/SKILL.md",
+      "computedHash": "e98d14089bcad26678649facd2aa9ec93d8108df51fc9c0b0358d5f9c0a0e7f7"
+    },
     "tailwindcss-animations": {
       "source": "josiahsiegel/claude-plugin-marketplace",
       "sourceType": "github",
       "skillPath": "plugins/tailwindcss-master/skills/tailwindcss-animations/SKILL.md",
       "computedHash": "eff5b75d37872c9e20001ec9c168688f88f8faac969af4df4e250fb7c8a71628"
+    },
+    "unfreeze": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "unfreeze/SKILL.md",
+      "computedHash": "39397f470b5d2a5f25230fdfa9d196236aa15bbf941378338a8095985928745a"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",

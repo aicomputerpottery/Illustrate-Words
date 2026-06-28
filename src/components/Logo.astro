@@ -1,0 +1,14 @@
+---
+const { variant = "light", size = 22, withWordmark = false, class: className = "" } = Astro.props;
+const stroke = variant === "dark" ? "#F4EFE2" : "#0A0A0A";
+const wordColor = variant === "dark" ? "#F4EFE2" : "#0A0A0A";
+---
+<span class={`inline-flex items-center gap-2.5 ${className}`}>
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="19" y="7"  width="10" height="10" rx="2.5" stroke={stroke} stroke-width="2"/>
+    <path d="M24 17 V23 M13 23 H35 M13 23 V31 M35 23 V31" stroke={stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="8"  y="31" width="10" height="10" rx="2.5" stroke={stroke} stroke-width="2"/>
+    <rect x="30" y="31" width="10" height="10" rx="2.5" stroke={stroke} stroke-width="2"/>
+  </svg>
+  {withWordmark && <span class="font-serif text-2xl font-black tracking-tight leading-none" style={`color:${wordColor}`}>Illustrate Words</span>}
+</span>

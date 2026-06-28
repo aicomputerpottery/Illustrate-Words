@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Squiggle from '../components/Squiggle.astro';
+import { FAQ_ITEMS } from '../data/visualizations.js';
+
+// Structured JSON-LD for Google Rich Snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ_ITEMS.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<Layout 
+  title="Frequently Asked Questions — VisualCraft"
+  description="Got questions about VisualCraft's prompt builder, license, commercial usage, or offline-first privacy? Read our comprehensive FAQ."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <!-- Hero section -->
+  <section class="relative bg-cream pt-16 pb-12 md:py-24 overflow-hidden border-b border-cream-darker/30">
+    <!-- Floating background sparkles -->
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute top-12 left-10 w-2.5 h-2.5 rounded-full bg-accent-lavender animate-float"></div>
+      <div class="absolute bottom-16 right-12 w-3.5 h-3.5 rounded-full bg-accent-lime animate-float delay-300"></div>
+    </div>
+
+    <div class="container-page relative text-center">
+      <div class="max-w-2xl mx-auto">
+        <div class="flex justify-center mb-6">
+          <span class="pill-cream">
+            <span class="w-2 h-2 rounded-full bg-accent-lavender animate-pulse"></span>
+            Help & Resources
+          </span>
+        </div>
+        
+        <h1 class="headline-display">
+          Frequently asked <em>questions</em>
+        </h1>
+        
+        <p class="mt-6 body-lg text-ink-secondary">
+          Find answers to common questions about prompt structuring, privacy, commercial license, and our offline-first architecture.
+        </p>
+
+        <div class="mt-8 flex justify-center">
+          <Squiggle color="#5822F4" width="100" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion List Section -->
+  <section class="section bg-cream-darker/10 py-16 md:py-24">
+    <div class="container-page max-w-4xl">
+      <!-- Search/Filter Input UI (Visual only, fits rich aesthetics) -->
+      <div class="max-w-xl mx-auto mb-12 relative">
+        <input 
+          type="text" 
+          id="faq-search" 
+          placeholder="Search questions..." 
+          class="w-full px-6 py-4 bg-cream-lighter border-1.5 border-ink-primary rounded-full shadow-card focus:outline-none focus:ring-2 focus:ring-accent-lavender font-medium text-ink-primary placeholder-ink-tertiary/75"
+        />
+        <span class="absolute right-5 top-1/2 -translate-y-1/2 text-ink-tertiary">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </span>
+      </div>
+
+      <div class="space-y-4 max-w-3xl mx-auto" id="faq-list">
+        {FAQ_ITEMS.map((faq) => (
+          <div 
+            class="faq-item bg-cream-lighter border-1.5 border-ink-primary rounded-card shadow-card hover:shadow-card-hover transition-all duration-200 overflow-hidden"
+            data-question={faq.question.toLowerCase()}
+            data-answer={faq.answer.toLowerCase()}
+          >
+            <h3>
+              <button
+                type="button"
+                id={faq.id}
+                aria-expanded="false"
+                aria-controls={`panel-${faq.id}`}
+                class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-serif text-lg md:text-xl font-medium text-ink-primary hover:text-accent-lavender focus:outline-none transition-colors duration-150"
+              >
+                <span>{faq.question}</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-cream-darker/30 flex items-center justify-center transition-transform duration-200 transform faq-icon-box">
+                  <svg
+                    class="w-4 h-4 text-ink-primary transition-transform duration-200 transform faq-chevron"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            
+            <div
+              id={`panel-${faq.id}`}
+              role="region"
+              aria-labelledby={faq.id}
+              class="faq-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-6 pb-6 pt-1 text-base text-ink-secondary leading-relaxed border-t border-ink-primary/5 mt-1 pt-4 text-pretty">
+                {faq.answer}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- No Results State -->
+      <div id="no-results" class="hidden text-center py-16 max-w-md mx-auto">
+        <div class="w-16 h-16 rounded-full bg-cream-darker/40 flex items-center justify-center mx-auto mb-4 text-ink-tertiary">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl font-medium text-ink-primary">No answers found</h3>
+        <p class="mt-2 text-sm text-ink-secondary">We couldn't find any FAQs matching your query. Try different keywords or contact support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive CTA -->
+  <section class="section bg-accent-lime py-16 text-center border-t-1.5 border-ink-primary">
+    <div class="container-page max-w-2xl">
+      <h2 class="font-serif text-3xl font-medium text-ink-primary">
+        Still have questions?
+      </h2>
+      <p class="mt-4 body-base max-w-md mx-auto text-ink-primary/80">
+        We're happy to help. Send us feedback, suggest categories, or report issues directly.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="/contact" class="btn-primary">
+          Contact Us
+        </a>
+        <a href="/generate" class="btn-secondary">
+          Try Generator
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Accordion Logic
+  const triggers = document.querySelectorAll('.faq-trigger');
+  
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      const panelId = trigger.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      const chevron = trigger.querySelector('.faq-chevron');
+      const iconBox = trigger.querySelector('.faq-icon-box');
+      
+      // Close other panels (accordion behavior)
+      triggers.forEach(otherTrigger => {
+        if (otherTrigger !== trigger) {
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          const otherPanelId = otherTrigger.getAttribute('aria-controls');
+          const otherPanel = document.getElementById(otherPanelId);
+          if (otherPanel) {
+            otherPanel.style.maxHeight = '0px';
+            otherPanel.style.opacity = '0';
+          }
+          const otherChevron = otherTrigger.querySelector('.faq-chevron');
+          const otherIconBox = otherTrigger.querySelector('.faq-icon-box');
+          if (otherChevron) otherChevron.classList.remove('rotate-180');
+          if (otherIconBox) otherIconBox.classList.remove('bg-accent-lavender');
+        }
+      });
+      
+      // Toggle current panel
+      if (isExpanded) {
+        trigger.setAttribute('aria-expanded', 'false');
+        if (panel) {
+          panel.style.maxHeight = '0px';
+          panel.style.opacity = '0';
+        }
+        if (chevron) chevron.classList.remove('rotate-180');
+        if (iconBox) iconBox.classList.remove('bg-accent-lavender');
+      } else {
+        trigger.setAttribute('aria-expanded', 'true');
+        if (panel) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          panel.style.opacity = '1';
+        }
+        if (chevron) chevron.classList.add('rotate-180');
+        if (iconBox) iconBox.classList.add('bg-accent-lavender');
+      }
+    });
+  });
+
+  // Client-side search logic
+  const searchInput = document.getElementById('faq-search') as HTMLInputElement;
+  const faqItems = document.querySelectorAll('.faq-item');
+  const noResults = document.getElementById('no-results');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      let hasMatches = false;
+
+      faqItems.forEach(item => {
+        const question = item.getAttribute('data-question') || '';
+        const answer = item.getAttribute('data-answer') || '';
+
+        if (question.includes(value) || answer.includes(value)) {
+          item.classList.remove('hidden');
+          hasMatches = true;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (hasMatches) {
+        noResults?.classList.add('hidden');
+      } else {
+        noResults?.classList.remove('hidden');
+      }
+    });
+  }
+</script>
+
+<style>
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+</style>

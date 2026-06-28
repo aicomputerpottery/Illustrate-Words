@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const currentYear = new Date().getFullYear();
 
 const footerSections = [
@@ -8,6 +10,8 @@ const footerSections = [
       { href: '/generate', label: 'Generate' },
       { href: '/gallery', label: 'Gallery' },
       { href: '/about', label: 'About' },
+      { href: '/faq', label: 'FAQ' },
+      { href: '/contact', label: 'Contact' },
     ],
   },
   {
@@ -17,6 +21,14 @@ const footerSections = [
       { href: '/generate?category=data', label: 'Charts' },
       { href: '/generate?category=business', label: 'Frameworks' },
       { href: '/generate?category=process', label: 'Process' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { href: '/privacy', label: 'Privacy Policy' },
+      { href: '/terms', label: 'Terms of Service' },
+      { href: '/sitemap-index.xml', label: 'Sitemap XML', external: true },
     ],
   },
   {
@@ -41,27 +53,9 @@ const footerSections = [
 
   <div class="container-page py-20 md:py-24 relative">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-      <div class="md:col-span-5">
-        <a href="/" class="inline-flex items-center gap-2.5 group">
-          <div class="w-10 h-10 rounded-full bg-accent-lavender border-1.5 border-cream flex items-center justify-center transition-transform duration-200 group-hover:rotate-12 text-ink-primary">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Left Page: text lines representing "Words" -->
-              <path d="M4 19.5c0-.8.7-1.5 1.5-1.5H12"></path>
-              <path d="M4 4.5c0-.8.7-1.5 1.5-1.5H12v15H5.5C4.7 16.5 4 17.2 4 18V4.5z"></path>
-              <line x1="6" y1="6" x2="10" y2="6"></line>
-              <line x1="6" y1="9" x2="10" y2="9"></line>
-              <line x1="6" y1="12" x2="9" y2="12"></line>
-              <!-- Right Page: diagram nodes representing "Illustrate" -->
-              <path d="M20 19.5c0-.8-.7-1.5-1.5-1.5H12"></path>
-              <path d="M20 4.5c0-.8-.7-1.5-1.5-1.5H12v15h6.5c.8 0 1.5.7 1.5 1.5V4.5z"></path>
-              <circle cx="16" cy="7" r="1.5" fill="currentColor"></circle>
-              <circle cx="14" cy="12" r="1" fill="currentColor"></circle>
-              <circle cx="18" cy="12" r="1" fill="currentColor"></circle>
-              <line x1="16" y1="8.5" x2="14" y2="11"></line>
-              <line x1="16" y1="8.5" x2="18" y2="11"></line>
-            </svg>
-          </div>
-          <span class="font-serif text-2xl font-medium">Illustrate Words</span>
+      <div class="md:col-span-4">
+        <a href="/" class="inline-block group">
+          <Logo variant="dark" size={32} withWordmark />
         </a>
         <p class="mt-6 text-ink-on-dark-secondary text-base max-w-sm leading-relaxed">
           The free alternative to Napkin AI. Turn any idea into a stunning visualization with AI-ready prompts.
@@ -76,7 +70,7 @@ const footerSections = [
         </div>
       </div>
 
-      <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
         {footerSections.map((section) => (
           <div>
             <h3 class="font-serif text-lg mb-4">{section.title}</h3>
@@ -105,17 +99,7 @@ const footerSections = [
 
     <div class="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-ink-on-dark-secondary text-sm">
-        © {currentYear} Illustrate Words. Free and open source.
-      </p>
-      <p class="text-ink-on-dark-secondary text-sm flex items-center gap-2">
-        Built with
-        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-accent-lavender hover:text-cream transition-colors font-medium">
-          Astro
-        </a>
-        and
-        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-accent-lime hover:text-cream transition-colors font-medium">
-          Tailwind
-        </a>
+        © {currentYear} VisualCraft. Free and open source.
       </p>
     </div>
   </div>

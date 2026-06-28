@@ -1,0 +1,48 @@
+---
+interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+
+const steps = [
+  { n: '1', title: 'Pick your visualization', sub: '76 types to choose from' },
+  { n: '2', title: 'Choose your style',        sub: 'Palette, mood, connectors' },
+  { n: '3', title: 'Copy your prompt',         sub: 'Paste into any AI tool' },
+];
+---
+<div class={`stepflow ${dark ? 'stepflow-dark' : ''}`} role="list" aria-label="How it works in three steps">
+  <!-- the rail behind the stops -->
+  <div class="stepflow-rail" aria-hidden="true">
+    <span class="stepflow-token"></span>
+  </div>
+
+  {steps.map((s, i) => (
+    <div class="stepflow-stop" role="listitem" data-stop={i}>
+      <span class="stepflow-node">{s.n}</span>
+      <div class="stepflow-text">
+        <div class="stepflow-title">{s.title}</div>
+        <div class="stepflow-sub">{s.sub}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  (function () {
+    const flow = document.querySelector('.stepflow');
+    if (!flow) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const stops = [...flow.querySelectorAll('.stepflow-stop')];
+    const CYCLE = 4200;
+    // light stop i at the phase where the token sits on it
+    const phases = [0.04, 0.50, 0.94];
+    function tick(t) {
+      const p = (t % CYCLE) / CYCLE;
+      stops.forEach((s, i) => {
+        s.classList.toggle('is-active', Math.abs(p - phases[i]) < 0.06);
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>

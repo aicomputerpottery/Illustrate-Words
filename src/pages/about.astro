@@ -1,12 +1,246 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Squiggle from "../components/Squiggle.astro";
+import { FAQ_ITEMS } from "../data/visualizations.js";
+
+const pageTitle = "About VisualCraft — Free AI Visualization Prompt Builder";
+const pageDescription =
+  "Why VisualCraft is free, how it keeps your data in your browser, and answers to common questions. No backend, no tracking, no cost.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
 ---
 
-<Layout title="About — Illustrate Words">
-  <section class="section bg-cream">
-    <div class="container-page text-center">
-      <h1 class="headline-h1">Illustrate Words — <em>About</em></h1>
-      <p class="mt-6 body-lg">About page coming in Phase 7.</p>
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <!-- ===================== 1. HERO (dark) ===================== -->
+  <section class="bg-forest text-ink-on-dark-primary">
+    <div class="container-page section text-center relative">
+      <span class="pill-lavender mb-6 inline-flex">Our mission</span>
+      <h1 class="headline-display mx-auto max-w-3xl">
+        Great visuals shouldn't be <em>locked</em> behind a paywall.
+      </h1>
+      <p class="mt-6 mx-auto max-w-xl text-lg text-ink-on-dark-secondary">
+        VisualCraft is a free, open tool that turns a half-formed idea into a
+        precise, copy-paste prompt — so any AI you already use can draw it for you.
+      </p>
+      <!-- scattered decorative dots -->
+      <span aria-hidden="true" class="absolute left-[8%] top-[22%] h-2 w-2 rounded-full bg-accent-lime/70"></span>
+      <span aria-hidden="true" class="absolute right-[12%] top-[30%] h-2.5 w-2.5 rounded-full bg-accent-pink/60"></span>
+      <span aria-hidden="true" class="absolute right-[20%] bottom-[18%] h-2 w-2 rounded-full bg-accent-sky/60"></span>
     </div>
   </section>
+
+  <!-- ===================== 2. STORY (cream) ===================== -->
+  <section class="bg-cream text-ink-primary">
+    <div class="container-page section grid gap-12 lg:grid-cols-12 lg:items-start">
+      <div class="lg:col-span-5">
+        <h2 class="headline-h2">
+          Why we <em>built</em> this
+        </h2>
+        <Squiggle class="mt-4 text-accent-orange w-28" />
+      </div>
+      <div class="lg:col-span-7 space-y-6 text-lg text-ink-secondary">
+        <p>
+          The best AI tools can generate beautiful diagrams, charts, and
+          mindmaps. The catch is knowing exactly what to ask for. A vague prompt
+          gets you a vague picture.
+        </p>
+        <p>
+          So we did the hard part once: dozens of visualization types, each with
+          a carefully engineered prompt template, plus palettes and style
+          controls. You pick what you want in four steps; we hand you a prompt
+          that actually works. You paste it into whichever AI you like best.
+        </p>
+        <blockquote class="border-l-4 border-accent-lavender pl-5 py-1 text-2xl font-serif text-ink-primary">
+          You bring the idea. We sweat the wording.
+        </blockquote>
+        <p>
+          No account. No credit card. No "free trial" that expires. It's free
+          because it costs us almost nothing to run — and that's the whole point.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. HOW WE'RE DIFFERENT (cream-darker) ===================== -->
+  <section class="bg-cream-darker text-ink-primary">
+    <div class="container-page section">
+      <div class="max-w-2xl">
+        <span class="pill-cream mb-4 inline-flex">The honest version</span>
+        <h2 class="headline-h2">How VisualCraft is <em>different</em></h2>
+        <p class="mt-4 text-lg text-ink-secondary">
+          We're not trying to be your image generator. We're the step before it —
+          the part that makes the generator give you something good.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <!-- card 1 -->
+        <article class="card -rotate-1 transition-transform duration-200 hover:rotate-0 hover:shadow-hard">
+          <h3 class="font-serif text-2xl">vs. paid visual tools</h3>
+          <p class="mt-3 text-ink-secondary">
+            Subscription dashboards lock features behind tiers. We give you every
+            visualization type, every palette, and every style control for free —
+            because the output is just a prompt, not a hosted render.
+          </p>
+        </article>
+        <!-- card 2 -->
+        <article class="card rotate-1 transition-transform duration-200 hover:rotate-0 hover:shadow-hard">
+          <h3 class="font-serif text-2xl">vs. writing prompts yourself</h3>
+          <p class="mt-3 text-ink-secondary">
+            Our templates are 150–200 words of tuned instructions per type, with
+            named colors and layout guidance baked in. Hard to match from a blank
+            text box in thirty seconds.
+          </p>
+        </article>
+        <!-- card 3 -->
+        <article class="card -rotate-1 transition-transform duration-200 hover:rotate-0 hover:shadow-hard">
+          <h3 class="font-serif text-2xl">vs. learning a design app</h3>
+          <p class="mt-3 text-ink-secondary">
+            No canvas, no layers, no learning curve. Four taps and a paste. The
+            AI you already pay for (or use free) does the drawing.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. TRANSPARENCY (lavender full block) ===================== -->
+  <section class="bg-accent-lavender text-ink-primary">
+    <div class="container-page section">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <h2 class="headline-h2">
+            There's no AI <em>on our servers</em>. There are no servers.
+          </h2>
+          <p class="mt-5 text-lg text-ink-primary/80">
+            VisualCraft is a static website. Everything you do happens inside
+            your own browser. We don't run AI, we don't see your content, and we
+            don't have a database to leak.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <ul class="space-y-4">
+            <li class="card bg-cream-lighter border-1.5 border-ink-primary flex gap-3 p-5">
+              <span aria-hidden="true" class="font-serif text-xl">✦</span>
+              <p><span class="font-semibold">Your text never leaves your device.</span> The prompt is assembled locally and saved only to your browser's localStorage.</p>
+            </li>
+            <li class="card bg-cream-lighter border-1.5 border-ink-primary flex gap-3 p-5">
+              <span aria-hidden="true" class="font-serif text-xl">✦</span>
+              <p><span class="font-semibold">No login, no account, no email.</span> Nothing to sign up for and nothing for us to store.</p>
+            </li>
+            <li class="card bg-cream-lighter border-1.5 border-ink-primary flex gap-3 p-5">
+              <span aria-hidden="true" class="font-serif text-xl">✦</span>
+              <p><span class="font-semibold">The actual image is made elsewhere.</span> You paste our prompt into whatever AI tool you choose. That step happens in their app, under their terms — not ours.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. FAQ (cream) ===================== -->
+  <section class="bg-cream text-ink-primary">
+    <div class="container-page section">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="pill-pink mb-4 inline-flex">Good questions</span>
+        <h2 class="headline-h2">Frequently <em>asked</em></h2>
+      </div>
+
+      <div class="mt-12 max-w-3xl mx-auto divide-y divide-ink-primary/10 border-y border-ink-primary/10">
+        {FAQ_ITEMS.map((item, i) => (
+          <div class="faq-item">
+            <h3>
+              <button
+                type="button"
+                class="faq-trigger flex w-full items-center justify-between gap-4 py-5 text-left"
+                aria-expanded="false"
+                aria-controls={`faq-panel-${i}`}
+                id={`faq-trigger-${i}`}
+              >
+                <span class="font-serif text-xl md:text-2xl">{item.question}</span>
+                <span aria-hidden="true" class="faq-icon shrink-0 grid h-9 w-9 place-items-center rounded-full border-1.5 border-ink-primary transition-transform duration-200">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-4 w-4">
+                    <line x1="12" y1="5" x2="12" y2="19" class="faq-vbar" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div
+              id={`faq-panel-${i}`}
+              role="region"
+              aria-labelledby={`faq-trigger-${i}`}
+              class="faq-panel grid grid-rows-[0fr] transition-all duration-300 ease-out"
+              hidden
+            >
+              <div class="overflow-hidden">
+                <p class="pb-6 pr-12 text-lg text-ink-secondary">{item.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6. FINAL CTA (dark) ===================== -->
+  <section class="bg-forest text-ink-on-dark-primary relative overflow-hidden">
+    <div class="container-page section text-center relative z-10">
+      <h2 class="headline-h1 mx-auto max-w-2xl">
+        Ready to make something <em>worth looking at</em>?
+      </h2>
+      <p class="mt-5 mx-auto max-w-lg text-ink-on-dark-secondary text-lg">
+        Four steps. One prompt. Zero cost. Go.
+      </p>
+      <a href="/generate" class="btn-accent mt-8 inline-flex">Start creating →</a>
+    </div>
+    <!-- scattered asterisks -->
+    <span aria-hidden="true" class="absolute left-[10%] top-[20%] font-serif text-3xl text-accent-lime/40">✦</span>
+    <span aria-hidden="true" class="absolute right-[14%] top-[35%] font-serif text-2xl text-accent-pink/40">✦</span>
+    <span aria-hidden="true" class="absolute left-[20%] bottom-[22%] font-serif text-2xl text-accent-sky/40">✦</span>
+    <span aria-hidden="true" class="absolute right-[22%] bottom-[28%] font-serif text-xl text-accent-lavender/50">✦</span>
+  </section>
 </Layout>
+
+<script>
+  // Accessible accordion: one panel, animated grid-rows trick, full keyboard support.
+  document.querySelectorAll<HTMLButtonElement>(".faq-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const expanded = trigger.getAttribute("aria-expanded") === "true";
+      const panelId = trigger.getAttribute("aria-controls");
+      const panel = panelId ? document.getElementById(panelId) : null;
+      const icon = trigger.querySelector<HTMLElement>(".faq-icon");
+      if (!panel) return;
+
+      trigger.setAttribute("aria-expanded", String(!expanded));
+
+      if (expanded) {
+        // close
+        panel.style.gridTemplateRows = "0fr";
+        panel.addEventListener(
+          "transitionend",
+          () => { if (trigger.getAttribute("aria-expanded") === "false") panel.hidden = true; },
+          { once: true }
+        );
+        icon?.classList.remove("rotate-45", "bg-accent-lavender");
+      } else {
+        // open
+        panel.hidden = false;
+        // force reflow so the transition runs from 0fr
+        requestAnimationFrame(() => { panel.style.gridTemplateRows = "1fr"; });
+        icon?.classList.add("rotate-45", "bg-accent-lavender");
+      }
+    });
+  });
+</script>

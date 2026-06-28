@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Squiggle from '../components/Squiggle.astro';
+---
+
+<Layout 
+  title="Privacy Policy — VisualCraft"
+  description="Read about VisualCraft's offline-first privacy model. We do not store, track, or share your data, prompts, or search logs."
+>
+  <!-- Hero banner -->
+  <section class="bg-cream pt-16 pb-12 md:py-20 border-b border-cream-darker/30 relative overflow-hidden">
+    <!-- Floating background sparkles -->
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute top-12 left-10 w-2.5 h-2.5 rounded-full bg-accent-lavender animate-float"></div>
+      <div class="absolute bottom-16 right-12 w-3.5 h-3.5 rounded-full bg-accent-pink animate-float delay-300"></div>
+    </div>
+
+    <div class="container-page relative text-center max-w-3xl">
+      <div class="flex justify-center mb-6">
+        <span class="pill-cream">
+          <span class="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></span>
+          Privacy First
+        </span>
+      </div>
+      
+      <h1 class="headline-display">
+        Privacy <em>Policy</em>
+      </h1>
+      
+      <p class="mt-6 body-lg text-ink-secondary">
+        We believe that your thoughts and visual brainstorming documents belong solely to you. VisualCraft is built as an offline-first utility.
+      </p>
+
+      <p class="mt-2 text-sm text-ink-tertiary">
+        Last updated: June 28, 2026
+      </p>
+
+      <div class="mt-8 flex justify-center">
+        <Squiggle color="#8ED44A" width="100" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="section bg-cream-lighter py-16 md:py-24">
+    <div class="container-page max-w-3xl">
+      <div class="prose prose-cream max-w-none text-ink-secondary space-y-8 leading-relaxed">
+        
+        <!-- Offline first callout card -->
+        <div class="bg-accent-lavender/10 border-1.5 border-accent-lavender rounded-card p-6 md:p-8 space-y-4 shadow-sm">
+          <h2 class="font-serif text-2xl font-semibold text-ink-primary flex items-center gap-2.5">
+            <span class="text-accent-lavender text-xl">✦</span> The Core Philosophy
+          </h2>
+          <p class="body-base">
+            VisualCraft does not use server databases, user accounts, or tracking APIs. All customizations, text entries, and prompt outputs are processed and stored locally inside your browser's memory using standard client-side technologies.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            1. Information Collection
+          </h2>
+          <p>
+            Because VisualCraft operates as a static page running in your client browser, **we do not collect, store, or transmit any personal data**.
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>
+              <strong>Text Inputs:</strong> Any description, data, or structural content you paste in the prompt generator never leaves your device. The prompt formulas are computed purely in local JavaScript.
+            </li>
+            <li>
+              <strong>Browser Storage:</strong> We use standard browser local storage (`localStorage`) to remember your configurations (e.g., your selected category, palette preferences, or connector styles) so you don't have to re-enter them on reload. This data remains on your machine.
+            </li>
+            <li>
+              <strong>No Account Portal:</strong> We do not require registration, passwords, OAuth sign-ins, or email listings to use the application.
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            2. Cookies and Tracking
+          </h2>
+          <p>
+            We do not use tracking cookies, tracking pixels, or third-party web analytics tools (like Google Analytics or Hotjar). 
+          </p>
+          <p>
+            Our host provider (Cloudflare Pages) may gather basic, anonymous server-level logs (such as request rates, user-agents, and server response codes) to prevent denial-of-service attacks and ensure global speed. These logs contain no personal information.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            3. Third-Party Services
+          </h2>
+          <p>
+            VisualCraft is a **prompt constructor**. It produces rich, formatted text descriptions which you copy and submit to other artificial intelligence systems (such as OpenAI's ChatGPT, Google Gemini, Anthropic's Claude, or Midjourney).
+          </p>
+          <p class="border-l-4 border-accent-lime pl-4 italic text-ink-tertiary">
+            IMPORTANT: When you paste these generated prompts into external AI tools, your text inputs are subject to those third-party providers' own privacy policies and terms of service. We encourage you to review their terms.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            4. Security and Data Privacy
+          </h2>
+          <p>
+            By designing the system without any central database, we have minimized the security risk for our users. There is no central database to leak, hack, or compromise. 
+          </p>
+          <p>
+            To clear all your local configuration settings, simply clear your browser's site data / cache for this site.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            5. Changes to This Policy
+          </h2>
+          <p>
+            We may update this Privacy Policy from time to time as we introduce new prompt variables or integrations. Any modifications will be posted directly on this page with an updated timestamp.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl md:text-3xl font-medium text-ink-primary">
+            6. Contact
+          </h2>
+          <p>
+            If you have questions or feedback regarding our privacy approach, please contact us via our <a href="/contact" class="underline hover:text-accent-lavender">Contact Page</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

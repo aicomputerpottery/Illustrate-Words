@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep utility/review routes out of search engines
+Disallow: /_icons
+
+Sitemap: https://illustratewords.com/sitemap-index.xml

@@ -1,12 +1,1257 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Squiggle from '../components/Squiggle.astro';
+import VisualizationMarquee from '../components/VisualizationMarquee.astro';
+
+const pageTitle = "See What VisualCraft Can Create — Examples & Templates";
+const pageDescription = "Watch the full workflow and browse ready-to-use visualization templates. Tap any example to load it into the builder. Free and instant.";
 ---
 
-<Layout title="Gallery — Illustrate Words">
-  <section class="section bg-cream">
-    <div class="container-page text-center">
-      <h1 class="headline-h1">Illustrate Words — <em>Gallery</em></h1>
-      <p class="mt-6 body-lg">Example prompts coming in Phase 6.</p>
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="bg-cream min-h-screen">
+    
+    <!-- ============================================================ -->
+    <!-- 1. HERO SECTION                                              -->
+    <!-- ============================================================ -->
+    <section class="bg-forest relative overflow-hidden py-20 md:py-24 text-cream">
+      <div class="container-page text-center relative z-10 max-w-4xl mx-auto">
+        <span class="pill-lavender mb-6 inline-flex">
+          Watch it work
+        </span>
+
+        <h1 class="headline-h1 text-cream mb-5">
+          From a sentence to a <em>finished</em> visual
+        </h1>
+
+        <p class="text-ink-on-dark-secondary text-lg max-w-xl mx-auto">
+          No design skills. No software to learn. Watch the exact steps — then do it yourself in about a minute.
+        </p>
+      </div>
+
+      <!-- Subtle decorative squiggle in bottom left -->
+      <div class="absolute bottom-4 left-6 opacity-20 pointer-events-none">
+        <Squiggle color="#B5A5F0" width="120" class="rotate-15" />
+      </div>
+    </section>
+
+    <!-- Cream lip transition -->
+    <div class="relative bg-cream h-10 -mt-1 overflow-hidden pointer-events-none">
+      <div class="absolute inset-x-0 top-0 h-10 bg-forest" style="clip-path: ellipse(60% 100% at 50% 0%)"></div>
     </div>
-  </section>
+
+    <!-- ============================================================ -->
+    <!-- 2. LIVE WORKFLOW DEMO SECTION                                 -->
+    <!-- ============================================================ -->
+    <section class="section bg-cream" id="live-demo">
+      <div class="container-page max-w-5xl mx-auto">
+        
+        <!-- Header -->
+        <div class="text-center mb-10">
+          <span class="pill-lime mb-4 inline-flex">
+            The whole workflow, in motion
+          </span>
+          <h2 class="headline-h2 text-ink-primary">
+            Pick. Generate. <em>Paste.</em> Done.
+          </h2>
+          <p class="text-ink-secondary mt-4 max-w-lg mx-auto">
+            The same four steps every time — only the destination changes. Switch tabs to see each one.
+          </p>
+        </div>
+
+        <!-- Scenario Tabs -->
+        <div class="flex justify-center mb-6">
+          <div class="inline-flex gap-1.5 p-1.5 bg-cream-darker rounded-full border border-cream-darker"
+               role="tablist" aria-label="Demo scenarios" id="demo-tabs">
+            <button class="demo-tab active px-4 py-2 rounded-btn text-sm font-medium transition-colors" role="tab" data-scenario="blog" aria-selected="true">Blog</button>
+            <button class="demo-tab px-4 py-2 rounded-btn text-sm font-medium transition-colors" role="tab" data-scenario="social" aria-selected="false">Social</button>
+            <button class="demo-tab px-4 py-2 rounded-btn text-sm font-medium transition-colors" role="tab" data-scenario="docs" aria-selected="false">Docs</button>
+            <button class="demo-tab px-4 py-2 rounded-btn text-sm font-medium transition-colors" role="tab" data-scenario="presentation" aria-selected="false">Presentation</button>
+          </div>
+        </div>
+
+        <!-- Faux Browser Stage -->
+        <div class="relative mx-auto max-w-[860px]">
+          <div id="demo-stage"
+               class="demo-stage relative rounded-card border border-cream-darker bg-white
+                      shadow-card overflow-hidden select-none"
+               style="aspect-ratio: 16 / 10;"
+               aria-label="Animated demonstration of the VisualCraft workflow"
+               role="img">
+
+            <!-- Browser chrome bar -->
+            <div class="absolute top-0 inset-x-0 h-9 bg-cream-darker border-b border-cream-darker
+                        flex items-center gap-2 px-3 z-30">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-orange/40"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-lime/40"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-sky/40"></span>
+              <div id="demo-urlbar"
+                   class="ml-3 flex-1 max-w-[340px] h-5 rounded-full bg-white border border-cream-darker
+                          flex items-center px-3 text-[10px] font-mono text-ink-tertiary truncate">
+                visualcraft.app/generate
+              </div>
+            </div>
+
+            <!-- App panels live below the chrome bar -->
+            <div class="absolute inset-0 top-9">
+              <div id="panel-visualcraft" class="demo-panel transition-all duration-200"></div>
+              <div id="panel-ai"          class="demo-panel opacity-0 pointer-events-none transition-all duration-200"></div>
+              <div id="panel-destination" class="demo-panel opacity-0 pointer-events-none transition-all duration-200"></div>
+            </div>
+
+            <!-- The cursor — single element, moves over everything -->
+            <div id="demo-cursor" class="demo-cursor z-40 absolute pointer-events-none transition-all duration-700 ease-in-out" aria-hidden="true" style="top: 80%; left: 80%;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M3 2 L3 17 L7.5 13 L10.5 19.5 L13 18.3 L10 12 L16 12 Z"
+                      fill="#1C1A18" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Progress bar + controls -->
+        <div class="max-w-[860px] mx-auto mt-6 flex flex-col items-center gap-3">
+          <div id="demo-progress" class="flex items-center gap-2" aria-hidden="true"></div>
+          <p class="text-sm font-sans text-ink-secondary">
+            <span id="demo-stepnum" class="font-semibold text-ink-primary">Step 1 of 8</span>
+            <span class="mx-2 text-ink-tertiary">—</span>
+            <span id="demo-caption">Choosing a visualization type</span>
+          </p>
+          <div class="flex gap-3">
+            <button id="demo-pause" class="btn-secondary text-xs px-4 py-2">⏸ Pause</button>
+            <button id="demo-replay" class="btn-ghost text-xs px-4 py-2">↻ Replay</button>
+          </div>
+        </div>
+
+        <!-- Prefers reduced motion static storyboard -->
+        <div id="static-storyboard" class="hidden grid grid-cols-1 sm:grid-cols-4 gap-6 max-w-[860px] mx-auto mt-8">
+          <!-- Populated by JS storyboard render -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. MOVING SHOWCASE (MARQUEE) SECTION                          -->
+    <!-- ============================================================ -->
+    <VisualizationMarquee tone="cream-darker" />
+
+    <!-- ============================================================ -->
+    <!-- 4. FINAL CTA SECTION                                         -->
+    <!-- ============================================================ -->
+    <section class="bg-forest section relative overflow-hidden text-cream border-t border-cream-darker/10">
+      <span class="absolute top-10 left-12 text-3xl text-accent-lavender/10 select-none pointer-events-none" aria-hidden="true">✦</span>
+      <span class="absolute bottom-10 right-16 text-4xl text-accent-lime/10 select-none pointer-events-none" aria-hidden="true">✦</span>
+      <div class="container-page text-center relative z-10 max-w-2xl mx-auto">
+        <h2 class="headline-h2 text-cream mb-4">
+          Now make <em>yours</em>
+        </h2>
+        <p class="text-ink-on-dark-secondary text-lg mb-8">
+          Pick a type, choose a palette, paste your content, copy the prompt. About a minute, start to finish.
+        </p>
+        <a href="/generate" class="btn-accent text-base px-8 py-4 text-cream font-semibold">Start building — it's free →</a>
+        <p class="text-xs text-ink-on-dark-secondary mt-6">
+          No account. Works with Gemini, ChatGPT, Claude, and Midjourney.
+        </p>
+      </div>
+    </section>
+
+  </main>
 </Layout>
+
+<style is:global>
+  /* Demo stage styling */
+  .demo-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .vc-type {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    font-size: 10px;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    color: #6E6B66;
+  }
+  .vc-type.selected {
+    background-color: #EFECE6;
+    border-color: #1C1A18;
+    color: #1C1A18;
+    font-weight: 500;
+  }
+  .vc-btn-primary {
+    background-color: #1C1A18;
+    color: #F9F8F4;
+    border: 1px solid #1C1A18;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .vc-btn-primary.vc-pressed {
+    transform: scale(0.95);
+  }
+  .vc-btn-secondary {
+    background-color: #FAF6EC;
+    color: #0A0A0A;
+    border: 1px solid #EBE5D5;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .vc-btn-secondary.vc-pressed {
+    transform: scale(0.95);
+  }
+  .vc-caret {
+    animation: vc-blink 1s steps(2, start) infinite;
+  }
+  @keyframes vc-blink {
+    to { visibility: hidden; }
+  }
+  .ai-dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #9C9890;
+    animation: ai-bounce 1.4s infinite ease-in-out both;
+  }
+  .ai-dot:nth-child(1) { animation-delay: -0.32s; }
+  .ai-dot:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes ai-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+  .demo-ripple {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(181, 165, 240, 0.4);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    z-index: 50;
+  }
+  .demo-ripple.go {
+    animation: demo-ripple-anim 0.5s ease-out forwards;
+  }
+  @keyframes demo-ripple-anim {
+    to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+  }
+
+  /* Marquee infinite scroll styling */
+  .marquee-track {
+    animation: marquee-scroll-left 45s linear infinite;
+  }
+  [data-dir="right"] .marquee-track {
+    animation: marquee-scroll-right 45s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Marquee Card styles */
+  .marquee-card {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 175px;
+    border-radius: 12px;
+    border: 1.5px solid #0A0A0A;
+    background-color: #F4EFE2;
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 12px rgba(28, 26, 24, 0.05);
+    flex-shrink: 0;
+  }
+  .marquee-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 12px 32px rgba(10, 10, 10, 0.08);
+  }
+  .marquee-card-visual {
+    width: 100%;
+    height: 130px;
+    border-bottom: 1.5px solid #0A0A0A;
+  }
+  .marquee-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    flex-grow: 1;
+    background-color: #FAF6EC;
+  }
+  .marquee-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #0A0A0A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+  }
+  .marquee-card-go {
+    font-size: 10px;
+    font-weight: 600;
+    color: #B5A5F0;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.15s ease-out;
+  }
+  .marquee-card:hover .marquee-card-go {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Scenario tabs style */
+  .demo-tab {
+    padding: 0.5rem 1rem;
+    color: #6E6B66;
+  }
+  .demo-tab[aria-selected="true"] {
+    background-color: #1C1A18;
+    color: #F9F8F4;
+  }
+</style>
+
+<script>
+  let PALETTES = [];
+  const h = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const SCENARIOS = {
+    social: {
+      vcType: "funnel",
+      vcTypeLabel: "Funnel",
+      palette: "berry-pop",
+      content: "5 lessons from year one of my startup",
+      promptShort: "Create a bold 5-stage funnel infographic, square format, Berry Pop palette…",
+      url: "yourbrand.social/create",
+      destTitle: "Photo post",
+      destUrl: "instagram.com/create/style  ·  square 1:1"
+    },
+    docs: {
+      vcType: "bar",
+      vcTypeLabel: "Bar chart",
+      palette: "slate-gray",
+      content: "Urban food insecurity: access, income, transport, education",
+      promptShort: "Create a clean horizontal bar chart, minimal style, Slate Gray palette…",
+      url: "docs.example.edu/report",
+      destTitle: "Document",
+      destUrl: "docs.google.com/document  ·  Research report"
+    },
+    presentation: {
+      vcType: "radar",
+      vcTypeLabel: "Radar chart",
+      palette: "deep-sapphire",
+      content: "Competitors: Miro, Lucidchart, Canva, Figma",
+      promptShort: "Create a corporate radar chart comparing four competitors, Deep Sapphire palette…",
+      url: "deck.example.com/edit",
+      destTitle: "Slide",
+      destUrl: "slides.example.com  ·  Q3 Competitive Landscape"
+    }
+  };
+  function getPaletteColors(id) {
+    const pal = PALETTES.find(p => p.id === id);
+    return pal ? pal.colors : ["#F4EFE2", "#EBE5D5", "#F4A8C9", "#B5A5F0", "#0A0A0A"];
+  }
+
+  function miniVisualSVG(kind, palId) {
+    const c = getPaletteColors(palId);
+    const wrap = (inner) => `<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:${c[0]}">${inner}</svg>`;
+    
+    switch (kind) {
+      case "bar":
+        return wrap(`
+          <rect x="18" y="50" width="14" height="28" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <rect x="38" y="38" width="14" height="40" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <rect x="58" y="26" width="14" height="52" fill="${c[3]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <rect x="78" y="44" width="14" height="34" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="12" y1="78" x2="100" y2="78" stroke="#1C1A18" stroke-width="1.5"/>
+        `);
+      case "mindmap":
+        return wrap(`
+          <circle cx="60" cy="45" r="13" fill="${c[3]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="24" cy="22" r="7" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="96" cy="22" r="7" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="22" cy="70" r="7" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="98" cy="70" r="7" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="50" y1="38" x2="30" y2="27" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="70" y1="38" x2="90" y2="27" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="50" y1="52" x2="29" y2="65" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="70" y1="52" x2="91" y2="65" stroke="#1C1A18" stroke-width="1.5"/>
+        `);
+      case "funnel":
+        return wrap(`
+          <polygon points="24,20 96,20 84,36 36,36" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <polygon points="38,40 82,40 73,56 47,56" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <polygon points="49,60 71,60 64,76 56,76" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.5"/>
+        `);
+      case "timeline":
+        return wrap(`
+          <line x1="12" y1="45" x2="108" y2="45" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="25" cy="45" r="4.5" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="48" cy="45" r="4.5" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="71" cy="45" r="4.5" fill="${c[3]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <circle cx="94" cy="45" r="4.5" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.5"/>
+          <line x1="25" y1="45" x2="25" y2="24" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="15" y="14" width="20" height="10" rx="2" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <line x1="48" y1="45" x2="48" y2="66" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="38" y="66" width="20" height="10" rx="2" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <line x1="71" y1="45" x2="71" y2="24" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="61" y="14" width="20" height="10" rx="2" fill="${c[3]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <line x1="94" y1="45" x2="94" y2="66" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="84" y="66" width="20" height="10" rx="2" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.2"/>
+        `);
+      case "radar":
+        return wrap(`
+          <polygon points="60,15 88,36 78,69 42,69 32,36" fill="none" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.2"/>
+          <polygon points="60,30 74,40 69,57 51,57 46,40" fill="none" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.2"/>
+          <line x1="60" y1="45" x2="60" y2="15" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.1"/>
+          <line x1="60" y1="45" x2="88" y2="36" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.1"/>
+          <line x1="60" y1="45" x2="78" y2="69" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.1"/>
+          <line x1="60" y1="45" x2="42" y2="69" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.1"/>
+          <line x1="60" y1="45" x2="32" y2="36" stroke="#1C1A18" stroke-width="1" stroke-opacity="0.1"/>
+          <polygon points="60,25 80,38 72,62 48,59 38,39" fill="${c[3]}" fill-opacity="0.4" stroke="${c[4]}" stroke-width="1.5"/>
+          <circle cx="60" cy="25" r="2.5" fill="${c[4]}"/>
+          <circle cx="80" cy="38" r="2.5" fill="${c[4]}"/>
+          <circle cx="72" cy="62" r="2.5" fill="${c[4]}"/>
+          <circle cx="48" cy="59" r="2.5" fill="${c[4]}"/>
+          <circle cx="38" cy="39" r="2.5" fill="${c[4]}"/>
+        `);
+      case "line":
+        return wrap(`
+          <polyline points="15,72 40,50 65,58 95,22" fill="none" stroke="${c[3]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="15" cy="72" r="3.5" fill="${c[4]}" stroke="#1C1A18" stroke-width="1"/>
+          <circle cx="40" cy="50" r="3.5" fill="${c[4]}" stroke="#1C1A18" stroke-width="1"/>
+          <circle cx="65" cy="58" r="3.5" fill="${c[4]}" stroke="#1C1A18" stroke-width="1"/>
+          <circle cx="95" cy="22" r="3.5" fill="${c[4]}" stroke="#1C1A18" stroke-width="1"/>
+          <line x1="10" y1="78" x2="110" y2="78" stroke="#1C1A18" stroke-width="1.2"/>
+        `);
+      case "pie":
+        return wrap(`
+          <path d="M 60 45 L 60 15 A 30 30 0 0 1 90 45 Z" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <path d="M 60 45 L 90 45 A 30 30 0 0 1 60 75 Z" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <path d="M 60 45 L 60 75 A 30 30 0 0 1 30 45 Z" fill="${c[3]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <path d="M 60 45 L 30 45 A 30 30 0 0 1 60 15 Z" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.2"/>
+        `);
+      case "flow":
+        return wrap(`
+          <rect x="12" y="33" width="22" height="24" rx="4" fill="${c[1]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="49" y="33" width="22" height="24" rx="4" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <rect x="86" y="33" width="22" height="24" rx="4" fill="${c[4]}" stroke="#1C1A18" stroke-width="1.2"/>
+          <line x1="34" y1="45" x2="44" y2="45" stroke="#1C1A18" stroke-width="1.5"/>
+          <polygon points="44,42 49,45 44,48" fill="#1C1A18"/>
+          <line x1="71" y1="45" x2="81" y2="45" stroke="#1C1A18" stroke-width="1.5"/>
+          <polygon points="81,42 86,45 81,48" fill="#1C1A18"/>
+        `);
+      default:
+        return wrap(`<rect x="20" y="20" width="80" height="50" fill="${c[2]}" stroke="#1C1A18" stroke-width="1.5"/>`);
+    }
+  }
+
+  const STAR_SVG = `
+    <svg width="14" height="14" viewBox="0 0 13 13" fill="#B5A5F0" aria-hidden="true">
+      <path d="M6.5 0 L7.6 5.4 L13 6.5 L7.6 7.6 L6.5 13 L5.4 7.6 L0 6.5 L5.4 5.4 Z"/>
+    </svg>
+  `;
+
+  function renderVisualCraftPanelHTML() {
+    return `
+      <div class="w-full h-full bg-cream flex text-ink-primary">
+        <!-- left rail -->
+        <div class="w-[38%] border-r border-cream-darker p-3 space-y-2 overflow-hidden">
+          <div class="text-[9px] font-sans font-semibold text-ink-tertiary uppercase tracking-wide mb-1">Choose a type</div>
+          <button class="vc-type" data-vc="bar">Bar chart</button>
+          <button class="vc-type" data-vc="mindmap">Mindmap</button>
+          <button class="vc-type" data-vc="funnel">Funnel</button>
+          <button class="vc-type" data-vc="timeline">Timeline</button>
+          <button class="vc-type" data-vc="radar">Radar chart</button>
+        </div>
+        <!-- right side -->
+        <div class="flex-1 p-3 flex flex-col gap-3">
+          <div>
+            <div class="text-[9px] font-sans font-semibold text-ink-tertiary uppercase tracking-wide mb-1.5">Palette</div>
+            <div class="flex gap-1.5" id="vc-palettes"></div>
+          </div>
+          <div>
+            <div class="text-[9px] font-sans font-semibold text-ink-tertiary uppercase tracking-wide mb-1.5">Your content</div>
+            <div id="vc-textarea"
+                 class="h-14 rounded-card-sm border border-cream-darker bg-white p-2
+                        text-[10px] font-mono text-ink-secondary leading-snug overflow-hidden">
+              <span id="vc-typed"></span><span class="vc-caret">▍</span>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <div id="vc-prompt-out"
+                 class="hidden rounded-card-sm border border-cream-darker bg-forest/5 p-2
+                        text-[9px] font-mono text-ink-secondary leading-snug max-h-16 overflow-hidden mb-2"></div>
+            <div class="flex gap-2">
+              <button id="vc-generate" class="vc-btn-primary">Generate prompt</button>
+              <button id="vc-copy" class="vc-btn-secondary hidden">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAIPanelHTML() {
+    return `
+      <div class="w-full h-full bg-white flex flex-col text-ink-primary">
+        <div class="flex items-center gap-2 px-4 h-10 border-b border-cream-darker">
+          <span class="w-6 h-6 rounded-full bg-accent-lavender-light border border-cream-darker
+                       flex items-center justify-center">
+            ${STAR_SVG}
+          </span>
+          <div class="leading-tight">
+            <div class="text-[11px] font-sans font-semibold text-ink-primary">AI Image Generator</div>
+            <div class="text-[9px] font-sans text-ink-tertiary">Gemini · ChatGPT · Claude · Midjourney</div>
+          </div>
+        </div>
+        <div class="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+          <div id="ai-prompt-bubble"
+               class="hidden self-end max-w-[80%] rounded-2xl rounded-br-sm bg-cream-darker
+                      border border-cream-darker p-2.5 text-[9px] font-mono text-ink-secondary leading-snug"></div>
+          <div id="ai-thinking" class="hidden self-start flex items-center gap-1.5 text-ink-tertiary">
+            <span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span>
+            <span class="text-[9px] font-sans ml-1">Generating image…</span>
+          </div>
+          <div id="ai-result"
+               class="hidden self-start w-[70%] aspect-[4/3] rounded-card-sm border border-cream-darker
+                      bg-white overflow-hidden relative"></div>
+          <div id="ai-copyimg" class="hidden self-start">
+            <button class="vc-btn-secondary text-[9px] !py-1">Copy image</button>
+          </div>
+        </div>
+        <div class="h-10 border-t border-cream-darker flex items-center gap-2 px-3">
+          <div id="ai-input"
+               class="flex-1 h-6 rounded-full border border-cream-darker bg-cream-lighter
+                      px-3 flex items-center text-[9px] font-mono text-ink-tertiary truncate">
+            Paste your prompt…
+          </div>
+          <button id="ai-send" class="w-6 h-6 rounded-full bg-ink-primary flex items-center justify-center">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#F9F8F4" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M2 6 L10 6 M6 2 L10 6 L6 10"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDestinationPanelHTML(scenario) {
+    const dest = document.getElementById("panel-destination");
+    if (!dest) return;
+    let title = "Blog post";
+    let iconHTML = '<span class="block w-3 h-3 bg-accent-lavender rounded-full"></span>';
+    let bodyHTML = "";
+
+    if (scenario === "blog") {
+      title = "Blog post (WordPress / CMS)";
+      iconHTML = '<span class="block w-3 h-3 bg-accent-lavender rounded-full"></span>';
+      bodyHTML = `
+        <div class="space-y-3">
+          <div class="h-4 bg-ink-primary/10 rounded w-2/3"></div>
+          <div class="space-y-1.5">
+            <div class="h-2.5 bg-ink-secondary/10 rounded"></div>
+            <div class="h-2.5 bg-ink-secondary/10 rounded w-11/12"></div>
+          </div>
+          <div id="dest-dropzone" class="w-2/3 aspect-[4/3] rounded-card-sm border border-dashed border-ink-tertiary/40 flex items-center justify-center text-[10px] text-ink-tertiary p-2 overflow-hidden bg-white/40">
+            Drop image here
+          </div>
+          <div class="space-y-1.5">
+            <div class="h-2.5 bg-ink-secondary/10 rounded"></div>
+            <div class="h-2.5 bg-ink-secondary/10 rounded"></div>
+          </div>
+        </div>
+      `;
+    } else if (scenario === "social") {
+      title = "Social Media Post (Composer)";
+      iconHTML = '<span class="block w-3 h-3 bg-accent-lime rounded-full"></span>';
+      bodyHTML = `
+        <div class="max-w-[260px] mx-auto bg-white border border-cream-darker rounded-card-sm p-3 space-y-3 shadow-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-cream-darker block"></span>
+            <div class="h-2.5 bg-ink-primary/10 rounded w-16"></div>
+          </div>
+          <div id="dest-dropzone" class="w-full aspect-square rounded-card-sm border border-dashed border-ink-tertiary/40 flex items-center justify-center text-[10px] text-ink-tertiary p-2 overflow-hidden bg-white/40">
+            Drop visual
+          </div>
+          <div class="h-2 bg-ink-secondary/10 rounded w-3/4"></div>
+          <div class="flex justify-between items-center pt-1">
+            <div class="h-2 bg-ink-tertiary/10 rounded w-10"></div>
+            <button class="px-3 py-1 bg-accent-lavender text-cream rounded-full text-[9px] font-sans font-semibold">Share</button>
+          </div>
+        </div>
+      `;
+    } else if (scenario === "docs") {
+      title = "Google Docs / Research Paper";
+      iconHTML = '<span class="block w-3 h-3 bg-accent-sky rounded-full"></span>';
+      bodyHTML = `
+        <div class="max-w-[340px] mx-auto bg-white border border-cream-darker p-4 shadow-sm min-h-[160px] space-y-3">
+          <div class="h-3.5 bg-ink-primary/10 rounded w-1/2 mx-auto"></div>
+          <div class="h-2 bg-ink-secondary/10 rounded"></div>
+          <div id="dest-dropzone" class="w-3/5 mx-auto aspect-[4/3] rounded-card-sm border border-dashed border-ink-tertiary/40 flex items-center justify-center text-[10px] text-ink-tertiary p-2 overflow-hidden bg-white/40">
+            Insert figure
+          </div>
+          <div class="h-2 bg-ink-secondary/10 rounded w-5/6 mx-auto"></div>
+        </div>
+      `;
+    } else if (scenario === "presentation") {
+      title = "Slide Deck (Google Slides / Pitch)";
+      iconHTML = '<span class="block w-3 h-3 bg-accent-pink rounded-full"></span>';
+      bodyHTML = `
+        <div class="space-y-2">
+          <!-- 16:9 canvas -->
+          <div class="bg-white border border-cream-darker rounded-card-sm p-3 aspect-[16/9] flex flex-col justify-between shadow-sm relative">
+            <div class="h-3 bg-ink-primary/10 rounded w-1/3"></div>
+            <div id="dest-dropzone" class="w-3/5 mx-auto aspect-[4/3] rounded-card-sm border border-dashed border-ink-tertiary/40 flex items-center justify-center text-[9px] text-ink-tertiary p-1 overflow-hidden bg-white/40">
+              Paste slide content
+            </div>
+            <div class="h-1 bg-ink-tertiary/10 rounded w-1/12 self-end"></div>
+          </div>
+          <!-- thumbnails -->
+          <div class="flex gap-2 justify-center">
+            <span class="w-10 h-6 border border-accent-lavender/30 rounded bg-white"></span>
+            <span class="w-10 h-6 border border-cream-darker rounded bg-white opacity-70"></span>
+            <span class="w-10 h-6 border border-cream-darker rounded bg-white opacity-70"></span>
+          </div>
+        </div>
+      `;
+    }
+
+    dest.innerHTML = `
+      <div class="w-full h-full bg-cream-lighter flex flex-col text-ink-primary">
+        <div class="h-10 border-b border-cream-darker flex items-center px-4 gap-2">
+          <span id="dest-icon" class="w-5 h-5 rounded-md bg-cream-darker border border-cream-darker flex items-center justify-center">
+            ${iconHTML}
+          </span>
+          <span id="dest-title" class="text-xs font-sans font-semibold text-ink-primary">${title}</span>
+        </div>
+        <div id="dest-body" class="flex-1 p-4 overflow-hidden">${bodyHTML}</div>
+      </div>
+    `;
+  }
+
+  function setupPanels(scenario) {
+    const vc = document.getElementById("panel-visualcraft");
+    const ai = document.getElementById("panel-ai");
+    const dest = document.getElementById("panel-destination");
+
+    if (vc) {
+      vc.innerHTML = renderVisualCraftPanelHTML();
+      const palettesContainer = vc.querySelector("#vc-palettes");
+      if (palettesContainer) {
+        const palNames = ["matcha-zen", "berry-pop", "slate-gray", "deep-sapphire"];
+        palettesContainer.innerHTML = palNames.map(p => {
+          const colors = getPaletteColors(p);
+          return `
+            <button class="w-6 h-6 rounded-full overflow-hidden border border-cream-darker flex gap-[1px]" data-pal="${p}" aria-label="Select ${p} palette">
+              <span class="flex-1 h-full block" style="background:${colors[0]}"></span>
+              <span class="flex-1 h-full block" style="background:${colors[2]}"></span>
+              <span class="flex-1 h-full block" style="background:${colors[4]}"></span>
+            </button>
+          `;
+        }).join("");
+      }
+    }
+
+    if (ai) ai.innerHTML = renderAIPanelHTML();
+    renderDestinationPanelHTML(scenario);
+
+    // Initial panel display state
+    if (vc) {
+      vc.style.opacity = "1";
+      vc.style.pointerEvents = "auto";
+      vc.style.transform = "translateX(0)";
+    }
+    if (ai) {
+      ai.style.opacity = "0";
+      ai.style.pointerEvents = "none";
+      ai.style.transform = "translateX(8px)";
+    }
+    if (dest) {
+      dest.style.opacity = "0";
+      dest.style.pointerEvents = "none";
+      dest.style.transform = "translateX(8px)";
+    }
+  }
+
+  function setVisualTypeSelected(vcType) {
+    document.querySelectorAll(".vc-type").forEach(btn => {
+      if (btn.getAttribute('data-vc') === vcType) {
+        btn.classList.add("selected");
+      } else {
+        btn.classList.remove("selected");
+      }
+    });
+  }
+
+  function setPaletteSelected(palName) {
+    document.querySelectorAll("#vc-palettes button").forEach(btn => {
+      if (btn.getAttribute('data-pal') === palName) {
+        btn.classList.add("ring-2", "ring-accent-lavender");
+      } else {
+        btn.classList.remove("ring-2", "ring-accent-lavender");
+      }
+    });
+  }
+
+  class FlowRunner {
+    constructor(stage) {
+      this.stage = stage;
+      this.cursor = stage.querySelector("#demo-cursor");
+      this.cancelled = false;
+      this.paused = false;
+      this._lastXY = { x: 40, y: 40 };
+    }
+
+    cancel() {
+      this.cancelled = true;
+    }
+
+    async _sleep(ms) {
+      const limit = performance.now() + ms;
+      while (performance.now() < limit) {
+        if (this.cancelled) throw "cancelled";
+        if (this.paused) {
+          await h(80);
+        } else {
+          await h(Math.min(40, limit - performance.now()));
+        }
+      }
+    }
+
+    _centerOf(selector) {
+      const el = this.stage.querySelector(selector);
+      if (!el) return null;
+      const stageRect = this.stage.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      return {
+        x: elRect.left - stageRect.left + elRect.width / 2,
+        y: elRect.top - stageRect.top + elRect.height / 2,
+        el: el
+      };
+    }
+
+    async moveTo(selector, duration = 650) {
+      const coord = this._centerOf(selector);
+      if (coord) {
+        this.cursor.style.transform = `translate(${coord.x}px, ${coord.y}px)`;
+        this._lastXY = { x: coord.x, y: coord.y };
+        await this._sleep(duration);
+      }
+    }
+
+    async click(selector) {
+      if (selector) {
+        await this.moveTo(selector, 0);
+      }
+      const { x, y } = this._lastXY;
+      this.cursor.style.setProperty("--cx", `${x}px`);
+      this.cursor.style.setProperty("--cy", `${y}px`);
+      this.cursor.classList.add("is-clicking");
+      this._ripple(x, y);
+
+      if (selector) {
+        const el = this.stage.querySelector(selector);
+        el?.classList.add("vc-pressed");
+        setTimeout(() => el?.classList.remove("vc-pressed"), 200);
+      }
+      await this._sleep(300);
+      this.cursor.classList.remove("is-clicking");
+      this.cursor.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    _ripple(x, y) {
+      const div = document.createElement("div");
+      div.className = "demo-ripple";
+      div.style.left = `${x}px`;
+      div.style.top = `${y}px`;
+      this.stage.appendChild(div);
+      requestAnimationFrame(() => div.classList.add("go"));
+      setTimeout(() => div.remove(), 520);
+    }
+
+    async type(selector, text, interval = 28) {
+      const el = this.stage.querySelector(selector);
+      if (el) {
+        el.textContent = "";
+        for (const char of text) {
+          if (this.cancelled) throw "cancelled";
+          while (this.paused) await h(80);
+          el.textContent += char;
+          await h(interval);
+        }
+      }
+    }
+
+    show(selector) {
+      this.stage.querySelector(selector)?.classList.remove("hidden");
+    }
+
+    hide(selector) {
+      this.stage.querySelector(selector)?.classList.add("hidden");
+    }
+
+    setText(selector, text) {
+      const el = this.stage.querySelector(selector);
+      if (el) el.textContent = text;
+    }
+
+    setHTML(selector, html) {
+      const el = this.stage.querySelector(selector);
+      if (el) el.innerHTML = html;
+    }
+
+    async switchPanel(panelSelector, urlText) {
+      ["#panel-visualcraft", "#panel-ai", "#panel-destination"].forEach(sel => {
+        const p = this.stage.querySelector(sel);
+        const match = sel === panelSelector;
+        if (p) {
+          p.style.opacity = match ? "1" : "0";
+          p.style.pointerEvents = match ? "auto" : "none";
+          p.style.transform = match ? "translateX(0)" : "translateX(8px)";
+        }
+      });
+      if (urlText) {
+        this.setText("#demo-urlbar", urlText);
+      }
+      await this._sleep(420);
+    }
+  }
+
+  const STEPS_FACTORY = {
+    blog: (runner) => {
+      setupPanels("blog");
+      return [
+        {
+          caption: "Choosing a visualization type",
+          run: async () => {
+            await runner.switchPanel("#panel-visualcraft", "visualcraft.app/generate");
+            await runner.moveTo('[data-vc="mindmap"]');
+            await runner.click('[data-vc="mindmap"]');
+            setVisualTypeSelected("mindmap");
+            await runner._sleep(400);
+          }
+        },
+        {
+          caption: "Picking a color palette",
+          run: async () => {
+            await runner.moveTo('#vc-palettes [data-pal="matcha-zen"]');
+            await runner.click('#vc-palettes [data-pal="matcha-zen"]');
+            setPaletteSelected("matcha-zen");
+            await runner._sleep(400);
+          }
+        },
+        {
+          caption: "Adding your content",
+          run: async () => {
+            await runner.moveTo("#vc-textarea");
+            await runner.click("#vc-textarea");
+            await runner.type("#vc-typed", "Content strategy: SEO, Social, Email, Paid, Brand", 26);
+            await runner._sleep(300);
+          }
+        },
+        {
+          caption: "Generating the prompt",
+          run: async () => {
+            await runner.moveTo("#vc-generate");
+            await runner.click("#vc-generate");
+            runner.show("#vc-prompt-out");
+            runner.setText("#vc-prompt-out", 'Create a professional central-node mindmap titled "Content Strategy" with five branches… Apply the Matcha Zen palette.');
+            runner.show("#vc-copy");
+            await runner._sleep(700);
+          }
+        },
+        {
+          caption: "Copying your prompt",
+          run: async () => {
+            await runner.moveTo("#vc-copy");
+            await runner.click("#vc-copy");
+            runner.setText("#vc-copy", "Copied ✓");
+            await runner._sleep(700);
+          }
+        },
+        {
+          caption: "Pasting into your AI tool",
+          run: async () => {
+            await runner.switchPanel("#panel-ai", "your-ai-tool.com");
+            await runner.moveTo("#ai-input");
+            await runner.click("#ai-input");
+            runner.setText("#ai-input", 'Create a professional central-node mindmap titled "Content Strategy"…');
+            runner.show("#ai-prompt-bubble");
+            runner.setText("#ai-prompt-bubble", "Create a professional central-node mindmap… Matcha Zen palette.");
+            await runner.moveTo("#ai-send");
+            await runner.click("#ai-send");
+            runner.show("#ai-thinking");
+            await runner._sleep(1100);
+          }
+        },
+        {
+          caption: "Your image appears",
+          run: async () => {
+            runner.hide("#ai-thinking");
+            runner.show("#ai-result");
+            runner.setHTML("#ai-result", miniVisualSVG("mindmap", "matcha-zen"));
+            runner.show("#ai-copyimg");
+            await runner._sleep(900);
+            await runner.moveTo("#ai-copyimg button");
+            await runner.click("#ai-copyimg button");
+            runner.setText("#ai-copyimg button", "Image copied ✓");
+            await runner._sleep(600);
+          }
+        },
+        {
+          caption: "Pasting into your blog",
+          run: async () => {
+            await runner.switchPanel("#panel-destination", "yourblog.com/wp-admin/post-new");
+            renderDestinationPanelHTML("blog");
+            await runner.moveTo("#dest-dropzone");
+            await runner.click("#dest-dropzone");
+            runner.setHTML("#dest-dropzone", miniVisualSVG("mindmap", "matcha-zen"));
+            runner.stage.querySelector("#dest-dropzone").classList.add("border-solid", "!border-ink-primary");
+            await runner._sleep(1200);
+          }
+        }
+      ];
+    },
+    social: (runner) => makeGenericSteps(runner, "social"),
+    docs: (runner) => makeGenericSteps(runner, "docs"),
+    presentation: (runner) => makeGenericSteps(runner, "presentation")
+  };
+
+  function makeGenericSteps(runner, key) {
+    const spec = SCENARIOS[key];
+    setupPanels(key);
+    return [
+      {
+        caption: "Choosing a visualization type",
+        run: async () => {
+          await runner.switchPanel("#panel-visualcraft", "visualcraft.app/generate");
+          await runner.moveTo(`[data-vc="${spec.vcType}"]`);
+          await runner.click(`[data-vc="${spec.vcType}"]`);
+          setVisualTypeSelected(spec.vcType);
+          await runner._sleep(400);
+        }
+      },
+      {
+        caption: "Picking a color palette",
+        run: async () => {
+          await runner.moveTo(`#vc-palettes [data-pal="${spec.palette}"]`);
+          await runner.click(`#vc-palettes [data-pal="${spec.palette}"]`);
+          setPaletteSelected(spec.palette);
+          await runner._sleep(400);
+        }
+      },
+      {
+        caption: "Adding your content",
+        run: async () => {
+          await runner.moveTo("#vc-textarea");
+          await runner.click("#vc-textarea");
+          await runner.type("#vc-typed", spec.content, 26);
+          await runner._sleep(300);
+        }
+      },
+      {
+        caption: "Generating the prompt",
+        run: async () => {
+          await runner.moveTo("#vc-generate");
+          await runner.click("#vc-generate");
+          runner.show("#vc-prompt-out");
+          runner.setText("#vc-prompt-out", spec.promptShort);
+          runner.show("#vc-copy");
+          await runner._sleep(700);
+        }
+      },
+      {
+        caption: "Copying your prompt",
+        run: async () => {
+          await runner.moveTo("#vc-copy");
+          await runner.click("#vc-copy");
+          runner.setText("#vc-copy", "Copied ✓");
+          await runner._sleep(700);
+        }
+      },
+      {
+        caption: "Pasting into your AI tool",
+        run: async () => {
+          await runner.switchPanel("#panel-ai", "your-ai-tool.com");
+          await runner.moveTo("#ai-input");
+          await runner.click("#ai-input");
+          runner.show("#ai-prompt-bubble");
+          runner.setText("#ai-prompt-bubble", spec.promptShort);
+          await runner.moveTo("#ai-send");
+          await runner.click("#ai-send");
+          runner.show("#ai-thinking");
+          await runner._sleep(1100);
+        }
+      },
+      {
+        caption: "Your image appears",
+        run: async () => {
+          runner.hide("#ai-thinking");
+          runner.show("#ai-result");
+          runner.setHTML("#ai-result", miniVisualSVG(spec.vcType, spec.palette));
+          runner.show("#ai-copyimg");
+          await runner._sleep(900);
+          await runner.moveTo("#ai-copyimg button");
+          await runner.click("#ai-copyimg button");
+          runner.setText("#ai-copyimg button", "Image copied ✓");
+          await runner._sleep(600);
+        }
+      },
+      {
+        caption: `Pasting into your ${spec.destTitle.toLowerCase()}`,
+        run: async () => {
+          await runner.switchPanel("#panel-destination", spec.destUrl);
+          renderDestinationPanelHTML(key);
+          await runner.moveTo("#dest-dropzone");
+          await runner.click("#dest-dropzone");
+          runner.setHTML("#dest-dropzone", miniVisualSVG(spec.vcType, spec.palette));
+          runner.stage.querySelector("#dest-dropzone").classList.add("border-solid", "!border-ink-primary");
+          await runner._sleep(1300);
+        }
+      }
+    ];
+  }
+
+  async function executeScenario(runner, scenarioName, progressUI) {
+    const list = STEPS_FACTORY[scenarioName](runner);
+    progressUI.setTotal(list.length);
+    try {
+      for (let i = 0; i < list.length; i++) {
+        if (runner.cancelled) return;
+        progressUI.setStep(i + 1, list[i].caption);
+        await list[i].run();
+      }
+      progressUI.markComplete();
+    } catch (e) {
+      if (e !== "cancelled") {
+        console.error(e);
+      }
+    }
+  }
+
+  const stage = document.getElementById("demo-stage");
+  let runnerInstance = null;
+  const order = ["blog", "social", "docs", "presentation"];
+  let currentIndex = 0;
+  let tabOverrideActive = false;
+
+  const progressUI = {
+    setTotal(total) {
+      const wrapper = document.getElementById("demo-progress");
+      if (wrapper) {
+        wrapper.innerHTML = "";
+        for (let i = 0; i < total; i++) {
+          const point = document.createElement("span");
+          point.className = "w-2.5 h-2.5 rounded-full bg-ink-primary/15 transition-all duration-300";
+          wrapper.appendChild(point);
+          if (i < total - 1) {
+            const bar = document.createElement("span");
+            bar.className = "w-4 h-0.5 bg-ink-primary/10";
+            wrapper.appendChild(bar);
+          }
+        }
+      }
+    },
+    setStep(stepNum, captionText) {
+      const wrapper = document.getElementById("demo-progress");
+      const stepEl = document.getElementById("demo-stepnum");
+      const captionEl = document.getElementById("demo-caption");
+      if (stepEl) {
+        stepEl.textContent = `Step ${stepNum} of 8`;
+      }
+      if (captionEl) {
+        captionEl.textContent = captionText;
+      }
+      if (wrapper) {
+        const points = wrapper.querySelectorAll("span:not(.w-4)");
+        const bars = wrapper.querySelectorAll("span.w-4");
+        points.forEach((pt, idx) => {
+          if (idx < stepNum) {
+            pt.className = "w-2.5 h-2.5 rounded-full bg-ink-primary transition-all duration-300";
+          } else {
+            pt.className = "w-2.5 h-2.5 rounded-full bg-ink-primary/15 transition-all duration-300";
+          }
+        });
+        bars.forEach((bar, idx) => {
+          if (idx < stepNum - 1) {
+            bar.className = "w-4 h-0.5 bg-ink-primary/40";
+          } else {
+            bar.className = "w-4 h-0.5 bg-ink-primary/10";
+          }
+        });
+      }
+    },
+    markComplete() {
+      const wrapper = document.getElementById("demo-progress");
+      if (wrapper) {
+        wrapper.querySelectorAll("span").forEach(s => {
+          if (s.classList.contains("w-2.5")) {
+            s.className = "w-2.5 h-2.5 rounded-full bg-accent-lavender transition-all duration-300";
+          }
+        });
+      }
+    }
+  };
+
+  function updateTabSelectedUI(scenario) {
+    document.querySelectorAll(".demo-tab").forEach(tab => {
+      const match = tab.getAttribute('data-scenario') === scenario;
+      tab.setAttribute("aria-selected", match ? "true" : "false");
+      if (match) {
+        tab.classList.add("active");
+      } else {
+        tab.classList.remove("active");
+      }
+    });
+  }
+
+  async function mainLoop() {
+    while (true) {
+      const scenario = order[currentIndex];
+      updateTabSelectedUI(scenario);
+      runnerInstance.cancelled = false;
+      await executeScenario(runnerInstance, scenario, progressUI);
+      if (tabOverrideActive) return;
+      await h(1400);
+      currentIndex = (currentIndex + 1) % order.length;
+    }
+  }
+
+  function renderStaticStoryboard() {
+    const sb = document.getElementById("static-storyboard");
+    const container = document.getElementById("demo-stage")?.parentElement;
+    const tabs = document.getElementById("demo-tabs")?.parentElement;
+    const progressBlock = document.getElementById("demo-progress")?.parentElement;
+
+    if (container) container.classList.add("hidden");
+    if (tabs) tabs.classList.add("hidden");
+    if (progressBlock) progressBlock.classList.add("hidden");
+    
+    if (sb) {
+      sb.classList.remove("hidden");
+      sb.innerHTML = `
+        <div class="card -rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
+          <div class="aspect-[4/3] rounded-card-sm bg-cream-darker border border-cream-darker flex items-center justify-center p-3 font-serif font-semibold text-lg text-ink-primary">
+            1. Pick type & colors
+          </div>
+          <p class="text-xs text-ink-secondary mt-3">Choose from 76 diagram structures and 42 custom-themed palettes inside VisualCraft.</p>
+        </div>
+        <div class="card rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
+          <div class="aspect-[4/3] rounded-card-sm bg-cream-darker border border-cream-darker flex items-center justify-center p-3 font-serif font-semibold text-lg text-ink-primary">
+            2. Generate prompt
+          </div>
+          <p class="text-xs text-ink-secondary mt-3">Input your list or concept text. VisualCraft generates an optimized layout prompt and copies it.</p>
+        </div>
+        <div class="card -rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
+          <div class="aspect-[4/3] rounded-card-sm overflow-hidden border border-cream-darker">
+            ${miniVisualSVG("mindmap", "matcha-zen")}
+          </div>
+          <p class="text-xs text-ink-secondary mt-3"><strong>3. Paste into AI</strong><br/>Drop prompt into Gemini, Claude, or ChatGPT to instantly generate the clean vector diagram image.</p>
+        </div>
+        <div class="card rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
+          <div class="aspect-[4/3] rounded-card-sm bg-cream-darker border border-cream-darker flex items-center justify-center p-3 font-serif font-semibold text-lg text-ink-primary">
+            4. Drop into document
+          </div>
+          <p class="text-xs text-ink-secondary mt-3">Copy image from generator and paste straight into slides, blog posts, papers, or layouts.</p>
+        </div>
+      `;
+    }
+  }
+
+  // Load visualizations and initialize scripts
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      // Dynamic import to avoid Astro SSR issues
+      const { PALETTES: loadedPalettes } = await import("../data/visualizations.js");
+      PALETTES = loadedPalettes;
+    } catch (err) {
+      console.warn("Failed to dynamically import visualizations.js, using fallback palettes", err);
+      PALETTES = [
+        { id: "matcha-zen", colors: ["#F4F9EE", "#CBE5B6", "#87A96B", "#5A7F3E", "#2D5520"] },
+        { id: "berry-pop", colors: ["#FFF0F5", "#FFC0CB", "#FF69B4", "#DA70D6", "#8A2BE2"] },
+        { id: "slate-gray", colors: ["#F5F5F5", "#E0E0E0", "#9E9E9E", "#616161", "#212121"] },
+        { id: "deep-sapphire", colors: ["#E1F5FE", "#81D4FA", "#29B6F6", "#0288D1", "#01579B"] }
+      ];
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      renderStaticStoryboard();
+    } else {
+      runnerInstance = new FlowRunner(stage);
+
+      document.getElementById("demo-tabs")?.addEventListener("click", evt => {
+        const tab = evt.target.closest(".demo-tab");
+        if (tab) {
+          tabOverrideActive = true;
+          runnerInstance.cancel();
+          currentIndex = order.indexOf(tab.dataset.scenario);
+          updateTabSelectedUI(tab.dataset.scenario);
+          setTimeout(async () => {
+            runnerInstance.cancelled = false;
+            await executeScenario(runnerInstance, tab.dataset.scenario, progressUI);
+          }, 380);
+        }
+      });
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (runnerInstance) {
+          runnerInstance.paused = !entry.isIntersecting;
+        }
+      }, { threshold: 0.35 });
+
+      if (stage) {
+        observer.observe(stage);
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (runnerInstance) {
+          if (document.hidden) {
+            runnerInstance.paused = true;
+          } else if (stage && document.hasFocus()) {
+            runnerInstance.paused = false;
+          }
+        }
+      });
+
+      document.getElementById("demo-pause")?.addEventListener("click", evt => {
+        if (!runnerInstance) return;
+        runnerInstance.paused = !runnerInstance.paused;
+        const btn = evt.currentTarget;
+        btn.textContent = runnerInstance.paused ? "▶ Play" : "⏸ Pause";
+      });
+
+      document.getElementById("demo-replay")?.addEventListener("click", () => {
+        if (runnerInstance) {
+          runnerInstance.cancel();
+          setTimeout(async () => {
+            if (runnerInstance) {
+              runnerInstance.cancelled = false;
+              await executeScenario(runnerInstance, order[currentIndex], progressUI);
+            }
+          }, 360);
+        }
+      });
+
+      mainLoop();
+    }
+  });
+</script>

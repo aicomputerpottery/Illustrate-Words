@@ -1,6 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    '-rotate-1',
+    'rotate-0',
+    'rotate-1',
+    'opacity-0',
+    'opacity-100',
+    'translate-y-4',
+    'translate-y-0',
+    'border-solid',
+    '!border-ink-primary',
+    'hidden'
+  ],
   theme: {
     extend: {
       colors: {
@@ -15,9 +27,9 @@ export default {
           darker: '#152019',
         },
         accent: {
-          lavender: '#5822F4',
-          'lavender-dark': '#4114C7',
-          'lavender-light': '#E5DFFF',
+          lavender: '#B5A5F0',
+          'lavender-dark': '#9683E8',
+          'lavender-light': '#D4CAFA',
           lime: '#D4E84A',
           'lime-dark': '#B8CC2C',
           pink: '#F4A8C9',
@@ -36,8 +48,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['Fraunces', 'Georgia', 'Times New Roman', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         display: ['clamp(3.5rem, 8vw, 6rem)', { lineHeight: '1.0', letterSpacing: '-0.02em' }],
@@ -54,14 +66,15 @@ export default {
         '1.5': '1.5px',
       },
       boxShadow: {
-        card: '0 2px 0 0 rgba(10, 10, 10, 0.08)',
-        'card-hover': '0 8px 24px rgba(10, 10, 10, 0.12)',
-        btn: '0 2px 0 0 rgba(10, 10, 10, 0.15)',
-        'btn-hover': '0 4px 0 0 rgba(10, 10, 10, 0.15)',
-        hard: '4px 4px 0 0 rgba(10, 10, 10, 1)',
-        'hard-lavender': '4px 4px 0 0 #5822F4',
-        'hard-lime': '4px 4px 0 0 #D4E84A',
-        'hard-pink': '4px 4px 0 0 #F4A8C9',
+        card: '0px 12px 32px rgba(10, 10, 10, 0.08)',
+        'card-hover': '0px 16px 40px rgba(10, 10, 10, 0.12)',
+        btn: '0px 2px 4px rgba(10, 10, 10, 0.08)',
+        'btn-hover': '0px 4px 8px rgba(10, 10, 10, 0.12)',
+        float: '0px 12px 32px rgba(10, 10, 10, 0.08)',
+        hard: '4px 4px 0 0 rgba(10,10,10,1)',
+        'hard-lavender': '4px 4px 0 0 #9683E8',
+        'hard-lime': '4px 4px 0 0 #B8CC2C',
+        'hard-pink': '4px 4px 0 0 #E988B5',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

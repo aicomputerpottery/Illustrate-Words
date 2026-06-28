@@ -618,6 +618,12 @@ export const CATEGORIES = [
   }
 ];
 
+// Attach per-type distinct icon SVGs from the icon system
+import { ICON_SVGS } from './iconSvgs.js';
+CATEGORIES.forEach(c => c.types.forEach(t => {
+  t.iconSvg = ICON_SVGS[t.id] || t.iconSvg;
+}));
+
 // ============================================================================
 // COLOR PALETTES - 25 curated combinations
 // ============================================================================
@@ -1210,173 +1216,276 @@ export const LAYOUT_MOODS = [
 // ============================================================================
 
 export const GALLERY_EXAMPLES = [
+  // ─── BLOG USE CASE ─────────────────────────────────────────────────────────
   {
-    id: "ex-swot-startup",
-    categoryId: "business",
-    typeId: "swot-analysis",
-    title: "Early-stage SaaS Startup SWOT",
-    excerpt: "A SWOT analysis for a B2B SaaS startup launching its first product, identifying their AI-first product differentiation as a key strength..."
-  },
-  {
-    id: "ex-mindmap-strategy",
+    id: "blog-content-mindmap",
     categoryId: "mindmap",
     typeId: "central-node-map",
-    title: "2025 Content Strategy Mindmap",
-    excerpt: "A radial mindmap with content strategy at the center and branches for blog, video, podcast, and social, each with their channel-specific sub-themes..."
+    paletteId: "sage-linen",
+    useCase: "blog",
+    title: "Content Strategy Mindmap",
+    description: "A radial mindmap with content strategy at the center and branches for blog, video, podcast, and social, each with their channel-specific sub-themes.",
+    promptExcerpt: "Create a professional central node mindmap visualization. The layout should feature a single prominent central topic...",
+    tags: ["strategy", "content", "SEO", "planning"]
   },
   {
-    id: "ex-funnel-marketing",
+    id: "blog-seo-funnel",
     categoryId: "process",
     typeId: "funnel-chart",
-    title: "Marketing Funnel for E-commerce",
-    excerpt: "A 5-stage marketing funnel showing visitors, leads, MQLs, opportunities, and customers with conversion rates between each stage..."
+    paletteId: "tangerine-dream",
+    useCase: "blog",
+    title: "SEO Traffic Conversion Funnel",
+    description: "A 5-stage funnel showing visitor drop-off from initial search click to newsletter signup and eventual product purchase.",
+    promptExcerpt: "Create a funnel chart visualization showing stages that progressively narrow from top to bottom. Draw the funnel...",
+    tags: ["SEO", "conversion", "marketing", "traffic"]
   },
   {
-    id: "ex-timeline-product",
-    categoryId: "timelines",
-    typeId: "horizontal-timeline",
-    title: "Product Launch Timeline 2025",
-    excerpt: "A horizontal timeline showing key product launch milestones from concept through MVP to public launch and post-launch iterations..."
-  },
-  {
-    id: "ex-pros-cons-remote",
-    categoryId: "comparison",
-    typeId: "pros-cons-list",
-    title: "Remote vs Office Work Pros and Cons",
-    excerpt: "A balanced two-column visualization weighing the advantages and disadvantages of remote work versus traditional office work for knowledge teams..."
-  },
-  {
-    id: "ex-iceberg-org",
-    categoryId: "metaphors",
-    typeId: "iceberg-model",
-    title: "Organizational Culture Iceberg",
-    excerpt: "An iceberg showing visible cultural elements (dress code, rituals, communication) above the water and hidden cultural elements (beliefs, assumptions, values) below..."
-  },
-  {
-    id: "ex-bar-revenue",
-    categoryId: "data",
-    typeId: "bar-chart",
-    title: "Quarterly Revenue Bar Chart",
-    excerpt: "A vertical bar chart showing revenue across four quarters with each bar labeled with its value and the highest quarter highlighted..."
-  },
-  {
-    id: "ex-pestel-retail",
-    categoryId: "business",
-    typeId: "pestel-analysis",
-    title: "Retail Industry PESTEL Analysis",
-    excerpt: "A comprehensive PESTEL analysis of the retail industry covering political, economic, social, technological, environmental, and legal factors..."
-  },
-  {
-    id: "ex-fishbone-defect",
-    categoryId: "problems",
-    typeId: "fishbone-diagram",
-    title: "Product Quality Defect Analysis",
-    excerpt: "A fishbone diagram analyzing the root causes of a recurring product quality defect, with branches for people, process, equipment, materials, and environment..."
-  },
-  {
-    id: "ex-flywheel-growth",
-    categoryId: "metaphors",
-    typeId: "flywheel",
-    title: "B2B SaaS Growth Flywheel",
-    excerpt: "A growth flywheel showing how content attracts visitors, free tools convert leads, product delight drives retention, and referrals start the cycle again..."
-  },
-  {
-    id: "ex-radar-skills",
-    categoryId: "comparison",
-    typeId: "radar-chart",
-    title: "Engineering Skills Self-Assessment",
-    excerpt: "A radar chart showing self-assessed scores across 7 engineering competencies, with comparison polygons for current vs target proficiency levels..."
-  },
-  {
-    id: "ex-gantt-product",
-    categoryId: "timelines",
-    typeId: "gantt-chart",
-    title: "Q1 Product Development Gantt",
-    excerpt: "A Gantt chart showing all Q1 product development tasks with dependencies, status indicators, and the critical path highlighted..."
-  },
-  {
-    id: "ex-business-canvas",
-    categoryId: "business",
-    typeId: "business-model-canvas",
-    title: "Subscription Box Business Model",
-    excerpt: "A complete Business Model Canvas for a curated subscription box service covering all 9 building blocks with concrete examples..."
-  },
-  {
-    id: "ex-journey-onboarding",
-    categoryId: "process",
-    typeId: "user-journey-map",
-    title: "SaaS Onboarding User Journey",
-    excerpt: "A user journey map tracing a new SaaS user from signup through first value moment, including emotional curve, touchpoints, and pain points..."
-  },
-  {
-    id: "ex-quadrant-priorities",
-    categoryId: "comparison",
-    typeId: "quadrant-chart",
-    title: "Eisenhower Priority Matrix",
-    excerpt: "An Eisenhower-style quadrant chart placing weekly tasks on urgency vs importance axes, with action recommendations for each quadrant..."
-  },
-  {
-    id: "ex-bridge-transformation",
-    categoryId: "metaphors",
-    typeId: "bridge-diagram",
-    title: "Digital Transformation Bridge",
-    excerpt: "A bridge diagram showing the current legacy state on the left, the digital-first future state on the right, and key initiatives as the bridge supports..."
-  },
-  {
-    id: "ex-okr-quarterly",
-    categoryId: "business",
-    typeId: "okr-framework",
-    title: "Q3 Engineering OKRs",
-    excerpt: "An OKR cascade showing one engineering objective and four key results with target metrics and current progress percentages..."
-  },
-  {
-    id: "ex-tree-decision",
-    categoryId: "hierarchy",
-    typeId: "decision-tree",
-    title: "Hiring Decision Tree",
-    excerpt: "A decision tree guiding hiring managers through resume screening with branching questions about experience, skills, and culture fit..."
-  },
-  {
-    id: "ex-roadmap-2025",
-    categoryId: "timelines",
-    typeId: "roadmap",
-    title: "2025 Product Roadmap",
-    excerpt: "A quarterly roadmap with separate lanes for engineering, product, and marketing initiatives across all four quarters of 2025..."
-  },
-  {
-    id: "ex-pyramid-maslow",
-    categoryId: "metaphors",
-    typeId: "pyramid-diagram",
-    title: "Modern Maslow's Hierarchy",
-    excerpt: "A pyramid showing the classic five levels of Maslow's hierarchy of needs from physiological at the base to self-actualization at the peak..."
-  },
-  {
-    id: "ex-affinity-research",
+    id: "blog-topic-cluster",
     categoryId: "brainstorming",
     typeId: "affinity-diagram",
-    title: "User Research Affinity Diagram",
-    excerpt: "An affinity diagram clustering 30+ user interview insights into 6 emergent themes about onboarding pain points and feature requests..."
+    paletteId: "nordic-pine",
+    useCase: "blog",
+    title: "Topic Cluster Brainstorm",
+    description: "An affinity diagram grouping related search keywords and post ideas into core content clusters for search engine optimization.",
+    promptExcerpt: "Create a professional affinity diagram visualization. Organize brainstorming items into clear thematic groups or clusters...",
+    tags: ["SEO", "brainstorming", "ideas", "planning"]
   },
   {
-    id: "ex-org-startup",
+    id: "blog-writing-process",
+    categoryId: "process",
+    typeId: "linear-flowchart",
+    paletteId: "silver-mercury",
+    useCase: "blog",
+    title: "Editorial Writing Workflow",
+    description: "A step-by-step linear flowchart outlining the blogging process from outline to draft, peer review, SEO optimization, and publishing.",
+    promptExcerpt: "Create a professional linear flowchart visualization with clear sequential steps. Lay out the process...",
+    tags: ["workflow", "writing", "editing", "publishing"]
+  },
+  {
+    id: "blog-reader-journey",
+    categoryId: "process",
+    typeId: "user-journey-map",
+    paletteId: "cerise-bloom",
+    useCase: "blog",
+    title: "Subscriber Reader Journey",
+    description: "A user journey map tracing a new reader from discovery via search, to reading, subscribing, and finally recommending the blog.",
+    promptExcerpt: "Create a horizontal user journey map showing a user's experience across multiple stages. Lay out the journey...",
+    tags: ["reader", "journey", "experience", "UX"]
+  },
+  {
+    id: "blog-content-calendar",
+    categoryId: "timelines",
+    typeId: "horizontal-timeline",
+    paletteId: "vivid-lagoon",
+    useCase: "blog",
+    title: "Quarterly Content Calendar",
+    description: "A horizontal timeline showing the scheduling of major cornerstone content releases and campaigns across the quarter.",
+    promptExcerpt: "Create a professional horizontal timeline visualization. The layout should feature a horizontal time axis...",
+    tags: ["schedule", "calendar", "timeline", "releases"]
+  },
+
+  // ─── PRESENTATION USE CASE ─────────────────────────────────────────────────
+  {
+    id: "pres-company-overview",
+    categoryId: "business",
+    typeId: "business-model-canvas",
+    paletteId: "mocha-noir",
+    useCase: "presentation",
+    title: "Company Business Model",
+    description: "A complete Business Model Canvas for an overview slide, detailing partners, activities, resources, and customer channels.",
+    promptExcerpt: "Create a professional Business Model Canvas visualization. The layout must be structured as the standard nine-box...",
+    tags: ["business", "canvas", "overview", "strategy"]
+  },
+  {
+    id: "pres-project-roadmap",
+    categoryId: "timelines",
+    typeId: "roadmap",
+    paletteId: "nordic-pine",
+    useCase: "presentation",
+    title: "Q3 Project Delivery Roadmap",
+    description: "A high-level project roadmap showing milestones and deliverables grouped by engineering, product, and marketing streams.",
+    promptExcerpt: "Create a professional roadmap visualization. Organize initiatives into parallel horizontal tracks or lanes...",
+    tags: ["project", "roadmap", "timeline", "milestones"]
+  },
+  {
+    id: "pres-swot-analysis",
+    categoryId: "business",
+    typeId: "swot-analysis",
+    paletteId: "sage-linen",
+    useCase: "presentation",
+    title: "SaaS Market SWOT Analysis",
+    description: "A SWOT matrix slide analyzing the internal strengths/weaknesses and external opportunities/threats of a B2B SaaS product.",
+    promptExcerpt: "Create a professional SWOT analysis matrix visualization. The layout must feature a clean 2x2 grid representing...",
+    tags: ["SWOT", "analysis", "market", "competitors"]
+  },
+  {
+    id: "pres-sales-funnel",
+    categoryId: "process",
+    typeId: "funnel-chart",
+    paletteId: "tangerine-dream",
+    useCase: "presentation",
+    title: "Enterprise Sales Pipeline",
+    description: "A visual funnel representing sales stages from initial lead qualification to proposal, negotiation, and closed‑won deals.",
+    promptExcerpt: "Create a funnel chart visualization showing stages that progressively narrow from top to bottom. Draw the funnel...",
+    tags: ["sales", "pipeline", "funnel", "conversion"]
+  },
+  {
+    id: "pres-okr-framework",
+    categoryId: "business",
+    typeId: "okr-framework",
+    paletteId: "vivid-lagoon",
+    useCase: "presentation",
+    title: "Product Team OKRs",
+    description: "A clear cascade displaying the key product objective and its four supporting key results with target percentage metrics.",
+    promptExcerpt: "Create a professional OKR (Objectives and Key Results) framework visualization. The structure should cascade...",
+    tags: ["OKRs", "framework", "goals", "performance"]
+  },
+  {
+    id: "pres-market-comparison",
+    categoryId: "comparison",
+    typeId: "radar-chart",
+    paletteId: "cerise-bloom",
+    useCase: "presentation",
+    title: "Competitive Landscape Radar",
+    description: "A radar chart comparing product features and market presence against major competitors across 6 axis dimensions.",
+    promptExcerpt: "Create a professional radar (spider) chart visualization. The layout should feature a central point with multiple...",
+    tags: ["competitors", "comparison", "radar", "market"]
+  },
+
+  // ─── SOCIAL USE CASE ───────────────────────────────────────────────────────
+  {
+    id: "social-infographic-stats",
+    categoryId: "data",
+    typeId: "bar-chart",
+    paletteId: "tangerine-dream",
+    useCase: "social",
+    title: "Industry Stats Infographic",
+    description: "A vertical bar chart comparison optimized for social feeds, showing year-over-year growth in market adoption.",
+    promptExcerpt: "Create a professional vertical bar chart comparing values across multiple categories. Position bars along...",
+    tags: ["stats", "infographic", "growth", "data"]
+  },
+  {
+    id: "social-before-after",
+    categoryId: "comparison",
+    typeId: "pros-cons-list",
+    paletteId: "silver-mercury",
+    useCase: "social",
+    title: "Workflow Before & After",
+    description: "A clean two-column comparison list showing the chaotic 'Before' state versus the streamlined 'After' state with VisualCraft.",
+    promptExcerpt: "Create a professional two-column comparison list (pros/cons format). The layout should feature two vertical columns...",
+    tags: ["comparison", "before-after", "workflow", "benefits"]
+  },
+  {
+    id: "social-tips-list",
+    categoryId: "process",
+    typeId: "linear-flowchart",
+    paletteId: "cerise-bloom",
+    useCase: "social",
+    title: "5 Launch Tips Flowchart",
+    description: "A scroll-stopping infographic showing 5 key tips for a successful product launch connected as a sequential flowchart.",
+    promptExcerpt: "Create a professional linear flowchart visualization with clear sequential steps. Lay out the process...",
+    tags: ["tips", "infographic", "launch", "marketing"]
+  },
+  {
+    id: "social-process-steps",
+    categoryId: "process",
+    typeId: "circular-process",
+    paletteId: "nordic-pine",
+    useCase: "social",
+    title: "Continuous Feedback Loop",
+    description: "A circular process diagram showing the continuous cycle of listening, analyzing, implementing, and verifying user feedback.",
+    promptExcerpt: "Create a circular process diagram showing a cyclical workflow where steps loop back to the beginning. Arrange...",
+    tags: ["loop", "feedback", "process", "cycle"]
+  },
+  {
+    id: "social-comparison-chart",
+    categoryId: "comparison",
+    typeId: "quadrant-chart",
+    paletteId: "vivid-lagoon",
+    useCase: "social",
+    title: "Product Positioning Matrix",
+    description: "A quadrant chart mapping competitor features along the axes of ease-of-use and flexibility to highlight market gaps.",
+    promptExcerpt: "Create a professional quadrant chart matrix visualization. The layout should feature two perpendicular axis lines...",
+    tags: ["matrix", "quadrant", "positioning", "competitors"]
+  },
+  {
+    id: "social-quote-visual",
+    categoryId: "metaphors",
+    typeId: "pyramid-diagram",
+    paletteId: "mocha-noir",
+    useCase: "social",
+    title: "Value Hierarchy Pyramid",
+    description: "A beautiful pyramid graphic illustrating layers of customer value, from functional utility at the base to emotional resonance.",
+    promptExcerpt: "Create a professional pyramid diagram visualization. The layout should feature a triangular pyramid shape divided...",
+    tags: ["hierarchy", "value", "pyramid", "brand"]
+  },
+
+  // ─── DOCS USE CASE ─────────────────────────────────────────────────────────
+  {
+    id: "docs-org-chart",
     categoryId: "parts",
     typeId: "org-chart",
-    title: "Series A Startup Org Chart",
-    excerpt: "An organizational chart for a 25-person Series A startup showing CEO, leadership team, and individual contributors with department color coding..."
+    paletteId: "silver-mercury",
+    useCase: "docs",
+    title: "Engineering Team Org Chart",
+    description: "An organizational chart mapping leadership roles, managers, and individual contributors within a scaling product team.",
+    promptExcerpt: "Create a professional organizational chart (org chart). The structure should show a clear reporting hierarchy...",
+    tags: ["team", "org", "roles", "reporting"]
   },
   {
-    id: "ex-causal-loop",
+    id: "docs-project-plan",
+    categoryId: "timelines",
+    typeId: "gantt-chart",
+    paletteId: "nordic-pine",
+    useCase: "docs",
+    title: "Q4 Launch Gantt Chart",
+    description: "A detailed Gantt chart showing dependencies, durations, and key review milestones for an upcoming feature launch.",
+    promptExcerpt: "Create a Gantt chart showing all project development tasks with dependencies, status indicators...",
+    tags: ["project", "gantt", "timeline", "tasks"]
+  },
+  {
+    id: "docs-research-breakdown",
+    categoryId: "business",
+    typeId: "pestel-analysis",
+    paletteId: "sage-linen",
+    useCase: "docs",
+    title: "Industry Macro Environment PESTEL",
+    description: "A macro-environmental PESTEL analysis examining political, economic, social, and technological influences on industry research.",
+    promptExcerpt: "Create a comprehensive PESTEL analysis of the industry covering political, economic, social, technological...",
+    tags: ["PESTEL", "analysis", "macro", "research"]
+  },
+  {
+    id: "docs-decision-tree",
+    categoryId: "hierarchy",
+    typeId: "decision-tree",
+    paletteId: "vivid-lagoon",
+    useCase: "docs",
+    title: "Strategic Investment Decision Tree",
+    description: "A branching decision tree to guide project stakeholders through financial investment decisions based on probability outcomes.",
+    promptExcerpt: "Create a decision tree guiding stakeholders through a series of branching choices and potential outcomes...",
+    tags: ["decision", "tree", "investment", "risk"]
+  },
+  {
+    id: "docs-risk-matrix",
+    categoryId: "business",
+    typeId: "risk-matrix",
+    paletteId: "tangerine-dream",
+    useCase: "docs",
+    title: "Project Risk Severity Matrix",
+    description: "A 5x5 risk assessment matrix plotting potential project risks by likelihood and impact severity levels.",
+    promptExcerpt: "Create a professional risk assessment matrix. The layout should feature a grid with likelihood on the vertical...",
+    tags: ["risk", "matrix", "assessment", "severity"]
+  },
+  {
+    id: "docs-logic-model",
     categoryId: "cause",
     typeId: "causal-loop-diagram",
-    title: "Customer Acquisition Causal Loop",
-    excerpt: "A causal loop diagram showing reinforcing loops between product quality, customer satisfaction, referrals, and acquisition with feedback effects..."
-  },
-  {
-    id: "ex-story-arc-pitch",
-    categoryId: "narrative",
-    typeId: "story-arc",
-    title: "Investor Pitch Story Arc",
-    excerpt: "A story arc visualization mapping a 10-minute investor pitch with rising tension through problem reveal, climactic solution demo, and resolution..."
+    paletteId: "mocha-noir",
+    useCase: "docs",
+    title: "Causal Growth Loop Model",
+    description: "A causal loop diagram illustrating the positive reinforcing feedback loop between product quality, user acquisition, and revenue.",
+    promptExcerpt: "Create a causal loop diagram showing reinforcing loops between key business metrics and feedback effects...",
+    tags: ["logic", "model", "causal", "feedback"]
   }
 ];
 
