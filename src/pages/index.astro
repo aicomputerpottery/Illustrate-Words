@@ -406,66 +406,73 @@ const steps = [
       </div>
 
       <!-- Comparison table -->
-      <div class="mt-16 max-w-4xl mx-auto">
+      <div class="mt-16 max-w-4xl mx-auto bg-cream border-2 border-ink-primary rounded-3xl shadow-hard overflow-hidden">
 
-        <!-- Header row -->
-        <div class="grid grid-cols-12 gap-4 pb-4 border-b border-ink-primary/10">
-          <div class="col-span-6"></div>
+        <!-- Header row (Dark Forest Theme) -->
+        <div class="grid grid-cols-12 gap-4 py-6 px-8 bg-forest text-cream-lightest items-center border-b-2 border-ink-primary">
+          <div class="col-span-6 font-serif text-lg font-medium">Feature comparison</div>
           <div class="col-span-3 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-lavender text-cream-lightest rounded-full border-1.5 border-ink-primary font-serif font-medium shadow-[2px_2px_0_0_rgba(10,10,10,1)]">
-              <span class="w-2 h-2 rounded-full bg-accent-lime"></span>
+            <div class="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-lavender text-white rounded-full border border-white/20 font-sans text-sm font-semibold shadow-[0_2px_8px_rgba(72,36,222,0.3)]">
+              <span class="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></span>
               Illustrate Words
             </div>
           </div>
           <div class="col-span-3 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-cream-lightest text-ink-secondary rounded-full border border-ink-primary/10 font-medium">
+            <div class="inline-flex items-center gap-1.5 px-4 py-2 bg-white/10 text-cream-lightest/80 rounded-full border border-white/10 font-sans text-sm font-medium">
               Napkin AI
             </div>
           </div>
         </div>
 
         <!-- Comparison rows -->
-        {comparison.map((row, idx) => (
-          <div class:list={[
-            'grid grid-cols-12 gap-4 py-5 items-center',
-            idx < comparison.length - 1 ? 'border-b border-ink-primary/10' : ''
-          ]}>
-            <div class="col-span-6 font-medium text-ink-primary">
-              {row.feature}
-            </div>
-            <div class="col-span-3 text-center flex justify-center">
-              {row.us ? (
-                <span class="inline-flex items-center justify-center w-8 h-8 bg-accent-lavender text-cream-lightest rounded-full shadow-card-soft">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-              ) : (
-                <span class="inline-flex items-center justify-center w-8 h-8 bg-cream/30 text-ink-tertiary rounded-full">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </span>
-              )}
-            </div>
-            <div class="col-span-3 text-center flex justify-center">
-              {row.them ? (
-                <span class="inline-flex items-center justify-center w-8 h-8 bg-cream-lightest text-ink-primary rounded-full border border-ink-primary/10 shadow-card-soft">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-              ) : (
-                <span class="inline-flex items-center justify-center w-8 h-8 bg-cream/10 text-ink-tertiary rounded-full">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </span>
-              )}
-            </div>
-          </div>
-        ))}
+        <div class="divide-y divide-ink-primary/10">
+          {comparison.map((row, idx) => (
+            <div class:list={[
+              'grid grid-cols-12 gap-4 py-5 px-8 items-center hover:bg-cream-darker/35 transition-colors duration-150',
+              idx % 2 === 0 ? 'bg-cream-lightest/50' : 'bg-cream'
+            ]}>
+              <!-- Feature Name -->
+              <div class="col-span-6 font-medium text-ink-primary flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-ink-primary/30"></span>
+                {row.feature}
+              </div>
+              
+              <!-- Illustrate Words Column (Highlight Column) -->
+              <div class="col-span-3 text-center flex justify-center py-1 bg-accent-lavender/5 rounded-xl border border-accent-lavender/10">
+                {row.us ? (
+                  <span class="inline-flex items-center justify-center w-8 h-8 bg-accent-lavender text-white rounded-full shadow-[0_2px_6px_rgba(72,36,222,0.3)]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="inline-flex items-center justify-center w-8 h-8 bg-ink-primary/10 text-ink-quaternary rounded-full">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </div>
 
+              <!-- Napkin AI Column -->
+              <div class="col-span-3 text-center flex justify-center">
+                {row.them ? (
+                  <span class="inline-flex items-center justify-center w-8 h-8 bg-white text-ink-primary rounded-full border border-ink-primary/20 shadow-sm">
+                    <svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="inline-flex items-center justify-center w-8 h-8 bg-ink-primary/5 text-ink-quaternary rounded-full">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>
