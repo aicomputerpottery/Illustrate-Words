@@ -32,10 +32,10 @@ export default {
           ink:     '#0A0F0C',    // shadow, border on dark
         },
         accent: {
-          lavender: '#9B86F5',          // PRIMARY accent — more saturated
-          'lavender-light': '#C8BDFF',  // light tint for icon backgrounds
-          'lavender-dark':  '#7560DC',  // darker for hover
-          'lavender-deep':  '#5040C0',  // deepest, for active states, underlines
+          lavender: '#4824DE',          // PRIMARY accent — more saturated
+          'lavender-light': '#DED6FF',  // light tint for icon backgrounds
+          'lavender-dark':  '#3515D4',  // darker for hover
+          'lavender-deep':  '#2003AB',  // deepest, for active states, underlines
           lime:      '#C8DC2E',
           'lime-dark': '#A8BB1A',
           'lime-light': '#E0EE6A',

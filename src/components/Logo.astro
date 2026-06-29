@@ -10,5 +10,9 @@ const wordColor = variant === "dark" ? "#F4EFE2" : "#0A0A0A";
     <rect x="8"  y="31" width="10" height="10" rx="2.5" stroke={stroke} stroke-width="2"/>
     <rect x="30" y="31" width="10" height="10" rx="2.5" stroke={stroke} stroke-width="2"/>
   </svg>
-  {withWordmark && <span class="font-serif text-2xl font-black tracking-tight leading-none" style={`color:${wordColor}`}>Illustrate Words</span>}
+  {withWordmark && (
+    <span class="font-sans text-xl sm:text-2xl font-light tracking-tight leading-none" style={`color:${wordColor}`}>
+      Illustrate <span class="font-semibold">Words</span>
+    </span>
+  )}
 </span>

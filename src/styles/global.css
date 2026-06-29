@@ -188,15 +188,15 @@
   }
   .btn-accent {
     @apply btn;
-    background-color: #9B86F5;
+    background-color: #4824DE;
     color: #FFFFFF;
-    border: 1.5px solid #7560DC;
+    border: 1.5px solid #3213C4;
   }
   .btn-accent:hover {
-    background-color: #7560DC;
-    border-color: #5040C0;
+    background-color: #3515D4;
+    border-color: #2003AB;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(155, 134, 245, 0.40);
+    box-shadow: 0 4px 12px rgba(72, 36, 222, 0.35);
   }
   .btn-ghost {
     @apply btn;
@@ -520,7 +520,7 @@
 }
 .marquee-card-label { font: 600 12px/1.2 Figtree, sans-serif; color: #0A0A0A; }
 .marquee-card-go {
-  font: 700 11px Figtree, sans-serif; color: #9B86F5;
+  font: 700 11px Figtree, sans-serif; color: #4824DE;
   opacity: 0; transform: translateX(-4px); transition: all 200ms ease;
 }
 .marquee-card:hover .marquee-card-go { opacity: 1; transform: translateX(0); }
@@ -554,8 +554,8 @@
   width: 12px; height: 12px;
   margin-top: -6px; margin-left: -6px;
   border-radius: 9999px;
-  background: var(--vc-forest, #9B86F5);
-  box-shadow: 0 0 0 4px rgba(155,134,245,.15), 0 0 10px rgba(155,134,245,.4);
+  background: var(--vc-forest, #4824DE);
+  box-shadow: 0 0 0 4px rgba(72,36,222,.15), 0 0 10px rgba(72,36,222,.4);
   animation: stepflow-run 4.2s cubic-bezier(.65,0,.35,1) infinite;
 }
 @keyframes stepflow-run {
@@ -592,9 +592,9 @@
 
 .stepflow-stop.is-active .stepflow-node {
   background-color: #FDFBF5;
-  border-color: #9B86F5;
+  border-color: #4824DE;
   transform: translateY(-2px) scale(1.06);
-  box-shadow: 0px 4px 12px rgba(155, 134, 245, 0.15);
+  box-shadow: 0px 4px 12px rgba(72, 36, 222, 0.15);
 }
 
 .stepflow:hover .stepflow-token { animation-play-state: paused; }
@@ -630,13 +630,13 @@
   background: rgba(245, 239, 224, 0.15);
 }
 .stepflow.stepflow-dark .stepflow-token {
-  background: #9B86F5;
-  box-shadow: 0 0 0 4px rgba(155, 134, 245, 0.15), 0 0 10px rgba(155, 134, 245, 0.4);
+  background: #4824DE;
+  box-shadow: 0 0 0 4px rgba(72, 36, 222, 0.15), 0 0 10px rgba(72, 36, 222, 0.4);
 }
 .stepflow.stepflow-dark .stepflow-stop.is-active .stepflow-node {
   background-color: #1A2820;
-  border-color: #9B86F5;
-  box-shadow: 0px 4px 12px rgba(155, 134, 245, 0.15);
+  border-color: #4824DE;
+  box-shadow: 0px 4px 12px rgba(72, 36, 222, 0.15);
 }
 
 /* Card Update styles */
@@ -661,9 +661,9 @@
   border-color: rgba(10, 10, 10, 0.3);
 }
 .type-card.selected .type-card-art {
-  background: rgba(155, 134, 245, 0.1);
-  border-color: #9B86F5;
-  box-shadow: 0px 4px 12px rgba(155, 134, 245, 0.15);
+  background: rgba(72, 36, 222, 0.08);
+  border-color: #4824DE;
+  box-shadow: 0px 4px 12px rgba(72, 36, 222, 0.15);
 }
 .type-card.selected {
   transform: translateY(-2px);
