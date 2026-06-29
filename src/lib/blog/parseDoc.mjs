@@ -96,35 +96,50 @@ function parseBlock(block) {
   if (!meta.TITLE) {
     const firstLineIdx = bodyLines.findIndex(l => l.length > 0 && !l.startsWith('__'));
     if (firstLineIdx !== -1) {
-      meta.TITLE = bodyLines[firstLineIdx].replace(/^#\s*/, '');
+      meta.TITLE = cleanMarkdown(bodyLines[firstLineIdx].replace(/^#\s*/, ''));
       bodyLines = bodyLines.slice(firstLineIdx + 1);
     } else {
       meta.TITLE = "Untitled Post";
     }
+  } else {
+    meta.TITLE = cleanMarkdown(meta.TITLE);
   }
 
   if (!meta.SLUG) {
     meta.SLUG = slugify(meta.TITLE);
+  } else {
+    meta.SLUG = slugify(cleanMarkdown(meta.SLUG));
   }
 
-  if (!meta.DATE) {
+  if (meta.DATE) {
+    let cleanDateStr = cleanMarkdown(meta.DATE);
+    let parsedDate = new Date(cleanDateStr);
+    if (isNaN(parsedDate.getTime())) {
+      parsedDate = new Date();
+    }
+    meta.DATE = parsedDate.toISOString().split('T')[0];
+  } else {
     meta.DATE = new Date().toISOString().split('T')[0];
   }
 
   if (!meta.CATEGORY) {
     meta.CATEGORY = "Design";
+  } else {
+    meta.CATEGORY = cleanMarkdown(meta.CATEGORY);
   }
 
   if (!meta.EXCERPT) {
     if (meta.META_DESCRIPTION) {
-      meta.EXCERPT = meta.META_DESCRIPTION;
+      meta.EXCERPT = cleanMarkdown(meta.META_DESCRIPTION);
     } else {
       const firstPara = bodyLines.find(l => l.length > 0 && !l.startsWith('#')) || "";
-      meta.EXCERPT = firstPara.substring(0, 150) + (firstPara.length > 150 ? "..." : "");
+      meta.EXCERPT = cleanMarkdown(firstPara).substring(0, 150) + (firstPara.length > 150 ? "..." : "");
     }
+  } else {
+    meta.EXCERPT = cleanMarkdown(meta.EXCERPT);
   }
 
-  const heroImage = meta.HERO_IMAGE || `/images/blog/${meta.SLUG}.png`;
+  const heroImage = meta.HERO_IMAGE ? cleanMarkdown(meta.HERO_IMAGE) : `/images/blog/${meta.SLUG}.png`;
 
   // Parse body
   const { html, headings, inlineVizSlots, hasStick } = parseBody(bodyLines);
@@ -264,4 +279,12 @@ function parseVizField(raw) {
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function cleanMarkdown(text) {
+  if (!text) return '';
+  return text
+    .replace(/[\*\#\_\`\~]/g, '')
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+    .trim();
 }
