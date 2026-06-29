@@ -21,7 +21,7 @@ if (!process.env.BLOG_DOC_ID && fs.existsSync('.env')) {
 // Share your Google Doc as "Anyone with the link can view", then paste the Doc ID here.
 // Doc URL looks like: docs.google.com/document/d/DOC_ID_HERE/edit
 // The export URL format below fetches the doc as plain text.
-const DOC_ID = process.env.BLOG_DOC_ID || '1doBykoO30rl2Gsbh33YXu9JS784YC-6Lxzrv73OACgM';
+const DOC_ID = process.env.BLOG_DOC_ID || '1IfOuPBs-OlVBwxyq2KW4WKS2amiUa5nzZKjAeiix9eg';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const EXPORT_URL = `https://docs.google.com/document/d/${DOC_ID}/export?format=txt`;

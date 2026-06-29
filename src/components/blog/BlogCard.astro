@@ -2,7 +2,7 @@
 import BlogHeroViz from './BlogHeroViz.astro';
 
 const { post, featured = false } = Astro.props;
-const { slug, title, date, category, excerpt, readingTime, heroViz } = post;
+const { slug, title, date, category, excerpt, readingTime, heroViz, heroImage } = post;
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'short', day: 'numeric'
@@ -30,8 +30,16 @@ const pillClass = catColor[category.toLowerCase()] || 'pill-cream';
   data-category={category.toLowerCase()}
 >
   <!-- Hero viz thumbnail -->
-  <div class="aspect-[16/9] bg-forest overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5">
-    <BlogHeroViz config={heroViz} thumbnail={true} />
+  <div class="aspect-[16/9] bg-forest overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5 flex justify-center items-center">
+    {heroImage ? (
+      <img
+        src={heroImage}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+    ) : (
+      <BlogHeroViz config={heroViz} thumbnail={true} />
+    )}
   </div>
 
   <div class="flex items-center gap-2 mb-3">

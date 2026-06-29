@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 const { post, all } = Astro.props;
-const { title, date, category, tags, excerpt, readingTime, heroViz, stickFigure, inlineVizDefs, html, headings } = post;
+const { title, date, category, tags, excerpt, readingTime, heroViz, heroImage, stickFigure, inlineVizDefs, html, headings } = post;
 
 // Build related posts (same category, exclude current)
 const related = all.filter(p => p.category === category && p.slug !== post.slug).slice(0, 3);
@@ -44,8 +44,16 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   <ReadingProgress />
 
   <!-- ─── HERO VIZ (full-width) ─── -->
-  <div class="w-full bg-forest overflow-hidden relative" style="height: min(55vw, 480px)">
-    <BlogHeroViz config={heroViz} thumbnail={false} />
+  <div class="w-full bg-forest overflow-hidden relative flex justify-center items-center" style="height: min(55vw, 480px)">
+    {heroImage ? (
+      <img
+        src={heroImage}
+        alt={title}
+        class="w-full h-full object-cover"
+      />
+    ) : (
+      <BlogHeroViz config={heroViz} thumbnail={false} />
+    )}
   </div>
 
   <!-- ─── POST HEADER ─── -->

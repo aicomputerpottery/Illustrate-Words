@@ -18,38 +18,74 @@ export function parseDoc(raw) {
 }
 
 function parseBlock(block) {
-  const lines = block.split('\n');
+  const lines = block.split('\n').map(l => l.trim());
+  
+  // Skip leading empty lines and separator lines (e.g. lines of only underscores or dashes)
+  let startIdx = 0;
+  while (startIdx < lines.length && (lines[startIdx] === '' || /^[_\-\s\uFEFF\u200B]+$/.test(lines[startIdx]))) {
+    startIdx++;
+  }
+  const activeLines = lines.slice(startIdx);
+
   const meta = {};
-  let bodyStart = 0;
+  let bodyLines = [];
 
-  // Parse header fields until we hit a blank line or a non-field line
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    const fieldMatch = line.match(/^([A-Z_0-9]+):\s*(.+)$/);
+  // Parse header fields until we hit a non-field line
+  for (let i = 0; i < activeLines.length; i++) {
+    const line = activeLines[i];
+    if (line === '') continue;
+
+    // Match metadata key-value (e.g. TITLE: My Title or META DESCRIPTION: ...)
+    const fieldMatch = line.match(/^([A-Za-z0-9_/\s]+):\s*(.+)$/);
     if (fieldMatch) {
-      meta[fieldMatch[1]] = fieldMatch[2].trim();
-      bodyStart = i + 1;
-    } else if (line === '') {
-      bodyStart = i + 1;
-      break;
+      const key = fieldMatch[1].trim().toUpperCase().replace(/\s+/g, '_');
+      meta[key] = fieldMatch[2].trim();
     } else {
-      // Non-field, non-blank line before any blank — still in meta zone
-      // (Google Docs sometimes adds blank lines mid-meta; keep scanning)
-      if (Object.keys(meta).length > 0) { bodyStart = i; break; }
+      bodyLines = activeLines.slice(i);
+      break;
     }
   }
 
-  // Validate required fields
-  const required = ['TITLE', 'SLUG', 'DATE', 'CATEGORY', 'EXCERPT', 'HERO_VIZ'];
-  for (const field of required) {
-    if (!meta[field]) {
-      console.warn(`[parseDoc] Skipping block — missing field: ${field}`);
-      return null;
+  // If no fields parsed, treat whole block as body
+  if (bodyLines.length === 0 && Object.keys(meta).length === 0) {
+    bodyLines = activeLines;
+  }
+
+  // Auto-extract or default missing fields
+  if (!meta.TITLE) {
+    const firstLineIdx = bodyLines.findIndex(l => l.length > 0 && !l.startsWith('__'));
+    if (firstLineIdx !== -1) {
+      meta.TITLE = bodyLines[firstLineIdx].replace(/^#\s*/, '');
+      bodyLines = bodyLines.slice(firstLineIdx + 1);
+    } else {
+      meta.TITLE = "Untitled Post";
     }
   }
+
+  if (!meta.SLUG) {
+    meta.SLUG = slugify(meta.TITLE);
+  }
+
+  if (!meta.DATE) {
+    meta.DATE = new Date().toISOString().split('T')[0];
+  }
+
+  if (!meta.CATEGORY) {
+    meta.CATEGORY = "Design";
+  }
+
+  if (!meta.EXCERPT) {
+    if (meta.META_DESCRIPTION) {
+      meta.EXCERPT = meta.META_DESCRIPTION;
+    } else {
+      const firstPara = bodyLines.find(l => l.length > 0 && !l.startsWith('#')) || "";
+      meta.EXCERPT = firstPara.substring(0, 150) + (firstPara.length > 150 ? "..." : "");
+    }
+  }
+
+  const heroImage = meta.HERO_IMAGE || `/images/blog/${meta.SLUG}.png`;
 
   // Parse body
-  const bodyLines = lines.slice(bodyStart);
   const { html, headings, inlineVizSlots, hasStick } = parseBody(bodyLines);
 
   // Parse VIZ_N fields
@@ -70,7 +106,8 @@ function parseBlock(block) {
     tags: meta.TAGS ? meta.TAGS.split(',').map(t => t.trim()) : [],
     excerpt: meta.EXCERPT,
     readingTime,
-    heroViz: parseVizField(meta.HERO_VIZ),
+    heroViz: meta.HERO_VIZ ? parseVizField(meta.HERO_VIZ) : null,
+    heroImage,
     stickFigure: meta.STICK_FIGURE || null,
     inlineVizDefs,
     html,
@@ -84,36 +121,60 @@ function parseBody(lines) {
   let hasStick = false;
   const htmlLines = [];
 
-  let inParagraph = false;
-
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i];
     const line = raw.trim();
 
-    // H2 heading
-    if (/^## .+/.test(line)) {
-      if (inParagraph) { htmlLines.push('</p>'); inParagraph = false; }
-      const text = line.replace(/^## /, '');
-      const id = slugify(text);
-      headings.push({ level: 2, text, id });
-      htmlLines.push(`<h2 id="${id}">${text}</h2>`);
-      continue;
+    // Skip empty lines
+    if (line === '') continue;
+
+    // Detect dividers
+    if (/^[_\-\s\u200B]+$/.test(line)) continue;
+
+    // Heading detection
+    let isHeading = false;
+    let headingLevel = 2;
+    let headingText = '';
+
+    if (/^##\s+(.+)$/.test(line)) {
+      isHeading = true;
+      headingLevel = 2;
+      headingText = line.replace(/^##\s+/, '');
+    } else if (/^###\s+(.+)$/.test(line)) {
+      isHeading = true;
+      headingLevel = 3;
+      headingText = line.replace(/^###\s+/, '');
+    } else {
+      // Auto-detect headings: short lines without terminal punctuation (or short questions)
+      const cleanLine = line.replace(/^#+\s*/, '');
+      const isShort = cleanLine.length > 0 && cleanLine.length < 90;
+      const isQuestion = cleanLine.endsWith('?');
+      const isExcluded = cleanLine.startsWith('[') || cleanLine.startsWith('---') || cleanLine.startsWith('●') || cleanLine.startsWith('•');
+      
+      if (isShort && !isExcluded && (isQuestion || !/[.,:;!]$/.test(cleanLine) || /^(Why|What|Where|How|Who|Which|When|1–\d+|[0-9]+–[0-9]+:)/i.test(cleanLine))) {
+        // Exclude numbered list items (e.g. 1. The Hockey Stick)
+        if (!/^\d+\.\s+/.test(cleanLine)) {
+          isHeading = true;
+          headingLevel = cleanLine.includes(':') || isQuestion ? 3 : 2;
+          headingText = cleanLine;
+        }
+      }
     }
 
-    // H3 heading
-    if (/^### .+/.test(line)) {
-      if (inParagraph) { htmlLines.push('</p>'); inParagraph = false; }
-      const text = line.replace(/^### /, '');
-      const id = slugify(text);
-      headings.push({ level: 3, text, id });
-      htmlLines.push(`<h3 id="${id}">${text}</h3>`);
+    if (isHeading) {
+      const id = slugify(headingText);
+      headings.push({ level: headingLevel, text: headingText, id });
+      if (headingLevel === 3) {
+        htmlLines.push(`<h3 id="${id}">${headingText}</h3>`);
+      } else {
+        htmlLines.push(`<h2 id="${id}">${headingText}</h2>`);
+      }
       continue;
     }
 
     // Inline viz tag: [VIZ:N]
     const vizMatch = line.match(/^\[VIZ:(\d+)\]$/);
     if (vizMatch) {
-      if (inParagraph) { htmlLines.push('</p>'); inParagraph = false; }
       const n = parseInt(vizMatch[1]);
       inlineVizSlots.add(n);
       htmlLines.push(`<div data-inline-viz="${n}"></div>`);
@@ -122,28 +183,15 @@ function parseBody(lines) {
 
     // Stick figure tag: [STICK]
     if (line === '[STICK]') {
-      if (inParagraph) { htmlLines.push('</p>'); inParagraph = false; }
       hasStick = true;
       htmlLines.push(`<div data-stick-figure></div>`);
       continue;
     }
 
-    // Blank line ends paragraph
-    if (line === '') {
-      if (inParagraph) { htmlLines.push('</p>'); inParagraph = false; }
-      continue;
-    }
-
-    // Regular text — inline formatting
+    // Regular paragraph
     const formatted = applyInlineFormatting(line);
-    if (!inParagraph) {
-      htmlLines.push('<p>');
-      inParagraph = true;
-    }
-    htmlLines.push(formatted);
+    htmlLines.push(`<p>${formatted}</p>`);
   }
-
-  if (inParagraph) htmlLines.push('</p>');
 
   return {
     html: htmlLines.join('\n'),

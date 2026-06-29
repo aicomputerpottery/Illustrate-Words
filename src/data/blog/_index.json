@@ -1,44 +1,12 @@
 [
   {
-    "slug": "mindmaps-unlock-ideas",
-    "title": "How Mindmaps Unlock Your Best Ideas",
-    "date": "2025-07-15",
-    "category": "Thinking",
-    "tags": [
-      "mindmap",
-      "creativity",
-      "knowledge"
-    ],
-    "excerpt": "Most people draw boxes and arrows. Here's why the brain prefers webs.",
-    "readingTime": 1,
-    "heroViz": {
-      "templateId": "radial-burst",
-      "params": {
-        "topic": "Mindmap",
-        "nodes": "6",
-        "palette": "lavender-dusk"
-      }
-    }
-  },
-  {
-    "slug": "visual-storytelling-business",
-    "title": "The Power of Visual Storytelling in Business",
-    "date": "2025-06-20",
-    "category": "Business",
-    "tags": [
-      "storytelling",
-      "business",
-      "communication"
-    ],
-    "excerpt": "Numbers don't move people, narratives do. Here is how to combine data and design.",
-    "readingTime": 1,
-    "heroViz": {
-      "templateId": "connected-grid",
-      "params": {
-        "title": "Interconnected Systems",
-        "nodes": "Strategy,Execution,Culture,Market,Product",
-        "palette": "sunset-coral"
-      }
-    }
+    "slug": "50-best-data-visualization-examples-of-2026-with-stunning-takeaways",
+    "title": "50 Best Data Visualization Examples of 2026 (With Stunning Takeaways)",
+    "date": "2026-06-29",
+    "category": "Design",
+    "tags": [],
+    "excerpt": "Explore the 50 best data visualization examples of 2026 — a curated dataviz gallery of charts, infographics, and dashboards with clear takeaways you can use.",
+    "readingTime": 15,
+    "heroViz": null
   }
 ]
