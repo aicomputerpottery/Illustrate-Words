@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npm run sync-blog && astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run sync-blog && astro build",
     "preview": "astro preview",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name illustratewords"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name illustratewords",
+    "sync-blog": "node scripts/sync-blog.mjs",
+    "sync-blog:watch": "node scripts/sync-blog.mjs --watch"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

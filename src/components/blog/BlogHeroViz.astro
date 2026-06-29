@@ -1,0 +1,17 @@
+---
+import { getHeroVizSvg } from '../../lib/blog/heroVizTemplates.mjs';
+
+const { config, thumbnail = false } = Astro.props;
+
+let svg = '';
+try {
+  svg = getHeroVizSvg(config, thumbnail);
+} catch (e) {
+  // Fallback: simple forest gradient
+  svg = `<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg"><rect width="640" height="360" fill="#1F2D24"/><text x="320" y="185" text-anchor="middle" font-family="Fraunces,serif" font-size="20" fill="#F4EFE2" opacity="0.4">Visualization</text></svg>`;
+}
+---
+
+<div class="w-full h-full flex items-center justify-center" aria-hidden="true">
+  <Fragment set:html={svg} />
+</div>

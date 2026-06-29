@@ -1,0 +1,13 @@
+---
+import BlogCard from './BlogCard.astro';
+const { posts } = Astro.props;
+---
+
+<section class="section bg-cream pt-12">
+  <div class="container-page">
+    <h2 class="headline-h3 text-ink-primary mb-8 font-serif">More like this</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map(post => <BlogCard post={post} />)}
+    </div>
+  </div>
+</section>

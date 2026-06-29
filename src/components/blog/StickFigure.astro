@@ -1,0 +1,45 @@
+---
+import { STICK_FIGURES } from '../../lib/blog/stickFigures.mjs';
+
+const { scene = 'thinking' } = Astro.props;
+const svg = STICK_FIGURES[scene] || STICK_FIGURES['thinking'];
+---
+
+<div class="stick-figure-wrapper my-10 flex justify-center" data-stick-trigger>
+  <div
+    class="stick-figure-scene"
+    aria-hidden="true"
+    style="width: 200px; height: 160px;"
+  >
+    <Fragment set:html={svg} />
+  </div>
+</div>
+
+<script>
+  // Play animation only when visible
+  const wrappers = document.querySelectorAll('[data-stick-trigger]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        const svgs = entry.target.querySelectorAll('.stick-figure *');
+        svgs.forEach(el => {
+          if (el instanceof SVGElement || el instanceof HTMLElement) {
+            (el as HTMLElement).style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+          }
+        });
+      });
+    },
+    { threshold: 0.3 }
+  );
+  wrappers.forEach(w => observer.observe(w));
+</script>
+
+<style is:global>
+  /* All animations start paused; JS above unpauses on scroll-enter */
+  .stick-figure * {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stick-figure * { animation: none !important; }
+  }
+</style>

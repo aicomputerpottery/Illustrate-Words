@@ -1,0 +1,28 @@
+---
+import { getHeroVizSvg } from '../../lib/blog/heroVizTemplates.mjs';
+
+const { config } = Astro.props;
+const inlineConfig = { ...config, params: { ...config.params } };
+
+// Inline vizes use the same template system but at smaller scale
+let svg = '';
+try {
+  // For inline, render at 1200x480 (aspect ratio 2.5/1)
+  svg = getHeroVizSvg(inlineConfig, false);
+} catch {
+  svg = '';
+}
+
+const caption = config.params?.title || '';
+---
+
+{svg && (
+  <figure class="my-10 -mx-2 sm:-mx-6">
+    <div class="rounded-card overflow-hidden border-1.5 border-ink-primary" style="aspect-ratio: 2.5/1">
+      <Fragment set:html={svg} />
+    </div>
+    {caption && (
+      <figcaption class="mt-2 text-center text-xs text-ink-tertiary font-sans">{caption}</figcaption>
+    )}
+  </figure>
+)}

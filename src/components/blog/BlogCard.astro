@@ -1,0 +1,52 @@
+---
+import BlogHeroViz from './BlogHeroViz.astro';
+
+const { post, featured = false } = Astro.props;
+const { slug, title, date, category, excerpt, readingTime, heroViz } = post;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'short', day: 'numeric'
+});
+
+// Category color map
+const catColor = {
+  thinking: 'pill-lavender',
+  data: 'pill-lime',
+  process: 'pill-cream',
+  business: 'pill-lavender',
+  creativity: 'pill-pink',
+  tools: 'pill-cream',
+  design: 'pill-lavender',
+};
+const pillClass = catColor[category.toLowerCase()] || 'pill-cream';
+---
+
+<a
+  href={`/blog/${slug}`}
+  class:list={[
+    'card group block overflow-hidden no-underline hover:-translate-y-0.5 transition-transform duration-200',
+    featured ? 'lg:col-span-2 shadow-hard' : ''
+  ]}
+  data-category={category.toLowerCase()}
+>
+  <!-- Hero viz thumbnail -->
+  <div class="aspect-[16/9] bg-forest overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5">
+    <BlogHeroViz config={heroViz} thumbnail={true} />
+  </div>
+
+  <div class="flex items-center gap-2 mb-3">
+    <span class={pillClass}>{category}</span>
+    <span class="text-xs text-ink-tertiary">{readingTime} min read</span>
+  </div>
+
+  <h2 class:list={['font-serif font-medium text-ink-primary leading-tight mb-2', featured ? 'text-h2' : 'text-h3']}>
+    {title}
+  </h2>
+
+  <p class="text-sm text-ink-secondary leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
+
+  <div class="flex items-center justify-between">
+    <time class="text-xs text-ink-tertiary" datetime={date}>{formattedDate}</time>
+    <span class="text-sm font-medium text-ink-primary group-hover:underline">Read →</span>
+  </div>
+</a>

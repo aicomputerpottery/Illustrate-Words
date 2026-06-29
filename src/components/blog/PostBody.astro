@@ -1,0 +1,47 @@
+---
+// PostBody.astro — renders post HTML with inline viz and stick figure components injected
+import InlineViz from './InlineViz.astro';
+import StickFigure from './StickFigure.astro';
+
+const { html, inlineVizDefs, stickFigure } = Astro.props;
+
+// Build segments array: [{type:'html',content:''}, {type:'viz',n:1}, {type:'stick'}, ...]
+const segments = [];
+let lastIndex = 0;
+const allMatches = [];
+
+let m;
+const workHtml = html;
+const vizRe = /<div data-inline-viz="(\d+)"><\/div>/g;
+const stickRe = /<div data-stick-figure><\/div>/g;
+
+while ((m = vizRe.exec(workHtml)) !== null) {
+  allMatches.push({ type: 'viz', n: parseInt(m[1]), index: m.index, len: m[0].length });
+}
+while ((m = stickRe.exec(workHtml)) !== null) {
+  allMatches.push({ type: 'stick', index: m.index, len: m[0].length });
+}
+allMatches.sort((a, b) => a.index - b.index);
+
+for (const match of allMatches) {
+  if (match.index > lastIndex) {
+    segments.push({ type: 'html', content: workHtml.slice(lastIndex, match.index) });
+  }
+  segments.push(match);
+  lastIndex = match.index + match.len;
+}
+if (lastIndex < workHtml.length) {
+  segments.push({ type: 'html', content: workHtml.slice(lastIndex) });
+}
+---
+
+{segments.map(seg => {
+  if (seg.type === 'html') return <Fragment set:html={seg.content} />;
+  if (seg.type === 'viz') {
+    const def = inlineVizDefs?.[seg.n];
+    return def ? <InlineViz config={def} /> : null;
+  }
+  if (seg.type === 'stick') {
+    return stickFigure ? <StickFigure scene={stickFigure} /> : null;
+  }
+})}

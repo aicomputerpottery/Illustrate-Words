@@ -1,0 +1,45 @@
+---
+const { title, large = false } = Astro.props;
+---
+
+<div class="share-bar-container flex items-center gap-3">
+  {large && <p class="text-sm text-ink-secondary mr-2 font-sans">Share this post</p>}
+  
+  <!-- Copy link (the only share action — no brand logos) -->
+  <button
+    class="copy-link-btn cursor-pointer select-none"
+    class:list={[large ? 'btn-secondary' : 'text-sm text-ink-secondary hover:text-ink-primary underline-offset-2 hover:underline']}
+    aria-label="Copy link to this post"
+    data-title={title}
+  >
+    Copy link
+  </button>
+
+  <!-- Copied confirmation -->
+  <span class="copy-confirm text-xs text-accent-lime-dark font-medium hidden" aria-live="polite">Copied!</span>
+</div>
+
+<script>
+  const containers = document.querySelectorAll('.share-bar-container');
+  containers.forEach(container => {
+    const btn = container.querySelector('.copy-link-btn');
+    const confirm = container.querySelector('.copy-confirm');
+    btn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        confirm?.classList.remove('hidden');
+        setTimeout(() => confirm?.classList.add('hidden'), 2000);
+      } catch {
+        // fallback: select URL
+        const input = document.createElement('input');
+        input.value = window.location.href;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        confirm?.classList.remove('hidden');
+        setTimeout(() => confirm?.classList.add('hidden'), 2000);
+      }
+    });
+  });
+</script>

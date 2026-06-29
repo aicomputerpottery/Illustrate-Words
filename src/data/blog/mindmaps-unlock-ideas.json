@@ -1,0 +1,58 @@
+{
+  "title": "How Mindmaps Unlock Your Best Ideas",
+  "slug": "mindmaps-unlock-ideas",
+  "date": "2025-07-15",
+  "category": "Thinking",
+  "tags": [
+    "mindmap",
+    "creativity",
+    "knowledge"
+  ],
+  "excerpt": "Most people draw boxes and arrows. Here's why the brain prefers webs.",
+  "readingTime": 1,
+  "heroViz": {
+    "templateId": "radial-burst",
+    "params": {
+      "topic": "Mindmap",
+      "nodes": "6",
+      "palette": "lavender-dusk"
+    }
+  },
+  "stickFigure": "thinking",
+  "inlineVizDefs": {
+    "1": {
+      "templateId": "rising-bars",
+      "params": {
+        "title": "Idea types by origin",
+        "data": "Observation:34,Analogy:28,Question:22,Accident:16",
+        "palette": "lavender-dusk"
+      }
+    },
+    "2": {
+      "templateId": "flow-ladder",
+      "params": {
+        "title": "From chaos to clarity",
+        "steps": "Dump,Cluster,Connect,Refine,Act",
+        "palette": "lavender-dusk"
+      }
+    }
+  },
+  "html": "<p>\nWe've all been there: staring at a blank page, trying to organize a chaotic jumble of thoughts. Most people immediately reach for bulleted lists or standard hierarchical outlines. But research shows our brains don't think in neat, linear lines. Instead, they process information through association and webs of connected concepts.\n</p>\n<h2 id=\"why-the-brain-prefers-webs\">Why the Brain Prefers Webs</h2>\n<p>\nTraditional outlining forces your brain to categorize items prematurely. When you use a mindmap, you allow thoughts to radiate outwards naturally from a central concept. This mirrors the brain's neural network, making memory retrieval and brainstorming much more efficient.\n</p>\n<div data-stick-figure></div>\n<p>\nAs you can see, thinking visually helps synthesize disparate concepts. When you build a web of ideas, you're not just storing data—you're mapping relationships.\n</p>\n<h2 id=\"designing-the-map\">Designing the Map</h2>\n<p>\nA good mindmap doesn't just use text; it utilizes spatial arrangement, color, and visual hierarchy to group related nodes.\n</p>\n<div data-inline-viz=\"1\"></div>\n<p>\nThe distribution above highlights how different triggers contribute to overall creative output. By mapping these, we can optimize our environment for higher quality ideas.\n</p>\n<h3 id=\"the-five-step-synthesizer\">The Five-Step Synthesizer</h3>\n<p>\nTo turn a chaotic brainstorm into actionable insights, follow this simple structured progression:\n</p>\n<div data-inline-viz=\"2\"></div>\n<p>\nBy transitioning systematically through these steps, we move from raw, unstructured data to coordinated action.\n</p>",
+  "headings": [
+    {
+      "level": 2,
+      "text": "Why the Brain Prefers Webs",
+      "id": "why-the-brain-prefers-webs"
+    },
+    {
+      "level": 2,
+      "text": "Designing the Map",
+      "id": "designing-the-map"
+    },
+    {
+      "level": 3,
+      "text": "The Five-Step Synthesizer",
+      "id": "the-five-step-synthesizer"
+    }
+  ]
+}

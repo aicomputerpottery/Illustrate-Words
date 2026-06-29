@@ -1,0 +1,148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogHeroViz from '../../components/blog/BlogHeroViz.astro';
+import TableOfContents from '../../components/blog/TableOfContents.astro';
+import ShareBar from '../../components/blog/ShareBar.astro';
+import AuthorBlock from '../../components/blog/AuthorBlock.astro';
+import RelatedPosts from '../../components/blog/RelatedPosts.astro';
+import ReadingProgress from '../../components/blog/ReadingProgress.astro';
+import PostBody from '../../components/blog/PostBody.astro';
+import fs from 'fs';
+import path from 'path';
+
+export async function getStaticPaths() {
+  const dir = path.resolve('src/data/blog');
+  if (!fs.existsSync(dir)) return [];
+  const files = fs.readdirSync(dir).filter(f => f.endsWith('.json') && f !== '_index.json');
+  return files.map(f => {
+    const post = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+    const all = JSON.parse(fs.readFileSync(path.join(dir, '_index.json'), 'utf8'));
+    return {
+      params: { slug: post.slug },
+      props: { post, all }
+    };
+  });
+}
+
+const { post, all } = Astro.props;
+const { title, date, category, tags, excerpt, readingTime, heroViz, stickFigure, inlineVizDefs, html, headings } = post;
+
+// Build related posts (same category, exclude current)
+const related = all.filter(p => p.category === category && p.slug !== post.slug).slice(0, 3);
+
+// Prev/next
+const idx = all.findIndex(p => p.slug === post.slug);
+const prev = all[idx + 1] || null;
+const next = all[idx - 1] || null;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+---
+
+<Layout title={`${title} — VisualCraft Blog`} description={excerpt}>
+  <ReadingProgress />
+
+  <!-- ─── HERO VIZ (full-width) ─── -->
+  <div class="w-full bg-forest overflow-hidden relative" style="height: min(55vw, 480px)">
+    <BlogHeroViz config={heroViz} thumbnail={false} />
+  </div>
+
+  <!-- ─── POST HEADER ─── -->
+  <section class="section bg-cream pb-0">
+    <div class="container-page max-w-3xl">
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="pill-lavender">{category}</span>
+        {tags.map(tag => <span class="pill-cream text-xs">{tag}</span>)}
+        <span class="text-xs text-ink-tertiary">{readingTime} min read</span>
+      </div>
+      <h1 class="headline-h1 text-ink-primary mb-5">{title}</h1>
+      <p class="text-lg text-ink-secondary mb-6 leading-relaxed">{excerpt}</p>
+      <div class="flex items-center gap-4">
+        <time class="text-sm text-ink-tertiary" datetime={date}>{formattedDate}</time>
+        <ShareBar title={title} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTENT + SIDEBAR ─── -->
+  <section class="section bg-cream pt-10">
+    <div class="container-page">
+      <div class="flex gap-12 items-start justify-center">
+
+        <!-- Table of contents (sticky sidebar, hidden on mobile/tablet) -->
+        {headings.length > 2 && (
+          <aside class="hidden lg:block w-60 shrink-0 sticky top-28">
+            <TableOfContents headings={headings} />
+          </aside>
+        )}
+
+        <!-- Post body -->
+        <article class="min-w-0 flex-1 max-w-2xl prose-visualcraft">
+          <!-- Render post body with injected inline components -->
+          <PostBody html={html} inlineVizDefs={inlineVizDefs} stickFigure={stickFigure} />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AUTHOR + SHARE ─── -->
+  <section class="section bg-cream-darker pt-12 pb-12">
+    <div class="container-page max-w-2xl">
+      <AuthorBlock />
+      <div class="mt-8 pt-8 border-t border-1.5 border-ink-primary/10">
+        <ShareBar title={title} large />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PREV/NEXT ─── -->
+  {(prev || next) && (
+    <nav class="border-t border-1.5 border-ink-primary/10 bg-cream">
+      <div class="container-page max-w-4xl flex justify-between items-stretch divide-x divide-ink-primary/10">
+        {prev ? (
+          <a href={`/blog/${prev.slug}`} class="flex-1 p-6 hover:bg-cream-darker transition-colors group no-underline">
+            <p class="text-xs text-ink-tertiary mb-1 font-sans">← Previous</p>
+            <p class="font-serif font-medium text-ink-primary group-hover:underline line-clamp-2">{prev.title}</p>
+          </a>
+        ) : <div class="flex-1" />}
+        {next && (
+          <a href={`/blog/${next.slug}`} class="flex-1 p-6 text-right hover:bg-cream-darker transition-colors group no-underline">
+            <p class="text-xs text-ink-tertiary mb-1 font-sans">Next →</p>
+            <p class="font-serif font-medium text-ink-primary group-hover:underline line-clamp-2">{next.title}</p>
+          </a>
+        )}
+      </div>
+    </nav>
+  )}
+
+  <!-- ─── RELATED POSTS ─── -->
+  {related.length > 0 && (
+    <RelatedPosts posts={related} />
+  )}
+</Layout>
+
+<!-- Prose styles for post body -->
+<style is:global>
+  .prose-visualcraft p {
+    @apply text-base leading-relaxed text-ink-secondary mb-5;
+  }
+  .prose-visualcraft h2 {
+    @apply font-serif font-medium text-h3 text-ink-primary mt-12 mb-4;
+  }
+  .prose-visualcraft h3 {
+    @apply font-serif font-medium text-xl text-ink-primary mt-8 mb-3;
+  }
+  .prose-visualcraft strong {
+    @apply font-semibold text-ink-primary;
+  }
+  .prose-visualcraft em {
+    @apply font-serif italic;
+  }
+  .prose-visualcraft code {
+    @apply text-sm font-mono bg-ink-primary/5 px-1.5 py-0.5 rounded text-ink-primary;
+  }
+  .prose-visualcraft a {
+    @apply text-ink-primary underline underline-offset-2 decoration-accent-lavender hover:decoration-accent-lavender-dark;
+  }
+</style>

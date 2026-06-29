@@ -1,0 +1,49 @@
+{
+  "title": "The Power of Visual Storytelling in Business",
+  "slug": "visual-storytelling-business",
+  "date": "2025-06-20",
+  "category": "Business",
+  "tags": [
+    "storytelling",
+    "business",
+    "communication"
+  ],
+  "excerpt": "Numbers don't move people, narratives do. Here is how to combine data and design.",
+  "readingTime": 1,
+  "heroViz": {
+    "templateId": "connected-grid",
+    "params": {
+      "title": "Interconnected Systems",
+      "nodes": "Strategy,Execution,Culture,Market,Product",
+      "palette": "sunset-coral"
+    }
+  },
+  "stickFigure": "presenting",
+  "inlineVizDefs": {
+    "1": {
+      "templateId": "quadrant-map",
+      "params": {
+        "title": "Priority Matrix",
+        "q1": "Do Now",
+        "q2": "Plan",
+        "q3": "Delegate",
+        "q4": "Drop",
+        "items": "Product:80:75,Marketing:40:90,Support:30:20",
+        "palette": "sunset-coral"
+      }
+    }
+  },
+  "html": "<p>\nIn modern business, communication is the ultimate bottleneck. You can have the most advanced technology or the most optimized operations, but if your team doesn't align on the strategy, execution stalls.\n</p>\n<h2 id=\"narrative-over-numbers\">Narrative Over Numbers</h2>\n<p>\nMany leaders make the mistake of presenting raw spreadsheets to make a point. While data is critical, the human brain is wired for story. A narrative provides context, meaning, and emotional resonance.\n</p>\n<div data-stick-figure></div>\n<p>\nWhen presenting a new initiative, you are not just presenting facts—you are guiding your audience through a journey of change.\n</p>\n<h2 id=\"finding-the-strategic-overlaps\">Finding the Strategic Overlaps</h2>\n<p>\nTo communicate strategy effectively, you need to show how different pillars of your business support and feed into one another.\n</p>\n<div data-inline-viz=\"1\"></div>\n<p>\nBy mapping our priorities onto a structured framework, we make the path forward immediately obvious to everyone involved.\n</p>",
+  "headings": [
+    {
+      "level": 2,
+      "text": "Narrative Over Numbers",
+      "id": "narrative-over-numbers"
+    },
+    {
+      "level": 2,
+      "text": "Finding the Strategic Overlaps",
+      "id": "finding-the-strategic-overlaps"
+    }
+  ]
+}

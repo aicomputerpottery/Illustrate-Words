@@ -1,0 +1,137 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+// Import the generated master index
+let posts = [];
+try {
+  const raw = await import('../../data/blog/_index.json');
+  posts = raw.default;
+} catch {
+  posts = [];
+}
+
+const CATEGORIES = ['All', 'Thinking', 'Data', 'Process', 'Business', 'Creativity', 'Tools', 'Design'];
+---
+
+<Layout
+  title="Blog — VisualCraft"
+  description="Thinking about visualization, data storytelling, and how to communicate complex ideas clearly."
+>
+  <!-- ─── HERO ─── -->
+  <section class="section bg-forest text-cream relative overflow-hidden">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <span class="pill-lavender mb-6 inline-flex">Ideas &amp; insights</span>
+        <h1 class="headline-h1 text-cream mb-5">
+          Thinking about <em>beautiful</em> information
+        </h1>
+        <p class="text-lg text-ink-on-dark-secondary leading-relaxed">
+          Deep dives into visualization, data storytelling, and the craft of
+          turning complex ideas into images people actually understand.
+        </p>
+      </div>
+    </div>
+    <!-- Decorative dots -->
+    <div aria-hidden="true" class="absolute right-8 top-8 grid grid-cols-3 gap-2 opacity-20">
+      {Array.from({length: 9}).map(() => <div class="w-1.5 h-1.5 rounded-full bg-cream" />)}
+    </div>
+  </section>
+
+  <!-- ─── FILTER BAR ─── -->
+  <section class="sticky top-20 z-40 bg-cream border-b border-1.5 border-ink-primary py-3">
+    <div class="container-page">
+      <div id="category-filters" class="flex gap-2 flex-wrap" role="group" aria-label="Filter by category">
+        {CATEGORIES.map(cat => (
+          <button
+            class="filter-chip cursor-pointer"
+            data-category={cat.toLowerCase()}
+            aria-pressed={cat === 'All' ? 'true' : 'false'}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── POST GRID ─── -->
+  <section class="section bg-cream">
+    <div class="container-page">
+      {posts.length === 0 ? (
+        <div class="text-center py-24">
+          <p class="text-h3 font-serif text-ink-secondary mb-3">No posts yet</p>
+          <p class="text-ink-tertiary">Run <code class="text-sm bg-ink-primary/5 px-2 py-1 rounded">npm run sync-blog</code> to pull posts from your Google Doc.</p>
+        </div>
+      ) : (
+        <div
+          id="post-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {posts.map((post, i) => (
+            <div data-category={post.category.toLowerCase()}>
+              <BlogCard
+                post={post}
+                featured={i === 0}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Empty-state for filtered-out results -->
+      <div id="empty-filter-state" class="hidden text-center py-20">
+        <p class="text-lg font-serif text-ink-secondary mb-4">No posts in that category yet.</p>
+        <button id="reset-filter" class="btn-secondary">Show all posts</button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .filter-chip {
+    @apply font-sans text-sm font-medium px-4 py-1.5 rounded-full
+           border-1.5 border-ink-primary/30 bg-cream-lightest text-ink-secondary
+           transition-all duration-150 hover:border-ink-primary hover:text-ink-primary
+           cursor-pointer select-none;
+  }
+  .filter-chip[aria-pressed="true"] {
+    @apply bg-ink-primary text-cream border-ink-primary;
+  }
+</style>
+
+<script>
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('#post-grid > [data-category]');
+  const emptyState = document.getElementById('empty-filter-state');
+  const resetBtn = document.getElementById('reset-filter');
+  let activeCategory = 'all';
+
+  function applyFilter(category) {
+    activeCategory = category;
+    chips.forEach(c => {
+      if (c instanceof HTMLElement) {
+        c.setAttribute('aria-pressed', c.dataset.category === category ? 'true' : 'false');
+      }
+    });
+    let visible = 0;
+    cards.forEach(card => {
+      if (card instanceof HTMLElement) {
+        const show = category === 'all' || card.dataset.category === category;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      }
+    });
+    emptyState?.classList.toggle('hidden', visible > 0);
+    document.getElementById('post-grid')?.classList.toggle('hidden', visible === 0);
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (chip instanceof HTMLElement) {
+        applyFilter(chip.dataset.category || 'all');
+      }
+    });
+  });
+  resetBtn?.addEventListener('click', () => applyFilter('all'));
+</script>
