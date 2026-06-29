@@ -44,12 +44,15 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   <ReadingProgress />
 
   <!-- ─── HERO VIZ (full-width) ─── -->
-  <div class="w-full bg-forest overflow-hidden relative flex justify-center items-center" style="height: min(55vw, 480px)">
+  <div class:list={[
+    "w-full overflow-hidden relative flex justify-center items-center",
+    heroImage ? "bg-[#FFFBF5] py-4" : "bg-forest"
+  ]} style="height: min(55vw, 480px)">
     {heroImage ? (
       <img
         src={heroImage}
         alt={title}
-        class="w-full h-full object-cover"
+        class="max-w-full max-h-full object-contain"
       />
     ) : (
       <BlogHeroViz config={heroViz} thumbnail={false} />

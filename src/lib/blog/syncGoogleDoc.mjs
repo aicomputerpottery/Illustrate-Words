@@ -132,8 +132,8 @@ By mapping our priorities onto a structured framework, we make the path forward 
   // Write master index (sorted newest-first)
   const index = posts
     .sort((a, b) => b.date.localeCompare(a.date))
-    .map(({ slug, title, date, category, tags, excerpt, readingTime, heroViz }) => ({
-      slug, title, date, category, tags, excerpt, readingTime, heroViz
+    .map(({ slug, title, date, category, tags, excerpt, readingTime, heroViz, heroImage }) => ({
+      slug, title, date, category, tags, excerpt, readingTime, heroViz, heroImage
     }));
   fs.writeFileSync(path.join(OUT_DIR, '_index.json'), JSON.stringify(index, null, 2), 'utf8');
 

@@ -30,12 +30,15 @@ const pillClass = catColor[category.toLowerCase()] || 'pill-cream';
   data-category={category.toLowerCase()}
 >
   <!-- Hero viz thumbnail -->
-  <div class="aspect-[16/9] bg-forest overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5 flex justify-center items-center">
+  <div class:list={[
+    "aspect-[16/9] overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5 flex justify-center items-center",
+    heroImage ? "bg-[#FFFBF5] p-2" : "bg-forest"
+  ]}>
     {heroImage ? (
       <img
         src={heroImage}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        class="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
       />
     ) : (
       <BlogHeroViz config={heroViz} thumbnail={true} />

@@ -8,13 +8,45 @@ export function parseDoc(raw) {
   // Normalize line endings, strip BOM
   const text = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/^\uFEFF/, '');
 
-  // Split into post blocks on "---" separator lines
-  // Match "---" when it appears on its own line (with optional whitespace)
-  const blocks = text.split(/\n\s*---\s*\n/).map(b => b.trim()).filter(Boolean);
+  // Split into blocks on "---" or horizontal rules (10 or more underscores/dashes on a line)
+  const blocks = text.split(/\n\s*(?:---|_{10,})\s*\n/).map(b => b.trim()).filter(Boolean);
 
-  return blocks
-    .map(block => parseBlock(block))
-    .filter(post => post !== null);
+  const posts = [];
+  for (const block of blocks) {
+    const parsed = parseBlock(block);
+    if (!parsed) continue;
+
+    // Find the first non-empty, non-divider line of the block
+    const firstLine = block.split('\n')
+      .map(l => l.trim())
+      .find(l => l.length > 0 && !/^[_\-\s\uFEFF\u200B]+$/.test(l));
+
+    if (firstLine === 'Frequently Asked Questions' && posts.length > 0) {
+      const prevPost = posts[posts.length - 1];
+      // Append FAQ block content to the previous post
+      prevPost.html += `\n<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>\n` + parsed.html;
+      
+      // Merge headings (making sure "Frequently Asked Questions" itself is registered as H2)
+      prevPost.headings.push({
+        level: 2,
+        text: "Frequently Asked Questions",
+        id: "frequently-asked-questions"
+      });
+      prevPost.headings.push(...parsed.headings);
+
+      // Merge inline slots and flags
+      if (parsed.inlineVizSlots) {
+        prevPost.inlineVizSlots = [...new Set([...(prevPost.inlineVizSlots || []), ...parsed.inlineVizSlots])];
+      }
+      if (parsed.hasStick) {
+        prevPost.hasStick = true;
+      }
+    } else {
+      posts.push(parsed);
+    }
+  }
+
+  return posts;
 }
 
 function parseBlock(block) {
@@ -38,8 +70,17 @@ function parseBlock(block) {
     // Match metadata key-value (e.g. TITLE: My Title or META DESCRIPTION: ...)
     const fieldMatch = line.match(/^([A-Za-z0-9_/\s]+):\s*(.+)$/);
     if (fieldMatch) {
-      const key = fieldMatch[1].trim().toUpperCase().replace(/\s+/g, '_');
-      meta[key] = fieldMatch[2].trim();
+      const rawKey = fieldMatch[1].trim();
+      const isAllUppercase = /^[A-Z0-9_/\s]+$/.test(rawKey);
+      const isKnownKey = /^(title|slug|date|category|tags|excerpt|meta\s+description)$/i.test(rawKey);
+      
+      if (isAllUppercase || isKnownKey) {
+        const key = rawKey.toUpperCase().replace(/\s+/g, '_');
+        meta[key] = fieldMatch[2].trim();
+      } else {
+        bodyLines = activeLines.slice(i);
+        break;
+      }
     } else {
       bodyLines = activeLines.slice(i);
       break;
