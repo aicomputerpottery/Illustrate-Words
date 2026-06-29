@@ -481,19 +481,20 @@ const steps = [
   <!-- ============================================================ -->
   <!-- 6. USE CASES                                                 -->
   <!-- ============================================================ -->
-  <section class="section bg-forest text-ink-on-dark relative overflow-hidden">
+  <section class="section bg-cream-lightest text-ink-primary relative overflow-hidden">
 
     <div class="container-page relative">
 
       <!-- Header -->
       <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-        <span class="pill-on-dark mb-6">
+        <span class="pill mb-6">
+          <span class="w-2 h-2 rounded-full bg-accent-lime mr-2"></span>
           Built for everyone
         </span>
-        <h2 class="headline-h1 text-white">
+        <h2 class="headline-h1 text-ink-primary">
           Who uses <em>Illustrate Words</em>?
         </h2>
-        <p class="mt-6 text-lead text-ink-on-dark-muted max-w-2xl mx-auto">
+        <p class="mt-6 text-lead text-ink-secondary max-w-2xl mx-auto">
           From boardrooms to classrooms, anyone who needs to visualize an idea fast.
         </p>
       </div>
@@ -501,12 +502,12 @@ const steps = [
       <!-- Use case cards -->
       <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {useCases.map((useCase) => (
-          <div class="card-dark flex flex-col relative transition-all duration-200">
-            <div class="w-14 h-14 bg-forest-light rounded-full border border-border-on-dark flex items-center justify-center text-accent-lavender mb-5">
+          <div class="bg-white border-2 border-ink-primary rounded-3xl p-8 shadow-hard hover:-translate-y-1 transition-all duration-200 flex flex-col relative">
+            <div class="w-14 h-14 bg-accent-lavender/10 rounded-full border border-accent-lavender/25 flex items-center justify-center text-accent-lavender mb-5">
               <Fragment set:html={useCase.iconSvg} />
             </div>
-            <h3 class="font-serif text-2xl font-medium text-white">{useCase.title}</h3>
-            <p class="mt-3 text-ink-on-dark-muted leading-relaxed">{useCase.description}</p>
+            <h3 class="font-serif text-2xl font-semibold text-ink-primary">{useCase.title}</h3>
+            <p class="mt-3 text-ink-secondary leading-relaxed">{useCase.description}</p>
           </div>
         ))}
       </div>
@@ -517,37 +518,57 @@ const steps = [
   <!-- ============================================================ -->
   <!-- 7. FINAL CTA                                                 -->
   <!-- ============================================================ -->
-  <section class="section bg-forest-dark text-ink-on-dark relative overflow-hidden">
+  <section class="section bg-cream text-ink-primary relative overflow-hidden">
     <span aria-hidden="true" class="absolute left-[10%] top-[25%] text-4xl text-accent-lavender/25 pointer-events-none select-none">✦</span>
     <span aria-hidden="true" class="absolute right-[12%] bottom-[20%] text-5xl text-accent-lavender/20 pointer-events-none select-none">✦</span>
 
-    <div class="container-page relative text-center z-10">
+    <div class="container-page relative z-10">
+      <div class="bg-white border-2 border-ink-primary rounded-3xl shadow-hard max-w-5xl mx-auto p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 justify-between text-left">
+        
+        <!-- Left Side: Content -->
+        <div class="md:w-3/5">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-accent-lime/25 text-ink-primary rounded-full border border-accent-lime/40 text-xs font-semibold uppercase tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-lime animate-pulse"></span>
+            Start immediately
+          </span>
+          <h2 class="font-serif text-3xl md:text-4xl text-ink-primary font-medium tracking-tight mt-4">
+            Ready to <em>visualize</em><br />
+            your ideas?
+          </h2>
 
-      <h2 class="headline-h1 text-white max-w-3xl mx-auto">
-        Ready to <em>visualize</em><br />
-        your ideas?
-      </h2>
+          <p class="mt-4 text-base md:text-lg text-ink-secondary leading-relaxed">
+            Free, instant, no account needed. Get your first AI-ready visualization prompt in under 60 seconds.
+          </p>
 
-      <p class="mt-6 text-lead text-ink-on-dark-muted max-w-2xl mx-auto">
-        Free, instant, no account needed. Get your first AI-ready visualization prompt in under 60 seconds.
-      </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+            <a href="/generate" class="btn-accent text-base">
+              Start Generating Now
+              <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="/gallery" class="btn-secondary text-base">
+              Browse Examples
+            </a>
+          </div>
 
-      <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center">
-        <a href="/generate" class="btn-accent text-base">
-          Start Generating Now
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <a href="/gallery" class="btn-secondary-dark text-base">
-          Browse Examples
-        </a>
+          <p class="mt-6 text-xs text-ink-tertiary font-medium">
+            Works with Gemini · ChatGPT · Claude · Midjourney · DALL·E
+          </p>
+        </div>
+
+        <!-- Right Side: Floating Doodle -->
+        <div class="md:w-2/5 flex justify-center">
+          <div class="relative w-44 h-44 md:w-56 md:h-56 flex justify-center items-center">
+            <img 
+              src="/images/celebration_doodle.png" 
+              alt="Celebration Doodle" 
+              class="max-w-full max-h-full object-contain animate-float"
+            />
+          </div>
+        </div>
+
       </div>
-
-      <p class="mt-8 text-sm text-ink-on-dark-muted">
-        Works with Gemini · ChatGPT · Claude · Midjourney · DALL·E
-      </p>
-
     </div>
   </section>
 
