@@ -23,20 +23,19 @@ const faqSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
   <!-- ===================== 1. HERO (dark) ===================== -->
-  <section class="bg-forest text-ink-on-dark-primary">
-    <div class="container-page section text-center relative">
-      <span class="pill-lavender mb-6 inline-flex">Our mission</span>
-      <h1 class="headline-display mx-auto max-w-3xl">
-        Great visuals shouldn't be <em>locked</em> behind a paywall.
+  <section class="bg-forest text-ink-on-dark">
+    <div class="container-page section text-center relative z-10 flex flex-col items-center">
+      <span class="text-eyebrow text-accent-lavender mb-6">Our mission</span>
+      <p class="font-serif italic text-2xl md:text-3xl text-white max-w-3xl mx-auto leading-relaxed">
+        Great visuals shouldn't be locked behind a paywall.
+      </p>
+      <h1 class="headline-h1 text-white mt-8">
+        The VisualCraft Story.
       </h1>
-      <p class="mt-6 mx-auto max-w-xl text-lg text-ink-on-dark-secondary">
+      <p class="mt-6 text-lead text-ink-on-dark-muted max-w-2xl mx-auto">
         VisualCraft is a free, open tool that turns a half-formed idea into a
         precise, copy-paste prompt — so any AI you already use can draw it for you.
       </p>
-      <!-- scattered decorative dots -->
-      <span aria-hidden="true" class="absolute left-[8%] top-[22%] h-2 w-2 rounded-full bg-accent-lime/70"></span>
-      <span aria-hidden="true" class="absolute right-[12%] top-[30%] h-2.5 w-2.5 rounded-full bg-accent-pink/60"></span>
-      <span aria-hidden="true" class="absolute right-[20%] bottom-[18%] h-2 w-2 rounded-full bg-accent-sky/60"></span>
     </div>
   </section>
 
@@ -152,8 +151,8 @@ const faqSchema = {
   <!-- ===================== 5. FAQ (cream) ===================== -->
   <section class="bg-cream text-ink-primary">
     <div class="container-page section">
-      <div class="text-center max-w-2xl mx-auto">
-        <span class="pill-pink mb-4 inline-flex">Good questions</span>
+      <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
+        <span class="pill-pink mb-6">Good questions</span>
         <h2 class="headline-h2">Frequently <em>asked</em></h2>
       </div>
 
@@ -168,7 +167,7 @@ const faqSchema = {
                 aria-controls={`faq-panel-${i}`}
                 id={`faq-trigger-${i}`}
               >
-                <span class="font-serif text-xl md:text-2xl">{item.question}</span>
+                <span class="font-sans text-base font-semibold text-ink-primary">{item.question}</span>
                 <span aria-hidden="true" class="faq-icon shrink-0 grid h-9 w-9 place-items-center rounded-full border-1.5 border-ink-primary transition-transform duration-200">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-4 w-4">
                     <line x1="12" y1="5" x2="12" y2="19" class="faq-vbar" />
@@ -185,7 +184,7 @@ const faqSchema = {
               hidden
             >
               <div class="overflow-hidden">
-                <p class="pb-6 pr-12 text-lg text-ink-secondary">{item.answer}</p>
+                <p class="faq-content pb-6 pr-12">{item.answer}</p>
               </div>
             </div>
           </div>
@@ -195,21 +194,21 @@ const faqSchema = {
   </section>
 
   <!-- ===================== 6. FINAL CTA (dark) ===================== -->
-  <section class="bg-forest text-ink-on-dark-primary relative overflow-hidden">
+  <section class="bg-forest-dark text-ink-on-dark relative overflow-hidden">
     <div class="container-page section text-center relative z-10">
-      <h2 class="headline-h1 mx-auto max-w-2xl">
+      <h2 class="headline-h1 mx-auto max-w-2xl text-white">
         Ready to make something <em>worth looking at</em>?
       </h2>
-      <p class="mt-5 mx-auto max-w-lg text-ink-on-dark-secondary text-lg">
+      <p class="mt-5 mx-auto max-w-lg text-lead text-ink-on-dark-muted">
         Four steps. One prompt. Zero cost. Go.
       </p>
       <a href="/generate" class="btn-accent mt-8 inline-flex">Start creating →</a>
     </div>
     <!-- scattered asterisks -->
-    <span aria-hidden="true" class="absolute left-[10%] top-[20%] font-serif text-3xl text-accent-lime/40">✦</span>
-    <span aria-hidden="true" class="absolute right-[14%] top-[35%] font-serif text-2xl text-accent-pink/40">✦</span>
-    <span aria-hidden="true" class="absolute left-[20%] bottom-[22%] font-serif text-2xl text-accent-sky/40">✦</span>
-    <span aria-hidden="true" class="absolute right-[22%] bottom-[28%] font-serif text-xl text-accent-lavender/50">✦</span>
+    <span aria-hidden="true" class="absolute left-[10%] top-[20%] text-3xl text-accent-lavender/30 select-none pointer-events-none">✦</span>
+    <span aria-hidden="true" class="absolute right-[14%] top-[35%] text-2xl text-accent-lavender/20 select-none pointer-events-none">✦</span>
+    <span aria-hidden="true" class="absolute left-[20%] bottom-[22%] text-2xl text-accent-lavender/25 select-none pointer-events-none">✦</span>
+    <span aria-hidden="true" class="absolute right-[22%] bottom-[28%] text-xl text-accent-lavender/30 select-none pointer-events-none">✦</span>
   </section>
 </Layout>
 

@@ -23,14 +23,14 @@ const {
 const ROWS = variant === 'compact' ? 2 : 3;
 
 const ACCENT: Record<string, string> = {
-  mindmap: '#B5A5F0', brainstorming: '#B5A5F0', business: '#B5A5F0',
-  metaphors: '#B5A5F0', narrative: '#B5A5F0',
-  process: '#A8D4F0', hierarchy: '#A8D4F0',
-  data: '#D4E84A', cause: '#D4E84A',
-  timelines: '#F4A8C9', parts: '#F4A8C9',
-  comparison: '#F26835', problems: '#F26835',
+  mindmap: '#9B86F5', brainstorming: '#9B86F5', business: '#9B86F5',
+  metaphors: '#9B86F5', narrative: '#9B86F5',
+  process: '#8CC8EE', hierarchy: '#8CC8EE',
+  data: '#C8DC2E', cause: '#C8DC2E',
+  timelines: '#EF8CBD', parts: '#EF8CBD',
+  comparison: '#E85A28', problems: '#E85A28',
 };
-const FALLBACK_ACCENT = '#B5A5F0';
+const FALLBACK_ACCENT = '#9B86F5';
 const PLACEHOLDER_SVG =
   '<svg viewBox="0 0 96 96" fill="none" stroke="#1F2D24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="28" y="28" width="40" height="40" rx="6"/><line x1="38" y1="48" x2="58" y2="48"/></svg>';
 
@@ -216,9 +216,9 @@ const sectionBg = tone === 'cream' ? 'bg-cream' : 'bg-cream-darker';
 
     display: flex;
     flex-direction: column;
-    background: var(--cream-lighter, #FAF6EC);
-    border: 1.5px solid var(--ink-primary, #0A0A0A);
-    border-radius: 12px;
+    background: var(--cream-lightest, #FDFBF5);
+    border: 1px solid #E0DAC8;
+    border-radius: 14px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
@@ -240,9 +240,9 @@ const sectionBg = tone === 'cream' ? 'bg-cream' : 'bg-cream-darker';
 
   .vmq-card:hover,
   .vmq-card:focus-visible {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: 4px 4px 0 0 rgba(10, 10, 10, 1);
-    border-color: var(--ink-primary, #0A0A0A);
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    border-color: #C8C0AC;
     z-index: 2;
   }
   .vmq-card:focus-visible {
@@ -257,7 +257,7 @@ const sectionBg = tone === 'cream' ? 'bg-cream' : 'bg-cream-darker';
     align-items: center;
     justify-content: center;
     background: color-mix(in srgb, var(--accent) 14%, transparent);
-    border-bottom: 1.5px solid var(--ink-primary, #0A0A0A);
+    border-bottom: 1px solid #E0DAC8;
   }
   .vmq-art :global(svg) {
     width: 68%;

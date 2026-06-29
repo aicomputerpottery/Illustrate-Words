@@ -21,7 +21,7 @@ const isActive = (href: string) => {
   id="site-navbar"
   class="sticky top-4 z-50 px-4 transition-all duration-200"
 >
-  <nav class="max-w-container mx-auto bg-cream-lighter border-1.5 border-ink-primary rounded-full shadow-card">
+  <nav class="max-w-container mx-auto bg-cream border-1.5 border-ink-primary rounded-full shadow-[3px_3px_0_0_rgba(10,10,10,0.8)]">
     <div class="flex items-center justify-between px-3 md:px-4 py-2 md:py-2.5">
       <a href="/" aria-label="Illustrate Words home">
         <Logo size={26} withWordmark />
@@ -34,7 +34,7 @@ const isActive = (href: string) => {
             class:list={[
               'px-4 py-2 rounded-btn text-sm font-medium transition-colors duration-200',
               isActive(link.href)
-                ? 'bg-ink-primary text-cream'
+                ? 'bg-ink-primary text-cream-lightest'
                 : 'text-ink-primary hover:bg-ink-primary/5'
             ]}
           >
@@ -71,7 +71,7 @@ const isActive = (href: string) => {
           class:list={[
             'block px-4 py-3 rounded-btn text-base font-medium transition-colors duration-200',
             isActive(link.href)
-              ? 'bg-ink-primary text-cream'
+              ? 'bg-ink-primary text-cream-lightest'
               : 'text-ink-primary hover:bg-ink-primary/5'
           ]}
         >

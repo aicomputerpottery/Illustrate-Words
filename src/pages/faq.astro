@@ -27,18 +27,13 @@ const faqSchema = {
   </Fragment>
 
   <!-- Hero section -->
-  <section class="relative bg-cream pt-16 pb-12 md:py-24 overflow-hidden border-b border-cream-darker/30">
-    <!-- Floating background sparkles -->
-    <div class="absolute inset-0 pointer-events-none opacity-40">
-      <div class="absolute top-12 left-10 w-2.5 h-2.5 rounded-full bg-accent-lavender animate-float"></div>
-      <div class="absolute bottom-16 right-12 w-3.5 h-3.5 rounded-full bg-accent-lime animate-float delay-300"></div>
-    </div>
+  <section class="relative bg-cream-lightest pt-16 pb-12 md:py-24 overflow-hidden border-b border-border-light">
 
     <div class="container-page relative text-center">
       <div class="max-w-2xl mx-auto">
         <div class="flex justify-center mb-6">
-          <span class="pill-cream">
-            <span class="w-2 h-2 rounded-full bg-accent-lavender animate-pulse"></span>
+          <span class="pill">
+            <span class="w-2 h-2 rounded-full bg-accent-lavender mr-2"></span>
             Help & Resources
           </span>
         </div>
@@ -47,27 +42,27 @@ const faqSchema = {
           Frequently asked <em>questions</em>
         </h1>
         
-        <p class="mt-6 body-lg text-ink-secondary">
+        <p class="mt-6 text-lead text-ink-secondary">
           Find answers to common questions about prompt structuring, privacy, commercial license, and our offline-first architecture.
         </p>
 
         <div class="mt-8 flex justify-center">
-          <Squiggle color="#5822F4" width="100" />
+          <Squiggle color="#9B86F5" width="100" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- Accordion List Section -->
-  <section class="section bg-cream-darker/10 py-16 md:py-24">
+  <section class="section bg-cream py-16 md:py-24">
     <div class="container-page max-w-4xl">
-      <!-- Search/Filter Input UI (Visual only, fits rich aesthetics) -->
+      <!-- Search/Filter Input UI -->
       <div class="max-w-xl mx-auto mb-12 relative">
         <input 
           type="text" 
           id="faq-search" 
           placeholder="Search questions..." 
-          class="w-full px-6 py-4 bg-cream-lighter border-1.5 border-ink-primary rounded-full shadow-card focus:outline-none focus:ring-2 focus:ring-accent-lavender font-medium text-ink-primary placeholder-ink-tertiary/75"
+          class="w-full px-6 py-4 bg-cream border border-border-medium rounded-full shadow-card-soft focus:outline-none focus:ring-2 focus:ring-accent-lavender font-medium text-ink-primary placeholder-ink-tertiary/75"
         />
         <span class="absolute right-5 top-1/2 -translate-y-1/2 text-ink-tertiary">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -76,10 +71,10 @@ const faqSchema = {
         </span>
       </div>
 
-      <div class="space-y-4 max-w-3xl mx-auto" id="faq-list">
+      <div class="max-w-3xl mx-auto divide-y divide-border-light border-y border-border-light" id="faq-list">
         {FAQ_ITEMS.map((faq) => (
           <div 
-            class="faq-item bg-cream-lighter border-1.5 border-ink-primary rounded-card shadow-card hover:shadow-card-hover transition-all duration-200 overflow-hidden"
+            class="faq-item"
             data-question={faq.question.toLowerCase()}
             data-answer={faq.answer.toLowerCase()}
           >
@@ -89,10 +84,10 @@ const faqSchema = {
                 id={faq.id}
                 aria-expanded="false"
                 aria-controls={`panel-${faq.id}`}
-                class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-serif text-lg md:text-xl font-medium text-ink-primary hover:text-accent-lavender focus:outline-none transition-colors duration-150"
+                class="faq-trigger w-full flex items-center justify-between py-5 text-left"
               >
-                <span>{faq.question}</span>
-                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-cream-darker/30 flex items-center justify-center transition-transform duration-200 transform faq-icon-box">
+                <span class="font-sans text-base font-semibold text-ink-primary">{faq.question}</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-cream-darker/35 flex items-center justify-center transition-transform duration-200 transform faq-icon-box">
                   <svg
                     class="w-4 h-4 text-ink-primary transition-transform duration-200 transform faq-chevron"
                     fill="none"
@@ -112,8 +107,10 @@ const faqSchema = {
               aria-labelledby={faq.id}
               class="faq-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
             >
-              <div class="px-6 pb-6 pt-1 text-base text-ink-secondary leading-relaxed border-t border-ink-primary/5 mt-1 pt-4 text-pretty">
-                {faq.answer}
+              <div class="overflow-hidden">
+                <p class="faq-content pb-6 pr-12 text-pretty">
+                  {faq.answer}
+                </p>
               </div>
             </div>
           </div>
