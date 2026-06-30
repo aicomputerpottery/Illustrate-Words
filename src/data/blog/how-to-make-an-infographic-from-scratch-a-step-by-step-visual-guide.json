@@ -1,76 +1,36 @@
 {
   "title": "How to Make an Infographic From Scratch: A Step-by-Step Visual Guide",
   "slug": "how-to-make-an-infographic-from-scratch-a-step-by-step-visual-guide",
-  "date": "2026-06-29",
+  "date": "2026-06-30",
   "category": "Design",
   "tags": [],
-  "excerpt": "Learn how to make an infographic from scratch with this step-by-step visual guide — covering layout, data, design tools, and free infographic templates.",
-  "readingTime": 7,
+  "excerpt": "Learning how to make an infographic from scratch feels harder than it should be, mostly because most tutorials jump straight to software clicks before...",
+  "readingTime": 5,
   "heroViz": null,
   "heroImage": "/images/blog/how-to-make-an-infographic-from-scratch-a-step-by-step-visual-guide.png",
   "stickFigure": null,
   "inlineVizDefs": {},
-  "html": "<p>Knowing how to make an infographic is one of the highest-leverage skills in visual communication — and most people learn it backwards. They open Canva, pick a template that looks nice, and then try to squeeze their content in. The result looks fine but communicates nothing well. The right process goes in the opposite direction: start with your single core message, build the data structure around it, then choose a layout that makes the argument unavoidable. This guide walks through every step in the correct order, with the design decisions that actually matter called out at each stage.</p>\n<h2 id=\"why-most-infographics-fail-before-the-design-even-starts\">Why Most Infographics Fail Before the Design Even Starts</h2>\n<p>The most common infographic design tip you'll find online is \"keep it simple.\" That's true but useless without knowing what to simplify. Most infographics fail not because they're too complex visually — they fail because the designer never decided what the infographic is for.</p>\n<p>Before you open any tool, answer three questions:</p>\n<p>Who is this for? A LinkedIn infographic targeting marketers reads differently from an internal process flow built for an operations team. Your audience determines your vocabulary, your assumed knowledge level, and the amount of context you need to provide.</p>\n<p>What is the one thing they should remember? If you can't answer this in a single sentence, you're not ready to design yet. \"Our Q3 revenue grew 22% year-over-year, driven entirely by the enterprise segment\" is a message. \"Here is our Q3 data\" is not.</p>\n<p>Where will it live? An Instagram infographic needs a vertical format at 1080 × 1920px. A LinkedIn document post works best at 1080 × 1350px. A webpage embed can be 800 × 2000px or taller. Getting this wrong means redesigning everything after the fact.</p>\n<p>Answer all three before touching a design tool. It sounds obvious. Almost nobody does it.</p>\n<h3 id=\"step-by-step-how-to-make-an-infographic-that-actually-works\">Step-by-Step: How to Make an Infographic That Actually Works</h3>\n<h2 id=\"step-1-gather-and-audit-your-data-15-30-minutes\">Step 1 — Gather and audit your data (15–30 minutes)</h2>\n<p>Collect every data point, statistic, or piece of information you're considering including. Put it all in a document. Then cut it by at least half.</p>\n<p>The rule: every data point in your infographic must directly support your core message. If a statistic is interesting but tangential, it weakens the design by competing for attention with the numbers that matter. Save it for the caption or the body copy around the infographic.</p>\n<p>For a well-structured infographic, you typically need three to seven key data points — enough to build an argument, few enough to maintain visual clarity. More than ten and you're writing a report, not designing an infographic.</p>\n<h2 id=\"step-2-choose-your-infographic-type\">Step 2 — Choose your infographic type</h2>\n<p>The type of infographic you build should be determined by the structure of your data, not by which template looks most appealing. Here are the main formats and when each earns its place:</p>\n<p>* Statistical infographic — Best for presenting multiple data points around a single theme. Works well for survey results, market research, and annual reports.</p>\n<p>* Process infographic — Best for showing sequential steps. Use when there's a defined order of operations: onboarding flows, manufacturing processes, how-to guides.</p>\n<p>* Timeline infographic — Best for showing change or progression over time. Works for company history, project milestones, or historical data.</p>\n<p>* Comparison infographic — Best for side-by-side contrasts between two or more options. Common in product comparisons, methodology debates, and before/after scenarios.</p>\n<p>* Geographic infographic — Best when location is a meaningful variable in your data. Uses maps with graduated circles, choropleth shading, or labeled regions.</p>\n<p>* List infographic — Best for curated collections where ranking or sequence matters. Lower visual complexity; works well for quick-read social content.</p>\n<p>If your data doesn't fit cleanly into one of these, it usually means you're trying to tell more than one story. Split it into two infographics.</p>\n<h2 id=\"step-3-sketch-the-layout-before-you-design-it\">Step 3 — Sketch the layout before you design it</h2>\n<p>Open a blank document, grab a pen, or use the rectangle tool in Figma — and sketch the rough layout in boxes before you add any real content. This is the step that separates designers who produce quickly from those who spend three hours rearranging elements.</p>\n<p>Your layout needs a clear reading order. In Western markets, readers scan top-to-bottom, left-to-right. Your most important number or conclusion goes top-left or top-center. Supporting data flows downward. The call to action or \"what to do next\" goes at the bottom.</p>\n<p>For a standard vertical infographic (800 × 2000px), a reliable skeleton looks like this: headline and subhead (top 15%), hero statistic or key visual (next 20%), three to four supporting data points or steps (middle 45%), source line and CTA (bottom 20%). This doesn't work for every infographic — but it works for most, and having a default saves you decision fatigue.</p>\n<h2 id=\"step-4-choose-your-infographic-design-tool\">Step 4 — Choose your infographic design tool</h2>\n<p>Your tool choice should match your skill level and output requirements:</p>\n<p>Canva — Best for most use cases. The free tier covers everything a non-designer needs, and Canva's AI-assisted design features (added in 2024) make layout adjustments significantly faster. Free infographic templates are built in. Use Canva if you're creating social media, presentation, or marketing infographics without a developer.</p>\n<p>Figma — Best for teams that need design consistency across multiple assets or for infographics that need pixel-level precision. Figma Community has hundreds of open-source infographic templates. Steeper learning curve than Canva, but far more control. Free tier is generous.</p>\n<p>Datawrapper — Best when your infographic is primarily chart-driven. You can build a publication-quality chart in under five minutes, then export it to embed in a larger infographic built elsewhere. The free tier covers most editorial use cases.</p>\n<p>Flourish — Best for animated or interactive infographics. If your data has a time dimension or you want users to filter or explore the data themselves, Flourish handles interactivity without coding. Free for public projects.</p>\n<p>Adobe Illustrator — Best for fully custom work where you're treating the infographic as a graphic design artifact. Highest skill floor by a significant margin. Worth it only if you or your team already live in the Adobe ecosystem.</p>\n<p>For most people reading this: start with Canva, graduate to Figma when you need more control, and use Datawrapper whenever a chart is the core of the design.</p>\n<h2 id=\"step-5-apply-your-color-palette-and-typography\">Step 5 — Apply your color palette and typography</h2>\n<p>Two rules that will immediately make your infographic look more professional:</p>\n<p>Use one primary color, one accent color, and gray for everything else. The accent color should appear exactly once — on the number or data point that matters most. If you accent three things, you've accented nothing.</p>\n<p>Use two typefaces maximum: one for headlines (something with personality — a geometric sans-serif like Poppins or a display face if your brand allows it) and one for body text and data labels (a clean, highly legible sans-serif like Inter or DM Sans). Using more than two typefaces is the fastest way to make an infographic look amateurish.</p>\n<p>For font sizing: your headline should be at least 3× the size of your body text. Data labels should sit at the same size as body text or slightly larger. Source lines and footnotes can be small — 10–11px — but never so small they're unreadable on mobile.</p>\n<h2 id=\"step-6-build-check-and-export\">Step 6 — Build, check, and export</h2>\n<p>Once you've built the infographic in your chosen tool, run through this checklist before exporting:</p>\n<h3 id=\"does-the-headline-state-a-conclusion-not-just-a-topic\">* Does the headline state a conclusion, not just a topic?</h3>\n<h3 id=\"can-a-reader-understand-the-main-point-within-five-seconds-of-looking-at-it\">* Can a reader understand the main point within five seconds of looking at it?</h3>\n<h3 id=\"is-there-a-data-source-line-at-the-bottom\">* Is there a data source line at the bottom?</h3>\n<p>* Is the contrast between text and background sufficient for accessibility? (WCAG AA requires a 4.5:1 ratio for body text)</p>\n<p>* Have you checked how it looks at the size it'll actually be displayed — not at 100% zoom in your design tool?</p>\n<p>Export as PNG for social media and email. Export as SVG if it's going on a webpage and you want it to stay crisp at any size. Export as PDF for print.</p>\n<h2 id=\"the-one-infographic-design-tip-most-guides-miss\">The One Infographic Design Tip Most Guides Miss</h2>\n<p>White space is not empty space — it's an active design element. The infographics that look \"clean\" and \"professional\" almost always have significantly more padding, margin, and breathing room between elements than you'd expect. When your infographic feels cluttered, the instinct is to make elements smaller. The better move is to cut one element entirely and give the remaining ones room.</p>\n<p>Every successful free infographic template you'll find in Canva or Figma that holds up under scrutiny has this in common: generous internal spacing that makes the content feel considered rather than crammed.</p>\n<p>Build the infographic you think you want, then remove one element. You'll be right more often than you'll be wrong.</p>\n<h2 id=\"frequently-asked-questions\">Frequently Asked Questions</h2>\n<h3 id=\"how-long-does-it-take-to-make-an-infographic-from-scratch\">How long does it take to make an infographic from scratch?</h3>\n<p>With a clear message and your data already gathered, a simple infographic takes 1–3 hours in Canva using a free infographic template as a starting point. A more complex statistical or process infographic built from scratch in Figma typically takes 4–8 hours including revisions. The biggest time sink is almost always the content and data audit step — not the design itself. Get your data and message locked before opening any tool.</p>\n<h3 id=\"what-is-the-best-free-infographic-maker-for-beginners\">What is the best free infographic maker for beginners?</h3>\n<p>Canva is the best free infographic maker for most beginners in 2026. It has the largest library of free infographic templates, the most intuitive drag-and-drop interface, and — since Canva added its AI design tools in 2024 — the fastest workflow for resizing and adapting designs across formats. Datawrapper is the best free option when your infographic is primarily chart-driven. Flourish is the best free choice for interactive or animated work.</p>\n<h3 id=\"what-size-should-an-infographic-be\">What size should an infographic be?</h3>\n<p>Infographic dimensions depend on where it will be published. Standard sizes in 2026: 800 × 2000px for a standard vertical web infographic, 1080 × 1920px for Instagram Stories and TikTok, 1080 × 1350px for Instagram feed posts and LinkedIn, 1200 × 628px for Facebook and Twitter/X link previews, and 600 × variable for email-embedded infographics. See our [Infographic Size Guide for Every Social Media Platform] for a full breakdown with current platform specs.</p>\n<h3 id=\"how-do-i-make-an-infographic-without-design-skills\">How do I make an infographic without design skills?</h3>\n<p>Start with a free infographic template in Canva rather than a blank canvas — the layout and spacing decisions are already made for you. Replace the placeholder text with your content, swap the colors to match your brand, and update the charts or icons. The key discipline is resisting the urge to add elements beyond what the template already provides. Most non-designers over-design; the template keeps you honest. Canva's free tier includes hundreds of infographic templates.</p>\n<h3 id=\"what-data-should-i-include-in-an-infographic\">What data should I include in an infographic?</h3>\n<p>Include only data that directly supports your single core message — typically three to seven key data points. Every additional statistic competes for the reader's attention. A useful test: if you removed a data point and your main argument still holds, cut it. For sourced data, always include a source line at the bottom of the infographic, even if the source isn't hyperlinked. It signals credibility and protects against misattribution when the infographic gets reshared.</p>\n<h3 id=\"what-s-the-difference-between-an-infographic-and-a-data-visualization\">What's the difference between an infographic and a data visualization?</h3>\n<p>An infographic is a broader category of visual communication that can include data, illustrations, icons, text, and narrative structure — it tells a story. A data visualization is specifically a visual representation of data, like a chart, graph, or map. All data visualizations can be elements within an infographic, but not all infographics are data visualizations. A process flow with no charts is an infographic. A scatter plot showing correlation is a data visualization. In practice, the terms are often used interchangeably, especially for chart-heavy editorial infographics.</p>",
+  "html": "<p>Learning how to make an infographic from scratch feels harder than it should be, mostly because most tutorials jump straight to software clicks before explaining the thinking behind a good layout. You end up with a Canva template stuffed with your data instead of a design that actually communicates anything. The real skill isn't dragging icons around — it's deciding what story your numbers are telling before you touch a design tool. This guide walks through that process from blank page to finished, shareable graphic.</p>\n<h2 id=\"why-most-first-infographics-fail\">Why Most First Infographics Fail</h2>\n<p>The most common mistake happens before any design work starts: people open an infographic maker and start placing elements without deciding what the single takeaway should be. An infographic with five competing messages reads as visual noise, not information.</p>\n<p>Before opening any tool, write one sentence that captures the entire point — \"Remote work increased commute-free hours by 30% on average\" — and let every visual decision serve that sentence. If a chart, icon, or paragraph doesn't support it, cut it. This single discipline separates infographics people actually share from ones that get scrolled past. It also makes the next steps faster, since you're no longer guessing what deserves visual weight and what doesn't.</p>\n<h2 id=\"the-step-by-step-process\">The Step-by-Step Process</h2>\n<p>Once you know your core message, the actual build follows a predictable sequence:</p>\n<p>1. Outline your content hierarchy. List your data points in order of importance, not the order you collected them. The most surprising or valuable stat goes first.</p>\n<p>2. Sketch the layout on paper first. Decide whether this is a vertical list-style infographic, a comparison layout, or a single-stat hero design. Five minutes of sketching saves an hour of rearranging in software.</p>\n<p>3. Choose your infographic maker. Canva offers the fastest path with a large free infographic template library; Figma gives more control if you want custom grids; Adobe Illustrator suits anyone needing print-ready vector output.</p>\n<p>4. Build your grid first, content second. Set consistent margins and column widths before adding any text or icons — this single habit is what makes amateur infographics look professional.</p>\n<p>5. Add data visualization elements last. Charts, icons, and illustrations should slot into the structure you've already built, not define it.</p>\n<p>Following this order — message, sketch, grid, content — is what separates infographic design that looks intentional from a template with your numbers pasted in.</p>\n<h2 id=\"layout-color-and-tool-specific-considerations\">Layout, Color, and Tool-Specific Considerations</h2>\n<p>Layout choice depends entirely on what your data is doing. Sequential information (a process, a timeline) wants a vertical flow with directional cues like arrows or connecting lines. Comparative data wants a side-by-side or table-based layout. A single dramatic statistic deserves a hero treatment — one huge number, minimal supporting text, maximum visual impact.</p>\n<p>Color matters more than most first-time designers expect. Stick to one primary color plus a single accent for emphasis; resist the urge to color-code every section differently just because you can. In Canva, the brand kit feature lets you lock a palette across the whole design, which keeps consistency easy even mid-project. In Figma, set up color styles before you start so every element pulls from the same source.</p>\n<p>One tool-specific note: Canva's AI-powered \"Magic Switch\" feature, expanded significantly since 2024, can now resize a finished infographic across formats automatically — useful once your design is locked, but don't rely on it for initial layout decisions, since it optimizes existing content rather than rethinking hierarchy.</p>\n<h2 id=\"common-mistakes-that-undermine-good-infographics\">Common Mistakes That Undermine Good Infographics</h2>\n<p>Even well-researched infographics get undermined by a handful of repeat offenders. Too many fonts is the most visible one — two typefaces maximum, one for headers and one for body text, is the safe ceiling. Overcrowded icon usage is another: icons should clarify a category at a glance, not decorate empty space, and using more than one icon style in a single design instantly looks unfinished.</p>\n<p>Low contrast text is the silent killer of infographic engagement — light gray text on a white background might look elegant on your screen but becomes unreadable once compressed for social media. Test your design at thumbnail size before finalizing; if you can't read the headline stat at a glance, neither can your audience.</p>\n<p>Finally, skipping a source citation undermines credibility instantly. A small \"(Source: [name], 2026)\" line costs nothing and signals the data is trustworthy.</p>\n<p>Once your draft feels complete, the real test is sharing it with someone unfamiliar with the topic and asking what they remember thirty seconds later. If they can repeat your core message, the design worked. See our Chart Types Guide for help choosing the right visualization for your specific data before you finalize layout.</p>\n<h2 id=\"frequently-asked-questions\">Frequently Asked Questions</h2>\n<h3 id=\"what-is-the-best-free-tool-to-make-an-infographic\">What is the best free tool to make an infographic?</h3>\n<p>Canva is the best free infographic maker for most beginners, offering hundreds of free infographic templates, a drag-and-drop editor, and a built-in brand kit. Figma is a strong free alternative if you want more layout control or plan to collaborate with a design team.</p>\n<h3 id=\"how-long-does-it-take-to-make-an-infographic-from-scratch\">How long does it take to make an infographic from scratch?</h3>\n<p>A simple single-stat infographic can take 30–60 minutes once you have your data ready. A more complex multi-section infographic, including sketching the layout and refining color and typography, typically takes 2–4 hours for someone comfortable with basic design tools.</p>\n<h3 id=\"what-size-should-an-infographic-be\">What size should an infographic be?</h3>\n<p>Standard vertical infographics are usually 800 × 2000px for blogs and websites, while Instagram-optimized versions run 1080 × 1350px. Pinterest infographics perform best at a 2:3 ratio, such as 1000 × 1500px, since taller pins get more visibility in feeds.</p>\n<h3 id=\"do-i-need-design-experience-to-make-a-good-infographic\">Do I need design experience to make a good infographic?</h3>\n<p>No — following a structured process matters more than design training. Start with a clear single message, use a free infographic template as your grid foundation, and limit yourself to two fonts and one accent color to avoid the most common beginner mistakes.</p>\n<h3 id=\"how-do-i-make-an-infographic-look-professional-instead-of-cluttered\">How do I make an infographic look professional instead of cluttered?</h3>\n<p>Limit your design to one core message, two fonts, and a maximum of three colors. Build your layout grid before adding any content, and leave generous white space between sections rather than filling every inch — professional infographic design relies as much on what's left out as what's included.</p>",
   "headings": [
     {
       "level": 2,
-      "text": "Why Most Infographics Fail Before the Design Even Starts",
-      "id": "why-most-infographics-fail-before-the-design-even-starts"
-    },
-    {
-      "level": 3,
-      "text": "Step-by-Step: How to Make an Infographic That Actually Works",
-      "id": "step-by-step-how-to-make-an-infographic-that-actually-works"
+      "text": "Why Most First Infographics Fail",
+      "id": "why-most-first-infographics-fail"
     },
     {
       "level": 2,
-      "text": "Step 1 — Gather and audit your data (15–30 minutes)",
-      "id": "step-1-gather-and-audit-your-data-15-30-minutes"
+      "text": "The Step-by-Step Process",
+      "id": "the-step-by-step-process"
     },
     {
       "level": 2,
-      "text": "Step 2 — Choose your infographic type",
-      "id": "step-2-choose-your-infographic-type"
+      "text": "Layout, Color, and Tool-Specific Considerations",
+      "id": "layout-color-and-tool-specific-considerations"
     },
     {
       "level": 2,
-      "text": "Step 3 — Sketch the layout before you design it",
-      "id": "step-3-sketch-the-layout-before-you-design-it"
-    },
-    {
-      "level": 2,
-      "text": "Step 4 — Choose your infographic design tool",
-      "id": "step-4-choose-your-infographic-design-tool"
-    },
-    {
-      "level": 2,
-      "text": "Step 5 — Apply your color palette and typography",
-      "id": "step-5-apply-your-color-palette-and-typography"
-    },
-    {
-      "level": 2,
-      "text": "Step 6 — Build, check, and export",
-      "id": "step-6-build-check-and-export"
-    },
-    {
-      "level": 3,
-      "text": "* Does the headline state a conclusion, not just a topic?",
-      "id": "does-the-headline-state-a-conclusion-not-just-a-topic"
-    },
-    {
-      "level": 3,
-      "text": "* Can a reader understand the main point within five seconds of looking at it?",
-      "id": "can-a-reader-understand-the-main-point-within-five-seconds-of-looking-at-it"
-    },
-    {
-      "level": 3,
-      "text": "* Is there a data source line at the bottom?",
-      "id": "is-there-a-data-source-line-at-the-bottom"
-    },
-    {
-      "level": 2,
-      "text": "The One Infographic Design Tip Most Guides Miss",
-      "id": "the-one-infographic-design-tip-most-guides-miss"
+      "text": "Common Mistakes That Undermine Good Infographics",
+      "id": "common-mistakes-that-undermine-good-infographics"
     },
     {
       "level": 2,
@@ -79,13 +39,13 @@
     },
     {
       "level": 3,
-      "text": "How long does it take to make an infographic from scratch?",
-      "id": "how-long-does-it-take-to-make-an-infographic-from-scratch"
+      "text": "What is the best free tool to make an infographic?",
+      "id": "what-is-the-best-free-tool-to-make-an-infographic"
     },
     {
       "level": 3,
-      "text": "What is the best free infographic maker for beginners?",
-      "id": "what-is-the-best-free-infographic-maker-for-beginners"
+      "text": "How long does it take to make an infographic from scratch?",
+      "id": "how-long-does-it-take-to-make-an-infographic-from-scratch"
     },
     {
       "level": 3,
@@ -94,18 +54,13 @@
     },
     {
       "level": 3,
-      "text": "How do I make an infographic without design skills?",
-      "id": "how-do-i-make-an-infographic-without-design-skills"
+      "text": "Do I need design experience to make a good infographic?",
+      "id": "do-i-need-design-experience-to-make-a-good-infographic"
     },
     {
       "level": 3,
-      "text": "What data should I include in an infographic?",
-      "id": "what-data-should-i-include-in-an-infographic"
-    },
-    {
-      "level": 3,
-      "text": "What's the difference between an infographic and a data visualization?",
-      "id": "what-s-the-difference-between-an-infographic-and-a-data-visualization"
+      "text": "How do I make an infographic look professional instead of cluttered?",
+      "id": "how-do-i-make-an-infographic-look-professional-instead-of-cluttered"
     }
   ]
 }

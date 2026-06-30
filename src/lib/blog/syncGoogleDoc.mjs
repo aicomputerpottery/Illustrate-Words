@@ -115,8 +115,15 @@ By mapping our priorities onto a structured framework, we make the path forward 
   }
 
   // Parse all posts from the raw text
-  const posts = parseDoc(raw);
-  console.log(`[sync-blog] Parsed ${posts.length} posts`);
+  const rawPosts = parseDoc(raw);
+  
+  // Deduplicate posts by slug, keeping the last occurrence (most recent revision)
+  const postMap = new Map();
+  for (const post of rawPosts) {
+    postMap.set(post.slug, post);
+  }
+  const posts = Array.from(postMap.values());
+  console.log(`[sync-blog] Parsed ${rawPosts.length} posts, resolved to ${posts.length} unique posts`);
 
   // Ensure output directory exists
   fs.mkdirSync(OUT_DIR, { recursive: true });

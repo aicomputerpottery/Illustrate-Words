@@ -42,6 +42,15 @@ export function parseDoc(raw) {
         prevPost.hasStick = true;
       }
     } else {
+      // Calculate word count of the block's body lines to filter out notes/junk
+      const bodyText = parsed.html.replace(/<[^>]+>/g, '').trim();
+      const wordCount = bodyText.split(/\s+/).filter(Boolean).length;
+      
+      // If it's not a real article (e.g. has fewer than 40 words), skip it!
+      if (wordCount < 40) {
+        console.log(`[sync-blog] 💡 Skipping junk block/notes: "${parsed.title}" (word count: ${wordCount})`);
+        continue;
+      }
       posts.push(parsed);
     }
   }
@@ -50,11 +59,12 @@ export function parseDoc(raw) {
 }
 
 function parseBlock(block) {
-  const lines = block.split('\n').map(l => l.trim());
+  // Preserve carriage returns/tabs but split by newline
+  const lines = block.split('\n').map(l => l.replace(/\r$/, ''));
   
   // Skip leading empty lines and separator lines (e.g. lines of only underscores or dashes)
   let startIdx = 0;
-  while (startIdx < lines.length && (lines[startIdx] === '' || /^[_\-\s\uFEFF\u200B]+$/.test(lines[startIdx]))) {
+  while (startIdx < lines.length && (lines[startIdx].trim() === '' || /^[_\-\s\uFEFF\u200B]+$/.test(lines[startIdx].trim()))) {
     startIdx++;
   }
   const activeLines = lines.slice(startIdx);
@@ -64,7 +74,7 @@ function parseBlock(block) {
 
   // Parse header fields until we hit a non-field line
   for (let i = 0; i < activeLines.length; i++) {
-    const line = activeLines[i];
+    const line = activeLines[i].trim();
     if (line === '') continue;
 
     // Match metadata key-value (e.g. TITLE: My Title or META DESCRIPTION: ...)
@@ -94,9 +104,9 @@ function parseBlock(block) {
 
   // Auto-extract or default missing fields
   if (!meta.TITLE) {
-    const firstLineIdx = bodyLines.findIndex(l => l.length > 0 && !l.startsWith('__'));
+    const firstLineIdx = bodyLines.findIndex(l => l.trim().length > 0 && !l.trim().startsWith('__'));
     if (firstLineIdx !== -1) {
-      meta.TITLE = cleanMarkdown(bodyLines[firstLineIdx].replace(/^#\s*/, ''));
+      meta.TITLE = cleanMarkdown(bodyLines[firstLineIdx].trim().replace(/^#\s*/, ''));
       bodyLines = bodyLines.slice(firstLineIdx + 1);
     } else {
       meta.TITLE = "Untitled Post";
@@ -132,8 +142,8 @@ function parseBlock(block) {
     if (meta.META_DESCRIPTION) {
       meta.EXCERPT = cleanMarkdown(meta.META_DESCRIPTION);
     } else {
-      const firstPara = bodyLines.find(l => l.length > 0 && !l.startsWith('#')) || "";
-      meta.EXCERPT = cleanMarkdown(firstPara).substring(0, 150) + (firstPara.length > 150 ? "..." : "");
+      const firstPara = bodyLines.find(l => l.trim().length > 0 && !l.trim().startsWith('#')) || "";
+      meta.EXCERPT = cleanMarkdown(firstPara.trim()).substring(0, 150) + (firstPara.trim().length > 150 ? "..." : "");
     }
   } else {
     meta.EXCERPT = cleanMarkdown(meta.EXCERPT);
@@ -186,6 +196,74 @@ function parseBody(lines) {
 
     // Detect dividers
     if (/^[_\-\s\u200B]+$/.test(line)) continue;
+
+    // Table parsing
+    const nextNonEmptyLine = lines.slice(i + 1).find(l => l.trim() !== '');
+    const isTableCell = raw.startsWith('\t') && raw.length < 150;
+    const isTableStart = !isTableCell && nextNonEmptyLine && nextNonEmptyLine.startsWith('\t') && nextNonEmptyLine.length < 150;
+
+    if (isTableCell || isTableStart) {
+      const cells = [raw.trim()];
+      let j = i + 1;
+      while (j < lines.length) {
+        const nextRaw = lines[j];
+        if (nextRaw.trim() === '') {
+          j++;
+          continue;
+        }
+        if (nextRaw.startsWith('\t') && nextRaw.length < 150) {
+          cells.push(nextRaw.trim());
+          j++;
+        } else {
+          break;
+        }
+      }
+      
+      // Advance outer loop index to the last cell processed
+      i = j - 1;
+
+      // Group cells into rows of 3 columns
+      const cols = 3;
+      const rows = [];
+      for (let r = 0; r < cells.length; r += cols) {
+        rows.push(cells.slice(r, r + cols));
+      }
+
+      // Build HTML table with premium styling (VisualCraft editorial layout)
+      let tableHtml = `<div class="my-6 overflow-x-auto border-2 border-ink-primary rounded-xl bg-[#FFFDF9] shadow-hard-sm">\n`;
+      tableHtml += `  <table class="w-full text-left border-collapse">\n`;
+      
+      if (rows.length > 0) {
+        const headers = rows[0];
+        tableHtml += `    <thead>\n`;
+        tableHtml += `      <tr class="border-b-2 border-ink-primary bg-cream-darker">\n`;
+        for (const h of headers) {
+          tableHtml += `        <th class="p-3 text-sm font-semibold text-ink-primary">${applyInlineFormatting(h)}</th>\n`;
+        }
+        tableHtml += `      </tr>\n`;
+        tableHtml += `    </thead>\n`;
+        
+        if (rows.length > 1) {
+          tableHtml += `    <tbody class="divide-y divide-cream-darkest">\n`;
+          for (const row of rows.slice(1)) {
+            tableHtml += `      <tr class="hover:bg-cream-lightest/50 transition-colors">\n`;
+            for (const cell of row) {
+              tableHtml += `        <td class="p-3 text-sm text-ink-secondary">${applyInlineFormatting(cell || '')}</td>\n`;
+            }
+            if (row.length < cols) {
+              for (let c = row.length; c < cols; c++) {
+                tableHtml += `        <td class="p-3 text-sm text-ink-secondary"></td>\n`;
+              }
+            }
+            tableHtml += `      </tr>\n`;
+          }
+          tableHtml += `    </tbody>\n`;
+        }
+      }
+      tableHtml += `  </table>\n</div>`;
+      htmlLines.push(tableHtml);
+      continue;
+    }
 
     // Heading detection
     let isHeading = false;
