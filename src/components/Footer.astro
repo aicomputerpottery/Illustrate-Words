@@ -28,7 +28,6 @@ const footerSections = [
     links: [
       { href: '/privacy', label: 'Privacy Policy' },
       { href: '/terms', label: 'Terms of Service' },
-      { href: '/sitemap-index.xml', label: 'Sitemap XML', external: true },
     ],
   },
   {
@@ -38,6 +37,13 @@ const footerSections = [
       { href: 'https://chatgpt.com', label: 'ChatGPT', external: true },
       { href: 'https://claude.ai', label: 'Claude', external: true },
       { href: 'https://midjourney.com', label: 'Midjourney', external: true },
+    ],
+  },
+  {
+    title: 'Other Works',
+    links: [
+      { href: 'https://www.letstalkbuildinghouses.com/', label: "Let's Talk Building Houses", external: true },
+      { href: 'https://www.letstalkislambooks.com/', label: "let's talk islam books.com", external: true },
     ],
   },
 ];
@@ -56,7 +62,7 @@ const footerSections = [
         </p>
       </div>
 
-      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-5 gap-8">
         {footerSections.map((section) => (
           <div>
             <h3 class="text-xs font-semibold tracking-wider uppercase text-white mb-4">{section.title}</h3>

@@ -132,6 +132,24 @@ By mapping our priorities onto a structured framework, we make the path forward 
   let written = 0;
   for (const post of posts) {
     const filePath = path.join(OUT_DIR, `${post.slug}.json`);
+    
+    // Ensure image exists or use fallback
+    if (post.heroImage && post.heroImage.startsWith('/images/')) {
+      const imgAbsPath = path.resolve(path.join('public', post.heroImage));
+      const imgDir = path.dirname(imgAbsPath);
+      if (!fs.existsSync(imgAbsPath)) {
+        console.warn(`\x1b[33m[sync-blog] ⚠️ Missing blog cover image: ${post.heroImage}\x1b[0m`);
+        const fallbackSrc = path.resolve('public/images/celebration_doodle.png');
+        if (fs.existsSync(fallbackSrc)) {
+          fs.mkdirSync(imgDir, { recursive: true });
+          fs.copyFileSync(fallbackSrc, imgAbsPath);
+          console.log(`\x1b[32m[sync-blog] 💡 Copied placeholder celebration_doodle.png to ${post.heroImage}\x1b[0m`);
+        }
+        console.log(`\x1b[36m[sync-blog] To generate the visual, run the following prompt in AI image tool:\x1b[0m`);
+        console.log(`  \x1b[35mA playful, hand-drawn vector doodle in Marc Lou style showing: ${post.title}, sketched on a clean cream background, minimalist SaaS style, dark lines, highlights in orange and purple, cute indie hacker aesthetic\x1b[0m`);
+      }
+    }
+
     fs.writeFileSync(filePath, JSON.stringify(post, null, 2), 'utf8');
     written++;
   }
