@@ -990,41 +990,65 @@ const steps = [
         const circle = el.querySelector('.step-circle');
         const numberEl = el.querySelector('.step-number');
 
-        el.className = 'step-btn w-full flex items-center gap-3 p-4 rounded-card border-1.5 transition-all text-left hover:-translate-y-0.5';
-        if (circle) circle.className = 'step-circle w-10 h-10 rounded-full border-1.5 flex items-center justify-center font-serif font-medium text-base flex-shrink-0';
+        el.className = 'step-btn w-full flex items-center gap-3 p-4 rounded-card border transition-all text-left hover:-translate-y-0.5';
+        if (circle) circle.className = 'step-circle w-10 h-10 rounded-full border flex items-center justify-center font-serif font-medium text-base flex-shrink-0';
 
         if (step === state.currentStep) {
-          el.classList.add('bg-accent-lavender', 'text-white', 'border-accent-lavender-dark', 'shadow-hard-sm');
-          circle?.classList.add('bg-accent-lavender-deep', 'border-white', 'text-white');
-          if (numberEl) numberEl.textContent = String(step);
-        } else if (canGoToStep(step) && step < state.currentStep) {
-          let bgClass = 'bg-forest';
-          let borderClass = 'border-forest-ink';
-          let textClass = 'text-ink-on-dark';
-          let circleClass = 'bg-forest-light border-border-on-dark text-white';
+          let bgClass = '';
+          let borderClass = '';
+          let textClass = 'text-ink-primary font-semibold';
+          let circleClass = '';
 
           if (step === 1) {
-            bgClass = 'bg-accent-lime/15';
-            borderClass = 'border-accent-lime';
-            textClass = 'text-ink-primary';
-            circleClass = 'bg-accent-lime text-ink-primary border-accent-lime-dark';
+            bgClass = 'bg-accent-lime/25';
+            borderClass = 'border-accent-lime border-2';
+            circleClass = 'bg-accent-lime text-ink-primary border-2 border-accent-lime-dark font-bold';
           } else if (step === 2) {
-            bgClass = 'bg-accent-pink/15';
-            borderClass = 'border-accent-pink';
-            textClass = 'text-ink-primary';
-            circleClass = 'bg-accent-pink text-ink-primary border-accent-pink-dark';
+            bgClass = 'bg-accent-pink/25';
+            borderClass = 'border-accent-pink border-2';
+            circleClass = 'bg-accent-pink text-ink-primary border-2 border-accent-pink-dark font-bold';
           } else if (step === 3) {
-            bgClass = 'bg-accent-sky/15';
-            borderClass = 'border-accent-sky';
-            textClass = 'text-ink-primary';
-            circleClass = 'bg-accent-sky text-ink-primary border-accent-sky-dark';
+            bgClass = 'bg-accent-sky/25';
+            borderClass = 'border-accent-sky border-2';
+            circleClass = 'bg-accent-sky text-ink-primary border-2 border-accent-sky-dark font-bold';
+          } else if (step === 4) {
+            bgClass = 'bg-accent-orange/25';
+            borderClass = 'border-accent-orange border-2';
+            circleClass = 'bg-accent-orange text-ink-primary border-2 border-accent-orange-dark font-bold';
           }
 
-          el.classList.add(bgClass, textClass, borderClass);
-          if (circle) circle.className = `step-circle w-10 h-10 rounded-full border-1.5 ${circleClass} flex items-center justify-center font-serif font-medium text-base flex-shrink-0`;
+          el.classList.add(...bgClass.split(' '), ...borderClass.split(' '), ...textClass.split(' '), 'shadow-hard-sm');
+          if (circle) circle.className = `step-circle w-10 h-10 rounded-full flex items-center justify-center font-serif text-base flex-shrink-0 ${circleClass}`;
+          if (numberEl) numberEl.textContent = String(step);
+        } else if (canGoToStep(step) && step < state.currentStep) {
+          let bgClass = '';
+          let borderClass = '';
+          let textClass = 'text-ink-primary';
+          let circleClass = '';
+
+          if (step === 1) {
+            bgClass = 'bg-accent-lime/12';
+            borderClass = 'border-accent-lime/60 border-1.5';
+            circleClass = 'bg-accent-lime text-ink-primary border border-accent-lime-dark';
+          } else if (step === 2) {
+            bgClass = 'bg-accent-pink/12';
+            borderClass = 'border-accent-pink/60 border-1.5';
+            circleClass = 'bg-accent-pink text-ink-primary border border-accent-pink-dark';
+          } else if (step === 3) {
+            bgClass = 'bg-accent-sky/12';
+            borderClass = 'border-accent-sky/60 border-1.5';
+            circleClass = 'bg-accent-sky text-ink-primary border border-accent-sky-dark';
+          } else if (step === 4) {
+            bgClass = 'bg-accent-orange/12';
+            borderClass = 'border-accent-orange/60 border-1.5';
+            circleClass = 'bg-accent-orange text-ink-primary border border-accent-orange-dark';
+          }
+
+          el.classList.add(...bgClass.split(' '), ...borderClass.split(' '), ...textClass.split(' '));
+          if (circle) circle.className = `step-circle w-10 h-10 rounded-full flex items-center justify-center font-serif text-base flex-shrink-0 ${circleClass}`;
           if (numberEl) numberEl.innerHTML = '✓';
         } else {
-          el.classList.add('bg-cream/40', 'text-ink-tertiary', 'border-border-light');
+          el.classList.add('bg-cream/40', 'text-ink-tertiary', 'border-border-light', 'border-1.5');
           circle?.classList.add('bg-cream-lightest', 'border-border-light');
           if (numberEl) numberEl.textContent = String(step);
         }

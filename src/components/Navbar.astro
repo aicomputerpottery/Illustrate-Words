@@ -4,10 +4,10 @@ import Logo from './Logo.astro';
 const path = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/generate', label: 'Generate' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/', label: 'Home', activeClass: 'bg-accent-lime/20 text-ink-primary border-accent-lime/60' },
+  { href: '/generate', label: 'Generate', activeClass: 'bg-accent-lavender-light/50 text-ink-primary border-accent-lavender/50' },
+  { href: '/gallery', label: 'Gallery', activeClass: 'bg-accent-sky/20 text-ink-primary border-accent-sky/50' },
+  { href: '/blog', label: 'Blog', activeClass: 'bg-accent-pink/20 text-ink-primary border-accent-pink/50' },
 ];
 
 const isActive = (href: string) => {
@@ -31,9 +31,9 @@ const isActive = (href: string) => {
           <a
             href={link.href}
             class:list={[
-              'px-4 py-2 rounded-btn text-sm font-medium transition-colors duration-200',
+              'px-4 py-2 rounded-btn text-sm font-medium border border-transparent transition-all duration-200',
               isActive(link.href)
-                ? 'bg-ink-primary text-cream-lightest'
+                ? link.activeClass
                 : 'text-ink-primary hover:bg-ink-primary/5'
             ]}
           >
@@ -68,9 +68,9 @@ const isActive = (href: string) => {
         <a
           href={link.href}
           class:list={[
-            'block px-4 py-3 rounded-btn text-base font-medium transition-colors duration-200',
+            'block px-4 py-3 rounded-btn text-base font-medium border border-transparent transition-all duration-200',
             isActive(link.href)
-              ? 'bg-ink-primary text-cream-lightest'
+              ? link.activeClass
               : 'text-ink-primary hover:bg-ink-primary/5'
           ]}
         >
