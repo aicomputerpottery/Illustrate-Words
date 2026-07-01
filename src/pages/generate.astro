@@ -1317,8 +1317,8 @@ const steps = [
           </svg>`;
         card.appendChild(checkBadge);
 
-        // Click handler — open detail popover
-        card.addEventListener('click', () => openPalettePopover(palette, card));
+        // Click handler — select palette and go to style
+        card.addEventListener('click', () => selectPalette(palette.id));
 
         grid.appendChild(card);
       });
