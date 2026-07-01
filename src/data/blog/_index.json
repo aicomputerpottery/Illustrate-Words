@@ -2,7 +2,7 @@
   {
     "slug": "50-best-data-visualization-examples-of-2026-with-stunning-takeaways",
     "title": "50 Best Data Visualization Examples of 2026 (With Stunning Takeaways)",
-    "date": "2026-06-30",
+    "date": "2026-07-01",
     "category": "Design",
     "tags": [],
     "excerpt": "Explore the 50 best data visualization examples of 2026 — a curated dataviz gallery of charts, infographics, and dashboards with clear takeaways you can use.",
@@ -13,7 +13,7 @@
   {
     "slug": "how-to-make-an-infographic-from-scratch-a-step-by-step-visual-guide",
     "title": "How to Make an Infographic From Scratch: A Step-by-Step Visual Guide",
-    "date": "2026-06-30",
+    "date": "2026-07-01",
     "category": "Design",
     "tags": [],
     "excerpt": "Learning how to make an infographic from scratch feels harder than it should be, mostly because most tutorials jump straight to software clicks before...",
@@ -24,12 +24,34 @@
   {
     "slug": "the-complete-chart-types-guide-which-data-visualization-should-you-use",
     "title": "The Complete Chart Types Guide: Which Data Visualization Should You Use?",
-    "date": "2026-06-30",
+    "date": "2026-07-01",
     "category": "Design",
     "tags": [],
     "excerpt": "Picking the wrong chart type is one of the fastest ways to undermine an otherwise solid data visualization — a 3D pie chart can make a 40% share look ...",
     "readingTime": 6,
     "heroViz": null,
     "heroImage": "/images/blog/the-complete-chart-types-guide-which-data-visualization-should-you-use.png"
+  },
+  {
+    "slug": "how-to-choose-the-right-color-palette-for-data-visualization-with-examples",
+    "title": "How to Choose the Right Color Palette for Data Visualization (With Examples)",
+    "date": "2026-07-01",
+    "category": "Design",
+    "tags": [],
+    "excerpt": "Choosing the right color palette for data visualization is the difference between a chart that makes its point in half a second and one that leaves re...",
+    "readingTime": 7,
+    "heroViz": null,
+    "heroImage": "/images/blog/how-to-choose-the-right-color-palette-for-data-visualization-with-examples.png"
+  },
+  {
+    "slug": "40-free-infographic-templates-that-look-professionally-designed",
+    "title": "40 Free Infographic Templates That Look Professionally Designed",
+    "date": "2026-07-01",
+    "category": "Design",
+    "tags": [],
+    "excerpt": "Free infographic templates have a reputation problem: most of them look free. Cramped layouts, clashing colors, and clip-art icons that immediately si...",
+    "readingTime": 6,
+    "heroViz": null,
+    "heroImage": "/images/blog/40-free-infographic-templates-that-look-professionally-designed.png"
   }
 ]
