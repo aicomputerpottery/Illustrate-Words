@@ -23,7 +23,7 @@ const allTypes = CATEGORIES.flatMap((cat) =>
 const steps = [
   { n: 1, title: 'Visualization', subtitle: 'Pick your type' },
   { n: 2, title: 'Palette', subtitle: 'Choose your colors' },
-  { n: 3, title: 'Style', subtitle: 'Set the mood' },
+  { n: 3, title: 'Style', subtitle: 'Set the style' },
   { n: 4, title: 'Prompt', subtitle: 'Copy and paste' },
 ];
 ---
@@ -351,7 +351,7 @@ const steps = [
             <div class="mb-10">
               <h2 class="font-serif text-xl font-medium mb-2">Connector style</h2>
               <p class="text-sm text-ink-secondary mb-4">How lines and arrows are drawn between elements.</p>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {CONNECTOR_STYLES.map((style) => (
                   <button
                     type="button"
@@ -360,12 +360,18 @@ const steps = [
                     data-style-id={style.id}
                     class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
-                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    <div class="aspect-[16/9] w-full bg-white flex items-center justify-center text-ink-primary p-2 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-full flex items-center justify-center" set:html={style.iconSvg}></div>
                     </div>
                     <div class="p-3.5 bg-transparent flex-1">
                       <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
                       <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
+                    <!-- Check badge -->
+                    <div class="style-check absolute top-2 right-2 w-6 h-6 rounded-full bg-accent-lime border-1.5 border-ink-primary shadow-hard flex items-center justify-center transition-opacity duration-150 opacity-0 pointer-events-none" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="2,6 5,9 10,3" stroke="#0A0A0A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                     </div>
                   </button>
                 ))}
@@ -376,7 +382,7 @@ const steps = [
             <div class="mb-10">
               <h2 class="font-serif text-xl font-medium mb-2">Icon style</h2>
               <p class="text-sm text-ink-secondary mb-4">How icons are rendered if your visualization includes them.</p>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {ICON_STYLES.map((style) => (
                   <button
                     type="button"
@@ -385,22 +391,28 @@ const steps = [
                     data-style-id={style.id}
                     class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
-                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    <div class="aspect-[16/9] w-full bg-white flex items-center justify-center text-ink-primary p-2 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-full flex items-center justify-center" set:html={style.iconSvg}></div>
                     </div>
                     <div class="p-3.5 bg-transparent flex-1">
                       <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
                       <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
+                    <!-- Check badge -->
+                    <div class="style-check absolute top-2 right-2 w-6 h-6 rounded-full bg-accent-lime border-1.5 border-ink-primary shadow-hard flex items-center justify-center transition-opacity duration-150 opacity-0 pointer-events-none" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="2,6 5,9 10,3" stroke="#0A0A0A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                     </div>
                   </button>
                 ))}
               </div>
             </div>
 
-            <!-- Layout mood -->
+            <!-- Typography style -->
             <div class="mb-10">
-              <h2 class="font-serif text-xl font-medium mb-2">Layout mood</h2>
-              <p class="text-sm text-ink-secondary mb-4">The overall aesthetic direction.</p>
+              <h2 class="font-serif text-xl font-medium mb-2">Typography style</h2>
+              <p class="text-sm text-ink-secondary mb-4">Choose a font family that matches your presentation theme.</p>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {LAYOUT_MOODS.map((style) => (
                   <button
@@ -410,12 +422,18 @@ const steps = [
                     data-style-id={style.id}
                     class="style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter transition-all hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative"
                   >
-                    <div class="aspect-[16/9] w-full bg-ink-primary/[0.02] flex items-center justify-center text-ink-primary p-4 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
-                      <div class="w-16 h-8 text-ink-primary flex items-center justify-center" set:html={style.iconSvg}></div>
+                    <div class="aspect-[16/9] w-full bg-white flex items-center justify-center text-ink-primary p-2 border-b-1.5 border-ink-primary/10 group-hover:border-ink-primary/30 transition-colors">
+                      <div class="w-full flex items-center justify-center" set:html={style.iconSvg}></div>
                     </div>
                     <div class="p-3.5 bg-transparent flex-1">
                       <h3 class="font-serif text-sm font-medium leading-tight">{style.name}</h3>
                       <p class="text-[11px] text-ink-secondary mt-1 leading-normal">{style.description}</p>
+                    </div>
+                    <!-- Check badge -->
+                    <div class="style-check absolute top-2 right-2 w-6 h-6 rounded-full bg-accent-lime border-1.5 border-ink-primary shadow-hard flex items-center justify-center transition-opacity duration-150 opacity-0 pointer-events-none" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="2,6 5,9 10,3" stroke="#0A0A0A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                     </div>
                   </button>
                 ))}
@@ -856,7 +874,7 @@ const steps = [
       prompt += `\n- Background: Pure white background (#FFFFFF).`;
       if (connector) prompt += `\n- Connector Lines: ${connector.name} style connectors (${connector.description.toLowerCase()}).`;
       if (icon) prompt += `\n- Iconography: ${icon.name} icon style (${icon.description.toLowerCase()}).`;
-      if (mood) prompt += `\n- Overall Aesthetic Direction: ${mood.name} style (${mood.description.toLowerCase()}).`;
+      if (mood) prompt += `\n- Typography & Font Style: ${mood.name} typography (${mood.description.toLowerCase()}).`;
       prompt += `\n- Outlines & Borders: Thin, clean, uniform dark borders (${palette ? palette.colors[4] : '#000000'}, 1.5px stroke width) on all nodes, blocks, and shapes.`;
       prompt += `\n- Fills & Color: Subtle, flat color fills using only the specified color palette stops. No gradients, no bevels, no 3D extrusion, and no drop shadows.`;
       prompt += `\n- Text & Alignment: Clean typography with text perfectly centered within shape nodes. High text contrast.`;
@@ -976,16 +994,38 @@ const steps = [
         if (circle) circle.className = 'step-circle w-10 h-10 rounded-full border-1.5 flex items-center justify-center font-serif font-medium text-base flex-shrink-0';
 
         if (step === state.currentStep) {
-          el.classList.add('bg-accent-lavender', 'text-white', 'border-accent-lavender-dark');
-          circle?.classList.add('bg-accent-lavender-deep', 'border-white');
+          el.classList.add('bg-accent-lavender', 'text-white', 'border-accent-lavender-dark', 'shadow-hard-sm');
+          circle?.classList.add('bg-accent-lavender-deep', 'border-white', 'text-white');
           if (numberEl) numberEl.textContent = String(step);
         } else if (canGoToStep(step) && step < state.currentStep) {
-          el.classList.add('bg-forest', 'text-ink-on-dark', 'border-forest-ink');
-          circle?.classList.add('bg-forest-light', 'border-border-on-dark');
+          let bgClass = 'bg-forest';
+          let borderClass = 'border-forest-ink';
+          let textClass = 'text-ink-on-dark';
+          let circleClass = 'bg-forest-light border-border-on-dark text-white';
+
+          if (step === 1) {
+            bgClass = 'bg-accent-lime/15';
+            borderClass = 'border-accent-lime';
+            textClass = 'text-ink-primary';
+            circleClass = 'bg-accent-lime text-ink-primary border-accent-lime-dark';
+          } else if (step === 2) {
+            bgClass = 'bg-accent-pink/15';
+            borderClass = 'border-accent-pink';
+            textClass = 'text-ink-primary';
+            circleClass = 'bg-accent-pink text-ink-primary border-accent-pink-dark';
+          } else if (step === 3) {
+            bgClass = 'bg-accent-sky/15';
+            borderClass = 'border-accent-sky';
+            textClass = 'text-ink-primary';
+            circleClass = 'bg-accent-sky text-ink-primary border-accent-sky-dark';
+          }
+
+          el.classList.add(bgClass, textClass, borderClass);
+          if (circle) circle.className = `step-circle w-10 h-10 rounded-full border-1.5 ${circleClass} flex items-center justify-center font-serif font-medium text-base flex-shrink-0`;
           if (numberEl) numberEl.innerHTML = '✓';
         } else {
-          el.classList.add('bg-cream-darker', 'text-ink-tertiary', 'border-border-medium');
-          circle?.classList.add('bg-cream-lightest', 'border-border-medium');
+          el.classList.add('bg-cream/40', 'text-ink-tertiary', 'border-border-light');
+          circle?.classList.add('bg-cream-lightest', 'border-border-light');
           if (numberEl) numberEl.textContent = String(step);
         }
 
@@ -1473,10 +1513,20 @@ const steps = [
         else if (type === 'icon') selectedId = state.selectedIconId;
         else if (type === 'mood') selectedId = state.selectedMoodId;
 
+        const checkBadge = el.querySelector('.style-check');
+
         if (id === selectedId) {
-          el.classList.add('bg-accent-lavender-light', 'shadow-hard');
+          el.className = 'style-card group text-left rounded-card border-2 border-accent-lavender bg-gradient-to-br from-accent-lime-light/40 via-accent-sky/20 to-accent-lavender-light/50 shadow-hard overflow-hidden flex flex-col relative scale-[1.02] transition-all';
+          if (checkBadge) {
+            checkBadge.classList.remove('opacity-0');
+            checkBadge.classList.add('opacity-100');
+          }
         } else {
-          el.classList.remove('bg-accent-lavender-light', 'shadow-hard');
+          el.className = 'style-card group text-left rounded-card border-1.5 border-ink-primary bg-cream-lighter hover:-translate-y-0.5 hover:shadow-hard overflow-hidden flex flex-col relative transition-all';
+          if (checkBadge) {
+            checkBadge.classList.add('opacity-0');
+            checkBadge.classList.remove('opacity-100');
+          }
         }
       });
     }
@@ -1496,12 +1546,12 @@ const steps = [
       if (p) tags.push({ label: p.name, color: 'bg-accent-pink' });
       if (c) tags.push({ label: `${c.name} lines`, color: 'bg-accent-lime' });
       if (i) tags.push({ label: `${i.name} icons`, color: 'bg-accent-sky' });
-      if (m) tags.push({ label: `${m.name} mood`, color: 'bg-accent-orange' });
+      if (m) tags.push({ label: `${m.name} font`, color: 'bg-accent-orange' });
 
       el.innerHTML = tags
         .map(
           (tag) =>
-            `<span class="pill ${tag.color} text-ink-primary text-xs">${tag.label}</span>`
+            `<span class="pill ${tag.color} text-ink-primary text-xs font-semibold px-2.5 py-1 rounded-full border border-ink-primary/10">${tag.label}</span>`
         )
         .join('');
     }

@@ -1096,38 +1096,26 @@ export const CONNECTOR_STYLES = [
   {
     id: "curved",
     name: "Curved",
-    description: "Smooth bezier curves for an organic feel",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><path d="M23 28 C 35 28, 45 12, 57 12"/></svg>`
+    description: "Smooth bezier curves for an organic flow",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><path d="M60 18 C 60 28, 25 22, 25 38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><path d="M60 18 C 60 28, 95 22, 95 38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><rect x="45" y="6" width="30" height="12" rx="4" fill="#FFE082" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="25" cy="44" r="8" fill="#81C784" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="95" cy="44" r="8" fill="#64B5F6" stroke="#0A0A0A" stroke-width="1.5"/></svg>`
   },
   {
     id: "straight",
     name: "Straight",
-    description: "Direct lines from point to point for technical clarity",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><line x1="23" y1="26.5" x2="57" y2="13.5"/></svg>`
+    description: "Direct paths from point to point for clean logic",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><line x1="60" y1="18" x2="25" y2="38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="18" x2="95" y2="38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><rect x="45" y="6" width="30" height="12" rx="4" fill="#FFE082" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="25" cy="44" r="8" fill="#81C784" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="95" cy="44" r="8" fill="#64B5F6" stroke="#0A0A0A" stroke-width="1.5"/></svg>`
   },
   {
     id: "rounded",
     name: "Rounded",
-    description: "Right-angle elbows with softened corners",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><path d="M20 25 V 12 H 57"/></svg>`
+    description: "Orthogonal lines with softened corners",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><path d="M60 18 V 28 Q 60 32 54 32 H 25 V 36" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 18 V 28 Q 60 32 66 32 H 95 V 36" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="45" y="6" width="30" height="12" rx="4" fill="#FFE082" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="25" cy="44" r="8" fill="#81C784" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="95" cy="44" r="8" fill="#64B5F6" stroke="#0A0A0A" stroke-width="1.5"/></svg>`
   },
   {
     id: "dashed",
     name: "Dashed",
-    description: "Dashed or dotted lines for optional or weak connections",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3" fill="currentColor"/><circle cx="60" cy="12" r="3" fill="currentColor"/><line x1="23" y1="26.5" x2="57" y2="13.5" stroke-dasharray="4 4"/></svg>`
-  },
-  {
-    id: "bold",
-    name: "Bold",
-    description: "Thick solid lines for high emphasis",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="28" r="3.5" fill="currentColor" stroke-width="0"/><circle cx="60" cy="12" r="3.5" fill="currentColor" stroke-width="0"/><line x1="23.5" y1="26.8" x2="56.5" y2="13.2"/></svg>`
-  },
-  {
-    id: "arrow-only",
-    name: "Arrow Only",
-    description: "Minimal arrowheads without long connecting lines",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="35,14 45,20 35,26" fill="currentColor"/><line x1="20" y1="20" x2="40" y2="20"/><circle cx="60" cy="20" r="3" fill="currentColor"/></svg>`
+    description: "Dashed lines to represent dynamic or optional steps",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><path d="M60 18 C 60 28, 25 22, 25 38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 4"/><path d="M60 18 C 60 28, 95 22, 95 38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 4"/><rect x="45" y="6" width="30" height="12" rx="4" fill="#FFE082" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="25" cy="44" r="8" fill="#81C784" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="95" cy="44" r="8" fill="#64B5F6" stroke="#0A0A0A" stroke-width="1.5"/></svg>`
   }
 ];
 
@@ -1139,32 +1127,26 @@ export const ICON_STYLES = [
   {
     id: "outline",
     name: "Outline",
-    description: "Thin outline icons with no fill, modern and minimal",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2"/><circle cx="48" cy="20" r="8"/></svg>`
+    description: "Thin outline icons with no fill for a clean look",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><g transform="translate(25, 10)"><path d="M15 6 C10 6 6 10 6 15 C6 19 8 22 11 24 V28 H19 V24 C22 22 24 19 24 15 C24 10 20 6 15 6 Z" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="round"/><path d="M11 31 H19" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/><path d="M13 34 H17" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g><g transform="translate(65, 10)"><circle cx="15" cy="15" r="6" stroke="#0A0A0A" stroke-width="2"/><path d="M15 3 V6 M15 24 V27 M3 15 H6 M24 15 H27 M6.5 6.5 L8.5 8.5 M21.5 21.5 L23.5 23.5 M6.5 23.5 L8.5 21.5 M21.5 6.5 L23.5 8.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g></svg>`
   },
   {
     id: "filled",
     name: "Filled",
     description: "Solid filled icons for strong visual presence",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2" fill="currentColor"/><circle cx="48" cy="20" r="8" fill="currentColor"/></svg>`
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><g transform="translate(25, 10)"><path d="M15 6 C10 6 6 10 6 15 C6 19 8 22 11 24 V28 H19 V24 C22 22 24 19 24 15 C24 10 20 6 15 6 Z" fill="#EF8CBD" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="round"/><path d="M11 31 H19" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/><path d="M13 34 H17" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g><g transform="translate(65, 10)"><circle cx="15" cy="15" r="6" fill="#8CC8EE" stroke="#0A0A0A" stroke-width="2"/><path d="M15 3 V6 M15 24 V27 M3 15 H6 M24 15 H27 M6.5 6.5 L8.5 8.5 M21.5 21.5 L23.5 23.5 M6.5 23.5 L8.5 21.5 M21.5 6.5 L23.5 8.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g></svg>`
   },
   {
     id: "duotone",
     name: "Duotone",
-    description: "Two-tone icons with primary and accent colors",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="12" width="16" height="16" rx="2" fill="currentColor" fill-opacity="0.15"/><circle cx="48" cy="20" r="8" fill="currentColor" fill-opacity="0.15"/></svg>`
-  },
-  {
-    id: "minimal",
-    name: "Minimal",
-    description: "Ultra simple geometric shapes only",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="20" r="2.5" fill="currentColor"/><circle cx="40" cy="20" r="2.5" fill="currentColor"/><circle cx="56" cy="20" r="2.5" fill="currentColor"/></svg>`
+    description: "Two-tone saturated colors for friendly aesthetics",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><g transform="translate(25, 10)"><path d="M15 6 C10 6 6 10 6 15 C6 19 8 22 11 24 V28 H19 V24 C22 22 24 19 24 15 C24 10 20 6 15 6 Z" fill="#EF8CBD" fill-opacity="0.3" stroke="#EF8CBD" stroke-width="2" stroke-linejoin="round"/><path d="M15 6 C10 6 6 10 6 15 C6 19 8 22 11 24 V28 H19 V24 C22 22 24 19 24 15 C24 10 20 6 15 6 Z" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="round"/><path d="M11 31 H19" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/><path d="M13 34 H17" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g><g transform="translate(65, 10)"><circle cx="15" cy="15" r="6" fill="#8CC8EE" fill-opacity="0.3" stroke="#8CC8EE" stroke-width="2"/><circle cx="15" cy="15" r="6" stroke="#0A0A0A" stroke-width="2"/><path d="M15 3 V6 M15 24 V27 M3 15 H6 M24 15 H27 M6.5 6.5 L8.5 8.5 M21.5 21.5 L23.5 23.5 M6.5 23.5 L8.5 21.5 M21.5 6.5 L23.5 8.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/></g></svg>`
   },
   {
     id: "none",
     name: "None",
-    description: "No icons - pure text and shapes only",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="60%" font-size="14" font-family="monospace" font-weight="bold" text-anchor="middle" fill="currentColor">TXT</text></svg>`
+    description: "Pure text and shape elements without icon illustrations",
+    iconSvg: `<svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-h-16"><rect x="25" y="15" width="70" height="30" rx="6" fill="#F5EFE0" stroke="#0A0A0A" stroke-dasharray="3 3" stroke-width="1.5"/><text x="60" y="34" font-family="monospace" font-size="11" font-weight="bold" fill="#7A7468" text-anchor="middle">NO ICONS</text></svg>`
   }
 ];
 
@@ -1176,38 +1158,38 @@ export const LAYOUT_MOODS = [
   {
     id: "corporate",
     name: "Corporate",
-    description: "Formal, structured, conservative - boardroom-ready",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="14" height="8" rx="1"/><rect x="51" y="10" width="14" height="8" rx="1"/><rect x="33" y="24" width="14" height="8" rx="1"/><path d="M29 14 H 51"/><path d="M40 14 V 24"/></svg>`
+    description: "Outfit font family for clean business aesthetics",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-medium tracking-tight text-ink-primary" style="font-family: 'Outfit', sans-serif;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Outfit', sans-serif;">Outfit Font</span></div>`
   },
   {
     id: "playful",
     name: "Playful",
-    description: "Rounded shapes, colorful, friendly - workshop-ready",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="10" width="14" height="10" rx="5" transform="rotate(-5, 23, 15)"/><circle cx="48" cy="16" r="6"/><path d="M24 28 Q 40 34 56 26" stroke-width="2"/></svg>`
+    description: "Fredoka Rounded font family for warm & friendly style",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-semibold tracking-tight text-ink-primary" style="font-family: 'Fredoka', sans-serif;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Fredoka', sans-serif;">Fredoka Font</span></div>`
   },
   {
     id: "minimal",
     name: "Minimal",
-    description: "Lots of whitespace, simple lines, Apple-clean aesthetic",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="12" x2="60" y2="12"/><line x1="20" y1="20" x2="50" y2="20"/><line x1="20" y1="28" x2="40" y2="28"/></svg>`
+    description: "Figtree Light font family for Apple-clean layout",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-light tracking-tight text-ink-primary" style="font-family: 'Figtree', sans-serif; font-weight: 300;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Figtree', sans-serif;">Figtree Font</span></div>`
   },
   {
     id: "bold",
     name: "Bold",
-    description: "High contrast, strong typography, eye-catching",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="50" height="20" rx="3" stroke-width="3"/><path d="M25 20 H 55" stroke-width="3"/></svg>`
+    description: "Outfit Black font family for high contrast impact",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-black tracking-tight text-ink-primary" style="font-family: 'Outfit', sans-serif; font-weight: 900;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Outfit', sans-serif;">Outfit Bold</span></div>`
   },
   {
     id: "elegant",
     name: "Elegant",
-    description: "Sophisticated, refined, magazine-like finish",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 12 C 30 12, 35 28, 45 28 C 55 28, 60 12, 65 12" stroke-width="1.25"/><circle cx="20" cy="12" r="1.5" fill="currentColor"/><circle cx="65" cy="12" r="1.5" fill="currentColor"/></svg>`
+    description: "Fraunces Serif Italic font family for editorial finish",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-medium italic tracking-tight text-ink-primary" style="font-family: 'Fraunces', serif;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Fraunces', serif;">Fraunces Font</span></div>`
   },
   {
     id: "technical",
     name: "Technical",
-    description: "Grid-based, precise, data-forward engineering aesthetic",
-    iconSvg: `<svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="15" y1="30" x2="65" y2="30"/><line x1="15" y1="10" x2="15" y2="30"/><line x1="25" y1="30" x2="25" y2="28"/><line x1="35" y1="30" x2="35" y2="28"/><line x1="45" y1="30" x2="45" y2="28"/><line x1="55" y1="30" x2="55" y2="28"/><path d="M20 18 L 40 12 L 60 22" stroke-width="1.75"/></svg>`
+    description: "Fira Code Monospace font family for precise engineering",
+    iconSvg: `<div class="py-2 text-center select-none"><span class="block text-2xl font-normal tracking-tight text-ink-primary" style="font-family: 'Fira Code', monospace;">Aa Bb Cc</span><span class="text-xs text-ink-tertiary font-mono" style="font-family: 'Fira Code', monospace;">Fira Code</span></div>`
   }
 ];
 
