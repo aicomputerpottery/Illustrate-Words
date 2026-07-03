@@ -20,7 +20,7 @@ try {
   data-initial={JSON.stringify(initialSponsors)}
   class="contents"
 >
-  <!-- Desktop Left Sidebar -->
+  <!-- Desktop Left Sidebar (5 rotating cards) -->
   <aside 
     class="sponsor-bar-container hidden xl:flex flex-col fixed left-4 top-[100px] w-[180px] z-40" 
     aria-label="Sponsors Left"
@@ -33,7 +33,7 @@ try {
     </div>
   </aside>
 
-  <!-- Desktop Right Sidebar -->
+  <!-- Desktop Right Sidebar (5 rotating cards + Advertise button) -->
   <aside 
     class="sponsor-bar-container hidden xl:flex flex-col fixed right-4 top-[100px] w-[180px] z-40" 
     aria-label="Sponsors Right"
@@ -44,6 +44,13 @@ try {
     <div id="right-sidebar-cards" class="space-y-3">
       <!-- Generated Client-Side -->
     </div>
+    <!-- Advertise Link at the bottom of the right sidebar -->
+    <button 
+      id="open-advertise-modal"
+      class="mt-3 text-[11px] font-semibold text-ink-secondary hover:text-ink-primary text-center select-none flex items-center justify-center gap-1 w-full hover:underline focus:outline-none cursor-pointer"
+    >
+      📢 Advertise
+    </button>
   </aside>
 
   <!-- Mobile Top Banner -->
@@ -67,6 +74,78 @@ try {
       <!-- Generated Client-Side -->
     </div>
   </aside>
+
+  <!-- Advertise Modal (Matches TrustMRR modal screenshot in Wispr-Editorial theme) -->
+  <div 
+    id="advertise-modal" 
+    class="fixed inset-0 bg-ink-primary/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+  >
+    <div class="bg-cream border-1.5 border-ink-primary rounded-[20px] max-w-md w-full p-6 relative shadow-hard animate-modal-in">
+      <!-- Close Button -->
+      <button 
+        id="close-advertise-modal" 
+        class="absolute top-4 right-4 text-ink-secondary hover:text-ink-primary font-bold text-lg select-none cursor-pointer focus:outline-none"
+        aria-label="Close modal"
+      >
+        ✕
+      </button>
+
+      <h3 class="font-serif text-2xl font-bold text-ink-primary mb-1">
+        Advertise on <em>Illustrate Words</em>
+      </h3>
+      <p class="text-xs text-ink-secondary mb-6">
+        Reach thousands of digital creators, designers, and consultants every month.
+      </p>
+
+      <!-- Stats Cards Grid -->
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="bg-cream-lighter border border-ink-primary/10 rounded-[12px] p-3 text-center">
+          <div class="text-[10px] font-bold uppercase text-ink-tertiary mb-1">Traffic</div>
+          <div class="text-sm font-serif font-bold text-ink-primary">10K+</div>
+          <div class="text-[9px] text-ink-secondary">Monthly visitors</div>
+        </div>
+        <div class="bg-cream-lighter border border-ink-primary/10 rounded-[12px] p-3 text-center">
+          <div class="text-[10px] font-bold uppercase text-ink-tertiary mb-1">Audience</div>
+          <div class="text-sm font-serif font-bold text-ink-primary">High-Intent</div>
+          <div class="text-[9px] text-ink-secondary">Visual builders</div>
+        </div>
+        <div class="bg-cream-lighter border border-ink-primary/10 rounded-[12px] p-3 text-center">
+          <div class="text-[10px] font-bold uppercase text-ink-tertiary mb-1">Slots</div>
+          <div class="text-sm font-serif font-bold text-ink-primary">
+            <span id="modal-available-count">20</span>/20
+          </div>
+          <div class="text-[9px] text-ink-secondary">Spots left</div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <h4 class="text-xs font-bold uppercase text-ink-primary mb-2">How it works</h4>
+      <p class="text-xs text-ink-secondary leading-relaxed mb-6">
+        Your product appears in rotating sponsor slots on desktop sidebars and mobile banners across all pages. Sponsors rotate every 10 seconds to ensure fair visibility among all advertisers.
+      </p>
+
+      <!-- Pricing Box -->
+      <div class="bg-cream-lighter border border-ink-primary/10 rounded-[12px] p-4 mb-6">
+        <div class="flex justify-between items-center mb-1">
+          <span class="text-xs font-bold text-ink-primary">Monthly rate</span>
+          <span class="text-sm font-serif font-bold text-ink-primary">$50/month</span>
+        </div>
+        <p class="text-[10px] text-ink-secondary leading-relaxed" id="modal-pricing-note">
+          Cancel anytime. Ad goes live within 24 hours of asset submission.
+        </p>
+      </div>
+
+      <!-- Stripe CTA Button -->
+      <a 
+        href="STRIPE_PAYMENT_LINK_PLACEHOLDER" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn-accent w-full py-3 text-center block text-sm font-semibold shadow-btn hover:shadow-btn-hover select-none"
+      >
+        Reserve Sponsor Slot ($50/month) ✦
+      </a>
+    </div>
+  </div>
 </div>
 
 <style is:global>
@@ -80,6 +159,15 @@ try {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
     }
+  }
+
+  /* Modal animation keyframe entry */
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-modal-in {
+    animation: modalIn 0.2s ease-out forwards;
   }
 </style>
 
@@ -153,16 +241,16 @@ try {
 
     const total = sponsors.length;
 
-    // --- Desktop Layout Configuration ---
+    // --- Desktop Layout Configuration (5 stacks per sidebar) ---
     let leftIndex = 0;
-    let rightIndex = Math.min(4, total % 4); // Offset start of right sidebar to avoid exact synchronicity
+    let rightIndex = Math.min(5, total % 5); // Offset start of right sidebar to avoid exact duplicate stacks
 
     function updateDesktopLeft() {
       const container = document.getElementById('left-sidebar-cards');
       if (!container) return;
       
       let html = '';
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         const sponsor = sponsors[(leftIndex + i) % total];
         html += renderCard(sponsor);
       }
@@ -174,7 +262,7 @@ try {
       if (!container) return;
 
       let html = '';
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         const sponsor = sponsors[(rightIndex + i) % total];
         html += renderCard(sponsor);
       }
@@ -183,7 +271,7 @@ try {
 
     // --- Mobile Layout Configuration ---
     let topIndex = 0;
-    let bottomIndex = Math.min(1, total % 2); // Offset bottom banner to avoid duplicate display
+    let bottomIndex = Math.min(1, total % 2);
 
     function updateMobileTop() {
       const container = document.getElementById('top-banner-card');
@@ -231,6 +319,44 @@ try {
         updateMobileBottom();
       }, 8000);
     }, 4000);
+
+    // --- Advertise Modal Toggle Logics ---
+    const openBtn = document.getElementById('open-advertise-modal');
+    const closeBtn = document.getElementById('close-advertise-modal');
+    const modal = document.getElementById('advertise-modal');
+
+    if (openBtn && closeBtn && modal) {
+      openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        
+        // Dynamic calculations inside modal metrics
+        const modalCountEl = document.getElementById('modal-available-count');
+        if (modalCountEl) {
+          const available = Math.max(0, 20 - total);
+          modalCountEl.textContent = String(available);
+          
+          const pricingNote = document.getElementById('modal-pricing-note');
+          if (pricingNote) {
+            if (available === 0) {
+              pricingNote.innerHTML = '<span class="text-accent-orange font-bold">All spots are currently filled for this month.</span> Join our waiting list by emailing sponsors@illustratewords.com.';
+            } else {
+              pricingNote.textContent = 'Cancel anytime. Ad goes live within 24 hours of asset submission.';
+            }
+          }
+        }
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+
+      // Close modal when clicking on the overlay background
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    }
   }
 
   // Initialize once DOM is ready (runs both on direct load or navigation checks)
