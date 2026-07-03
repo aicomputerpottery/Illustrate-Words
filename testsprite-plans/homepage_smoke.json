@@ -1,0 +1,23 @@
+{
+  "projectId": "ce3928ae-1214-4611-a6d2-a2dd9e40de92",
+  "type": "frontend",
+  "name": "Homepage Smoke Test",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains an h1 header containing the text 'Turn any idea into a stunning visualization'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains a link with text 'Start Generating' pointing to '/generate'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains a link with text 'See Examples' pointing to '/gallery'"
+    }
+  ]
+}

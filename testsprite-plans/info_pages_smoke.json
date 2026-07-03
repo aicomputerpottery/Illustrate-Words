@@ -1,0 +1,31 @@
+{
+  "projectId": "ce3928ae-1214-4611-a6d2-a2dd9e40de92",
+  "type": "frontend",
+  "name": "Information Pages Smoke Check",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /faq"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains an h1 header with text containing 'Frequently asked questions'"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /about"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains an h1 header with text containing 'The VisualCraft Story.'"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /contact"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains an h1 header with text containing 'Contact Us'"
+    }
+  ]
+}

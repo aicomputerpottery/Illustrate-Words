@@ -1,0 +1,8 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "illustratewords"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "illustratewords-sponsors"
+database_id = "REPLACE_WITH_DATABASE_ID"

@@ -1,0 +1,261 @@
+---
+// sponsor.astro — Sponsorship Sales & Landing Page
+// Presents sponsorship slots, pricing, traffic metrics, FAQs, and Stripe Payment Links.
+
+import Layout from '../layouts/Layout.astro';
+import Squiggle from '../components/Squiggle.astro';
+
+const STRIPE_PAYMENT_LINK_URL = 'STRIPE_PAYMENT_LINK_PLACEHOLDER';
+---
+
+<Layout 
+  title="Sponsor Us — Advertise on Illustrate Words" 
+  description="Advertise your design tool, creative SaaS, or product to thousands of illustrators, designers, and consultants who use Illustrate Words."
+>
+  <!-- 1. Hero Section -->
+  <section class="relative bg-cream-lightest pt-16 pb-20 md:pb-28 overflow-hidden border-b border-ink-primary/10">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-20 left-12 w-3 h-3 rounded-full bg-accent-lavender opacity-60"></div>
+      <div class="absolute bottom-16 right-16 w-4 h-4 rounded-full bg-accent-lime opacity-60"></div>
+    </div>
+
+    <div class="container-page max-w-4xl mx-auto text-center relative z-10">
+      <!-- Badge slot counter -->
+      <div class="flex justify-center mb-6">
+        <span class="pill bg-accent-lime text-ink-primary text-xs font-semibold py-1.5 px-4 rounded-full shadow-hard">
+          ⚡ <span id="available-slots-count">20</span> of 20 Slots Available
+        </span>
+      </div>
+
+      <h1 class="headline-display max-w-3xl mx-auto text-ink-primary leading-tight">
+        Advertise on <em>illustratewords.com</em>
+      </h1>
+
+      <p class="mt-6 text-lead text-ink-secondary max-w-2xl mx-auto text-lg leading-relaxed">
+        Put your product in front of thousands of digital creators, UX/UI designers, business consultants, and indie hackers building visual diagrams.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href={STRIPE_PAYMENT_LINK_URL} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-accent text-base px-8 py-3.5"
+        >
+          Secure Your Slot Now ✦
+        </a>
+        <a href="#what-you-get" class="btn-secondary text-base px-8 py-3.5">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Price and Offer Section -->
+  <section class="section bg-cream py-16 border-b border-ink-primary/10" id="what-you-get">
+    <div class="container-page max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Pricing Block Card -->
+        <div class="lg:col-span-5 bg-cream-lighter border-1.5 border-ink-primary rounded-card p-8 shadow-hard text-center">
+          <span class="text-xs uppercase tracking-wider text-ink-tertiary font-bold">Standard Sponsorship</span>
+          <div class="my-6">
+            <span class="font-serif text-6xl font-semibold text-ink-primary">$50</span>
+            <span class="text-ink-secondary text-lg">/month</span>
+          </div>
+          <p class="text-sm text-ink-secondary leading-relaxed mb-6">
+            Cancel anytime. No lock-in contracts. Ad slot goes live within 24 hours of assets submission.
+          </p>
+          <a 
+            href={STRIPE_PAYMENT_LINK_URL} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-primary w-full py-3"
+          >
+            Become a Sponsor
+          </a>
+        </div>
+
+        <!-- Deliverables list -->
+        <div class="lg:col-span-7 space-y-6">
+          <h2 class="headline-h2 text-ink-primary">What you <em>get</em></h2>
+          <p class="text-base text-ink-secondary leading-relaxed">
+            Our sponsorship slots are designed to capture attention while fully respecting the user's reading experience.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-accent-lavender text-xl leading-none">✦</span>
+              <span class="text-sm text-ink-primary font-medium"><strong>Sitewide Placement</strong>: Displayed on the homepage, prompt generator, gallery, blog, and info routes.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-lavender text-xl leading-none">✦</span>
+              <span class="text-sm text-ink-primary font-medium"><strong>Direct Backlinks</strong>: Fully direct links (`rel="noopener sponsored"`) pointing to your landing page.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-lavender text-xl leading-none">✦</span>
+              <span class="text-sm text-ink-primary font-medium"><strong>High-Frequency Rotations</strong>: Replicating trustmrr.com layout with 10s rotation intervals for consistent exposure.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-lavender text-xl leading-none">✦</span>
+              <span class="text-sm text-ink-primary font-medium"><strong>Hard-Capped Exclusivity</strong>: Limited to strictly 20 active sponsors at any time. No ad overcrowding.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Traffic Stats Section -->
+  <section class="section bg-cream-darker py-16 border-b border-ink-primary/10">
+    <div class="container-page max-w-4xl mx-auto text-center">
+      <span class="text-eyebrow text-ink-tertiary mb-3 inline-block">Audience Metrics</span>
+      <h2 class="headline-h2 text-ink-primary mb-12">Who you will <em>reach</em></h2>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-cream-lighter border border-ink-primary/10 rounded-card-sm p-8 shadow-sm">
+          <div class="font-serif text-5xl font-bold text-ink-primary mb-2">
+            {"{{TRAFFIC_STATS_PLACEHOLDER}}"} Monthly
+          </div>
+          <p class="text-sm text-ink-secondary font-medium">
+            Active digital creators, consultants, UX researchers, and visual builders.
+          </p>
+        </div>
+        <div class="bg-cream-lighter border border-ink-primary/10 rounded-card-sm p-8 shadow-sm">
+          <div class="font-serif text-5xl font-bold text-ink-primary mb-2">
+            {"{{TRAFFIC_DURATION_PLACEHOLDER}}"}
+          </div>
+          <p class="text-sm text-ink-secondary font-medium">
+            Average time spent building visual prompts on the generator page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Who This Is Perfect For -->
+  <section class="section bg-cream py-16 border-b border-ink-primary/10">
+    <div class="container-page max-w-4xl mx-auto text-center">
+      <h2 class="headline-h2 text-ink-primary mb-6">Perfect <em>for</em></h2>
+      <p class="text-base text-ink-secondary max-w-2xl mx-auto mb-10">
+        Our niche audience consists of creators and professionals seeking tools to accelerate their workflow. This placement is highly suited for:
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Design & Visual Tools</span>
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Creative SaaS Apps</span>
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Kids' Books & Illustration Portfolios</span>
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Art Supplies & Digital Brushes</span>
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Online Courses for Creatives</span>
+        <span class="px-5 py-2.5 bg-cream-lighter border border-ink-primary/10 rounded-full text-sm font-medium text-ink-primary hover:border-ink-primary/30 transition-colors">Productivity & Mindmapping software</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ Section (details tags) -->
+  <section class="section bg-cream-lighter py-20 border-b border-ink-primary/10">
+    <div class="container-page max-w-3xl mx-auto">
+      <h2 class="headline-h2 text-center text-ink-primary mb-12">Frequently asked <em>questions</em></h2>
+
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <details class="group bg-cream border border-ink-primary/15 rounded-card-sm p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-serif text-lg font-medium text-ink-primary cursor-pointer focus:outline-none select-none">
+            How do I submit my logo and ad details after paying?
+            <span class="text-xl text-ink-tertiary transition-transform group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm text-ink-secondary leading-relaxed">
+            Immediately after Stripe checkout, our system auto-reserves your active slot. You will receive an automated email request for your logo URL, display name, target URL, and tagline. Alternatively, you can reply directly with your PNG/SVG logo (40px high height, transparent background) and we'll apply it manually within 24 hours.
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group bg-cream border border-ink-primary/15 rounded-card-sm p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-serif text-lg font-medium text-ink-primary cursor-pointer focus:outline-none select-none">
+            Can I cancel or change my subscription?
+            <span class="text-xl text-ink-tertiary transition-transform group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm text-ink-secondary leading-relaxed">
+            Yes, you can cancel at any time via the Stripe Customer Billing Portal (the link is provided in your receipt). Upon cancellation, your ad slot will remain active until the end of your paid billing period, after which it will be de-provisioned and returned to the pool of available slots.
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group bg-cream border border-ink-primary/15 rounded-card-sm p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-serif text-lg font-medium text-ink-primary cursor-pointer focus:outline-none select-none">
+            What is your content policy?
+            <span class="text-xl text-ink-tertiary transition-transform group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm text-ink-secondary leading-relaxed">
+            We review all visual ads and links to ensure they are appropriate for our audience of designers, consultants, and developers. We do not accept ads for adult content, gambling, predatory services, or anything that doesn't respect our community guidelines. If your ad is rejected, your payment will be refunded immediately.
+          </p>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="group bg-cream border border-ink-primary/15 rounded-card-sm p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-serif text-lg font-medium text-ink-primary cursor-pointer focus:outline-none select-none">
+            What happens if slots are sold out? (Waitlist behavior)
+            <span class="text-xl text-ink-tertiary transition-transform group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm text-ink-secondary leading-relaxed">
+            Since our layout is strictly capped at 20 slots, the Stripe Payment Link will temporarily reject purchases and display a "Sold Out" status once limit is hit. You can email us at sponsors@illustratewords.com to join the waiting list. We will notify you chronologically as soon as a slot becomes available.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Final Call to Action -->
+  <section class="section bg-cream-lightest py-20 text-center relative overflow-hidden">
+    <div class="absolute bottom-4 left-6 opacity-10 pointer-events-none">
+      <Squiggle color="#4824DE" width="120" class="rotate-15" />
+    </div>
+
+    <div class="container-page max-w-3xl mx-auto relative z-10">
+      <h2 class="headline-h1 text-ink-primary leading-tight">
+        Join our sponsor <em>family</em>
+      </h2>
+      <p class="mt-4 text-ink-secondary text-base max-w-xl mx-auto leading-relaxed">
+        Reserve your slot today to lock in the early sponsor rate. Your ad is just a checkout away.
+      </p>
+
+      <div class="mt-10">
+        <a 
+          href={STRIPE_PAYMENT_LINK_URL} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-accent text-base px-8 py-3.5"
+        >
+          Secure Your Slot Now ✦
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Client-side script to fetch and display the live slots count
+  function updateLiveSlotsCount() {
+    const el = document.getElementById('available-slots-count');
+    if (!el) return;
+
+    fetch('/api/sponsors')
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('API failed');
+      })
+      .then(data => {
+        const activeCount = data.sponsors ? data.sponsors.length : 0;
+        const available = Math.max(0, 20 - activeCount);
+        el.textContent = String(available);
+      })
+      .catch(() => {
+        // Fallback value if API is unavailable
+        el.textContent = '20';
+      });
+  }
+
+  // Update immediately
+  updateLiveSlotsCount();
+</script>

@@ -1,0 +1,67 @@
+{
+  "projectId": "ce3928ae-1214-4611-a6d2-a2dd9e40de92",
+  "type": "frontend",
+  "name": "Core Prompt Generation Flow",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /generate"
+    },
+    {
+      "type": "assertion",
+      "description": "The search input field with id 'search-input' is visible on the page"
+    },
+    {
+      "type": "action",
+      "description": "Click the visualization type card with attribute data-type-id 'central-node-map'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page displays the color palette selection grid with id 'paletteGrid'"
+    },
+    {
+      "type": "action",
+      "description": "Click the color palette button with attribute data-palette-id 'ocean-blue'"
+    },
+    {
+      "type": "action",
+      "description": "Click the 'Next: Style' button with id 'step2NextBtn'"
+    },
+    {
+      "type": "assertion",
+      "description": "The style section is visible containing connector, icon, and typography style options"
+    },
+    {
+      "type": "action",
+      "description": "Click the connector style button with data-style-type 'connector' and data-style-id 'curved'"
+    },
+    {
+      "type": "action",
+      "description": "Click the icon style button with data-style-type 'icon' and data-style-id 'outline'"
+    },
+    {
+      "type": "action",
+      "description": "Click the typography style button with data-style-type 'mood' and data-style-id 'corporate'"
+    },
+    {
+      "type": "action",
+      "description": "Click the button with text containing 'Generate Prompt'"
+    },
+    {
+      "type": "assertion",
+      "description": "The user content text area with id 'user-content' is visible on the page"
+    },
+    {
+      "type": "action",
+      "description": "Type 'Seattle Coffee Shop SWOT Analysis' into the textarea with id 'user-content'"
+    },
+    {
+      "type": "assertion",
+      "description": "The generated prompt textarea with id 'generated-prompt' contains the text 'Seattle Coffee Shop SWOT Analysis'"
+    },
+    {
+      "type": "assertion",
+      "description": "The character count span with id 'prompt-char-count' is visible and does not equal '0 characters'"
+    }
+  ]
+}

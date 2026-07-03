@@ -1,0 +1,241 @@
+---
+// SponsorBar.astro — Sponsor advertisement component
+// Replicates trustmrr.com ad display system for illustratewords.com
+
+let initialSponsors = [];
+try {
+  const siteUrl = Astro.site ? Astro.site.origin : 'https://illustratewords.com';
+  const response = await fetch(`${siteUrl}/api/sponsors`);
+  if (response.ok) {
+    const data = await response.json();
+    initialSponsors = data.sponsors || [];
+  }
+} catch (e) {
+  initialSponsors = [];
+}
+---
+
+<div 
+  id="sponsor-bar-root" 
+  data-initial={JSON.stringify(initialSponsors)}
+  class="contents"
+>
+  <!-- Desktop Left Sidebar -->
+  <aside 
+    class="sponsor-bar-container hidden xl:flex flex-col fixed left-4 top-[100px] w-[180px] z-40" 
+    aria-label="Sponsors Left"
+  >
+    <div class="text-[10px] uppercase tracking-wider text-ink-tertiary font-bold mb-2 text-center select-none">
+      ✦ Sponsors
+    </div>
+    <div id="left-sidebar-cards" class="space-y-3">
+      <!-- Generated Client-Side -->
+    </div>
+  </aside>
+
+  <!-- Desktop Right Sidebar -->
+  <aside 
+    class="sponsor-bar-container hidden xl:flex flex-col fixed right-4 top-[100px] w-[180px] z-40" 
+    aria-label="Sponsors Right"
+  >
+    <div class="text-[10px] uppercase tracking-wider text-ink-tertiary font-bold mb-2 text-center select-none">
+      ✦ Sponsors
+    </div>
+    <div id="right-sidebar-cards" class="space-y-3">
+      <!-- Generated Client-Side -->
+    </div>
+  </aside>
+
+  <!-- Mobile Top Banner -->
+  <aside 
+    class="sponsor-bar-container flex xl:hidden fixed top-0 left-0 w-full h-[56px] bg-cream-lighter border-b border-ink-primary/10 items-center justify-between px-4 z-40" 
+    aria-label="Sponsors Top"
+  >
+    <span class="text-[9px] uppercase tracking-wider text-ink-tertiary font-bold select-none">Sponsor</span>
+    <div id="top-banner-card" class="flex-1 max-w-md mx-auto px-4 flex justify-center">
+      <!-- Generated Client-Side -->
+    </div>
+  </aside>
+
+  <!-- Mobile Bottom Banner -->
+  <aside 
+    class="sponsor-bar-container flex xl:hidden fixed bottom-0 left-0 w-full h-[56px] bg-cream-lighter border-t border-ink-primary/10 items-center justify-between px-4 z-40" 
+    aria-label="Sponsors Bottom"
+  >
+    <span class="text-[9px] uppercase tracking-wider text-ink-tertiary font-bold select-none">Sponsor</span>
+    <div id="bottom-banner-card" class="flex-1 max-w-md mx-auto px-4 flex justify-center">
+      <!-- Generated Client-Side -->
+    </div>
+  </aside>
+</div>
+
+<style is:global>
+  /* Dynamic body padding applied only when mobile banners are active */
+  body.has-sponsor-banners {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  @media (min-width: 1280px) {
+    body.has-sponsor-banners {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  // Escapes text safely to prevent XSS vulnerability
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Formats a single sponsor card HTML block
+  function renderCard(sponsor) {
+    if (!sponsor) return '';
+
+    const logoHtml = sponsor.logo_url
+      ? `<img src="${escapeHtml(sponsor.logo_url)}" alt="${escapeHtml(sponsor.name)} logo" class="w-10 h-10 object-contain rounded-md border border-ink-primary/5" />`
+      : `<div class="w-10 h-10 rounded-md bg-accent-lavender flex items-center justify-center font-serif font-bold text-ink-primary text-sm select-none">${escapeHtml(sponsor.name[0] || '✦')}</div>`;
+
+    return `
+      <a 
+        href="${escapeHtml(sponsor.website_url)}" 
+        target="_blank" 
+        rel="noopener sponsored" 
+        class="flex items-center gap-3 p-3 bg-cream-lighter border border-ink-primary/15 rounded-[12px] hover:-translate-y-0.5 hover:shadow-card transition-all duration-200 w-full"
+      >
+        ${logoHtml}
+        <div class="flex-1 min-w-0">
+          <div class="text-[12px] font-bold text-ink-primary truncate">${escapeHtml(sponsor.name)}</div>
+          <div class="text-[10px] text-ink-secondary truncate leading-tight">${escapeHtml(sponsor.tagline)}</div>
+        </div>
+      </a>
+    `;
+  }
+
+  async function initSponsorBars() {
+    const root = document.getElementById('sponsor-bar-root');
+    if (!root) return;
+
+    let sponsors = [];
+
+    // Try to fetch current active list dynamically from the D1 edge API
+    try {
+      const res = await fetch('/api/sponsors');
+      if (res.ok) {
+        const data = await res.json();
+        sponsors = data.sponsors || [];
+      }
+    } catch (e) {
+      // Fall back to server-side built state if network fails
+      try {
+        sponsors = JSON.parse(root.getAttribute('data-initial') || '[]');
+      } catch (err) {
+        sponsors = [];
+      }
+    }
+
+    // If no sponsors are currently active, hide all containers completely (silent fallback)
+    if (sponsors.length === 0) {
+      document.querySelectorAll('.sponsor-bar-container').forEach(el => el.classList.add('hidden'));
+      document.body.classList.remove('has-sponsor-banners');
+      return;
+    }
+
+    // Activate mobile body paddings
+    document.body.classList.add('has-sponsor-banners');
+
+    const total = sponsors.length;
+
+    // --- Desktop Layout Configuration ---
+    let leftIndex = 0;
+    let rightIndex = Math.min(4, total % 4); // Offset start of right sidebar to avoid exact synchronicity
+
+    function updateDesktopLeft() {
+      const container = document.getElementById('left-sidebar-cards');
+      if (!container) return;
+      
+      let html = '';
+      for (let i = 0; i < 4; i++) {
+        const sponsor = sponsors[(leftIndex + i) % total];
+        html += renderCard(sponsor);
+      }
+      container.innerHTML = html;
+    }
+
+    function updateDesktopRight() {
+      const container = document.getElementById('right-sidebar-cards');
+      if (!container) return;
+
+      let html = '';
+      for (let i = 0; i < 4; i++) {
+        const sponsor = sponsors[(rightIndex + i) % total];
+        html += renderCard(sponsor);
+      }
+      container.innerHTML = html;
+    }
+
+    // --- Mobile Layout Configuration ---
+    let topIndex = 0;
+    let bottomIndex = Math.min(1, total % 2); // Offset bottom banner to avoid duplicate display
+
+    function updateMobileTop() {
+      const container = document.getElementById('top-banner-card');
+      if (container) {
+        container.innerHTML = renderCard(sponsors[topIndex % total]);
+      }
+    }
+
+    function updateMobileBottom() {
+      const container = document.getElementById('bottom-banner-card');
+      if (container) {
+        container.innerHTML = renderCard(sponsors[bottomIndex % total]);
+      }
+    }
+
+    // Initial Renders
+    updateDesktopLeft();
+    updateDesktopRight();
+    updateMobileTop();
+    updateMobileBottom();
+
+    // Start Rotation intervals
+    // Desktop rotation: every 10s. Right sidebar starts 5s later.
+    setInterval(() => {
+      leftIndex = (leftIndex + 1) % total;
+      updateDesktopLeft();
+    }, 10000);
+
+    setTimeout(() => {
+      setInterval(() => {
+        rightIndex = (rightIndex + 1) % total;
+        updateDesktopRight();
+      }, 10000);
+    }, 5000);
+
+    // Mobile rotation: every 8s. Bottom starts 4s later.
+    setInterval(() => {
+      topIndex = (topIndex + 1) % total;
+      updateMobileTop();
+    }, 8000);
+
+    setTimeout(() => {
+      setInterval(() => {
+        bottomIndex = (bottomIndex + 1) % total;
+        updateMobileBottom();
+      }, 8000);
+    }, 4000);
+  }
+
+  // Initialize once DOM is ready (runs both on direct load or navigation checks)
+  document.addEventListener('DOMContentLoaded', initSponsorBars);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initSponsorBars();
+  }
+</script>

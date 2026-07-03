@@ -1,0 +1,23 @@
+{
+  "projectId": "ce3928ae-1214-4611-a6d2-a2dd9e40de92",
+  "type": "frontend",
+  "name": "Gallery Page Smoke Test",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /gallery"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains an h1 header with text containing 'See what VisualCraft can create'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains a container with id 'demo-tabs'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains a container with id 'demo-stage'"
+    }
+  ]
+}
