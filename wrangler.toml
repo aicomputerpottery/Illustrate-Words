@@ -5,4 +5,4 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "illustratewords-sponsors"
-database_id = "REPLACE_WITH_DATABASE_ID"
+database_id = "1919fc53-bac2-4ed0-b967-1588db2b8a1b"
