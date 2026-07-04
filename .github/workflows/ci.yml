@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Verification Check
+        run: ASTRO_TELEMETRY_DISABLED=1 npm run build
+
+      - name: Install TestSprite CLI
+        run: npm install -g @testsprite/cli || npm install -g testsprite-cli || true
+
+      - name: Run TestSprite Tests
+        env:
+          TESTSPRITE_TOKEN: ${{ secrets.TESTSPRITE_TOKEN }}
+        run: |
+          testsprite test run --all --project ce3928ae-1214-4611-a6d2-a2dd9e40de92 --wait

@@ -58,3 +58,10 @@ This project is integrated with the **TestSprite CLI** for automated end-to-end 
 testsprite test run --all --project ce3928ae-1214-4611-a6d2-a2dd9e40de92 --wait
 ```
 
+### CI/CD Pipeline (GitHub Actions)
+The project includes a GitHub Actions configuration at `.github/workflows/ci.yml` that automatically:
+1. Installs dependencies and runs build checks.
+2. Installs the TestSprite CLI.
+3. Executes the complete TestSprite test runner automatically on every push or pull request to the `main` branch.
+
+To authenticate TestSprite in the pipeline, store your TestSprite API key/token as a repository secret named `TESTSPRITE_TOKEN`.
