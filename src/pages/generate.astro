@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import StepFlow from '../components/StepFlow.astro';
+import { PreviewPane } from '../components/visualizations/PreviewPane';
 import {
   CATEGORIES,
   PALETTES,
@@ -468,74 +469,84 @@ const steps = [
           <!-- ============================================== -->
           <section data-step-content="4" class="hidden">
 
-            <!-- Header -->
-            <div class="mb-8">
-              <span class="pill bg-accent-lime text-ink-primary">Step 4 of 4 — Your prompt is ready</span>
-              <h2 class="mt-4 headline-h1 text-ink-primary">
-                Copy and <em>paste</em>.
-              </h2>
-              <p class="mt-3 body-base">
-                Your AI-ready visualization prompt. Paste it into any AI tool.
-              </p>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* Left Column: Form and Prompt */}
+              <div class="lg:col-span-6">
+                <!-- Header -->
+                <div class="mb-8">
+                  <span class="pill bg-accent-lime text-ink-primary">Step 4 of 4 — Your prompt is ready</span>
+                  <h2 class="mt-4 headline-h1 text-ink-primary">
+                    Copy and <em>paste</em>.
+                  </h2>
+                  <p class="mt-3 body-base">
+                    Your AI-ready visualization prompt. Paste it into any AI tool.
+                  </p>
+                </div>
 
-            <!-- Selection summary tags -->
-            <div id="summary-tags" class="flex flex-wrap gap-2 mb-8"></div>
+                <!-- Selection summary tags -->
+                <div id="summary-tags" class="flex flex-wrap gap-2 mb-8"></div>
 
-            <!-- User content input -->
-            <div class="mb-6">
-              <label for="user-content" class="block font-serif text-lg font-medium mb-2">
-                Your content
-              </label>
-              <p class="text-sm text-ink-secondary mb-3">
-                Paste the text, data, or topic you want visualized. Leave blank to keep the placeholder.
-              </p>
-              <textarea
-                id="user-content"
-                rows="4"
-                placeholder="Example: SWOT analysis of opening a coffee shop in downtown Seattle. Strengths include high foot traffic and premium location. Weaknesses include high rent and saturated market..."
-                class="w-full p-4 rounded-card-sm border-1.5 border-border-medium bg-cream-lightest text-ink-primary placeholder:text-ink-tertiary font-sans text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-lavender resize-none"
-              ></textarea>
-            </div>
+                <!-- User content input -->
+                <div class="mb-6">
+                  <label for="user-content" class="block font-serif text-lg font-medium mb-2">
+                    Your content
+                  </label>
+                  <p class="text-sm text-ink-secondary mb-3">
+                    Paste the text, data, or topic you want visualized. Leave blank to keep the placeholder.
+                  </p>
+                  <textarea
+                    id="user-content"
+                    rows="4"
+                    placeholder="Example: SWOT analysis of opening a coffee shop in downtown Seattle. Strengths include high foot traffic and premium location. Weaknesses include high rent and saturated market..."
+                    class="w-full p-4 rounded-card-sm border-1.5 border-border-medium bg-cream-lightest text-ink-primary placeholder:text-ink-tertiary font-sans text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-lavender resize-none"
+                  ></textarea>
+                </div>
 
-            <!-- Generated prompt display -->
-            <div class="mb-6">
-              <div class="flex items-center justify-between mb-2">
-                <label for="generated-prompt" class="font-serif text-lg font-medium">
-                  Your generated prompt
-                </label>
-                <span id="prompt-char-count" class="text-xs text-ink-secondary">0 characters</span>
+                <!-- Generated prompt display -->
+                <div class="mb-6">
+                  <div class="flex items-center justify-between mb-2">
+                    <label for="generated-prompt" class="font-serif text-lg font-medium">
+                      Your generated prompt
+                    </label>
+                    <span id="prompt-char-count" class="text-xs text-ink-secondary">0 characters</span>
+                  </div>
+                  <div class="relative">
+                    <textarea
+                      id="generated-prompt"
+                      rows="12"
+                      readonly
+                      class="w-full p-6 rounded-card border border-border-on-dark bg-forest text-ink-on-dark font-mono text-sm leading-relaxed resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="flex flex-wrap gap-3 mb-10">
+                  <button id="copy-btn" type="button" class="btn-accent-light flex-1 min-w-[200px]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Copy Prompt
+                  </button>
+                  <button id="download-btn" type="button" class="btn-secondary">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download .txt
+                  </button>
+                  <button id="reset-btn" type="button" class="btn-ghost">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Start Over
+                  </button>
+                </div>
               </div>
-              <div class="relative">
-                <textarea
-                  id="generated-prompt"
-                  rows="12"
-                  readonly
-                  class="w-full p-6 rounded-card border border-border-on-dark bg-forest text-ink-on-dark font-mono text-sm leading-relaxed resize-none"
-                ></textarea>
-              </div>
-            </div>
 
-            <!-- Action buttons -->
-            <div class="flex flex-wrap gap-3 mb-10">
-              <button id="copy-btn" type="button" class="btn-accent-light flex-1 min-w-[200px]">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                Copy Prompt
-              </button>
-              <button id="download-btn" type="button" class="btn-secondary">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download .txt
-              </button>
-              <button id="reset-btn" type="button" class="btn-ghost">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                Start Over
-              </button>
+              {/* Right Column: Dynamic SVG Diagram Preview */}
+              <div class="lg:col-span-6 lg:sticky lg:top-24">
+                <PreviewPane client:load />
+              </div>
             </div>
 
             <!-- AI tool launcher cards -->
@@ -971,6 +982,9 @@ const steps = [
       renderSummaryTags();
       renderPrompt();
       renderNavButtons();
+      
+      // Dispatch state change event to the React PreviewPane component
+      window.dispatchEvent(new CustomEvent('viz-state-change', { detail: { ...state } }));
     }
 
     function renderStepVisibility() {
