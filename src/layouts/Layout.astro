@@ -23,7 +23,12 @@ const {
 } = Astro.props;
 
 const SITE_NAME = 'Illustrate Words';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://illustratewords.com').href.replace(/\/$/, '') || (Astro.site ? Astro.site.href : 'https://illustratewords.com');
+// Ensure the canonical URL always ends with a trailing slash for directory paths to match Cloudflare Pages redirects and resolve Search Console warnings
+let canonicalPath = new URL(Astro.url.pathname, Astro.site || 'https://illustratewords.com').href;
+if (!canonicalPath.endsWith('/') && !canonicalPath.split('/').pop().includes('.')) {
+  canonicalPath += '/';
+}
+const canonicalURL = canonicalPath;
 const ogImageURL = new URL(image, Astro.site || 'https://illustratewords.com').href;
 
 // Sitewide structured data: who we are + the site itself.
