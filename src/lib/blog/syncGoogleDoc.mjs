@@ -108,10 +108,9 @@ By mapping our priorities onto a structured framework, we make the path forward 
 `;
     }
   } catch (err) {
-    console.error('[sync-blog] ❌ Fetch failed:', err.message);
-    console.error('  → Make sure your Google Doc is shared as "Anyone with the link can view"');
-    console.error('  → Make sure BLOG_DOC_ID is set in .env or hardcoded in syncGoogleDoc.mjs');
-    process.exit(1);
+    console.warn('\x1b[33m[sync-blog] ⚠️ Fetch failed: using existing cached blog files on disk.\x1b[0m');
+    console.warn(`  → Error detail: ${err.message}`);
+    process.exit(0);
   }
 
   // Parse all posts from the raw text

@@ -1,20 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Squiggle from '../components/Squiggle.astro';
-import StepFlow from '../components/StepFlow.astro';
 import LandingWalkthrough from '../components/LandingWalkthrough.astro';
 import { CATEGORIES } from '../data/visualizations.js';
 import VisualizationMarquee from '../components/VisualizationMarquee.astro';
 
 // Comparison data
 const comparison = [
-  { feature: 'Free forever, no subscription', us: true, them: false },
-  { feature: 'No account or login required', us: true, them: false },
-  { feature: 'Works with any AI tool', us: true, them: false },
-  { feature: '60+ visualization types', us: true, them: true },
-  { feature: '25 curated color palettes', us: true, them: false },
-  { feature: 'Custom style options', us: true, them: false },
-  { feature: 'Open source code', us: true, them: false },
+  { feature: 'Free forever',            note: 'No trial timer, no paywall, no upsell',        us: true, them: false, dot: 'bg-accent-lime'     },
+  { feature: 'No account or login',     note: 'Open the page and go — nothing to sign up for', us: true, them: false, dot: 'bg-accent-pink'     },
+  { feature: 'Works with any AI tool',  note: 'ChatGPT, Claude, Gemini, Midjourney, DALL·E',   us: true, them: false, dot: 'bg-accent-sky'      },
+  { feature: '76 visualization types',  note: '13 categories, mindmaps to SWOT',               us: true, them: true,  dot: 'bg-accent-lavender' },
+  { feature: '25 curated palettes',     note: 'Hand-picked color sets, ready to drop in',      us: true, them: false, dot: 'bg-accent-orange'   },
+  { feature: 'Custom style controls',   note: 'Connectors, icons, mood — all yours',           us: true, them: false, dot: 'bg-accent-lime'     },
+  { feature: 'Open source',             note: 'Every line on GitHub, forever',                 us: true, them: false, dot: 'bg-accent-pink'     },
 ];
 
 // Use cases
@@ -36,27 +35,6 @@ const useCases = [
   }
 ];
 
-// Steps
-const steps = [
-  {
-    number: '01',
-    title: 'Pick your visualization',
-    description: 'Choose from 13 categories and 60+ chart types — from mindmaps to SWOT analyses, every visual format Napkin AI offers.',
-    accent: 'bg-accent-lavender',
-  },
-  {
-    number: '02',
-    title: 'Choose your style',
-    description: 'Select a color palette from 25 curated combinations, then pick connector style, icon style, and layout mood.',
-    accent: 'bg-accent-lime',
-  },
-  {
-    number: '03',
-    title: 'Copy your prompt',
-    description: 'Get a detailed, AI-ready prompt. Paste it into Gemini, ChatGPT, Claude, or Midjourney and get your visualization.',
-    accent: 'bg-accent-pink',
-  },
-];
 ---
 
 <Layout
@@ -403,73 +381,104 @@ const steps = [
         </p>
       </div>
 
-      <!-- Comparison table -->
-      <div class="mt-16 max-w-4xl mx-auto bg-cream border-2 border-ink-primary rounded-3xl shadow-hard overflow-hidden">
+      <!-- Comparison card -->
+      <div class="mt-14 md:mt-16 max-w-4xl mx-auto relative">
 
-        <!-- Header row (Dark Forest Theme) -->
-        <div class="grid grid-cols-12 gap-4 py-6 px-8 bg-forest text-cream-lightest items-center border-b-2 border-ink-primary">
-          <div class="col-span-6 font-serif text-lg font-medium">The honest comparison</div>
-          <div class="col-span-3 text-center">
-            <div class="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-lavender text-white rounded-full border border-white/20 font-sans text-sm font-semibold shadow-[0_2px_8px_rgba(72,36,222,0.3)]">
-              <span class="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></span>
-              Illustrate Words
-            </div>
-          </div>
-          <div class="col-span-3 text-center">
-            <div class="inline-flex items-center gap-1.5 px-4 py-2 bg-white/10 text-cream-lightest/80 rounded-full border border-white/10 font-sans text-sm font-medium">
-              Napkin AI
-            </div>
-          </div>
+        <!-- Soft ambient glow behind the card -->
+        <div class="absolute -inset-x-8 -top-8 -bottom-8 pointer-events-none hidden md:block" aria-hidden="true">
+          <div class="absolute right-1/4 top-0 w-72 h-72 rounded-full bg-accent-lavender/15 blur-[90px]"></div>
+          <div class="absolute left-1/4 bottom-0 w-64 h-64 rounded-full bg-accent-lime/15 blur-[90px]"></div>
         </div>
 
-        <!-- Comparison rows -->
-        <div class="divide-y divide-ink-primary/10">
+        <div class="relative bg-cream-lightest border-2 border-ink-primary rounded-[28px] shadow-hard overflow-hidden">
+
+          <!-- Header row -->
+          <div class="grid grid-cols-12 items-stretch bg-forest text-cream-lightest border-b-2 border-ink-primary">
+            <div class="col-span-6 py-6 px-6 md:px-8 flex flex-col justify-center">
+              <span class="text-eyebrow text-accent-lime/90 mb-1.5">Side by side</span>
+              <span class="font-serif text-lg md:text-xl font-medium leading-tight">The honest comparison</span>
+            </div>
+            <!-- Winner column cap -->
+            <div class="col-span-3 relative flex items-center justify-center px-2">
+              <div class="absolute inset-x-2 inset-y-3 bg-accent-lavender rounded-t-2xl border-x-2 border-t-2 border-accent-lavender-deep/40 shadow-[0_-4px_20px_rgba(72,36,222,0.35)]"></div>
+              <div class="relative flex items-center gap-1.5 font-sans text-xs md:text-sm font-bold text-white">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-lime animate-pulse"></span>
+                <span class="hidden sm:inline">Illustrate Words</span>
+                <span class="sm:hidden">Us</span>
+              </div>
+            </div>
+            <div class="col-span-3 flex items-center justify-center px-2">
+              <span class="font-sans text-xs md:text-sm font-medium text-cream-lightest/55">Napkin&nbsp;AI</span>
+            </div>
+          </div>
+
+          <!-- Comparison rows -->
           {comparison.map((row, idx) => (
             <div class:list={[
-              'grid grid-cols-12 gap-4 py-5 px-8 items-center hover:bg-cream-darker/35 transition-colors duration-150',
-              idx % 2 === 0 ? 'bg-cream-lightest/50' : 'bg-cream'
+              'grid grid-cols-12 items-stretch group',
+              idx % 2 === 1 ? 'bg-cream/40' : ''
             ]}>
-              <!-- Feature Name -->
-              <div class="col-span-6 font-medium text-ink-primary flex items-center gap-2.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-ink-primary/30"></span>
-                {row.feature}
-              </div>
-              
-              <!-- Illustrate Words Column (Highlight Column) -->
-              <div class="col-span-3 text-center flex justify-center py-1 bg-accent-lavender/5 rounded-xl border border-accent-lavender/10">
-                {row.us ? (
-                  <span class="inline-flex items-center justify-center w-8 h-8 bg-accent-lavender text-white rounded-full shadow-[0_2px_6px_rgba(72,36,222,0.3)]">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                ) : (
-                  <span class="inline-flex items-center justify-center w-8 h-8 bg-ink-primary/10 text-ink-quaternary rounded-full">
-                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </span>
-                )}
+              <!-- Feature name + note -->
+              <div class:list={[
+                'col-span-6 py-4 md:py-5 px-6 md:px-8 flex items-start gap-3',
+                idx !== 0 ? 'border-t border-ink-primary/[0.08]' : ''
+              ]}>
+                <span class:list={['mt-1.5 w-2 h-2 rounded-full flex-shrink-0', row.dot]}></span>
+                <div>
+                  <div class="font-sans font-semibold text-ink-primary text-[15px] md:text-base leading-snug">{row.feature}</div>
+                  <div class="text-ink-tertiary text-xs md:text-[13px] leading-snug mt-0.5">{row.note}</div>
+                </div>
               </div>
 
-              <!-- Napkin AI Column -->
-              <div class="col-span-3 text-center flex justify-center">
+              <!-- Illustrate Words — continuous spotlight column -->
+              <div class:list={[
+                'col-span-3 flex items-center justify-center bg-accent-lavender/[0.06] border-x-2 border-accent-lavender/25',
+                idx === comparison.length - 1 ? 'rounded-b-2xl border-b-2 mb-0' : ''
+              ]}>
+                <span class="inline-flex items-center justify-center w-8 h-8 md:w-9 md:h-9 bg-accent-lavender text-white rounded-full shadow-[0_3px_10px_rgba(72,36,222,0.4)] transition-transform duration-200 group-hover:scale-110">
+                  <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+              </div>
+
+              <!-- Napkin AI column -->
+              <div class:list={[
+                'col-span-3 flex items-center justify-center',
+                idx !== 0 ? 'border-t border-ink-primary/[0.08]' : ''
+              ]}>
                 {row.them ? (
-                  <span class="inline-flex items-center justify-center w-8 h-8 bg-white text-ink-primary rounded-full border border-ink-primary/20 shadow-sm">
-                    <svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                  <span class="inline-flex items-center justify-center w-8 h-8 md:w-9 md:h-9 bg-forest/[0.06] text-forest rounded-full border border-forest/15">
+                    <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
                 ) : (
-                  <span class="inline-flex items-center justify-center w-8 h-8 bg-ink-primary/5 text-ink-quaternary rounded-full">
-                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <span class="inline-flex items-center justify-center w-8 h-8 md:w-9 md:h-9 text-ink-quaternary" aria-label="Not included">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" d="M7 12h10" />
                     </svg>
                   </span>
                 )}
               </div>
             </div>
           ))}
+
+          <!-- Footer CTA strip -->
+          <div class="grid grid-cols-12 items-center bg-forest text-cream-lightest border-t-2 border-ink-primary">
+            <div class="col-span-12 sm:col-span-6 py-5 px-6 md:px-8">
+              <div class="font-serif text-base md:text-lg font-medium leading-tight">All of it. Zero dollars.</div>
+              <div class="text-cream-lightest/55 text-xs md:text-[13px] mt-0.5">No login, no card, no catch.</div>
+            </div>
+            <div class="col-span-12 sm:col-span-6 px-6 md:px-8 pb-5 sm:pb-0 sm:py-5 flex sm:justify-end">
+              <a href="/generate" class="btn-accent btn-sm w-full sm:w-auto">
+                Start generating
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

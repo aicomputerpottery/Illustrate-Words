@@ -143,6 +143,20 @@
     let activeIndex = 0;
     let timer = null;
 
+    // Warm the browser cache for steps 2 & 3 (lazy in markup) once the page is
+    // idle, so every fade transition is instant instead of flashing an unloaded GIF.
+    function preloadSlides() {
+      ['/images/walkthrough/step_2.gif', '/images/walkthrough/step_3.gif'].forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadSlides);
+    } else {
+      window.addEventListener('load', preloadSlides);
+    }
+
     function setStep(idx) {
       if (idx === activeIndex) return;
 
