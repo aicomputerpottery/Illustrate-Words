@@ -1,6 +1,8 @@
 ---
 // LandingWalkthrough.astro
-// Interactive walkthrough component with steps on the left and browser mockup showing recorded GIFs on the right.
+// Interactive walkthrough: step cards on the left; a browser mockup on the right that
+// plays recorded videos of the real /generate flow (auto-advancing per step), and can
+// swap to the live, interactive /generate app via the "Try it live" toggle.
 ---
 
 <div class="landing-walkthrough grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-12 md:mt-16 text-left">
@@ -74,7 +76,7 @@
   <div class="lg:col-span-7">
     <div class="browser-mockup rounded-[16px] border-2 border-white/20 bg-forest-darkest shadow-2xl overflow-hidden relative transition-all duration-300">
       <!-- Browser Top bar -->
-      <div class="browser-header flex items-center px-4 py-3 bg-forest-darker/60 border-b border-white/10">
+      <div class="browser-header flex items-center gap-3 px-4 py-3 bg-forest-darker/60 border-b border-white/10">
         <!-- Control dots -->
         <div class="flex gap-1.5 flex-shrink-0">
           <span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
@@ -82,22 +84,53 @@
           <span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
         </div>
         <!-- Address Bar -->
-        <div class="mx-auto bg-forest-darkest/50 border border-white/5 rounded-md text-[11px] text-ink-on-dark-muted/60 py-1 px-8 w-1/2 text-center select-none font-mono tracking-tight truncate">
+        <div class="flex-1 bg-forest-darkest/50 border border-white/5 rounded-md text-[11px] text-ink-on-dark-muted/60 py-1 px-4 text-center select-none font-mono tracking-tight truncate">
           illustratewords.com/generate
         </div>
+        <!-- Try it live / Back to tour toggle -->
+        <button
+          type="button"
+          id="walkthrough-live-toggle"
+          class="flex-shrink-0 inline-flex items-center gap-1.5 rounded-full bg-accent-lime text-ink-primary font-sans text-xs font-bold px-3 py-1.5 border-1.5 border-ink-primary/20 shadow-hard-sm transition-transform hover:-translate-y-px"
+          aria-pressed="false"
+        >
+          <svg class="w-3 h-3" data-live-icon-play fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          <svg class="w-3 h-3 hidden" data-live-icon-back fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5M18 12H6" /></svg>
+          <span data-live-label>Try it live</span>
+        </button>
       </div>
       <!-- Browser Window Content -->
       <div class="browser-content aspect-[16/10] bg-forest-darker relative overflow-hidden flex items-center justify-center">
-        <!-- Step GIF slides -->
-        <div class="absolute inset-0 transition-opacity duration-300 active-slide" id="slide-1">
-          <img src="/images/walkthrough/step_1.gif" alt="Stage 1: Choose Visualization & Palette" class="w-full h-full object-cover object-top select-none" loading="eager" />
+        <!-- Tour mode: recorded step videos -->
+        <div id="walkthrough-tour" class="absolute inset-0">
+          <div class="absolute inset-0 transition-opacity duration-500 active-slide" id="slide-1">
+            <video class="w-full h-full object-cover object-top select-none" data-step-video muted playsinline preload="auto" poster="/images/walkthrough/step_1.jpg" aria-label="Stage 1: pick your visualization type">
+              <source src="/images/walkthrough/step_1.webm" type="video/webm" />
+              <source src="/images/walkthrough/step_1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="absolute inset-0 transition-opacity duration-500 opacity-0" id="slide-2">
+            <video class="w-full h-full object-cover object-top select-none" data-step-video muted playsinline preload="none" poster="/images/walkthrough/step_2.jpg" aria-label="Stage 2: choose palette and style">
+              <source src="/images/walkthrough/step_2.webm" type="video/webm" />
+              <source src="/images/walkthrough/step_2.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="absolute inset-0 transition-opacity duration-500 opacity-0" id="slide-3">
+            <video class="w-full h-full object-cover object-top select-none" data-step-video muted playsinline preload="none" poster="/images/walkthrough/step_3.jpg" aria-label="Stage 3: generate and copy your prompt">
+              <source src="/images/walkthrough/step_3.webm" type="video/webm" />
+              <source src="/images/walkthrough/step_3.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <!-- Click-to-interact hint -->
+          <button type="button" id="walkthrough-interact-hint" class="group absolute inset-0 z-20 flex items-end justify-center pb-5 bg-transparent cursor-pointer">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-forest-darkest/80 backdrop-blur-sm text-white text-xs font-semibold px-4 py-2 border border-white/15 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
+              Click to try it yourself
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </button>
         </div>
-        <div class="absolute inset-0 transition-opacity duration-300 opacity-0" id="slide-2">
-          <img src="/images/walkthrough/step_2.gif" alt="Stage 2: Select Connectors & Style Customization" class="w-full h-full object-cover object-top select-none" loading="lazy" />
-        </div>
-        <div class="absolute inset-0 transition-opacity duration-300 opacity-0" id="slide-3">
-          <img src="/images/walkthrough/step_3.gif" alt="Stage 3: Type Content, Live Rendering & Copy Prompt" class="w-full h-full object-cover object-top select-none" loading="lazy" />
-        </div>
+        <!-- Live mode: the real interactive app (iframe loaded on demand) -->
+        <div id="walkthrough-live" class="absolute inset-0 hidden overflow-hidden bg-cream-lightest"></div>
       </div>
     </div>
   </div>
@@ -139,33 +172,39 @@
       document.getElementById('slide-1'),
       document.getElementById('slide-2'),
       document.getElementById('slide-3')
-    ];
+    ].filter(Boolean);
+    const videos = slides.map((s) => s.querySelector('[data-step-video]'));
+    const tour = document.getElementById('walkthrough-tour');
+    const live = document.getElementById('walkthrough-live');
+    const liveToggle = document.getElementById('walkthrough-live-toggle');
+    const interactHint = document.getElementById('walkthrough-interact-hint');
     let activeIndex = 0;
-    let timer = null;
+    let fallbackTimer = null;
+    let isLive = false;
 
-    // Warm the browser cache for steps 2 & 3 (lazy in markup) once the page is
-    // idle, so every fade transition is instant instead of flashing an unloaded GIF.
-    function preloadSlides() {
-      ['/images/walkthrough/step_2.gif', '/images/walkthrough/step_3.gif'].forEach((src) => {
-        const img = new Image();
-        img.src = src;
+    // ---- Tour: play one step video at a time, advance when it ends ----------
+    function playActiveVideo() {
+      videos.forEach((v, i) => {
+        if (!v) return;
+        if (i === activeIndex) {
+          try { v.currentTime = 0; } catch (e) {}
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          v.pause();
+        }
       });
-    }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(preloadSlides);
-    } else {
-      window.addEventListener('load', preloadSlides);
+      // Safety net in case a video's `ended` event never fires (autoplay blocked, etc.)
+      clearTimeout(fallbackTimer);
+      fallbackTimer = setTimeout(() => advance(), 14000);
     }
 
-    function setStep(idx) {
-      if (idx === activeIndex) return;
+    function setStep(idx, opts) {
+      opts = opts || {};
+      if (idx === activeIndex && !opts.force) return;
 
-      // Update Cards
       cards.forEach((card, i) => {
         const num = card.querySelector('.walkthrough-num');
-        const title = card.querySelector('.walkthrough-title');
-        const desc = card.querySelector('.walkthrough-desc');
-
         if (i === idx) {
           card.classList.add('active');
           card.style.borderColor = 'rgba(255, 255, 255, 0.2)';
@@ -183,9 +222,7 @@
         }
       });
 
-      // Update Slides (fade transition)
       slides.forEach((slide, i) => {
-        if (!slide) return;
         if (i === idx) {
           slide.classList.remove('opacity-0');
           slide.classList.add('active-slide');
@@ -200,31 +237,78 @@
       });
 
       activeIndex = idx;
+      if (!isLive) playActiveVideo();
     }
 
-    // Auto-cycling (every 6 seconds)
-    function startCycle() {
-      timer = setInterval(() => {
-        const nextIdx = (activeIndex + 1) % cards.length;
-        setStep(nextIdx);
-      }, 6000);
+    function advance() {
+      if (isLive) return;
+      setStep((activeIndex + 1) % slides.length);
     }
 
-    function stopCycle() {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-    }
-
-    // Bind card clicks
-    cards.forEach((card, idx) => {
-      card.addEventListener('click', () => {
-        stopCycle(); // Stop auto-cycling on manual click
-        setStep(idx);
-      });
+    // Advance as soon as the current step's video finishes.
+    videos.forEach((v, i) => {
+      if (!v) return;
+      v.addEventListener('ended', () => { if (!isLive && i === activeIndex) advance(); });
     });
 
-    startCycle();
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => { if (isLive) exitLive(); setStep(idx, { force: true }); });
+    });
+
+    // ---- Live mode: swap in the real, interactive /generate app ------------
+    function enterLive() {
+      if (isLive) return;
+      isLive = true;
+      clearTimeout(fallbackTimer);
+      videos.forEach((v) => v && v.pause());
+      if (!live.querySelector('iframe')) {
+        const frame = document.createElement('iframe');
+        frame.src = '/generate';
+        frame.title = 'Try the Illustrate Words prompt builder';
+        frame.loading = 'lazy';
+        // Render the app at ~2x the container width, then scale to fit, so the
+        // embedded wizard shows its full desktop layout instead of a cramped one.
+        frame.className = 'border-0 bg-cream-lightest';
+        frame.style.width = '200%';
+        frame.style.height = '200%';
+        frame.style.transformOrigin = 'top left';
+        frame.style.transform = 'scale(0.5)';
+        live.appendChild(frame);
+      }
+      tour.classList.add('hidden');
+      live.classList.remove('hidden');
+      liveToggle.setAttribute('aria-pressed', 'true');
+      liveToggle.querySelector('[data-live-label]').textContent = 'Back to tour';
+      liveToggle.querySelector('[data-live-icon-play]').classList.add('hidden');
+      liveToggle.querySelector('[data-live-icon-back]').classList.remove('hidden');
+    }
+
+    function exitLive() {
+      if (!isLive) return;
+      isLive = false;
+      live.classList.add('hidden');
+      tour.classList.remove('hidden');
+      liveToggle.setAttribute('aria-pressed', 'false');
+      liveToggle.querySelector('[data-live-label]').textContent = 'Try it live';
+      liveToggle.querySelector('[data-live-icon-play]').classList.remove('hidden');
+      liveToggle.querySelector('[data-live-icon-back]').classList.add('hidden');
+      playActiveVideo();
+    }
+
+    liveToggle.addEventListener('click', () => { isLive ? exitLive() : enterLive(); });
+    if (interactHint) interactHint.addEventListener('click', enterLive);
+
+    // ---- Kick off: only start playing once the section is in view ----------
+    function start() { setStep(0, { force: true }); }
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { start(); io.disconnect(); }
+        });
+      }, { threshold: 0.35 });
+      io.observe(tour);
+    } else {
+      start();
+    }
   })();
 </script>
