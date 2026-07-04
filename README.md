@@ -50,7 +50,6 @@ This project is integrated with the **TestSprite CLI** for automated end-to-end 
 2. **Core Prompt Generation Flow**: Simulates a complete user session — selecting a visualization type, choosing a color palette, customizing styles (connectors, icons, and layout themes), writing user prompt content, and validating that the output matches the choices.
 3. **Gallery Page Smoke Test**: Verifies the showcase page structure and ensures the interactive simulation tabs and stage elements render successfully.
 4. **Information Pages Smoke Check**: Verifies that critical utility/info pages (FAQ, About, and Contact) are active and show the correct header text.
-5. **Sponsor Ad System API & Webhook Verification**: Simulates Stripe checkout completions (`checkout.session.completed`) and cancellations (`customer.subscription.deleted`) to ensure slot allocation and database updates function seamlessly.
 
 ### Execute Tests locally:
 ```bash

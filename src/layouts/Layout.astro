@@ -1,7 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import SponsorBar from '../components/SponsorBar.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -97,7 +96,6 @@ const siteSchema = {
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-cream">
-    <SponsorBar />
     <!-- Global Announcement Bar -->
     <div class="w-full bg-ink-primary text-cream-lightest py-2 md:py-2.5 text-center text-xs font-semibold tracking-wide border-b border-ink-primary/20 select-none">
       ✨ Free forever · No backend · No login required
