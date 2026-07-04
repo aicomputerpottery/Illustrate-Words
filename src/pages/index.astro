@@ -99,184 +99,222 @@ const useCases = [
         </p>
       </div>
 
-      <!-- Hero visual mockup (Interactive Agent Simulator) -->
-      <div class="mt-16 md:mt-20 relative max-w-4xl mx-auto">
+      <!-- Hero visual: your words on the left, the diagram drawing itself on the right -->
+      <div class="mt-16 md:mt-20 relative max-w-5xl mx-auto">
 
-        <!-- Browser Mockup Window -->
-        <div class="bg-cream-lighter rounded-card border border-cream-darker shadow-card overflow-hidden flex flex-col relative transition-all duration-300">
-          
-          <!-- Window Header (Browser Bar) -->
-          <div class="bg-cream-darker border-b border-cream-darker px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-1.5">
-              <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-ink-primary/20"></span>
-              <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-ink-primary/20"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-ink-primary/20"></span>
+        <div class="relative bg-cream-lightest rounded-[24px] border-2 border-ink-primary shadow-hard overflow-hidden">
+
+          <!-- Browser bar -->
+          <div class="flex items-center gap-3 px-5 py-3 bg-forest border-b-2 border-ink-primary">
+            <div class="flex gap-1.5 flex-shrink-0">
+              <span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
             </div>
-            <div class="bg-cream-lighter border border-ink-primary/20 rounded px-4 py-0.5 text-xs text-ink-secondary font-mono flex items-center gap-1">
-              <svg class="w-3 h-3 text-ink-tertiary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="flex-1 max-w-md mx-auto bg-forest-light border border-white/10 rounded-md text-[11px] text-ink-on-dark-muted py-1 px-4 text-center select-none font-mono tracking-tight truncate">
               illustratewords.com/generate
             </div>
-            <div class="w-12"></div>
+            <span class="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-accent-lime flex-shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent-lime animate-pulse"></span>
+              Live demo
+            </span>
           </div>
 
-          <!-- Window Content -->
-          <div class="p-6 md:p-10 relative min-h-[380px] bg-cream-lighter flex flex-col justify-between">
-            
-            <!-- Simulated Step Contents -->
-            <div id="sim-step-1" class="sim-view grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
-              <!-- Grid item 1 (Selected) -->
-              <div id="sim-card-mindmap" class="bg-cream rounded-card-sm border border-cream-darker p-5 transition-all shadow-sm">
-                <div class="flex items-center justify-between mb-3">
-                  <span class="font-serif text-2xl">01</span>
-                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
-                </div>
-                <div class="text-ink-primary w-10 h-10 mb-2">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M12 15v5M9 12H4M15 12h5"/></svg>
-                </div>
-                <p class="font-medium text-sm">Mindmap</p>
-                <p class="text-[11px] text-ink-secondary mt-1">Radial idea structure</p>
+          <!-- Split: words → visual -->
+          <div class="grid grid-cols-1 md:grid-cols-[5fr_auto_7fr] items-stretch">
+
+            <!-- Left: your words -->
+            <div class="p-6 md:p-8 flex flex-col justify-center gap-5 text-left">
+              <span class="text-eyebrow text-ink-tertiary">Your words</span>
+              <div class="bg-white border-1.5 border-ink-primary/15 rounded-2xl p-4 md:p-5 min-h-[92px]">
+                <p class="font-serif text-lg md:text-xl text-ink-primary leading-snug">
+                  <span id="hero-typed"></span><span class="hero-caret" aria-hidden="true"></span>
+                </p>
               </div>
 
-              <!-- Grid item 2 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <div class="flex items-center justify-between mb-3">
-                  <span class="font-serif text-2xl text-ink-tertiary">02</span>
+              <div>
+                <p class="text-xs text-ink-tertiary font-medium mb-2">Your picks</p>
+                <!-- Scene 1 chips -->
+                <div class="hero-chip-row flex flex-wrap gap-2">
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="w-2 h-2 rounded-full bg-accent-lavender"></span>Mindmap
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="flex -space-x-0.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#DED6FF] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#8C6FF0] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#4824DE] border border-ink-primary/30"></span>
+                    </span>Lavender Fields
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 15 C 8 15, 12 5, 17 5"/></svg>Curved
+                  </span>
                 </div>
-                <div class="text-ink-tertiary w-10 h-10 mb-2">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="3" y="5" width="6" height="6" rx="1"/><rect x="15" y="5" width="6" height="6" rx="1"/><path d="M9 8h6M12 5l3 3-3 3"/></svg>
+                <!-- Scene 2 chips -->
+                <div class="hero-chip-row hidden flex-wrap gap-2">
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="w-2 h-2 rounded-full bg-forest"></span>Flowchart
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="flex -space-x-0.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#E8F5E9] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#81C784] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#2E7D32] border border-ink-primary/30"></span>
+                    </span>Forest Sage
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 15 V 8 Q 3 5 6 5 H 17"/></svg>Rounded
+                  </span>
                 </div>
-                <p class="font-medium text-sm">Flowchart</p>
-                <p class="text-[11px] text-ink-secondary mt-1">Sequential workflow</p>
-              </div>
-
-              <!-- Grid item 3 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <div class="flex items-center justify-between mb-3">
-                  <span class="font-serif text-2xl text-ink-tertiary">03</span>
-                </div>
-                <div class="text-ink-tertiary w-10 h-10 mb-2">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                </div>
-                <p class="font-medium text-sm">Scatterplot</p>
-                <p class="text-[11px] text-ink-secondary mt-1">Data correlations</p>
-              </div>
-            </div>
-
-            <!-- Simulated Step 2 Contents (Hidden initially) -->
-            <div id="sim-step-2" class="sim-view hidden grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
-              <!-- Palette 1 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <p class="font-medium text-sm">Steel Storm</p>
-                <div class="flex gap-1 mt-2">
-                  <div class="w-4 h-4 rounded bg-[#ECEFF1]"></div>
-                  <div class="w-4 h-4 rounded bg-[#CFD8DC]"></div>
-                  <div class="w-4 h-4 rounded bg-[#90A4AE]"></div>
-                </div>
-              </div>
-
-              <!-- Palette 2 (Selected) -->
-              <div id="sim-card-palette" class="bg-cream rounded-card-sm border border-cream-darker p-5 transition-all shadow-sm">
-                <div class="flex justify-between items-center mb-1">
-                  <p class="font-medium text-sm">Midnight Purple</p>
-                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
-                </div>
-                <div class="flex gap-1 mt-2">
-                  <div class="w-4 h-4 rounded bg-[#F3E5F5]"></div>
-                  <div class="w-4 h-4 rounded bg-[#BA68C8]"></div>
-                  <div class="w-4 h-4 rounded bg-[#7B1FA2]"></div>
-                  <div class="w-4 h-4 rounded bg-[#4A148C]"></div>
-                </div>
-              </div>
-
-              <!-- Palette 3 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <p class="font-medium text-sm">Sage Linen</p>
-                <div class="flex gap-1 mt-2">
-                  <div class="w-4 h-4 rounded bg-[#E8F5E9]"></div>
-                  <div class="w-4 h-4 rounded bg-[#81C784]"></div>
-                  <div class="w-4 h-4 rounded bg-[#2E7D32]"></div>
+                <!-- Scene 3 chips -->
+                <div class="hero-chip-row hidden flex-wrap gap-2">
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="w-2 h-2 rounded-full bg-accent-orange"></span>Bar Chart
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <span class="flex -space-x-0.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#FFE0D1] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#F0956A] border border-ink-primary/30"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#E85A28] border border-ink-primary/30"></span>
+                    </span>Sunset Coral
+                  </span>
+                  <span class="hero-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 border-ink-primary bg-white text-xs font-semibold text-ink-primary shadow-hard-sm opacity-0 translate-y-1">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 10 H 17"/></svg>Minimal
+                  </span>
                 </div>
               </div>
             </div>
 
-            <!-- Simulated Step 3 Contents (Hidden initially) -->
-            <div id="sim-step-3" class="sim-view hidden grid grid-cols-1 sm:grid-cols-3 gap-4 transition-all duration-300">
-              <!-- Style 1 (Selected) -->
-              <div id="sim-card-connector" class="bg-cream rounded-card-sm border border-cream-darker p-5 transition-all shadow-sm">
-                <div class="flex justify-between items-center mb-1">
-                  <p class="font-medium text-sm">Curved</p>
-                  <div class="sim-check w-5 h-5 rounded-full border border-ink-primary flex items-center justify-center text-[10px] bg-accent-lavender text-ink-primary opacity-0 transition-opacity">✓</div>
-                </div>
-                <div class="w-12 h-6 mt-2 text-ink-primary">
-                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 30 C 25 30, 35 10, 50 10"/></svg>
-                </div>
-              </div>
-
-              <!-- Style 2 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <p class="font-medium text-sm">Straight</p>
-                <div class="w-12 h-6 mt-2 text-ink-tertiary">
-                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="30" x2="50" y2="10"/></svg>
-                </div>
-              </div>
-
-              <!-- Style 3 -->
-              <div class="bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5">
-                <p class="font-medium text-sm">Rounded</p>
-                <div class="w-12 h-6 mt-2 text-ink-tertiary">
-                  <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 30 V 10 H 50"/></svg>
-                </div>
-              </div>
+            <!-- Divider: the prompt hand-off (desktop) -->
+            <div class="hidden md:flex flex-col items-center justify-center relative w-16">
+              <div class="absolute inset-y-8 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-ink-primary/15"></div>
+              <span class="relative z-10 w-11 h-11 rounded-full bg-accent-lavender text-white border-2 border-ink-primary shadow-hard-sm flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <span class="relative z-10 mt-2 text-[10px] font-bold uppercase tracking-widest text-ink-tertiary">prompt</span>
+            </div>
+            <!-- Divider (mobile) -->
+            <div class="md:hidden flex items-center gap-3 px-6 -my-1">
+              <div class="flex-1 border-t-2 border-dashed border-ink-primary/15"></div>
+              <span class="w-9 h-9 rounded-full bg-accent-lavender text-white border-2 border-ink-primary shadow-hard-sm flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M6 13l6 6 6-6"/></svg>
+              </span>
+              <div class="flex-1 border-t-2 border-dashed border-ink-primary/15"></div>
             </div>
 
-            <!-- Simulated Step 4 Contents (Hidden initially) -->
-            <div id="sim-step-4" class="sim-view hidden w-full transition-all duration-300">
-              <div class="bg-ink-primary text-cream rounded-card-sm border border-ink-primary/10 p-6 shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs uppercase font-medium tracking-wider opacity-70">Your AI-Ready Prompt</span>
-                  <span class="text-[10px] bg-accent-lavender text-ink-primary px-2 py-0.5 rounded">Napkin AI Vector style</span>
-                </div>
-                <div class="bg-forest-light text-cream-lighter rounded-md p-4 text-xs leading-relaxed font-mono select-none overflow-hidden h-24 relative">
-                  Create a professional central node mindmap... COLOR PALETTE: Midnight Purple (#F3E5F5, #BA68C8, #7B1FA2, #4A148C). Outline weight: 1.5px. Style: curved lines...
-                  <div class="absolute inset-0 bg-gradient-to-t from-forest-light via-transparent to-transparent"></div>
-                </div>
-                <button id="sim-copy-btn" class="mt-4 w-full bg-accent-lavender text-cream border border-accent-lavender/10 py-3 rounded-full text-sm font-semibold transition-all shadow-btn flex items-center justify-center gap-1.5">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                  <span>Copy Prompt</span>
-                </button>
+            <!-- Right: the visual, drawing itself -->
+            <div class="relative hero-stage m-5 md:ml-0 rounded-2xl border-1.5 border-ink-primary/15 min-h-[300px] md:min-h-[360px] overflow-hidden">
+              <span class="absolute top-3.5 left-4 z-10 text-eyebrow text-ink-tertiary">The visual</span>
+
+              <!-- Scene 1: Mindmap (lavender) -->
+              <div class="hero-scene scene-active" aria-hidden="true">
+                <svg viewBox="0 0 480 340" class="w-full h-full" font-family="Figtree, system-ui, sans-serif">
+                  <path class="draw" pathLength="100" d="M 220 148 C 200 115, 160 90, 122 82" fill="none" stroke="#4824DE" stroke-width="2" style="--d:.1s"/>
+                  <path class="draw" pathLength="100" d="M 268 148 C 290 115, 330 88, 360 74" fill="none" stroke="#4824DE" stroke-width="2" style="--d:.2s"/>
+                  <path class="draw" pathLength="100" d="M 214 192 C 190 220, 150 240, 118 252" fill="none" stroke="#4824DE" stroke-width="2" style="--d:.3s"/>
+                  <path class="draw" pathLength="100" d="M 268 192 C 292 218, 330 236, 356 248" fill="none" stroke="#4824DE" stroke-width="2" style="--d:.4s"/>
+                  <path class="draw" pathLength="100" d="M 240 194 C 240 220, 240 245, 240 270" fill="none" stroke="#4824DE" stroke-width="2" style="--d:.5s"/>
+                  <g class="pop" style="--d:0s">
+                    <rect x="176" y="147" width="128" height="46" rx="23" fill="#DED6FF" stroke="#0A0A0A" stroke-width="1.5"/>
+                    <text x="240" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A0A">Coffee Shop</text>
+                  </g>
+                  <g class="pop" style="--d:.45s">
+                    <rect x="74" y="52" width="96" height="34" rx="17" fill="#FFFFFF" stroke="#4824DE" stroke-width="1.5"/>
+                    <text x="122" y="74" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Brand</text>
+                  </g>
+                  <g class="pop" style="--d:.55s">
+                    <rect x="316" y="44" width="96" height="34" rx="17" fill="#FFFFFF" stroke="#4824DE" stroke-width="1.5"/>
+                    <text x="364" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Menu</text>
+                  </g>
+                  <g class="pop" style="--d:.65s">
+                    <rect x="70" y="244" width="96" height="34" rx="17" fill="#FFFFFF" stroke="#4824DE" stroke-width="1.5"/>
+                    <text x="118" y="266" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Location</text>
+                  </g>
+                  <g class="pop" style="--d:.75s">
+                    <rect x="312" y="240" width="104" height="34" rx="17" fill="#FFFFFF" stroke="#4824DE" stroke-width="1.5"/>
+                    <text x="364" y="262" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Marketing</text>
+                  </g>
+                  <g class="pop" style="--d:.85s">
+                    <rect x="192" y="272" width="96" height="34" rx="17" fill="#FFFFFF" stroke="#4824DE" stroke-width="1.5"/>
+                    <text x="240" y="294" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Budget</text>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Scene 2: Flowchart (forest + lime) -->
+              <div class="hero-scene" aria-hidden="true">
+                <svg viewBox="0 0 480 340" class="w-full h-full" font-family="Figtree, system-ui, sans-serif">
+                  <g class="pop" style="--d:0s">
+                    <rect x="26" y="96" width="104" height="46" rx="10" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+                    <text x="78" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#0A0A0A">Sign up</text>
+                  </g>
+                  <path class="draw" pathLength="100" d="M 130 119 L 192 119" fill="none" stroke="#1A2820" stroke-width="2" style="--d:.15s"/>
+                  <polygon class="pop" points="192,113 204,119 192,125" fill="#1A2820" style="--d:.28s"/>
+                  <g class="pop" style="--d:.3s">
+                    <rect x="204" y="96" width="104" height="46" rx="10" fill="#E0EE6A" stroke="#0A0A0A" stroke-width="1.5"/>
+                    <text x="256" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#0A0A0A">Verify email</text>
+                  </g>
+                  <path class="draw" pathLength="100" d="M 308 119 L 364 119" fill="none" stroke="#1A2820" stroke-width="2" style="--d:.45s"/>
+                  <polygon class="pop" points="364,113 376,119 364,125" fill="#1A2820" style="--d:.58s"/>
+                  <g class="pop" style="--d:.6s">
+                    <polygon points="416,87 456,119 416,151 376,119" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+                    <text x="416" y="123" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">Data in?</text>
+                  </g>
+                  <path class="draw" pathLength="100" d="M 416 151 L 416 210" fill="none" stroke="#1A2820" stroke-width="2" style="--d:.75s"/>
+                  <polygon class="pop" points="410,210 416,222 422,210" fill="#1A2820" style="--d:.88s"/>
+                  <text class="pop" x="428" y="185" font-size="11" font-weight="600" fill="#4A4642" style="--d:.8s">yes</text>
+                  <g class="pop" style="--d:.9s">
+                    <rect x="364" y="222" width="104" height="46" rx="10" fill="#1A2820" stroke="#0A0A0A" stroke-width="1.5"/>
+                    <text x="416" y="250" text-anchor="middle" font-size="13" font-weight="600" fill="#F5EFE0">Success</text>
+                  </g>
+                  <path class="draw" pathLength="100" d="M 376 119 C 320 140, 290 180, 282 222" fill="none" stroke="#1A2820" stroke-width="1.5" stroke-dasharray="5 4" style="--d:1.05s"/>
+                  <text class="pop" x="316" y="168" font-size="11" font-weight="600" fill="#4A4642" style="--d:1.1s">no</text>
+                  <g class="pop" style="--d:1.2s">
+                    <rect x="232" y="222" width="100" height="44" rx="10" fill="#FFFFFF" stroke="#7A7468" stroke-width="1.5" stroke-dasharray="5 4"/>
+                    <text x="282" y="249" text-anchor="middle" font-size="12" font-weight="600" fill="#4A4642">Send nudge</text>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Scene 3: Bar chart (sunset accents) -->
+              <div class="hero-scene" aria-hidden="true">
+                <svg viewBox="0 0 480 340" class="w-full h-full" font-family="Figtree, system-ui, sans-serif">
+                  <path class="draw" pathLength="100" d="M 64 36 L 64 276 L 444 276" fill="none" stroke="#0A0A0A" stroke-width="2" style="--d:0s"/>
+                  <path class="draw" pathLength="100" d="M 64 196 L 444 196" fill="none" stroke="#0A0A0A" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="4 5" style="--d:.2s"/>
+                  <path class="draw" pathLength="100" d="M 64 116 L 444 116" fill="none" stroke="#0A0A0A" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="4 5" style="--d:.25s"/>
+                  <rect class="grow" x="96" y="166" width="52" height="110" rx="6" fill="#8CC8EE" stroke="#0A0A0A" stroke-width="1.5" style="--d:.3s"/>
+                  <rect class="grow" x="166" y="126" width="52" height="150" rx="6" fill="#E85A28" stroke="#0A0A0A" stroke-width="1.5" style="--d:.42s"/>
+                  <rect class="grow" x="236" y="186" width="52" height="90" rx="6" fill="#C8DC2E" stroke="#0A0A0A" stroke-width="1.5" style="--d:.54s"/>
+                  <rect class="grow" x="306" y="86" width="52" height="190" rx="6" fill="#4824DE" stroke="#0A0A0A" stroke-width="1.5" style="--d:.66s"/>
+                  <rect class="grow" x="376" y="136" width="52" height="140" rx="6" fill="#EF8CBD" stroke="#0A0A0A" stroke-width="1.5" style="--d:.78s"/>
+                  <text class="pop" x="122" y="156" text-anchor="middle" font-size="12" font-weight="700" fill="#0A0A0A" style="--d:.9s">12k</text>
+                  <text class="pop" x="192" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#0A0A0A" style="--d:1s">18k</text>
+                  <text class="pop" x="262" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#0A0A0A" style="--d:1.1s">9k</text>
+                  <text class="pop" x="332" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#0A0A0A" style="--d:1.2s">24k</text>
+                  <text class="pop" x="402" y="126" text-anchor="middle" font-size="12" font-weight="700" fill="#0A0A0A" style="--d:1.3s">16k</text>
+                  <text x="122" y="296" text-anchor="middle" font-size="11" font-weight="600" fill="#7A7468">Core</text>
+                  <text x="192" y="296" text-anchor="middle" font-size="11" font-weight="600" fill="#7A7468">Pro</text>
+                  <text x="262" y="296" text-anchor="middle" font-size="11" font-weight="600" fill="#7A7468">Add-on</text>
+                  <text x="332" y="296" text-anchor="middle" font-size="11" font-weight="600" fill="#7A7468">Teams</text>
+                  <text x="402" y="296" text-anchor="middle" font-size="11" font-weight="600" fill="#7A7468">API</text>
+                </svg>
               </div>
             </div>
-
-            <!-- Simulation Footer Status Bar -->
-            <div class="mt-6 pt-4 border-t border-ink-primary/10 flex items-center justify-between text-xs text-ink-secondary">
-              <span id="sim-status-text">Step 1: Pick a visualization</span>
-              <div class="flex gap-1.5">
-                <span id="sim-dot-1" class="w-2.5 h-2.5 rounded-full bg-accent-lavender border border-ink-primary/20"></span>
-                <span id="sim-dot-2" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
-                <span id="sim-dot-3" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
-                <span id="sim-dot-4" class="w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20"></span>
-              </div>
-            </div>
-
-            <!-- Simulated Mouse Cursor -->
-            <div id="sim-cursor" class="absolute pointer-events-none w-6 h-6 z-50 transition-all duration-700 ease-in-out transform scale-100" style="top: 80%; left: 50%;">
-              <svg viewBox="0 0 24 24" class="w-full h-full text-ink-primary drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" fill="currentColor" stroke="white" stroke-width="1.5">
-                <path d="M3 3l7.07 16.97 2.51-6.9 6.9-2.51L3 3z"/>
-              </svg>
-            </div>
-
-            <!-- Floating Simulated Toast Notification -->
-            <div id="sim-toast" class="absolute left-1/2 -translate-x-1/2 bottom-20 bg-ink-primary text-cream px-4 py-2.5 rounded-full border border-cream/20 text-xs font-medium shadow-hard opacity-0 transform translate-y-4 transition-all duration-300 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-accent-lime" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Prompt copied to clipboard!
-            </div>
-
           </div>
         </div>
 
-        <!-- Decorative squiggle -->
-        <div class="absolute -top-6 -right-6 hidden md:block transform rotate-12">
-          <Squiggle color="#F26835" width="80" rotate="20deg" />
+        <!-- Floating accents -->
+        <div class="hidden lg:flex absolute -top-8 -right-6 rotate-3 z-20 items-center gap-2.5 bg-white border-2 border-ink-primary rounded-2xl shadow-hard px-4 py-3">
+          <span class="flex -space-x-1">
+            <span class="w-5 h-5 rounded-full bg-[#4824DE] border-2 border-white"></span>
+            <span class="w-5 h-5 rounded-full bg-[#C8DC2E] border-2 border-white"></span>
+            <span class="w-5 h-5 rounded-full bg-[#EF8CBD] border-2 border-white"></span>
+            <span class="w-5 h-5 rounded-full bg-[#8CC8EE] border-2 border-white"></span>
+          </span>
+          <span class="text-xs font-bold text-ink-primary">25 palettes</span>
+        </div>
+        <div class="hidden lg:block absolute -bottom-5 -left-6 -rotate-2 z-20">
+          <span class="inline-block bg-accent-lime text-ink-primary border-2 border-ink-primary rounded-full shadow-hard px-4 py-2 text-sm font-bold">76 visualization types</span>
         </div>
       </div>
 
@@ -587,187 +625,151 @@ const useCases = [
     width: 1.75rem !important;
     height: 1.75rem !important;
   }
+
+  /* ── Hero demo: words → visual ─────────────────────────── */
+  .hero-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.15em;
+    background: #4824DE;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: heroBlink 1s steps(1) infinite;
+  }
+  @keyframes heroBlink { 50% { opacity: 0; } }
+
+  .hero-stage {
+    background-color: #FFFFFF;
+    background-image: radial-gradient(circle, rgba(10, 10, 10, 0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .hero-scene.scene-active { opacity: 1; }
+
+  .hero-scene .draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+  .hero-scene.scene-active .draw {
+    animation: heroDraw 0.7s ease forwards;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes heroDraw { to { stroke-dashoffset: 0; } }
+
+  .hero-scene .pop {
+    opacity: 0;
+    transform: scale(0.6);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .hero-scene.scene-active .pop {
+    animation: heroPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes heroPop { to { opacity: 1; transform: scale(1); } }
+
+  .hero-scene .grow {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transform-box: fill-box;
+  }
+  .hero-scene.scene-active .grow {
+    animation: heroGrow 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes heroGrow { to { transform: scaleY(1); } }
+
+  .hero-chip { transition: opacity 0.3s ease, transform 0.3s ease; }
+  .hero-chip.chip-in { opacity: 1 !important; transform: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-caret { animation: none; }
+    .hero-scene { transition: none; }
+    .hero-scene .draw,
+    .hero-scene .pop,
+    .hero-scene .grow {
+      animation: none !important;
+      stroke-dashoffset: 0;
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
 
 <script>
-  function initSimulation() {
-    const cursor = document.getElementById('sim-cursor');
-    const simStep1 = document.getElementById('sim-step-1');
-    const simStep2 = document.getElementById('sim-step-2');
-    const simStep3 = document.getElementById('sim-step-3');
-    const simStep4 = document.getElementById('sim-step-4');
-    const simStatus = document.getElementById('sim-status-text');
-    const simCopyBtn = document.getElementById('sim-copy-btn');
-    const simToast = document.getElementById('sim-toast');
+  function initHeroDemo() {
+    const typedEl = document.getElementById('hero-typed');
+    const scenes = Array.from(document.querySelectorAll('.hero-scene'));
+    const chipRows = Array.from(document.querySelectorAll('.hero-chip-row'));
+    if (!typedEl || scenes.length === 0) return;
 
-    const dots = [
-      document.getElementById('sim-dot-1'),
-      document.getElementById('sim-dot-2'),
-      document.getElementById('sim-dot-3'),
-      document.getElementById('sim-dot-4')
+    const texts = [
+      'Launch plan for a new coffee shop',
+      'Onboarding: from signup to first win',
+      'Q3 revenue by product line',
     ];
 
-    const views = [simStep1, simStep2, simStep3, simStep4];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    let idx = 0;
 
-    function setStatus(text, activeDotIndex) {
-      if (simStatus) simStatus.innerText = text;
-      dots.forEach((dot, idx) => {
-        if (dot) {
-          if (idx === activeDotIndex) {
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-accent-lavender border border-ink-primary/20';
-          } else {
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-cream-darker border border-ink-primary/20';
-          }
-        }
-      });
-    }
-
-    function showView(activeViewIndex) {
-      views.forEach((view, idx) => {
-        if (view) {
-          if (idx === activeViewIndex) {
-            view.classList.remove('hidden');
-          } else {
-            view.classList.add('hidden');
-          }
-        }
-      });
-    }
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    async function runLoop() {
-      while (true) {
-        // RESET STATE
-        showView(0);
-        setStatus("Step 1: Pick a visualization type", 0);
-        if (simToast) {
-          simToast.classList.add('opacity-0', 'translate-y-4');
-          simToast.classList.remove('opacity-100', 'translate-y-0');
-        }
-        
-        const cardMindmap = document.getElementById('sim-card-mindmap');
-        const cardPalette = document.getElementById('sim-card-palette');
-        const cardConnector = document.getElementById('sim-card-connector');
-        
-        if (cardMindmap) {
-          cardMindmap.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
-          cardMindmap.querySelector('.sim-check')?.classList.add('opacity-0');
-          cardMindmap.querySelector('.sim-check')?.classList.remove('opacity-100');
-        }
-        if (cardPalette) {
-          cardPalette.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
-          cardPalette.querySelector('.sim-check')?.classList.add('opacity-0');
-          cardPalette.querySelector('.sim-check')?.classList.remove('opacity-100');
-        }
-        if (cardConnector) {
-          cardConnector.className = 'bg-cream rounded-card-sm border border-ink-primary/20 opacity-60 p-5 transition-all';
-          cardConnector.querySelector('.sim-check')?.classList.add('opacity-0');
-          cardConnector.querySelector('.sim-check')?.classList.remove('opacity-100');
-        }
-        if (simCopyBtn) {
-          simCopyBtn.className = 'mt-4 w-full bg-accent-lavender text-cream border border-accent-lavender/10 py-3 rounded-full text-sm font-semibold transition-all shadow-btn flex items-center justify-center gap-1.5';
-          const btnText = simCopyBtn.querySelector('span');
-          if (btnText) btnText.innerText = 'Copy Prompt';
-        }
-
-        if (cursor) {
-          cursor.style.top = '80%';
-          cursor.style.left = '80%';
-          cursor.style.transform = 'scale(1)';
-        }
-
-        await sleep(1500);
-
-        // STEP 1: Select Mindmap
-        if (cursor) {
-          cursor.style.top = '35%';
-          cursor.style.left = '25%';
-        }
-        await sleep(800);
-        if (cursor) cursor.style.transform = 'scale(0.8)';
-        await sleep(150);
-        if (cursor) cursor.style.transform = 'scale(1)';
-        
-        if (cardMindmap) {
-          cardMindmap.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
-          cardMindmap.querySelector('.sim-check')?.classList.remove('opacity-0');
-          cardMindmap.querySelector('.sim-check')?.classList.add('opacity-100');
-        }
-        await sleep(1500);
-
-        // STEP 2: Transition & Select Palette
-        showView(1);
-        setStatus("Step 2: Choose your color palette", 1);
-        if (cursor) {
-          cursor.style.top = '40%';
-          cursor.style.left = '55%';
-        }
-        await sleep(800);
-        if (cursor) cursor.style.transform = 'scale(0.8)';
-        await sleep(150);
-        if (cursor) cursor.style.transform = 'scale(1)';
-
-        if (cardPalette) {
-          cardPalette.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
-          cardPalette.querySelector('.sim-check')?.classList.remove('opacity-0');
-          cardPalette.querySelector('.sim-check')?.classList.add('opacity-100');
-        }
-        await sleep(1500);
-
-        // STEP 3: Transition & Select Connector Style
-        showView(2);
-        setStatus("Step 3: Fine-tune visual elements", 2);
-        if (cursor) {
-          cursor.style.top = '35%';
-          cursor.style.left = '25%';
-        }
-        await sleep(800);
-        if (cursor) cursor.style.transform = 'scale(0.8)';
-        await sleep(150);
-        if (cursor) cursor.style.transform = 'scale(1)';
-
-        if (cardConnector) {
-          cardConnector.className = 'bg-cream rounded-card-sm border-1.5 border-accent-lavender shadow-hard ring-2 ring-accent-lavender p-5 transition-all';
-          cardConnector.querySelector('.sim-check')?.classList.remove('opacity-0');
-          cardConnector.querySelector('.sim-check')?.classList.add('opacity-100');
-        }
-        await sleep(1500);
-
-        // STEP 4: Transition & Copy Prompt
-        showView(3);
-        setStatus("Step 4: Copy prompt for any AI", 3);
-        if (cursor) {
-          cursor.style.top = '72%';
-          cursor.style.left = '50%';
-        }
-        await sleep(1000);
-        if (cursor) cursor.style.transform = 'scale(0.8)';
-        await sleep(150);
-        if (cursor) cursor.style.transform = 'scale(1)';
-
-        if (simCopyBtn) {
-          simCopyBtn.className = 'mt-4 w-full bg-accent-lime text-cream border border-accent-lime/10 py-3 rounded-full text-sm font-semibold transition-all shadow-btn flex items-center justify-center gap-1.5';
-          const btnText = simCopyBtn.querySelector('span');
-          if (btnText) btnText.innerText = 'Copied ✓';
-        }
-        if (simToast) {
-          simToast.classList.remove('opacity-0', 'translate-y-4');
-          simToast.classList.add('opacity-100', 'translate-y-0');
-        }
-
-        await sleep(3500);
+    async function typeText(text) {
+      typedEl.textContent = '';
+      if (reduced) { typedEl.textContent = text; return; }
+      for (let i = 0; i < text.length; i++) {
+        typedEl.textContent += text[i];
+        await sleep(24);
       }
     }
 
-    runLoop();
+    function showChips(i) {
+      chipRows.forEach((row, r) => {
+        row.classList.toggle('hidden', r !== i);
+        row.classList.toggle('flex', r === i);
+        if (r === i) {
+          row.querySelectorAll('.hero-chip').forEach((chip, c) => {
+            chip.classList.remove('chip-in');
+            if (reduced) { chip.classList.add('chip-in'); return; }
+            setTimeout(() => chip.classList.add('chip-in'), 140 * c);
+          });
+        }
+      });
+    }
+
+    function showScene(i) {
+      scenes.forEach((s, si) => s.classList.toggle('scene-active', si === i));
+    }
+
+    async function cycle() {
+      while (true) {
+        showScene(-1);
+        await sleep(reduced ? 60 : 380);
+        await typeText(texts[idx]);
+        showChips(idx);
+        await sleep(reduced ? 60 : 420);
+        showScene(idx);
+        await sleep(reduced ? 5600 : 4800);
+        idx = (idx + 1) % scenes.length;
+      }
+    }
+    cycle();
   }
 
-  // Bind simulation lifecycle to browser DOM readiness
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSimulation);
+    document.addEventListener('DOMContentLoaded', initHeroDemo);
   } else {
-    initSimulation();
+    initHeroDemo();
   }
 </script>
 

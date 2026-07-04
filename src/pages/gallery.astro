@@ -77,7 +77,7 @@ const pageDescription = "See real examples. Watch the workflow. Build your own A
                class="demo-stage relative rounded-card border border-cream-darker bg-white
                       shadow-card overflow-hidden select-none"
                style="aspect-ratio: 16 / 10;"
-               aria-label="Animated demonstration of the VisualCraft workflow"
+               aria-label="Animated demonstration of the Illustrate Words workflow"
                role="img">
 
             <!-- Browser chrome bar -->
@@ -89,7 +89,7 @@ const pageDescription = "See real examples. Watch the workflow. Build your own A
               <div id="demo-urlbar"
                    class="ml-3 flex-1 max-w-[340px] h-5 rounded-full bg-white border border-cream-darker
                           flex items-center px-3 text-[10px] font-mono text-ink-tertiary truncate">
-                visualcraft.app/generate
+                illustratewords.com/generate
               </div>
             </div>
 
@@ -846,7 +846,7 @@ const pageDescription = "See real examples. Watch the workflow. Build your own A
         {
           caption: "Choosing a visualization type",
           run: async () => {
-            await runner.switchPanel("#panel-visualcraft", "visualcraft.app/generate");
+            await runner.switchPanel("#panel-visualcraft", "illustratewords.com/generate");
             await runner.moveTo('[data-vc="mindmap"]');
             await runner.click('[data-vc="mindmap"]');
             setVisualTypeSelected("mindmap");
@@ -946,7 +946,7 @@ const pageDescription = "See real examples. Watch the workflow. Build your own A
       {
         caption: "Choosing a visualization type",
         run: async () => {
-          await runner.switchPanel("#panel-visualcraft", "visualcraft.app/generate");
+          await runner.switchPanel("#panel-visualcraft", "illustratewords.com/generate");
           await runner.moveTo(`[data-vc="${spec.vcType}"]`);
           await runner.click(`[data-vc="${spec.vcType}"]`);
           setVisualTypeSelected(spec.vcType);
@@ -1156,13 +1156,13 @@ const pageDescription = "See real examples. Watch the workflow. Build your own A
           <div class="aspect-[4/3] rounded-card-sm bg-cream-darker border border-cream-darker flex items-center justify-center p-3 font-serif font-semibold text-lg text-ink-primary">
             1. Pick type & colors
           </div>
-          <p class="text-xs text-ink-secondary mt-3">Choose from 76 diagram structures and 42 custom-themed palettes inside VisualCraft.</p>
+          <p class="text-xs text-ink-secondary mt-3">Choose from 76 diagram structures and 42 custom-themed palettes inside Illustrate Words.</p>
         </div>
         <div class="card rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
           <div class="aspect-[4/3] rounded-card-sm bg-cream-darker border border-cream-darker flex items-center justify-center p-3 font-serif font-semibold text-lg text-ink-primary">
             2. Generate prompt
           </div>
-          <p class="text-xs text-ink-secondary mt-3">Input your list or concept text. VisualCraft generates an optimized layout prompt and copies it.</p>
+          <p class="text-xs text-ink-secondary mt-3">Input your list or concept text. Illustrate Words generates an optimized layout prompt and copies it.</p>
         </div>
         <div class="card -rotate-1 hover:rotate-0 hover:shadow-hard hover:-translate-y-0.5 transition-all duration-200 p-4 text-center">
           <div class="aspect-[4/3] rounded-card-sm overflow-hidden border border-cream-darker">

@@ -12,6 +12,7 @@ An open-source AI Prompt Builder for creating stunning visualizations. Easily tu
 - **25 Curated Color Palettes**: Tailored HSL color themes (e.g. Ocean Blue, Forest Sage, Sunset Coral) sorted by mood (professional, creative, natural) and vibe (warm, cool, fresh).
 - **Style Adjustability**: Complete control over connector styles (curved, straight, rounded, dashed), icon styles (outline, filled, duotone, none), and typography layout moods.
 - **Instant Output**: Automatically compiles specifications into an optimized visual prompt to generate diagrams.
+- **Interactive Walkthrough**: The homepage "How it works" section plays real screen-recordings (MP4/WebM) of the builder that auto-advance per step, and a "Try it live" toggle embeds the live app inline so visitors can use it without leaving the page.
 
 ---
 

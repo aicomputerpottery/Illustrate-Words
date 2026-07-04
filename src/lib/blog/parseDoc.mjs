@@ -229,7 +229,7 @@ function parseBody(lines) {
         rows.push(cells.slice(r, r + cols));
       }
 
-      // Build HTML table with premium styling (VisualCraft editorial layout)
+      // Build HTML table with premium styling (Illustrate Words editorial layout)
       let tableHtml = `<div class="my-6 overflow-x-auto border-2 border-ink-primary rounded-xl bg-[#FFFDF9] shadow-hard-sm">\n`;
       tableHtml += `  <table class="w-full text-left border-collapse">\n`;
       

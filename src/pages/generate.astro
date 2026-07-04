@@ -30,7 +30,7 @@ const steps = [
 ---
 
 <Layout
-  title="Create a Visualization Prompt — VisualCraft"
+  title="Create a Visualization Prompt — Illustrate Words"
   description="Build a tailored AI prompt in four steps: choose from 76 visualization types, 42 palettes, and style controls. Copy, paste into any AI, done."
   hideFooter={true}
 >
@@ -38,7 +38,7 @@ const steps = [
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "VisualCraft",
+      "name": "Illustrate Words",
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -48,7 +48,7 @@ const steps = [
   </Fragment>
 
   <div class="bg-cream-lightest min-h-screen pb-20">
-    <h1 class="sr-only">VisualCraft - AI Visualization Prompt Generator</h1>
+    <h1 class="sr-only">Illustrate Words - AI Visualization Prompt Generator</h1>
     <!-- Breadcrumb -->
     <div id="gallery-breadcrumb" class="hidden bg-cream border-b border-border-light py-2.5">
       <div class="container-page">
@@ -920,7 +920,7 @@ const steps = [
     function downloadPrompt() {
       const text = generatePrompt();
       const type = getTypeById(state.selectedTypeId);
-      const filename = `visualcraft-${type?.id || 'prompt'}.txt`;
+      const filename = `illustrate-words-${type?.id || 'prompt'}.txt`;
 
       const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);

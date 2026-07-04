@@ -1353,7 +1353,7 @@ export const GALLERY_EXAMPLES = [
     paletteId: "silver-mercury",
     useCase: "social",
     title: "Workflow Before & After",
-    description: "A clean two-column comparison list showing the chaotic 'Before' state versus the streamlined 'After' state with VisualCraft.",
+    description: "A clean two-column comparison list showing the chaotic 'Before' state versus the streamlined 'After' state with Illustrate Words.",
     promptExcerpt: "Create a professional two-column comparison list (pros/cons format). The layout should feature two vertical columns...",
     tags: ["comparison", "before-after", "workflow", "benefits"]
   },

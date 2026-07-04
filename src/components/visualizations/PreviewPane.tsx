@@ -59,7 +59,7 @@ export const PreviewPane: React.FC = () => {
     
     const downloadLink = document.createElement('a');
     downloadLink.href = svgUrl;
-    downloadLink.download = `visualcraft-${vizMeta.id}.svg`;
+    downloadLink.download = `illustrate-words-${vizMeta.id}.svg`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -90,7 +90,7 @@ export const PreviewPane: React.FC = () => {
       const pngUrl = canvas.toDataURL('image/png');
       const downloadLink = document.createElement('a');
       downloadLink.href = pngUrl;
-      downloadLink.download = `visualcraft-${vizMeta.id}.png`;
+      downloadLink.download = `illustrate-words-${vizMeta.id}.png`;
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);

@@ -8,49 +8,63 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'short', day: 'numeric'
 });
 
-// Category color map
+// The sync pipeline currently tags every post "Design" — derive a more useful
+// display category from the title so the chips carry real information.
+function deriveCategory(t, fallback) {
+  const s = t.toLowerCase();
+  if (/color|palette/.test(s)) return 'Color';
+  if (/storytell|narrative|stories/.test(s)) return 'Storytelling';
+  if (/presentation|font|slide|powerpoint/.test(s)) return 'Presentations';
+  if (/infographic|template/.test(s)) return 'Infographics';
+  if (/chart|data|visualization/.test(s)) return 'Data';
+  if (/mindmap|idea|brainstorm/.test(s)) return 'Thinking';
+  return fallback;
+}
+const displayCategory = deriveCategory(title, category);
+
 const catColor = {
-  thinking: 'pill-lavender',
-  data: 'pill-lime',
-  process: 'pill-cream',
-  business: 'pill-lavender',
-  creativity: 'pill-pink',
-  tools: 'pill-cream',
-  design: 'pill-lavender',
+  color: 'bg-accent-pink/20 text-ink-primary',
+  storytelling: 'bg-accent-sky/25 text-ink-primary',
+  presentations: 'bg-accent-lavender-light text-ink-primary',
+  infographics: 'bg-accent-lime/30 text-ink-primary',
+  data: 'bg-accent-orange/15 text-ink-primary',
+  thinking: 'bg-accent-lavender-light text-ink-primary',
+  design: 'bg-cream-darker text-ink-primary',
 };
-const pillClass = catColor[category.toLowerCase()] || 'pill-cream';
+const chipClass = catColor[displayCategory.toLowerCase()] || 'bg-cream-darker text-ink-primary';
 ---
 
 <a
   href={`/blog/${slug}`}
   class:list={[
-    'card group block overflow-hidden no-underline hover:-translate-y-0.5 transition-transform duration-200',
+    'card group block overflow-hidden no-underline hover:-translate-y-1 hover:shadow-card-hover transition-all duration-200',
     featured ? 'lg:col-span-2 shadow-hard' : ''
   ]}
   data-category={category.toLowerCase()}
 >
-  <!-- Hero viz thumbnail -->
+  <!-- Full-bleed cover -->
   <div class:list={[
-    "aspect-[16/9] overflow-hidden rounded-card-sm -mx-6 -mt-6 mb-5 flex justify-center items-center",
-    heroImage ? "bg-[#FFFBF5] p-2" : "bg-forest"
+    "aspect-[16/9] overflow-hidden -mx-7 -mt-7 mb-5 rounded-t-[19px] border-b border-border-light",
+    heroImage ? "bg-[#FFFBF5]" : "bg-forest flex justify-center items-center"
   ]}>
     {heroImage ? (
       <img
         src={heroImage}
         alt={title}
-        class="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
       />
     ) : (
       <BlogHeroViz config={heroViz} thumbnail={true} />
     )}
   </div>
 
-  <div class="flex items-center gap-2 mb-3">
-    <span class={pillClass}>{category}</span>
-    <span class="text-xs text-ink-tertiary">{readingTime} min read</span>
+  <div class="flex items-center gap-2.5 mb-3">
+    <span class:list={['inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide', chipClass]}>{displayCategory}</span>
+    <span class="text-xs text-ink-tertiary font-medium">{readingTime} min read</span>
   </div>
 
-  <h2 class:list={['font-serif font-medium text-ink-primary leading-tight mb-2', featured ? 'text-h2' : 'text-h3']}>
+  <h2 class:list={['font-serif font-medium text-ink-primary leading-tight mb-2 group-hover:text-accent-lavender-deep transition-colors', featured ? 'text-h2' : 'text-xl']}>
     {title}
   </h2>
 
@@ -58,6 +72,9 @@ const pillClass = catColor[category.toLowerCase()] || 'pill-cream';
 
   <div class="flex items-center justify-between">
     <time class="text-xs text-ink-tertiary" datetime={date}>{formattedDate}</time>
-    <span class="text-sm font-medium text-ink-primary group-hover:underline">Read →</span>
+    <span class="text-sm font-semibold text-ink-primary inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+      Read
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
   </div>
 </a>

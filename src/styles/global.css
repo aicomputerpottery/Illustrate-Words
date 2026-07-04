@@ -660,30 +660,46 @@
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .type-card:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 .type-card-art {
   aspect-ratio: 1 / 1;
   width: 100%;
-  border-radius: 12px;
-  background-color: #F5EFE0;
-  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-radius: 14px;
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(10, 10, 10, 0.10);
   display: grid;
   place-items: center;
   padding: 1.25rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.type-card-art:hover {
-  border-color: rgba(10, 10, 10, 0.3);
+.type-card:hover .type-card-art {
+  border-color: rgba(10, 10, 10, 0.85);
+  box-shadow: 3px 3px 0 0 rgba(10, 10, 10, 0.9);
 }
 .type-card.selected .type-card-art {
-  background: rgba(72, 36, 222, 0.08);
+  background-color: rgba(72, 36, 222, 0.07);
   border-color: #4824DE;
-  box-shadow: 0px 4px 12px rgba(72, 36, 222, 0.15);
+  box-shadow: 3px 3px 0 0 #4824DE;
 }
 .type-card.selected {
   transform: translateY(-2px);
 }
+
+/* Per-category tinted art tiles — gives the 76-card grid rhythm and wayfinding */
+.type-card[data-category-id="mindmap"]       .type-card-art { background-color: rgba(222, 214, 255, 0.45); }
+.type-card[data-category-id="process"]       .type-card-art { background-color: rgba(224, 238, 106, 0.30); }
+.type-card[data-category-id="data"]          .type-card-art { background-color: rgba(140, 200, 238, 0.22); }
+.type-card[data-category-id="timeline"]      .type-card-art { background-color: rgba(244, 232, 193, 0.55); }
+.type-card[data-category-id="comparison"]    .type-card-art { background-color: rgba(239, 140, 189, 0.16); }
+.type-card[data-category-id="business"]      .type-card-art { background-color: rgba(222, 214, 255, 0.28); }
+.type-card[data-category-id="brainstorming"] .type-card-art { background-color: rgba(200, 220, 46, 0.18); }
+.type-card[data-category-id="parts"]         .type-card-art { background-color: rgba(140, 200, 238, 0.14); }
+.type-card[data-category-id="problems"]      .type-card-art { background-color: rgba(232, 90, 40, 0.10); }
+.type-card[data-category-id="metaphors"]     .type-card-art { background-color: rgba(239, 140, 189, 0.10); }
+.type-card[data-category-id="narratives"]    .type-card-art { background-color: rgba(244, 232, 193, 0.40); }
+.type-card[data-category-id="cause"]         .type-card-art { background-color: rgba(72, 36, 222, 0.06); }
+.type-card[data-category-id="structures"]    .type-card-art { background-color: rgba(200, 220, 46, 0.12); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

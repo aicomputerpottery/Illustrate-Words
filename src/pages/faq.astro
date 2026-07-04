@@ -19,8 +19,8 @@ const faqSchema = {
 ---
 
 <Layout 
-  title="Frequently Asked Questions — VisualCraft"
-  description="Got questions about VisualCraft's prompt builder, license, commercial usage, or offline-first privacy? Read our comprehensive FAQ."
+  title="Frequently Asked Questions — Illustrate Words"
+  description="Got questions about Illustrate Words's prompt builder, license, commercial usage, or offline-first privacy? Read our comprehensive FAQ."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -71,10 +71,10 @@ const faqSchema = {
         </span>
       </div>
 
-      <div class="max-w-3xl mx-auto divide-y divide-border-light border-y border-border-light" id="faq-list">
+      <div class="max-w-3xl mx-auto space-y-3" id="faq-list">
         {FAQ_ITEMS.map((faq) => (
-          <div 
-            class="faq-item"
+          <div
+            class="faq-item bg-cream-lightest border-1.5 border-border-light rounded-card-sm px-6 transition-all duration-200 hover:border-ink-primary/50"
             data-question={faq.question.toLowerCase()}
             data-answer={faq.answer.toLowerCase()}
           >
@@ -84,7 +84,7 @@ const faqSchema = {
                 id={faq.id}
                 aria-expanded="false"
                 aria-controls={`panel-${faq.id}`}
-                class="faq-trigger w-full flex items-center justify-between py-5 text-left"
+                class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left"
               >
                 <span class="font-sans text-base font-semibold text-ink-primary">{faq.question}</span>
                 <span class="flex-shrink-0 w-8 h-8 rounded-full bg-cream-darker/35 flex items-center justify-center transition-transform duration-200 transform faq-icon-box">
@@ -150,6 +150,21 @@ const faqSchema = {
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Open card: ink border + hard shadow, chevron flips to white on lavender */
+  .faq-item:has(.faq-trigger[aria-expanded="true"]) {
+    border-color: #0A0A0A;
+    box-shadow: 3px 3px 0 0 rgba(10, 10, 10, 1);
+    background-color: #FFFFFF;
+  }
+  .faq-trigger[aria-expanded="true"] .faq-icon-box {
+    background-color: #4824DE;
+  }
+  .faq-trigger[aria-expanded="true"] .faq-chevron {
+    color: #FFFFFF;
+  }
+</style>
 
 <script>
   // Accordion Logic

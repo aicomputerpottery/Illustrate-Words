@@ -1,5 +1,5 @@
 // src/data/iconSvgs.js
-// VisualCraft — 76 visualization preview icons. One <svg> string per type id.
+// Illustrate Words — 76 visualization preview icons. One <svg> string per type id.
 // Spec: viewBox 0 0 96 96, stroke #1F2D24, one accent element, one accent color per category.
 
 export const ICON_SVGS = {
