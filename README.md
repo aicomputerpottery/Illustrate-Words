@@ -8,7 +8,7 @@ An open-source AI Prompt Builder for creating stunning visualizations. Easily tu
 
 ## Features
 
-- **60+ Visualization Types**: Covering 13 categories including Mindmaps, Process flows, Swimlane diagrams, BCG growth matrices, Gantt roadmaps, and more.
+- **76 Visualization Types**: Covering 13 categories including Mindmaps, Process flows, Swimlane diagrams, BCG growth matrices, Gantt roadmaps, and more.
 - **25 Curated Color Palettes**: Tailored HSL color themes (e.g. Ocean Blue, Forest Sage, Sunset Coral) sorted by mood (professional, creative, natural) and vibe (warm, cool, fresh).
 - **Style Adjustability**: Complete control over connector styles (curved, straight, rounded, dashed), icon styles (outline, filled, duotone, none), and typography layout moods.
 - **Instant Output**: Automatically compiles specifications into an optimized visual prompt to generate diagrams.
