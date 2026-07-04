@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Squiggle from '../components/Squiggle.astro';
 import StepFlow from '../components/StepFlow.astro';
+import LandingWalkthrough from '../components/LandingWalkthrough.astro';
 import { CATEGORIES } from '../data/visualizations.js';
 import VisualizationMarquee from '../components/VisualizationMarquee.astro';
 
@@ -348,7 +349,7 @@ const steps = [
 
       <!-- Animated Step Flow -->
       <div class="mt-16 md:mt-24">
-        <StepFlow dark={true} />
+        <LandingWalkthrough />
       </div>
 
     </div>

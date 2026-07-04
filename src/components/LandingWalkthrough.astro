@@ -1,0 +1,213 @@
+---
+// LandingWalkthrough.astro
+// Interactive walkthrough component with steps on the left and browser mockup showing recorded GIFs on the right.
+---
+
+<div class="landing-walkthrough grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-12 md:mt-16 text-left">
+  <!-- Left: Step Selection Cards -->
+  <div class="lg:col-span-5 flex flex-col gap-4">
+    <!-- Step 1 Card -->
+    <button
+      type="button"
+      data-walkthrough-step="1"
+      class="walkthrough-card active text-left p-6 rounded-card border-1.5 border-white bg-white/5 transition-all hover:bg-white/10"
+      aria-label="Step 1: Pick your template"
+    >
+      <div class="flex items-start gap-4">
+        <span class="walkthrough-num flex-shrink-0 w-10 h-10 rounded-full bg-accent-lime text-ink-primary font-serif font-bold text-lg flex items-center justify-center border-1.5 border-ink-primary shadow-hard-sm">
+          1
+        </span>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-white leading-snug">Pick your template</h3>
+          <p class="text-sm text-ink-on-dark-muted mt-2 leading-relaxed">
+            Choose from 76 visualizer templates across 13 categories (including mindmaps, flowcharts, SWOT analyses, and product journeys).
+          </p>
+        </div>
+      </div>
+    </button>
+
+    <!-- Step 2 Card -->
+    <button
+      type="button"
+      data-walkthrough-step="2"
+      class="walkthrough-card text-left p-6 rounded-card border-1.5 border-transparent bg-transparent transition-all hover:bg-white/5"
+      aria-label="Step 2: Choose your style"
+    >
+      <div class="flex items-start gap-4">
+        <span class="walkthrough-num flex-shrink-0 w-10 h-10 rounded-full bg-cream-lightest text-ink-secondary font-serif font-bold text-lg flex items-center justify-center border-1.5 border-ink-primary/20 opacity-60">
+          2
+        </span>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-ink-on-dark-muted leading-snug transition-colors walkthrough-title">Choose your style</h3>
+          <p class="text-sm text-ink-on-dark-muted/60 mt-2 leading-relaxed transition-colors walkthrough-desc">
+            Select curated color palettes, connector line paths (curved vs. straight), outline icons, and custom typography moods.
+          </p>
+        </div>
+      </div>
+    </button>
+
+    <!-- Step 3 Card -->
+    <button
+      type="button"
+      data-walkthrough-step="3"
+      class="walkthrough-card text-left p-6 rounded-card border-1.5 border-transparent bg-transparent transition-all hover:bg-white/5"
+      aria-label="Step 3: Generate and copy prompt"
+    >
+      <div class="flex items-start gap-4">
+        <span class="walkthrough-num flex-shrink-0 w-10 h-10 rounded-full bg-cream-lightest text-ink-secondary font-serif font-bold text-lg flex items-center justify-center border-1.5 border-ink-primary/20 opacity-60">
+          3
+        </span>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-ink-on-dark-muted leading-snug transition-colors walkthrough-title">Generate and copy prompt</h3>
+          <p class="text-sm text-ink-on-dark-muted/60 mt-2 leading-relaxed transition-colors walkthrough-desc">
+            Enter your custom diagram content details, check the dynamic real-time SVG preview, and copy the prompt to paste into Gemini or Claude.
+          </p>
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <!-- Right: Premium Browser Mockup Container -->
+  <div class="lg:col-span-7">
+    <div class="browser-mockup rounded-[16px] border-2 border-white/20 bg-forest-darkest shadow-2xl overflow-hidden relative transition-all duration-300">
+      <!-- Browser Top bar -->
+      <div class="browser-header flex items-center px-4 py-3 bg-forest-darker/60 border-b border-white/10">
+        <!-- Control dots -->
+        <div class="flex gap-1.5 flex-shrink-0">
+          <span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+        </div>
+        <!-- Address Bar -->
+        <div class="mx-auto bg-forest-darkest/50 border border-white/5 rounded-md text-[11px] text-ink-on-dark-muted/60 py-1 px-8 w-1/2 text-center select-none font-mono tracking-tight truncate">
+          illustratewords.com/generate
+        </div>
+      </div>
+      <!-- Browser Window Content -->
+      <div class="browser-content aspect-[16/10] bg-forest-darker relative overflow-hidden flex items-center justify-center">
+        <!-- Step GIF slides -->
+        <div class="absolute inset-0 transition-opacity duration-300 active-slide" id="slide-1">
+          <img src="/images/walkthrough/step_1.gif" alt="Stage 1: Choose Visualization & Palette" class="w-full h-full object-cover object-top select-none" loading="eager" />
+        </div>
+        <div class="absolute inset-0 transition-opacity duration-300 opacity-0" id="slide-2">
+          <img src="/images/walkthrough/step_2.gif" alt="Stage 2: Select Connectors & Style Customization" class="w-full h-full object-cover object-top select-none" loading="lazy" />
+        </div>
+        <div class="absolute inset-0 transition-opacity duration-300 opacity-0" id="slide-3">
+          <img src="/images/walkthrough/step_3.gif" alt="Stage 3: Type Content, Live Rendering & Copy Prompt" class="w-full h-full object-cover object-top select-none" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Step card hover and active transitions */
+  .walkthrough-card.active {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  }
+  .walkthrough-card.active .walkthrough-title {
+    color: #ffffff !important;
+  }
+  .walkthrough-card.active .walkthrough-desc {
+    color: rgba(245, 241, 230, 0.85) !important;
+  }
+  .walkthrough-card:not(.active) {
+    cursor: pointer;
+  }
+  .walkthrough-card:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .browser-mockup {
+    transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .browser-mockup:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+</style>
+
+<script>
+  (function() {
+    const cards = document.querySelectorAll('.walkthrough-card');
+    const slides = [
+      document.getElementById('slide-1'),
+      document.getElementById('slide-2'),
+      document.getElementById('slide-3')
+    ];
+    let activeIndex = 0;
+    let timer = null;
+
+    function setStep(idx) {
+      if (idx === activeIndex) return;
+
+      // Update Cards
+      cards.forEach((card, i) => {
+        const num = card.querySelector('.walkthrough-num');
+        const title = card.querySelector('.walkthrough-title');
+        const desc = card.querySelector('.walkthrough-desc');
+
+        if (i === idx) {
+          card.classList.add('active');
+          card.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          if (num) {
+            num.className = 'walkthrough-num flex-shrink-0 w-10 h-10 rounded-full bg-accent-lime text-ink-primary font-serif font-bold text-lg flex items-center justify-center border-1.5 border-ink-primary shadow-hard-sm';
+            num.style.opacity = '1';
+          }
+        } else {
+          card.classList.remove('active');
+          card.style.borderColor = 'transparent';
+          if (num) {
+            num.className = 'walkthrough-num flex-shrink-0 w-10 h-10 rounded-full bg-cream-lightest text-ink-secondary font-serif font-bold text-lg flex items-center justify-center border-1.5 border-ink-primary/20';
+            num.style.opacity = '0.6';
+          }
+        }
+      });
+
+      // Update Slides (fade transition)
+      slides.forEach((slide, i) => {
+        if (!slide) return;
+        if (i === idx) {
+          slide.classList.remove('opacity-0');
+          slide.classList.add('active-slide');
+          slide.style.opacity = '1';
+          slide.style.zIndex = '10';
+        } else {
+          slide.classList.add('opacity-0');
+          slide.classList.remove('active-slide');
+          slide.style.opacity = '0';
+          slide.style.zIndex = '1';
+        }
+      });
+
+      activeIndex = idx;
+    }
+
+    // Auto-cycling (every 6 seconds)
+    function startCycle() {
+      timer = setInterval(() => {
+        const nextIdx = (activeIndex + 1) % cards.length;
+        setStep(nextIdx);
+      }, 6000);
+    }
+
+    function stopCycle() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Bind card clicks
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        stopCycle(); // Stop auto-cycling on manual click
+        setStep(idx);
+      });
+    });
+
+    startCycle();
+  })();
+</script>
