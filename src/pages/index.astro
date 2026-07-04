@@ -20,26 +20,20 @@ const comparison = [
 // Use cases
 const useCases = [
   {
-    title: 'Consultants & Advisory',
-    description: 'Design MECE Issue Trees, Strategy Alignment Frameworks, and BCG Growth Matrices to structure complex client recommendations.',
-    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="3" y="16" width="8" height="8" rx="1.5"/><rect x="20" y="5" width="8" height="8" rx="1.5"/><rect x="20" y="27" width="8" height="8" rx="1.5"/><path d="M11 20 h 5 v -11 h 4 M16 20 v 11 h 4"/></svg>`,
-    bg: 'bg-accent-lavender',
-    rotate: '-rotate-2',
+    title: 'Consultants',
+    description: 'Turn strategy into frameworks clients actually understand.',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#4824DE" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>`
   },
   {
-    title: 'Analysts & Researchers',
-    description: 'Map Trend Scatterplots, Venn Overlaps, and 2x2 Prioritization Grids to synthesize findings for executive summaries.',
-    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="6" y1="34" x2="34" y2="34"/><line x1="6" y1="6" x2="6" y2="34"/><circle cx="13" cy="27" r="1.5" fill="currentColor"/><circle cx="19" cy="19" r="1.5" fill="currentColor"/><circle cx="25" cy="23" r="1.5" fill="currentColor"/><circle cx="31" cy="11" r="1.5" fill="currentColor"/><line x1="8" y1="29" x2="32" y2="9" stroke-dasharray="3 3"/></svg>`,
-    bg: 'bg-accent-lime',
-    rotate: 'rotate-1',
+    title: 'Analysts',
+    description: 'Turn research into charts that lead to decisions.',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#4824DE" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line><line x1="2" y1="20" x2="22" y2="20"></line></svg>`
   },
   {
-    title: 'Designers & Product Teams',
-    description: 'Layout User Flow Charts, Wireframe Grid Schemas, and Agile Roadmap Timelines to orchestrate feature delivery.',
-    iconSvg: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M6 20 q 7 -10, 14 0 t 14 0" stroke-dasharray="2.5 2.5"/><circle cx="6" cy="20" r="3" fill="currentColor"/><circle cx="20" cy="20" r="3" fill="currentColor"/><circle cx="34" cy="20" r="3" fill="currentColor"/><path d="M6 24 v 4 M20 24 v 4 M34 24 v 4"/></svg>`,
-    bg: 'bg-accent-pink',
-    rotate: '-rotate-1',
-  },
+    title: 'Product teams',
+    description: 'Map flows, wireframes, and roadmaps in one place.',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#4824DE" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>`
+  }
 ];
 
 // Steps
@@ -482,7 +476,7 @@ const steps = [
   <!-- ============================================================ -->
   <!-- 6. USE CASES                                                 -->
   <!-- ============================================================ -->
-  <section class="section bg-cream-lightest text-ink-primary relative overflow-hidden">
+  <section class="section bg-cream-lightest text-ink-primary relative overflow-hidden py-20 md:py-28">
 
     <div class="container-page relative">
 
@@ -495,20 +489,20 @@ const steps = [
         <h2 class="headline-h1 text-ink-primary">
           Who uses <em>Illustrate Words</em>?
         </h2>
-        <p class="mt-6 text-lead text-ink-secondary max-w-2xl mx-auto">
-          From boardrooms to classrooms, anyone who needs to visualize an idea fast.
+        <p class="mt-6 text-lg text-[#555555] max-w-[600px] mx-auto text-center font-sans leading-relaxed mb-16">
+          For anyone who thinks in pictures.
         </p>
       </div>
 
       <!-- Use case cards -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 max-w-5xl mx-auto items-stretch">
         {useCases.map((useCase) => (
-          <div class="bg-white border-2 border-ink-primary rounded-3xl p-8 shadow-hard hover:-translate-y-1 transition-all duration-200 flex flex-col relative">
-            <div class="w-14 h-14 bg-accent-lavender/10 rounded-full border border-accent-lavender/25 flex items-center justify-center text-accent-lavender mb-5">
+          <div class="bg-white border border-[rgba(0,0,0,0.08)] rounded-[16px] p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.16)] hover:-translate-y-0.5 transition-all duration-200 ease-in-out flex flex-col h-full text-left">
+            <div class="mb-6 flex-shrink-0">
               <Fragment set:html={useCase.iconSvg} />
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-ink-primary">{useCase.title}</h3>
-            <p class="mt-3 text-ink-secondary leading-relaxed">{useCase.description}</p>
+            <h3 class="font-serif text-[22px] font-semibold text-ink-primary leading-snug">{useCase.title}</h3>
+            <p class="mt-3 font-sans text-[15px] font-normal leading-[1.55] text-[#4A4A4A]">{useCase.description}</p>
           </div>
         ))}
       </div>
