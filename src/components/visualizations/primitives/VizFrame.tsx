@@ -46,32 +46,6 @@ export const VizFrame: React.FC<VizFrameProps> = ({
         `}} />
       </defs>
 
-      {/* Render Title/Subtitle block if provided */}
-      {title && (
-        <g transform="translate(24, 40)">
-          <text
-            x="0"
-            y="0"
-            fontSize="20"
-            fontWeight="600"
-            letterSpacing="-0.01em"
-            fill={textColor}
-          >
-            {title}
-          </text>
-          {subtitle && (
-            <text
-              x="0"
-              y="22"
-              fontSize="12"
-              fontWeight="400"
-              fill={subColor}
-            >
-              {subtitle}
-            </text>
-          )}
-        </g>
-      )}
 
       {/* Watermark in bottom right */}
       <g transform={`translate(${width - 150}, ${height - 24})`} opacity="0.4">
