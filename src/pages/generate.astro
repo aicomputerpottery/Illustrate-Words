@@ -845,6 +845,7 @@ const steps = [
       state.userContent = text;
       saveState();
       renderPrompt();
+      window.dispatchEvent(new CustomEvent('viz-state-change', { detail: { ...state } }));
     }
 
     // ---- Prompt generation ---------------------------------------------
