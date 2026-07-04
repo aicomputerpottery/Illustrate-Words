@@ -1,0 +1,43 @@
+{
+  "projectId": "ce3928ae-1214-4611-a6d2-a2dd9e40de92",
+  "type": "frontend",
+  "name": "Blog Index and Post Verification",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /blog"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains the header title 'Blog'"
+    },
+    {
+      "type": "assertion",
+      "description": "The page list includes the link '/blog/how-to-design-a-statistical-infographic-tips-tricks-free-templates'"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /blog/how-to-design-a-statistical-infographic-tips-tricks-free-templates"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains the main heading 'How to Design a Statistical Infographic: Tips, Tricks & Free Templates'"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /blog/annual-report-infographic-templates-turn-boring-reports-into-visual-stories"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains the main heading 'Annual Report Infographic Templates: Turn Boring Reports Into Visual Stories'"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /blog/the-best-fonts-for-presentations-in-2026-and-how-to-pair-them"
+    },
+    {
+      "type": "assertion",
+      "description": "The page contains the main heading 'The Best Fonts for Presentations in 2026 (And How to Pair Them)'"
+    }
+  ]
+}
